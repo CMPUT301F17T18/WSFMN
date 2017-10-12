@@ -1,0 +1,177 @@
+
+
+-	US 01.03.01
+
+	ViewHabitDetails
+
+	-	Actors: Habit Planner (primary)
+	-	Goal: Habit Tracker displays habit type, title, reason and date of the habit to Habit Planner
+	-	Trigger: Habit Planner chooses a habit from the list of habits
+	-	Precondition: Habit Planner knows which habit to view
+	-	Postcondition: On success, Habit Tracker displays type, title, reason and date of the habit
+
+
+	Basic flow:
+
+	1-	System displays a list of habits
+	2-	Habit Planner chooses a habit from the list of habits
+	3-	System displays type, title, reason and date of the habit.
+
+	Exceptions:
+
+	Qualities:
+
+
+
+-	US 01.04.01
+
+	EditHabit
+
+	-	Actors: Habit Planner (primary)
+	-	Goal: a habit’s type, title, reason, or date are changed
+	-	Trigger: Habit Planner chooses the Edit option
+	-	Precondition: Habit Planner knows which habit to edit
+	-	Postcondition: After choosing the Save option, the habit’s type, title, reason, or date is changed
+
+	Basic flow:
+
+	1-	Habit Planner chooses the Edit option
+	2-	System displays to Habit Planner current habit type, title, reason, and date, allowing changes to any of these attributes.
+	3-	Habit Planner makes changes to any of the habit’s type, title, reason, or date
+	4-	Habit Planner chooses the Save option
+	5-	System checks title is not empty 
+	6-	System checks for uniqueness of habit title
+	7-	System checks that value is given for type
+	8-	System checks that date is not before today 
+
+	Exceptions:
+
+	5-	      Title is left empty
+	5.1-	System displays “Please enter a title and try again”
+	5.2-	System returns to step 2
+	6-	Title is not unique
+	6.1-	System displays “This habit already exists. Please choose a new habit name”
+	6.2-	System returns to step 2
+	7-	No value given for type
+	7.1-	choose ‘other’ and proceed
+	8-	Date is before today
+	8.1	choose today as date
+
+	Qualities:
+
+		Constraints:
+		Includes:  ViewHabitDetails
+		Extends:
+		Related:
+		Artifacts:
+		Notes:		
+		Open:
+		Issues:
+
+
+
+-	US 01.05.01
+
+	DeleteHabit
+
+	-	Actors: Habit Planner (primary)
+	-	Goal: habit is deleted
+	-	Trigger: Habit Planner chooses the delete option
+	-	Precondition: Habit Planner knows which habit to delete
+	-	Postcondition: On success, habit is removed from the list of habits
+
+
+	Basic flow:
+	
+	1-	Habit Planner chooses the delete option
+	2-	System removes habit from list of habits
+
+
+	Exceptions:
+
+
+	Qualities:
+
+		Constraints:
+		Includes:  ViewHabitDetails
+		Extends:
+		Related:
+		Artifacts:
+		Notes:		
+		Open:
+		Issues:
+
+
+
+-	US 06.02.01
+
+	ViewMapOfMyHabitEvents
+
+	-	Actors: Habit Planner (primary)
+	-	Goal: a map showing habit events that have location 
+	-	Trigger: Habit Planner chooses the View Map option
+	-	Precondition: Habit Planner has at least 1 habit event in the habit history list that contain location
+	-	Postcondition: a map showing habit events that have location
+
+	Basic flow:
+
+	1-	Habit Planner chooses the filter habit history option for a habit type
+	2-	System filters habit history list for habit types that match type chosen by Habit Planner
+	3-	System displays filtered habit history list
+	4-	Habit Planner chooses the View Map option
+	5-	System fetches list, L, containing all habit events from (filtered) habit history list that have location
+	6-	System displays a map showing list L
+
+	Exceptions:
+
+	1-	Habit Planner does not choose the filter habit history option for a habit type
+	1.1-	System proceeds to step 4.
+	4-	Habit Planner does not have at least one habit event that has location in (filtered) habit history list
+	4.1-	System informs user
+
+	Qualities:
+
+		Constraints:
+		Includes: FilterHabitHistoryByType
+		Extends:
+		Related:
+		Artifacts:
+		Notes:		
+		Open:
+		Issues:
+
+
+
+-	US 06.03.01
+
+	ViewMapOfParticipantsHabitEvents
+
+	-	Actors: Habit Planner (primary)
+	-	Goal: a map showing habit events of all participants that the Habit Planner is following
+	-	Trigger: Habit Planner chooses the View Map option
+	-	Precondition: At least one participant that the Habit Planner is following has at least one habit event
+	-	in his/her habit history list that has location
+	-	Postcondition: a map showing habit events of participants that the Habit Planner is following
+
+	Basic flow:
+	
+	1-	Habit Planner chooses the View Map of Participant’s Habits option
+	2-	System provides a list, L, of all habit events of all participants that the Habit Planner is following and have location
+	3-	System displays a map showing habit events from list L
+
+	Exceptions:
+
+	1-	All participants that Habit Planner is following don’t have at least one habit event
+	2-	Inform user that participants don’t have at least one habit event that has location
+
+	Qualities:
+
+		Constraints:
+		Includes:  
+		Extends:
+		Related:
+		Artifacts:
+		Notes:		
+		Open:
+		Issues:
+
