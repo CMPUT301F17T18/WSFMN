@@ -1,0 +1,33 @@
+As a participant, I want a habit event to have an optional comment of no more than 20 characters.
+
+Name: HabitEventComment
+**Participating Actors:** HabitPlanner(Primary)
+**Goal:** Give HabitPlanner the Ability to comment on habit event
+**Trigger:** HabitPlanner clicks "Add Habit Event" and given the ability to comment. 
+**Precondition:** HabitPlanner knows what to comment for the specific habit event
+**Postcondition:** Succesfully adding comment to habit event; Habit Event now possess a comment on it.
+
+**BasicFlow:**
+1. HabitPlanner views habbit history
+2. HabitPlanner selects "Add Habit event"
+3. System goes to new Habit Event page
+4. Habit Planner selects "No comment" text to add comment
+5. HabitPlanner saves the Habit Event
+6. System goes to Habbit History page		
+7. Habit Event has comment in it
+
+**Exceptions:**
+1. Habit History list is empty
+1.1 System displays no habit events completed
+4. Habit Planner does not make a comment
+4.1 System restores comment with "No Comment" text 
+
+**Qualities:** Habit Planner can select habit event to add comment to it. To view the comment for a habit event Habit Planner must select it.
+**Constraints:** Comment cannot be longer than 20 characters
+**Includes:** None
+**Extends:** Add Habit Event
+**Related:** None
+**Artifacts:** None
+**Notes:** None
+**Open:** None
+**Issues:** None
