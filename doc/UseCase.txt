@@ -1,0 +1,133 @@
+2.4. ViewHabitEvent
+
+Participating Actors: Habit Planner(Primary)
+Goal: View a given habit event in Habit Tracker
+Trigger: Habit Planner choose a habit event
+Precondition: Habit event exist
+Postcondition: On success, the available detail of the habit event will be shown on the screen
+
+BasicFlow:
+
+Habit Planner choose habit event from the list
+System shows the details (Comment, picture, location, finish date) of the habit event"
+Exceptions:
+
+Qualities:
+Constraints: None
+Includes: None
+Extends: None
+Related: None
+Artifacts: US 02.04.01
+Notes: None
+Open: None
+Issues: None
+
+(top)
+
+2.5. EditHabitEvent
+
+Participating Actors: Habit Planner(Primary)
+Goal: Edit details of a habit event
+Trigger: Habit Planner choose a section (Comment, picture, location, finish date) from the details of habit event
+Precondition: Habit event exist
+Postcondition: Habit planner edit details of the habit event successfully
+
+BasicFlow: 1.Habit Planner choose a section
+2.Habit Planner edit it
+3.System synchronize the changes
+
+Exceptions:
+3. Habit Tracker is offline
+3.1 System go to OfflineBehavior
+
+Qualities:
+Constraints: None
+Includes: ViewHabitEvent
+Extends: None
+Related: None
+Artifacts: US 02.05.01
+Notes: None
+Open: None
+Issues: None
+
+(top)
+
+2.6. DeleteHabitEvent
+
+Participating Actors: Habit Planner(Primary)
+Goal: Delete a habit event from the list of habit event
+Trigger: Habit planner click Delete Event button
+Precondition: Habit event exist
+Postcondition: The habit event is deleted from the list
+
+BasicFlow: 1.Habit Planner click Delete Event button 2.System asks Habit Planner to confirm delete 3.The habit event is removed from the list 4.System bring Habit Planner back to the Habit History
+
+Exceptions:
+3. Habit Tracker is offline
+3.1 System go to OfflineBehavior
+
+Qualities:
+Constraints: None
+Includes: ViewHabitEvent
+Extends: None
+Related: None
+Artifacts: US 02.06.01
+Notes: None
+Open: None
+Issues: None
+
+(top)
+
+6.4. HighlightEvent
+
+Participating Actors: Habit Planner(Primary)
+Goal: The habit events within 5 km of the current location are highlighted
+Trigger: Habit Planner click Highlight button
+Precondition: There are habit events within 5 km
+Postcondition: The habit events are highlighted
+
+BasicFlow: 1.Habit Planner hit the Highlight button 2.System get the current location 3.System get all habit events 4.System check the distance between current location and each habit events 5.System collect all habit events that the distance is within 5km 6.System highlights all the habit events meet the condition
+
+Exceptions:
+
+Qualities:
+Constraints: None
+Includes: ViewMapOfMyHabitEvents ViewMapOfParticipantsHabitEvents
+Extends: None
+Related: None
+Artifacts: US 06.04.01
+Notes: None
+Open: None
+Issues: None
+(top)
+
+
+Offline Behaviour
+
+7.1. OfflineBehavior
+
+Actor: Habit Planner
+Goal: Changes synchronized once Habit Planner get connectivity
+Trigger: Habit Planner add, edit, or delete a habit event while offline
+Precondition: Habit Tracker is offline
+Postcondition: Changes synchronized
+
+Basic Flow:
+1.Habit Planner add, edit, or delete a habit event
+2.System check the connection and find it is offline
+3.System save the changes
+4.System synchronize changes when get connectivity
+
+Exceptions:
+
+Qualities:
+Constraints: None
+Includes: None
+Extends: None
+Related: None
+Artifacts: US 07.01.01
+Notes: None
+Open: None
+Issues: None
+
+(top)
