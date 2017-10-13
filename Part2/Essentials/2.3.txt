@@ -1,0 +1,8 @@
+Habit Planner			System
+Views Habit history	
+				Displays habit history
+selects Add Habit event		
+				Asks For details(Picture and habit)
+Submits picture			
+				saves picture for event
+				Displays Habit History updated
