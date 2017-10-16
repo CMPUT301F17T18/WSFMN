@@ -5,4 +5,6 @@ package com.a301t18.wsfmn.habittracker;
  */
 
 public class HabitHistory {
+
+    ArrayList<HabitEvent> habitHistory = new ArrayList<HabitEvent>;
 }
