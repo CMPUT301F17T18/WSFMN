@@ -13,5 +13,5 @@ public class Map {
     public void friendsEvent(){
 
     }
-    
+
 }
