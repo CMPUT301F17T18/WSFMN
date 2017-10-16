@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable-v21/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    }
+]
