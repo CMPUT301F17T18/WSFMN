@@ -1,0 +1,57 @@
+Habit Planner			System
+Views Habit History	
+				Displays Habit History
+Selects Add Habit Event		
+				Asks for details(Habit and Location)
+submits details			
+				Stores Details
+				Display Habit History
+|    Habit Planner     |                        System                        |
+| -------------------- | ---------------------------------------------------- |
+| Views Habit history  |                                                      |
+|                      | Displays habit history                               |
+|Selects AddHabitEvent |                                                      |
+|                      | Request Habit to filled in                           |
+|Select habit          |                                                      |
+|Saves Changes         |                                                      |
+|                      | Creates Habit                                        |
+|                      | Displays Habit History updated with new habit event  |
+
+
+|    Habit Planner       |                        System                        |
+| ---------------------- | ---------------------------------------------------- |
+| Views Habit history    |                                                      |
+|                        | Displays habit history                               |
+|Selects AddHabitEvent   |                                                      |
+|                        | Request For details(comment and habit)               |
+|Submits Comment(& Habit)|                                                      |
+|                        | Retrieves comment Data                               |
+|saves changes           |                                                      |
+|                        | Displays Habit History updated.                      |
+
+
+|    Habit Planner       |                        System                        |
+| ---------------------- | ---------------------------------------------------- |
+| Views Habit history    |                                                      |
+|                        | Displays habit history                               |
+|Selects AddHabitEvent   |                                                      |
+|                        | Request For details(Picture and habit)               |
+|Submits picture(& Habit)|                                                      |
+|                        | Retrieves picture from device                        |
+|saves changes           |                                                      |
+|                        | Displays Habit History updated.                      |
+
+
+|    Habit Planner        |                        System                        |
+| ----------------------- | ---------------------------------------------------- |
+| Views Habit history     |                                                      |
+|                         | Displays habit history                               |
+|Selects AddHabitEvent    |                                                      |
+|                         | Asks for details(Habit and Location)                 |
+|Submits Location(& Habit)|                                                      |
+|                         | Retrieves Location Data from device                  |
+|saves changes            |                                                      |
+|                         | Displays Habit History with updated habit event.     |
+
+
+

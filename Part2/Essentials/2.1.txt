@@ -1,0 +1,10 @@
+Habit Planner			System
+Views Habit history		
+				system retrieves the habit history
+Chooses to AddHabitEvent	
+				Request habit to be filled in
+select habit to fill in			
+saves the details		
+				Creates the event
+				returns to habit history
+				displays the new habit event

@@ -1,0 +1,50 @@
+[
+    {
+        "outputFile": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 58,
+                    "endOffset": 109
+                },
+                "from": {
+                    "file": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/values-v13/values-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 58,
+                        "endOffset": 109
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v13/values-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 58,
+                    "endOffset": 109
+                },
+                "from": {
+                    "file": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/values-v13/values-v13.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 58,
+                        "endOffset": 109
+                    }
+                }
+            }
+        ]
+    }
+]
