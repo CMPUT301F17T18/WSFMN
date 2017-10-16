@@ -6,7 +6,9 @@ package com.a301t18.wsfmn.habittracker;
 
 public class Offline {
 
-    
+    public void storeLocal(){
+
+    }
 
 
 }
