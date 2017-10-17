@@ -24,6 +24,30 @@
         ]
     },
     {
+        "outputFile": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 48,
+                    "endOffset": 99
+                },
+                "from": {
+                    "file": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/values-v18/values-v18.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 48,
+                        "endOffset": 99
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml",
         "map": [
             {

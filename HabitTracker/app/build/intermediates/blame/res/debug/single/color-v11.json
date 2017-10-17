@@ -14,5 +14,13 @@
     {
         "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
         "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     }
 ]

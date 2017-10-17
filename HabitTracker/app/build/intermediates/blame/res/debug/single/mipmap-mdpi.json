@@ -14,5 +14,13 @@
     {
         "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
         "source": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher_round.png",
+        "source": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/src/main/res/mipmap-mdpi/ic_launcher.png"
     }
 ]
