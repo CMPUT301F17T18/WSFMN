@@ -10,5 +10,9 @@ public class Offline {
 
     }
 
+    public void getLocal(){
+
+    }
+
 
 }

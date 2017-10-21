@@ -12,7 +12,12 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
         super(MainActivity.class);
     }
 
-    public void testStoreLocal(){
+    public void testgetLocal(){
+        final String FILENAME = "file.sav";
+    }
+
+    public void teststoreLocal(){
+        final String FILENAME = "file.sav";
 
     }
 }
