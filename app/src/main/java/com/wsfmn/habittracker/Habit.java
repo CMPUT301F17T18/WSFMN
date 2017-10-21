@@ -12,6 +12,10 @@ public class Habit{
     private String reason;
     private Date date;
 
+    public Habit(){
+
+    }
+
     public Habit(String title, Date date){
         this.title = title;
         this.date = date;
