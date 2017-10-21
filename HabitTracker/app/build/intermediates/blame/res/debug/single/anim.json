@@ -1,19 +1,33 @@
 [
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_bottom.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\anim\\abc_fade_in.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/anim/abc_slide_out_bottom.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\anim\\abc_fade_out.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_in.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\anim\\abc_fade_in.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_popup_exit.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
@@ -28,42 +42,111 @@
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\anim\\abc_slide_in_bottom.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_out_top.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_slide_out_top.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_exit.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_popup_exit.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_popup_enter.xml"
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_shrink_fade_out_from_bottom.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_shrink_fade_out_from_bottom.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_popup_enter.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\anim\\abc_popup_enter.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_fade_out.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_fade_out.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_fade_out.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_top.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\anim\\abc_slide_in_top.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },
@@ -118,5 +201,17 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_grow_fade_in_from_bottom.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\anim\\abc_grow_fade_in_from_bottom.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     }
 ]

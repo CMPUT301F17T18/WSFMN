@@ -1,6 +1,34 @@
 [
     {
+<<<<<<< HEAD
         "outputFile": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ldltr-v21\\values-ldltr-v21.xml",
+=======
+        "outputFile": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 112,
+                    "endOffset": 163
+                },
+                "from": {
+                    "file": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 112,
+                        "endOffset": 163
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
         "map": [
             {
                 "to": {

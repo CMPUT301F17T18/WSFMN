@@ -1,11 +1,16 @@
 [
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_item_background_holo_dark.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_dialog_material_background.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
@@ -20,6 +25,7 @@
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
     },
@@ -34,32 +40,59 @@
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_thumb_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_seekbar_thumb_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_btn_radio_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\notification_bg.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\notification_bg_low.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_btn_borderless_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_colored_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_btn_borderless_material.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_ab_back_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_ab_back_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_vector_test.xml"
     },
@@ -70,12 +103,33 @@
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_thumb_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_seekbar_thumb_material.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_btn_check_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_text_cursor_material.xml"
     },
@@ -94,18 +148,35 @@
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_cab_background_top_material.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_search_api_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_voice_search_api_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_small_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ratingbar_small_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_spinner_textfield_background_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_menu_overflow_material.xml",
@@ -116,6 +187,7 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
     },
@@ -150,12 +222,17 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_dialog_material_background.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_switch_thumb_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_btn_check_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
@@ -166,12 +243,29 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_tile_bg.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/notification_tile_bg.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_vector_test.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_vector_test.xml"
     },
@@ -186,12 +280,29 @@
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\notification_tile_bg.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_go_search_api_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_thumb_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_seekbar_thumb_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_ratingbar_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
@@ -202,6 +313,14 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_seekbar_track_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
@@ -216,6 +335,7 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_tab_indicator_material.xml"
     },
@@ -230,6 +350,10 @@
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_dialog_material_background.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_spinner_textfield_background_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
@@ -248,8 +372,13 @@
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_borderless_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_btn_borderless_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
@@ -260,12 +389,17 @@
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_switch_thumb_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_go_search_api_material.xml",
@@ -276,12 +410,17 @@
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_small_material.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable\\notification_icon_background.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_vector_test.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_vector_test.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
@@ -300,6 +439,7 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
@@ -454,5 +594,225 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable\\notification_tile_bg.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_textfield_search_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_text_cursor_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_vector_test.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_vector_test.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_internal_bg.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_small_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_ratingbar_small_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_tick_mark_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_bg.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_voice_search_api_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_clear_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_switch_thumb_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_dark.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_menu_overflow_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_text_cursor_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_voice_search_api_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_go_search_api_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_ab_back_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_ic_ab_back_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_icon_background.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/notification_icon_background.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_go_search_api_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_ic_go_search_api_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_dark.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_tab_indicator_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_item_background_holo_light.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_vector_test.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_vector_test.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_edit_text_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_light.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_internal_bg.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_btn_default_mtrl_shape.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_dialog_material_background.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_cab_background_top_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable/abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/notification_bg.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ic_clear_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/drawable/abc_ic_clear_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable/abc_ratingbar_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     }
 ]

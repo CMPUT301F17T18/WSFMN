@@ -4,6 +4,7 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\notification_template_part_time.xml"
     },
@@ -14,12 +15,17 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_action_menu_item_layout.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_search_view.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_action_bar_up_container.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\notification_action_tombstone.xml"
     },
@@ -38,12 +44,29 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_bar_up_container.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
@@ -54,6 +77,10 @@
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_activity_chooser_view.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
@@ -64,8 +91,21 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\notification_action_tombstone.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_list_menu_item_checkbox.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
@@ -76,6 +116,7 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_activity_chooser_view.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_action_bar_title_item.xml"
     },
@@ -86,6 +127,14 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_screen_content_include.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
@@ -96,8 +145,17 @@
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_list_menu_item_radio.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_template_media.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_title_material.xml",
@@ -112,26 +170,257 @@
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_action_bar_up_container.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_screen_content_include.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\abc_list_menu_item_radio.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_list_menu_item_layout.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\notification_template_lines_media.xml"
     },
@@ -142,6 +431,14 @@
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_search_view.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_action_mode_bar.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
@@ -156,6 +453,7 @@
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\notification_action_tombstone.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_select_dialog_material.xml"
     },
@@ -170,12 +468,21 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_list_menu_item_radio.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_action_tombstone.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\abc_activity_chooser_view.xml"
     },
@@ -194,12 +501,25 @@
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_action_bar_title_item.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_template_part_chronometer.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media_custom.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\notification_template_media_custom.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\notification_template_lines_media.xml"
     },
@@ -214,12 +534,29 @@
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\notification_template_media.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_screen_content_include.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
         "source": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_screen_simple.xml"
     },
@@ -238,6 +575,26 @@
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_screen_simple.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_screen_toolbar.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
@@ -260,6 +617,7 @@
         "source": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
@@ -286,24 +644,38 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/select_dialog_multichoice_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_title_material.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\abc_alert_dialog_title_material.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\layout\\notification_template_lines_media.xml"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_template_media_custom.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
         "source": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\layout\\select_dialog_item_material.xml"
     },
@@ -478,5 +850,21 @@
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media_custom.xml",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\layout\\notification_template_media_custom.xml"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/liwei/.android/build-cache/4444c54d00c714bb763723a09578f513212d7799/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/layout/abc_alert_dialog_title_material.xml"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     }
 ]

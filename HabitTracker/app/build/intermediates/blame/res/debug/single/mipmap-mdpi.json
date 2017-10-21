@@ -12,6 +12,7 @@
         "source": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
         "source": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
@@ -22,5 +23,17 @@
     {
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
         "source": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+=======
+        "merged": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/Users/liwei/Desktop/301Project/WSFMN/HabitTracker/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher_round.png",
+        "source": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     }
 ]

@@ -12,14 +12,24 @@
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\musaed\\GitHub\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png",
         "source": "C:\\Users\\musaed\\.android\\build-cache\\8c3a3473122d2642afd2ded4277c55aad2bd3825\\output\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
+=======
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     },
     {
         "merged": "C:\\Users\\liwei\\Desktop\\301Project\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png",
         "source": "C:\\Users\\liwei\\.android\\build-cache\\4444c54d00c714bb763723a09578f513212d7799\\output\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
+<<<<<<< HEAD
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
@@ -34,5 +44,17 @@
     {
         "merged": "C:\\Users\\Fredric\\Downloads\\cmput301\\WSFMN\\HabitTracker\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png",
         "source": "C:\\Users\\Fredric\\.android\\build-cache\\6a9bb770f7b11d0dbfe509ecbb1513c07691e4a7\\output\\res\\drawable-ldrtl-hdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
+=======
+        "merged": "/Users/musaed/GitHub/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png",
+        "source": "/Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17/abc_spinner_mtrl_am_alpha.9.png",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable-ldrtl-hdpi-v17/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/Users/nicholasmayne/Documents/workspace/301/WSFMN/HabitTracker/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17/abc_ic_menu_cut_mtrl_alpha.png",
+        "source": "/Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/res/drawable-ldrtl-hdpi-v17/abc_ic_menu_cut_mtrl_alpha.png"
+>>>>>>> a549e438d1ac46f361602928ce2c0cc5fe60b6a9
     }
 ]
