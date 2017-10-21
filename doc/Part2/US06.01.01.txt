@@ -1,0 +1,35 @@
+As a participant, I want to optionally attach my current location to a habit event.
+
+Name: HabitEventLocation
+**Participating Actors:** HabitPlanner(Primary)
+**Goal:** Give Habit Planner the Ability to add current location to the habit event
+**Trigger:** Habit Planner selects the Map icon on Habit Event Page. 
+**Precondition:** HabitPlanner device should have GPS on their phone.
+**Postcondition:** Succesfully adding current location to habit event; Habit Event now possess the location where event took place.
+
+**BasicFlow:**
+1. Habit Planner views habit history
+2. Habit Planner selects "Add Habit Event" on habit history
+3. System goes to habit event page.
+4. HabitPlanner selects Map icon to record current location.
+5. HabitPlanner device records current location. 	
+6. Map is updated with the new habit event location.
+7. HabitPlanner saves habit event.
+8. System goes back to habit history page
+9. Habit Event has location of the event in it
+
+**Exceptions:**
+1. Habit History list is empty
+1.1 System displays no habit events completed
+4. Detect Location setting is turned off on device
+4.1 System Displays "Location is turned off"
+	 
+**Qualities:** Displays older habit event locations. To view the location for a habit event Habit Planner must select it.
+**Constraints:** None
+**Includes:** None
+**Extends:** Add Habit Event
+**Related:** None
+**Artifacts:** None
+**Notes:*8 None
+**Open:** None
+**Issues:** None

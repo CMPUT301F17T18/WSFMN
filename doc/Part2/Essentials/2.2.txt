@@ -1,0 +1,8 @@
+Habit Planner				System
+Views habit history
+					Displays habit history
+Selects add new habit
+					asks for details for new habit(comment and habit)
+Submit comment and name			
+					save comment and name
+					Displays habit history
