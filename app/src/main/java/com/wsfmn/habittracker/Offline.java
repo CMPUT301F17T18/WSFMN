@@ -14,7 +14,7 @@ public class Offline {
 
     }
 
-    public void getLocal(ArrayList<Habit> array){
+    public void getLocal(){
 
     }
 

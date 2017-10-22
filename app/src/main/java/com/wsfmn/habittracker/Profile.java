@@ -8,11 +8,11 @@ public class Profile {
 
     private String Name;
 
-    public void followUser(){
+    public void followUser(String participantName){
 
     }
 
-    public void shareWithUser(){
+    public void shareWithUser(String participantName){
 
     }
 
