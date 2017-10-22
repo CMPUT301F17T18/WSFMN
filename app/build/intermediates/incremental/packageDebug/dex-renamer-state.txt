@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 #Sat Oct 21 22:53:18 MDT 2017
 base.0=/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+=======
+#Sat Oct 21 22:59:42 MDT 2017
+base.0=/Users/musaed/GitHub/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+>>>>>>> 21a636291a7d6bb2bae0fa476c63c4307275b0a3
 renamed.0=classes.dex
 file.0=/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

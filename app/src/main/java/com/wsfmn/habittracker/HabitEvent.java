@@ -8,11 +8,20 @@ import java.util.Date;
 
 public class HabitEvent extends Habit{
     private String comment;
+    private Habit habit;
     private Date date;
 
-    public HabitEvent(Date date, String comment) {
+    public HabitEvent(Habit habit, Date date, String comment) {
         this.date = date;
         this.comment = comment;
+    }
+
+    public Habit getHabit() {
+        return habit;
+    }
+
+    public void setHabit(Habit habit) {
+        this.habit = habit;
     }
 
     public String getComment() {
