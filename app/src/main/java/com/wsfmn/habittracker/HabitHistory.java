@@ -8,5 +8,14 @@ import java.util.ArrayList;
 
 public class HabitHistory {
 
-    ArrayList<HabitEvent> habitHistory = new ArrayList<HabitEvent>();
+    private ArrayList<HabitEvent> habitHistory = new ArrayList<HabitEvent>();
+
+
+    public HabitEvent getHabitEventAt(int index) {
+        return habitHistory.get(index);
+    }
+
+    public void addHabitEvent(HabitEvent habitEvent) {
+        habitHistory.add(habitEvent);
+    }
 }
