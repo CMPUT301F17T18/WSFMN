@@ -23,9 +23,11 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         Habit newHabit = new Habit("TestHabit", new Date());
         assertNull("New habit ID was not null", newHabit.getId());
-        OnlineController.AddHabitOnline addHabitOnline
-                = new OnlineController.AddHabitOnline();
+        OnlineController.AddHabit addHabitOnline
+                = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
+
+        OnlineController.GetHabitList getHabitList
         assertNotNull("New habit ID was null", newHabit.getId());
 
     }

@@ -38,15 +38,14 @@ public class MainActivity extends AppCompatActivity {
         Habit newHabit = new Habit(text, new Date());
         habitList.addHabit(newHabit);
 
-        OnlineController.AddHabitOnline addHabitOnline
-                = new OnlineController.AddHabitOnline();
+        OnlineController.AddHabit addHabitOnline
+                = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
-
+        Log.d("AddingNewHabitID", newHabit.getId());
         updateHabitList();
     }
 
-
-
+    /** Update the local HabitList with a search of online Habits */
     public void updateHabitList() {
         OnlineController.GetHabitList getHabitList
                 = new OnlineController.GetHabitList();
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             habitList = new HabitList(getHabitList.get());
         } catch (Exception e) {
             Log.i("Error", "Failed to get the habits from the async object");
+
 //            habitList = Offlinecontroller.getHabitList();
         }
 

@@ -1,5 +1,10 @@
 package com.wsfmn.habittracker;
 
+import android.media.Image;
+import android.widget.ImageView;
+
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.util.Date;
 
 /**
@@ -12,6 +17,10 @@ public class HabitEvent{
     private Date date;
     private Boolean done;
 
+    Integer location;
+    //Will change to appropriate Data Type when implement it(ImageView).
+    String pic;
+  
     public HabitEvent(Habit habit, Date date, Boolean done, String comment) {
         this.date = date;
         this.done = done;
@@ -37,13 +46,24 @@ public class HabitEvent{
         this.comment = comment;
     }
 
-    public Date getDate() {
-        return date;
-    }
+    public void location(){this.location = 5;}
+    public void AddPic(){this.pic = "Image";}
+    public void updateHabitHistory(){}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public String getComment(){return comment;}
+
+    public void setComment(String comment){this.comment = comment;}
+
+    public Date getDate(){return date;}
+
+    public void setDate(Date date){this.date = date;}
+
+
+    public Habit getHabit(){return habit;}
+
+    public Integer getLocation(){return this.location;}
+
+    public String getPic(){return this.pic;}
 
     public void setDone(Boolean done) {
         this.done = done;
@@ -52,9 +72,5 @@ public class HabitEvent{
     public Boolean getDone() {
         return done;
     }
-
-    public void location(){}
-    public void AddPic(){}
-
 
 }

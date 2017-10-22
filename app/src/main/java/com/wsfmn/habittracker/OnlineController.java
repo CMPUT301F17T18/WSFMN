@@ -31,7 +31,7 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class AddHabitOnline extends AsyncTask<Habit, Void, Void> {
+    public static class AddHabit extends AsyncTask<Habit, Void, Void> {
 
         @Override
         protected Void doInBackground(Habit... habits) {
@@ -45,8 +45,7 @@ public class  OnlineController {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded())
                     {
-                        System.out.println("!!!" + result.getId().toString());
-                        habit.setId(result.getId());
+                        habit.setId(result.getId().toString());
                     }
                     else
                     {
