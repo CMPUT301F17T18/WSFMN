@@ -1,12 +1,10 @@
 package com.wsfmn.habittracker;
 
-import android.content.Intent;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -38,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
         Habit newHabit = new Habit(text, new Date());
         habitList.addHabit(newHabit);
 
+
         OnlineController.AddHabit addHabitOnline
                 = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
-//        Log.d("AddingNewHabitID", newHabit.getId());
+
         updateHabitList();
     }
 
