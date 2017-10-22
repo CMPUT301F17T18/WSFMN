@@ -1,8 +1,10 @@
 package com.wsfmn.habittracker;
 
+import android.os.Handler;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -18,37 +20,27 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
 
     public void testAddHabitOnline(){
-        Habit newHabit = null;
-
 
         try {
-            newHabit = new Habit("TestHabit", new Date());
+            final Habit newHabit = new Habit("TestHabit", new Date());
+
+            assertNull("New habit ID was not null", newHabit.getId());
+
+            Log.d("NewHabitIs:", newHabit.toString());
+
+            OnlineController.AddHabit addHabitOnline
+                    = new OnlineController.AddHabit();
+            addHabitOnline.execute(newHabit);
+
+            // Delay 1 second for transaction to finish (usual time is around 200 ms)
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            while(newHabit.getId() == null && (Calendar.getInstance().getTimeInMillis() - currentTime) < 1000 ){}
+            assertNotNull("New habit ID was null", newHabit.getId());
         }
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
         }
 
 
-        HabitList habitList;
-
-
-        assertNull("New habit ID was not null", newHabit.getId());
-
-        OnlineController.AddHabit addHabitOnline
-                = new OnlineController.AddHabit();
-        addHabitOnline.execute(newHabit);
-
-
-        OnlineController.GetHabitList getHabitList;
-
-        Log.d("NewHabitID", newHabit.getId());
-
-
-
-        Log.d("NewHabitID", "NewHabit Id: " + newHabit.getId());
-
-        assertNotNull("New habit ID was null", newHabit.getId());
-
     }
-
 }

@@ -45,9 +45,6 @@ public class  OnlineController {
                     if(result.isSucceeded())
                     {
                         habit.setId(result.getId().toString());
-                        Log.d("NewHabitIDInOnline", "From Server: " + result.getId().toString());
-                        Log.d("NewHabitIDInOnline", "Locally: " + habit.getId());
-
                     }
                     else
                     {
