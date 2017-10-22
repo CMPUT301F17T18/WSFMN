@@ -23,7 +23,7 @@ import io.searchbox.core.SearchResult;
 
 
 
-public class OnlineController {
+public class  OnlineController {
 
     private static JestDroidClient client;
 

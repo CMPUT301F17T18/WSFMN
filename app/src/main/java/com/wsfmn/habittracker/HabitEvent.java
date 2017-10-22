@@ -30,7 +30,10 @@ public class HabitEvent{
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setComment(String comment) throws HabitCommentTooLongException {
+        if(comment.length() > 20){
+            throw new HabitCommentTooLongException();
+        }
         this.comment = comment;
     }
 
