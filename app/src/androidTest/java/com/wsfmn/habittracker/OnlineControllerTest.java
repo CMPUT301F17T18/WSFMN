@@ -1,0 +1,35 @@
+package com.wsfmn.habittracker;
+
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.EditText;
+
+import java.util.Date;
+import java.util.Scanner;
+
+
+/**
+ * Created by nicholasmayne on 2017-10-17.
+ */
+
+public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
+
+    public OnlineControllerTest() {
+        super(MainActivity.class);
+    }
+
+
+    public void testAddHabitOnline(){
+
+
+        Habit newHabit = new Habit("TestHabit", new Date());
+        assertNull("New habit ID was not null", newHabit.getId());
+        OnlineController.AddHabitOnline addHabitOnline
+                = new OnlineController.AddHabitOnline();
+        addHabitOnline.execute(newHabit);
+        assertNotNull("New habit ID was null", newHabit.getId());
+
+    }
+
+
+
+}

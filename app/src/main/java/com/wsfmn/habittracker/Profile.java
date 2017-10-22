@@ -23,10 +23,15 @@ public class Profile {
     }
 
     public void followUser(String participantName){
-
+        // WILL BE SENDING TO ANOTHER USER'S PHONE BUT FOR NOW WILL JUST BE SENDING
+        // TO OWN PHONE
+        Request request = new Request(participantName);
+        addRequest(request);
     }
 
     public void shareWithUser(String participantName){
+        Request request = new Request(participantName);
+        addRequest(request);
 
     }
 

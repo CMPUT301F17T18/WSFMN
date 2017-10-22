@@ -11,18 +11,35 @@ import java.util.Date;
  * Created by skhanna1 on 10/16/17.
  */
 
-public class HabitEvent {
-    String comment;
-    Habit habit;
-    Date date;
+public class HabitEvent{
+    private String comment;
+    private Habit habit;
+    private Date date;
+    private Boolean done;
 
     Integer location;
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
-
-    public HabitEvent(Habit habit, Date date, String comment) {
-        this.habit = habit;
+  
+    public HabitEvent(Habit habit, Date date, Boolean done, String comment) {
         this.date = date;
+        this.done = done;
+        this.comment = comment;
+    }
+
+    public Habit getHabit() {
+        return habit;
+    }
+
+    public void setHabit(Habit habit) {
+        this.habit = habit;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
         this.comment = comment;
     }
 
@@ -45,5 +62,12 @@ public class HabitEvent {
 
     public String getPic(){return this.pic;}
 
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
 
 }

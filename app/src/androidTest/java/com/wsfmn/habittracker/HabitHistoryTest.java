@@ -15,19 +15,59 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         super(HabitHistory.class);
     }
 
-    public void testAddHabitEvent() {
-        Habit habit = new Habit("Eat Pizza", new Date());
+
+    public void testIsEmpty() {
         HabitHistory habitHistory = new HabitHistory();
-        assertNull(habitHistory.getHabitEventAt(0));     // there is no habit event history yet
+        assertTrue("Habit History should have been empty.", habitHistory.isEmpty());
 
-        HabitEvent habitEvent = new HabitEvent(habit, new Date(), "I ate all the pizza!");
-        habitHistory.addHabitEvent(habitEvent);
-        assertNotNull(habitHistory.getHabitEventAt(0));  // there is now a habit event in the history
-
-        HabitEvent retrieved = habitHistory.getHabitEventAt(0);
-        assertTrue(retrieved.comment == habitEvent.comment);
-
-
+        Habit myHabit = new Habit("Eating Pizza", new Date());
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        habitHistory.add(habitEvent);
+        assertFalse("Habit History should not have been empty.", habitHistory.isEmpty());
     }
 
+    public void testAdd() {
+        HabitHistory habitHistory = new HabitHistory();
+        Habit myHabit = new Habit("Eating Pizza", new Date());
+
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        habitHistory.add(habitEvent);
+
+        HabitEvent receivedHabitEvent = habitHistory.get(0);
+        assertEquals("HabitEvent in HabitHistory was not the same as the HabitEvent just added.",
+                habitEvent.getComment(), receivedHabitEvent.getComment());
+    }
+
+
+    public void testRemove() {
+        HabitHistory habitHistory = new HabitHistory();
+        Habit myHabit = new Habit("Eating Pizza", new Date());
+
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        habitHistory.add(habitEvent);
+
+        HabitEvent removedHabitEvent = habitHistory.remove(0);
+        assertEquals("HabitEvent removed from HabitHistory was not the same as the HabitEvent just added.",
+                habitEvent.getComment(), removedHabitEvent.getComment());
+    }
+
+    public void testContains() {
+        HabitHistory habitHistory = new HabitHistory();
+        Habit myHabit = new Habit("Eating Pizza", new Date());
+
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        habitHistory.add(habitEvent);
+
+        assertTrue("Habit history does not contain my habit's event.", habitHistory.contains(habitEvent));
+    }
+
+    public void testIndexOf() {
+        HabitHistory habitHistory = new HabitHistory();
+        Habit myHabit = new Habit("Eating Pizza", new Date());
+
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        habitHistory.add(habitEvent);
+
+        assertEquals("Habit history index is incorrect for habitEvent", habitHistory.indexOf(habitEvent), 0);
+    }
 }
