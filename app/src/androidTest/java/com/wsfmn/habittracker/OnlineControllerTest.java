@@ -1,6 +1,7 @@
 package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 import android.widget.EditText;
 
 import java.util.Date;
@@ -26,8 +27,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         OnlineController.AddHabit addHabitOnline
                 = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
-
-        OnlineController.GetHabitList getHabitList
+        Log.d("NewHabitID", newHabit.getId());
         assertNotNull("New habit ID was null", newHabit.getId());
 
     }
