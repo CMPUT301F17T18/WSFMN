@@ -1,6 +1,7 @@
 package com.wsfmn.habittracker;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by nicholasmayne on 2017-10-16.
@@ -12,7 +13,13 @@ public class HabitHistory {
 
 
     public HabitEvent getHabitEventAt(int index) {
-        return habitHistory.get(index);
+        if (habitHistory.isEmpty()) {
+            return null;
+        } else if (index > habitHistory.size()){
+            return null;
+        } else {
+            return habitHistory.get(index);
+        }
     }
 
     public void addHabitEvent(HabitEvent habitEvent) {
