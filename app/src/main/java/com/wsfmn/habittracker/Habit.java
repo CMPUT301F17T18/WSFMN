@@ -18,13 +18,13 @@ public class Habit{
     public Habit(String title, Date date) throws HabitTitleTooLongException {
         this.id = null;
         this.date = date;
-        setTitle(title);
+        this.setTitle(title);
     }
 
     public Habit(String title, String reason, Date date) throws HabitTitleTooLongException,
                                                             HabitReasonTooLongException{
         this(title, date);
-        setReason(reason);
+        this.setReason(reason);
     }
 
     public String getTitle() {

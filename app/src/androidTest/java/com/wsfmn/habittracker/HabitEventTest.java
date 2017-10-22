@@ -15,7 +15,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testGetComment(){
-<<<<<<< HEAD
+
         Habit habit = null;
 
         try {
@@ -34,15 +34,12 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-=======
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
->>>>>>> d7b6932dd7c07addb7120dfa9edfff350bfbb494
+
         assertEquals(habitEvent.getComment(), "Comment");
     }
 
     public void testSetComment(){
-<<<<<<< HEAD
+
         Habit habit = null;
 
         try {
@@ -68,16 +65,12 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-=======
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
-        habitEvent.setComment("Comment2Test");
->>>>>>> d7b6932dd7c07addb7120dfa9edfff350bfbb494
+
         assertEquals(habitEvent.getComment(), "Comment2Test");
     }
 
     public void testGetHabit(){
-<<<<<<< HEAD
+
         Habit habit = null;
 
         try {
@@ -95,16 +88,13 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         catch(HabitCommentTooLongException e){
             //null
         }
-=======
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
->>>>>>> d7b6932dd7c07addb7120dfa9edfff350bfbb494
+
 
         assertEquals(habitEvent.getHabit(), habit);
     }
 
     public void testGetLocation(){
-<<<<<<< HEAD
+
         Habit habit = null;
 
         try {
@@ -123,17 +113,15 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-=======
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
->>>>>>> d7b6932dd7c07addb7120dfa9edfff350bfbb494
+
+
         assertNull(habitEvent.getLocation());
         habitEvent.location();
         assertNotNull(habitEvent.getLocation());
     }
 
     public void testGetPic(){
-<<<<<<< HEAD
+
         Habit habit = null;
 
         try {
@@ -151,10 +139,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         catch(HabitCommentTooLongException e){
             //null
         }
-=======
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
->>>>>>> d7b6932dd7c07addb7120dfa9edfff350bfbb494
+
 
         assertNull(habitEvent.getPic());
         habitEvent.AddPic();

@@ -52,7 +52,7 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         Habit habit = null;
 
         try {
-            habit = new Habit("TestHabit", new Date());
+            habit = new Habit("title", new Date());
         }
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
