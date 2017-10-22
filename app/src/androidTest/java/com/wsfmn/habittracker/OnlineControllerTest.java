@@ -19,15 +19,21 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
 
     public void testAddHabitOnline(){
+        Habit newHabit = null;
 
+        try {
+            newHabit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
 
-        Habit newHabit = new Habit("TestHabit", new Date());
         assertNull("New habit ID was not null", newHabit.getId());
         OnlineController.AddHabit addHabitOnline
                 = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
 
-        OnlineController.GetHabitList getHabitList
+        OnlineController.GetHabitList getHabitList;
         assertNotNull("New habit ID was null", newHabit.getId());
 
     }
