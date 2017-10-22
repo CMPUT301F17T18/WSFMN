@@ -22,7 +22,16 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
         HabitList habits = new HabitList();
         Date date = new Date();
         Offline offline = new Offline();
-        Habit testHabit = new Habit("Test", date);
+
+        Habit testHabit = null;
+
+        try {
+            testHabit = new Habit("Test", date);
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
         habits.addHabit(testHabit);
 
 
@@ -41,7 +50,15 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
         Date date = new Date();
         Offline offline = new Offline();
 
-        Habit testHabit = new Habit("Test", date);
+        Habit testHabit = null;
+
+        try {
+            testHabit = new Habit("Test", date);
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
         habits.addHabit(testHabit);
 
         offline.storeLocal();

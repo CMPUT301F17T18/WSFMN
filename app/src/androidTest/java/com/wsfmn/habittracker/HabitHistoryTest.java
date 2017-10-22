@@ -20,17 +20,51 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         HabitHistory habitHistory = new HabitHistory();
         assertTrue("Habit History should have been empty.", habitHistory.isEmpty());
 
-        Habit myHabit = new Habit("Eating Pizza", new Date());
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         habitHistory.add(habitEvent);
         assertFalse("Habit History should not have been empty.", habitHistory.isEmpty());
     }
 
     public void testAdd() {
         HabitHistory habitHistory = new HabitHistory();
-        Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         habitHistory.add(habitEvent);
 
         HabitEvent receivedHabitEvent = habitHistory.get(0);
@@ -41,9 +75,26 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
     public void testRemove() {
         HabitHistory habitHistory = new HabitHistory();
-        Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         habitHistory.add(habitEvent);
 
         HabitEvent removedHabitEvent = habitHistory.remove(0);
@@ -53,9 +104,26 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
     public void testContains() {
         HabitHistory habitHistory = new HabitHistory();
-        Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         habitHistory.add(habitEvent);
 
         assertTrue("Habit history does not contain my habit's event.", habitHistory.contains(habitEvent));
@@ -63,9 +131,27 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
     public void testIndexOf() {
         HabitHistory habitHistory = new HabitHistory();
-        Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
+
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         habitHistory.add(habitEvent);
 
         assertEquals("Habit history index is incorrect for habitEvent", habitHistory.indexOf(habitEvent), 0);
