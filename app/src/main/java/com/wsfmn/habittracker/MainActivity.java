@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         HABIT_LIST_VIEW = (TextView) findViewById(R.id.habit_list_view);
 
-        // nmayne: This is my lazy way of checking that there are habits on the server
+        // nmayne: lazily checking that there are habits on the server
         // we need to do this with a ListView and an adapter
         String allTheHabits = "";
         for (int i = 0; i < 5; i++) {
