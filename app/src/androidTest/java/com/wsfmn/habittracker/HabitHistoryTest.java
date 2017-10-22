@@ -19,7 +19,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         HabitHistory habitHistory = new HabitHistory();
         assertNull(habitHistory.getHabitEventAt(0));     // there is no habit event history yet
 
-        HabitEvent habitEvent = new HabitEvent(new Date(), "I ate all the pizza!");
+        HabitEvent habitEvent = new HabitEvent(new Habit(), new Date(), "I ate all the pizza!");
         habitHistory.addHabitEvent(habitEvent);
         assertNotNull(habitHistory.getHabitEventAt(0));  // there is now a habit event in the history
 
