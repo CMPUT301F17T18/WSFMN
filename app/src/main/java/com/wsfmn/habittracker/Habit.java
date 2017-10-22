@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Habit{
 
+    private String id;
     private String title;
     private String reason;
     private Date date;
@@ -18,11 +19,13 @@ public class Habit{
     }
 
     public Habit(String title, Date date){
+        this.id = "";
         this.title = title;
         this.date = date;
     }
 
     public Habit(String title, String reason, Date date) {
+        this.id = "";
         this.title = title;
         this.reason = reason;
         this.date = date;
@@ -50,5 +53,13 @@ public class Habit{
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

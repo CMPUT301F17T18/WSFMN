@@ -6,8 +6,15 @@ import java.util.ArrayList;
  * Created by Fredric on 2017-10-21.
  */
 
-public class HabitList {
-    private ArrayList<Habit> habits = new ArrayList<Habit>();
+public class HabitList extends ArrayList{
+    private ArrayList<Habit> habits;
+
+    public HabitList() {
+        this.habits = new ArrayList<Habit>();
+    }
+    public HabitList(ArrayList<Habit> habits) {
+        this.habits = habits;
+    }
 
     // add Habit to a list of Habits
     public void addHabit(Habit habit){

@@ -6,13 +6,15 @@ import java.util.Date;
  * Created by skhanna1 on 10/16/17.
  */
 
-public class HabitEvent extends Habit{
+public class HabitEvent{
     private String comment;
     private Habit habit;
     private Date date;
+    private Boolean done;
 
-    public HabitEvent(Habit habit, Date date, String comment) {
+    public HabitEvent(Habit habit, Date date, Boolean done, String comment) {
         this.date = date;
+        this.done = done;
         this.comment = comment;
     }
 
@@ -32,14 +34,20 @@ public class HabitEvent extends Habit{
         this.comment = comment;
     }
 
-    @Override
     public Date getDate() {
         return date;
     }
 
-    @Override
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
+    }
+
+    public Boolean getDone() {
+        return done;
     }
 
     public void location(){}
