@@ -45,8 +45,10 @@ public class OnlineController {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded())
                     {
-//                        habit.setId(result.getId().toString());
-                        habit.setId("Apples");
+                        habit.setId(result.getId().toString());
+                        Log.d("NewHabitIDInOnline", "From Server: " + result.getId().toString());
+                        Log.d("NewHabitIDInOnline", "Locally: " + habit.getId());
+
                     }
                     else
                     {
