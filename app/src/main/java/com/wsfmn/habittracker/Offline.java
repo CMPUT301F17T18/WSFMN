@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 public class Offline {
+    private static final String FILENAME = "file.sav";
 
     public void storeLocal(){
 
