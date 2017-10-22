@@ -16,6 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".HabitHistoryActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".ViewHabitActivity" />
+        <activity android:name=".ViewHabitEventActivity"></activity>
     </application>
 
 </manifest>
