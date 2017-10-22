@@ -6,15 +6,31 @@ import java.util.Date;
  * Created by skhanna1 on 10/16/17.
  */
 
-public class HabitEvent {
-    String comment;
-    Habit habit;
-    Date date;
+public class HabitEvent extends Habit{
+    private String comment;
+    private Date date;
 
-    public HabitEvent(Habit habit, Date date, String comment) {
-        this.habit = habit;
+    public HabitEvent(Date date, String comment) {
         this.date = date;
         this.comment = comment;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    @Override
+    public Date getDate() {
+        return date;
+    }
+
+    @Override
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public void location(){}

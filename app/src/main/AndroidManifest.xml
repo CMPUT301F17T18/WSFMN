@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HabitListViewActivity" />
+        <activity android:name=".HabitListViewDetailActivity"></activity>
     </application>
 
 </manifest>
