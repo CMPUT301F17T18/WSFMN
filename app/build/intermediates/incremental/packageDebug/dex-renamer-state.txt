@@ -1,7 +1,4 @@
-#Sun Oct 22 03:45:52 MDT 2017
-base.0=/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_070178c07a5fef3240087f526828120b95058fcb
-renamed.1=classes2.dex
+#Sun Oct 22 09:54:36 MDT 2017
+base.0=/Users/musaed/GitHub/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
 renamed.0=classes.dex
-file.1=/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_673d61732a841dc4cb1eb81e36d18f4f444f2f04/classes.dex
-base.1=/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_673d61732a841dc4cb1eb81e36d18f4f444f2f04
-file.0=/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_070178c07a5fef3240087f526828120b95058fcb/classes.dex
+file.0=/Users/musaed/GitHub/WSFMN/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
