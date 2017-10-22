@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/musaed/GitHub/WSFMN/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
+        "outputFile": "/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values/values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 96
                 },
                 "from": {
-                    "file": "/Users/musaed/.android/build-cache/8bd6606eede6ef85511ab45879b6666c0070111e/output/res/values/values.xml",
+                    "file": "/Users/nicholasmayne/.android/build-cache/f8ba6d3fa25142dc29cea1f48e70221d1c5f2ef0/output/res/values/values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

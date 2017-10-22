@@ -1,111 +1,111 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:2:1-27:12
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:2:1-27:12
 	package
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:3:5-37
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:3:5-37
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
 application
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:5:5-25:19
-MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/musaed/.android/build-cache/b65434826a2cb5c87be5586542f6077415d42cab/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/musaed/.android/build-cache/c7dc1ca4332f4825789c14c36306e89db796d267/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/musaed/.android/build-cache/82b287d099f8afe24234314c911a7f61530e6506/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/musaed/.android/build-cache/7743497afae9c105282e8c84380e24386b86db52/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/musaed/.android/build-cache/45d88b49fe8a7061c26b1b4aa0b0ab0fc00dcc81/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/musaed/.android/build-cache/6772cf4cc182d7fa1407b3c54295093c0c30f36e/output/AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/musaed/.android/build-cache/feae51209dada2d78ca82d1ba356811b8f28d1ce/output/AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/musaed/.android/build-cache/dc2f12377937e4c75242f0e2a61c188096f36a32/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/musaed/.android/build-cache/08ff006c2239606c1693c52c5500eab40d28890d/output/AndroidManifest.xml:9:5-20
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:5:5-25:19
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/6b84208b642a8d4d8926d68f47538c8414914100/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/9a8b00fe411f3247c69c2e34496a8c73e0628f72/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/aed4288b4772048c70a6aa7903abc87f4fb2e0f8/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/cb803015d2c861201c13538c96c029516279635d/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/6fc0a85c8729c039dd0f116f992e38b934eae484/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/e372cda241b21215e8c8c9cca699713a96009b05/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/bc0a7952b4812442e5592eae440976db3c6520c1/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/78173a1c02c83d497293e56f414f550043168afe/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/nicholasmayne/.android/build-cache/8c2c46f053859a39bff07d274be047a407d7ef87/output/AndroidManifest.xml:9:5-20
 	android:label
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:8:9-41
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:8:9-41
 	android:supportsRtl
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:10:9-35
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:10:9-35
 	android:roundIcon
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:9:9-54
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:9:9-54
 	android:allowBackup
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:6:9-35
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:6:9-35
 	android:icon
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:7:9-43
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:7:9-43
 	android:theme
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:11:9-40
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:11:9-40
 activity#com.wsfmn.habittracker.MainActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:12:9-18:20
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:12:9-18:20
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:12:19-47
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:12:19-47
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:13:13-17:29
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:13:13-17:29
 action#android.intent.action.MAIN
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:14:17-69
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:14:17-69
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:14:25-66
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:16:17-77
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:16:17-77
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:16:27-74
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:16:27-74
 activity#com.wsfmn.habittracker.ProfileActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:19:9-53
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:19:9-53
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:19:19-50
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:19:19-50
 activity#com.wsfmn.habittracker.HabitHistoryActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:20:9-58
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:20:9-58
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:20:19-55
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:20:19-55
 activity#com.wsfmn.habittracker.MapActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:21:9-49
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:21:9-49
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:21:19-46
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:21:19-46
 activity#com.wsfmn.habittracker.ViewHabitEventActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:22:9-60
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:22:9-60
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:22:19-57
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:22:19-57
 activity#com.wsfmn.habittracker.HabitListViewActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:23:9-59
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:23:9-59
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:23:19-56
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:23:19-56
 activity#com.wsfmn.habittracker.HabitListViewDetailActivity
-ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:24:9-74
+ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:24:9-74
 	android:name
-		ADDED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml:24:19-62
+		ADDED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml:24:19-62
 uses-sdk
-INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/musaed/.android/build-cache/b65434826a2cb5c87be5586542f6077415d42cab/output/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/musaed/.android/build-cache/c7dc1ca4332f4825789c14c36306e89db796d267/output/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/musaed/.android/build-cache/82b287d099f8afe24234314c911a7f61530e6506/output/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/musaed/.android/build-cache/7743497afae9c105282e8c84380e24386b86db52/output/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/musaed/.android/build-cache/45d88b49fe8a7061c26b1b4aa0b0ab0fc00dcc81/output/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/musaed/.android/build-cache/6772cf4cc182d7fa1407b3c54295093c0c30f36e/output/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/musaed/.android/build-cache/feae51209dada2d78ca82d1ba356811b8f28d1ce/output/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/musaed/.android/build-cache/dc2f12377937e4c75242f0e2a61c188096f36a32/output/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/musaed/.android/build-cache/08ff006c2239606c1693c52c5500eab40d28890d/output/AndroidManifest.xml:5:5-7:41
+INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/6b84208b642a8d4d8926d68f47538c8414914100/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/9a8b00fe411f3247c69c2e34496a8c73e0628f72/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/aed4288b4772048c70a6aa7903abc87f4fb2e0f8/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/cb803015d2c861201c13538c96c029516279635d/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/6fc0a85c8729c039dd0f116f992e38b934eae484/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/e372cda241b21215e8c8c9cca699713a96009b05/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/bc0a7952b4812442e5592eae440976db3c6520c1/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/78173a1c02c83d497293e56f414f550043168afe/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/nicholasmayne/.android/build-cache/8c2c46f053859a39bff07d274be047a407d7ef87/output/AndroidManifest.xml:5:5-7:41
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/AndroidManifest.xml:23:9-75
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/musaed/GitHub/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/AndroidManifest.xml
 meta-data#android.support.VERSION
-ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/AndroidManifest.xml:25:5-27:41
-MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/musaed/.android/build-cache/b65434826a2cb5c87be5586542f6077415d42cab/output/AndroidManifest.xml:25:5-27:41
-MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/musaed/.android/build-cache/c7dc1ca4332f4825789c14c36306e89db796d267/output/AndroidManifest.xml:25:5-27:41
-MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/musaed/.android/build-cache/82b287d099f8afe24234314c911a7f61530e6506/output/AndroidManifest.xml:25:5-27:41
-MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/musaed/.android/build-cache/7743497afae9c105282e8c84380e24386b86db52/output/AndroidManifest.xml:25:5-27:41
-MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/musaed/.android/build-cache/45d88b49fe8a7061c26b1b4aa0b0ab0fc00dcc81/output/AndroidManifest.xml:25:5-27:41
-MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/musaed/.android/build-cache/6772cf4cc182d7fa1407b3c54295093c0c30f36e/output/AndroidManifest.xml:22:5-24:41
-MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/musaed/.android/build-cache/feae51209dada2d78ca82d1ba356811b8f28d1ce/output/AndroidManifest.xml:22:5-24:41
-MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/musaed/.android/build-cache/dc2f12377937e4c75242f0e2a61c188096f36a32/output/AndroidManifest.xml:25:5-27:41
+ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/6b84208b642a8d4d8926d68f47538c8414914100/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/9a8b00fe411f3247c69c2e34496a8c73e0628f72/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/aed4288b4772048c70a6aa7903abc87f4fb2e0f8/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/cb803015d2c861201c13538c96c029516279635d/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/6fc0a85c8729c039dd0f116f992e38b934eae484/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/e372cda241b21215e8c8c9cca699713a96009b05/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/bc0a7952b4812442e5592eae440976db3c6520c1/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/78173a1c02c83d497293e56f414f550043168afe/output/AndroidManifest.xml:25:5-27:41
 	android:value
-		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/AndroidManifest.xml:27:9-38
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/AndroidManifest.xml:27:9-38
 	android:name
-		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/musaed/.android/build-cache/8c3a3473122d2642afd2ded4277c55aad2bd3825/output/AndroidManifest.xml:26:9-47
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/nicholasmayne/.android/build-cache/508e3a60f470e4c3a3cd2a2cf5f9b7d81a75333d/output/AndroidManifest.xml:26:9-47
