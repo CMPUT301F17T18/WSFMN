@@ -1,7 +1,15 @@
 [
     {
+        "merged": "/Users/musaed/GitHub/WSFMN/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/Users/musaed/GitHub/WSFMN/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
         "source": "/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/musaed/GitHub/WSFMN/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/Users/musaed/GitHub/WSFMN/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
         "merged": "/Users/nicholasmayne/Uni/301/workspace/WSFMN/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",

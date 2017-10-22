@@ -15,14 +15,12 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testGetTitle(){
-        Habit habit = new Habit();
-        habit.setTitle("habit");
+        Habit habit = new Habit("title", new Date());
         assertEquals(habit.getTitle(), "habit");
     }
 
     public void testGetReason(){
-        Habit habit = new Habit();
-        habit.setReason("reason");
+        Habit habit = new Habit("reason", new Date());
         assertEquals(habit.getReason(), "reason");
     }
 

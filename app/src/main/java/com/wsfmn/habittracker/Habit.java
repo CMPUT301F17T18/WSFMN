@@ -35,7 +35,10 @@ public class Habit{
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title) throws HabitTitleTooLongException{
+        if(title.length() > 20){
+            throw new HabitTitleTooLongException();
+        }
         this.title = title;
     }
 
@@ -43,7 +46,10 @@ public class Habit{
         return reason;
     }
 
-    public void setReason(String reason) {
+    public void setReason(String reason) throws HabitReasonTooLongException{
+        if(reason.length() > 30){
+            throw new HabitReasonTooLongException();
+        }
         this.reason = reason;
     }
 
