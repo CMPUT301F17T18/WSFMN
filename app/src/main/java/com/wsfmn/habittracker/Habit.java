@@ -18,7 +18,6 @@ public class Habit{
     }
 
     public Habit(String title, Date date){
-
         this.title = title;
         this.date = date;
     }
@@ -51,13 +50,5 @@ public class Habit{
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public HabitHistory getHabitHistory() {
-        return habitHistory;
-    }
-
-    public void setHabitHistory(HabitHistory habitHistory) {
-        this.habitHistory = habitHistory;
     }
 }

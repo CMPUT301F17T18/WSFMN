@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/musaed/GitHub/WSFMN/app/libs/robotium-solo-5.5.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="67a5a3ec97886f96689c14b34d3ae7550d955a65">
+        <dex dex="/Users/musaed/GitHub/WSFMN/app/build/intermediates/pre-dexed/debug/robotium-solo-5.5.4_7994ec3f7e1078c057545639ad8a86bbafa01925.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/musaed/GitHub/WSFMN/app/libs/jest-droid-2.0.1-SNAPSHOT.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e1199e84d8d3907b8262330dd6976ce04d37f6de">
+        <dex dex="/Users/musaed/GitHub/WSFMN/app/build/intermediates/pre-dexed/debug/jest-droid-2.0.1-SNAPSHOT_8ae45d48fe245249ef21d977d2db8647c97bfefb.jar" />
+    </item>
+
+</items>

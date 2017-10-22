@@ -16,16 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".HabitListViewActivity" />
-        <activity android:name=".HabitListViewDetailActivity"></activity>
-=======
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HabitHistoryActivity" />
         <activity android:name=".MapActivity" />
-        <activity android:name=".ViewHabitActivity" />
-        <activity android:name=".ViewHabitEventActivity"></activity>
->>>>>>> dev
+        <activity android:name=".ViewHabitEventActivity" />
+        <activity android:name=".HabitListViewActivity" />
+        <activity android:name=".HabitListViewDetailActivity"></activity>
     </application>
 
 </manifest>

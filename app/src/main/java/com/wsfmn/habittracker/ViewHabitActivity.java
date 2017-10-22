@@ -1,13 +1,17 @@
 package com.wsfmn.habittracker;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class ViewHabitActivity extends AppCompatActivity {
+/**
+ * Created by musaed on 2017-10-21.
+ */
+
+public class ViewHabitActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_habit);
+        //setContentView(R.layout.activity_view_habit);
     }
 }
