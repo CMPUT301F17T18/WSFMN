@@ -26,4 +26,9 @@ public class HabitList {
     }
 
 
+    public boolean hasHabit(Habit habit){
+        return habits.contains(habit);
+    }
+
+
 }

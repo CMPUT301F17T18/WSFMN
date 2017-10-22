@@ -11,6 +11,7 @@ public class Habit{
     private String title;
     private String reason;
     private Date date;
+    private HabitHistory habitHistory;
 
     public Habit(){
 
