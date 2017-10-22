@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         OnlineController.AddHabit addHabitOnline
                 = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
-        Log.d("AddingNewHabitID", newHabit.getId());
+//        Log.d("AddingNewHabitID", newHabit.getId());
         updateHabitList();
     }
 
