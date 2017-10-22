@@ -21,7 +21,7 @@ public class HabitEvent{
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
   
-    public HabitEvent(Habit habit, Date date, Boolean done, String comment) {
+    public HabitEvent(Habit habit, Date date, String comment, Boolean done) {
         this.date = date;
         this.done = done;
         this.comment = comment;
