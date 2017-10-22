@@ -18,8 +18,7 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
 
 
     // hard to test needs to already have something stored in Local
-    public void testgetLocal(){
-        // practice test for a habit events list.
+    public void testGetLocal(){
         HabitList habits = new HabitList();
         Date date = new Date();
         Offline offline = new Offline();
@@ -29,13 +28,15 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
 
         offline.storeLocal();
         habits.deleteHabit(testHabit);
+        assertFalse(habits.hasHabit(testHabit));
         offline.getLocal();
 
         assertEquals(habits.getHabit(0), testHabit);
 
     }
 
-    public void teststoreLocal(){
+    //hard to test needs to load from file.
+    public void testStoreLocal(){
         HabitList habits = new HabitList();
         Date date = new Date();
         Offline offline = new Offline();
@@ -45,6 +46,7 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
 
         offline.storeLocal();
         habits.deleteHabit(testHabit);
+        assertFalse(habits.hasHabit(testHabit));
         offline.getLocal();
         assertEquals(habits.getHabit(0), testHabit);
 

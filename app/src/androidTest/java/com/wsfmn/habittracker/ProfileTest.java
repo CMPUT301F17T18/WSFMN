@@ -14,16 +14,50 @@ public class ProfileTest extends ActivityInstrumentationTestCase2{
 
     public void testfollowUser(){
         Profile requestTest = new Profile();
-
+        Request test = new Request("Own Username");
         requestTest.followUser("Own Username");
+
+        //Other user should check their profile, but in this case own user sends to themself.
+        // Following request.
+        assertTrue(requestTest.hasRequest(test));
+
 
 
     }
 
     public void testshareWithUser(){
         Profile requestTest = new Profile();
+        Request test = new Request("Own Username");
+        requestTest.followUser("Own Username");
+
+        //Other user should check their profile, but in this case own user sends to themself.
+        // Sharing request
+        assertTrue(requestTest.hasRequest(test));
 
 
+    }
+
+    public void testAddRequest(){
+        Profile profile = new Profile();
+        Request request = new Request("Jimmy");
+        profile.addRequest(request);
+        assertTrue(profile.hasRequest(request));
+    }
+
+    public void testDeclineRequest(){
+        Profile profile = new Profile();
+        Request request = new Request("Jimmy");
+        profile.addRequest(request);
+        profile.declineRequest(request);
+        assertFalse(profile.hasRequest(request));
+    }
+
+    public void testAcceptRequest(){
+        Profile profile = new Profile();
+        Request request = new Request("Jimmy");
+        profile.addRequest(request);
+        profile.acceptRequest(request);
+        assertFalse(profile.hasRequest(request));
     }
 
 
