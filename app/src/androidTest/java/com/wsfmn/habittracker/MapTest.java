@@ -8,14 +8,15 @@ import android.test.ActivityInstrumentationTestCase2;
 
 public class MapTest extends ActivityInstrumentationTestCase2 {
 
-    public MapTest() { super(Map.class); }
+    public MapTest(){super(Map.class);}
 
-    public void testHighlightEvent(){  
+    public void testHighlightEvent(){
 
-    }  
-
-    public void testFriendsEvent(){  
 
     }
 
+    public void testFriendsEvent(){
+
+
+    }
 }
