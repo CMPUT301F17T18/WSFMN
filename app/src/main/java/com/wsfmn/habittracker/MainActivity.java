@@ -3,22 +3,31 @@ package com.wsfmn.habittracker;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private HabitList habitList = new HabitList();
+    private HabitList habitList;
     private EditText habitTitleText;
+    private TextView HABIT_LIST_VIEW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateHabitList();
     }
 
     /** Called when the user taps the Add New Habit button */
@@ -32,12 +41,36 @@ public class MainActivity extends AppCompatActivity {
         OnlineController.AddHabitOnline addHabitOnline
                 = new OnlineController.AddHabitOnline();
         addHabitOnline.execute(newHabit);
+
+        updateHabitList();
     }
 
 
-    /** Called when the user taps the Habit List button */
-    public void viewHabitList(View view) {
-        Intent intent = new Intent(this, HabitListViewActivity.class);
-        startActivity(intent);
+
+    public void updateHabitList() {
+        OnlineController.GetHabitList getHabitList
+                = new OnlineController.GetHabitList();
+        getHabitList.execute("habit");
+
+        try {
+            habitList = new HabitList(getHabitList.get());
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the habits from the async object");
+//            habitList = Offlinecontroller.getHabitList();
+        }
+
+        HABIT_LIST_VIEW = (TextView) findViewById(R.id.habit_list_view);
+
+        // nmayne: This is my lazy way of checking that there are habits on the server
+        // we need to do this with a ListView and an adapter
+        String allTheHabits = "";
+        for (int i = 0; i < 5; i++) {
+            allTheHabits = allTheHabits
+                    + "\n" + habitList.getHabit(i).getTitle()
+                    + habitList.getHabit(i).getDate().toString()
+                    + habitList.getHabit(i).getId();
+        }
+        HABIT_LIST_VIEW.setText(allTheHabits);
     }
+
 }

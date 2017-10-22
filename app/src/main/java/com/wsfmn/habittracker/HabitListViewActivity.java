@@ -23,18 +23,6 @@ public class HabitListViewActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        OnlineController.GetHabitsOnline getHabitsOnline
-                = new OnlineController.GetHabitsOnline();
-        getHabitsOnline.execute("Habit");
-
-        try {
-            habitList = new HabitList(getHabitsOnline.get());
-        } catch (Exception e) {
-            Log.i("Error", "Failed to get the habits from the async object");
-        }
-
-        textView = (TextView) findViewById(R.id.textView);
-        textView.setText(habitList.getHabit(0).getTitle() + "\n" + habitList.getHabit(0).getDate().toString());
 
     }
 
