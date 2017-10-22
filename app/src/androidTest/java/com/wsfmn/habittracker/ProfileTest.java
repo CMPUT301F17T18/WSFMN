@@ -14,9 +14,10 @@ public class ProfileTest extends ActivityInstrumentationTestCase2{
 
     public void testfollowUser(){
         Profile requestTest = new Profile();
+
         requestTest.followUser("Own Username");
 
-        
+
     }
 
     public void testshareWithUser(){
