@@ -45,6 +45,7 @@ public class OnlineController {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded())
                     {
+                        System.out.println("!!!" + result.getId().toString());
                         habit.setId(result.getId());
                     }
                     else
@@ -53,7 +54,7 @@ public class OnlineController {
                     }
                 }
                 catch (Exception e) {
-                    Log.i("Error", "The application failed to build and send the habits");
+                    Log.i("Error", "Habit Tracker failed to build and send the habits");
                 }
 
             }
@@ -61,11 +62,10 @@ public class OnlineController {
         }
     }
 
-
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class GetHabitsOnline extends AsyncTask<String, Void, ArrayList<Habit>> {
+    public static class GetHabitList extends AsyncTask<String, Void, ArrayList<Habit>> {
         @Override
         protected ArrayList<Habit> doInBackground(String... search_parameters) {
             verifySettings();

@@ -19,13 +19,13 @@ public class Habit{
     }
 
     public Habit(String title, Date date){
-        this.id = "";
+        this.id = null;
         this.title = title;
         this.date = date;
     }
 
     public Habit(String title, String reason, Date date) {
-        this.id = "";
+        this.id = null;
         this.title = title;
         this.reason = reason;
         this.date = date;
