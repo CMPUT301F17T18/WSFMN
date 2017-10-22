@@ -14,21 +14,17 @@ public class Habit{
     private Date date;
     private HabitHistory habitHistory;
 
-    public Habit(){
 
+    public Habit(String title, Date date) throws HabitTitleTooLongException {
+        this.id = null;
+        this.date = date;
+        this.setTitle(title);
     }
 
-    public Habit(String title, Date date){
-        this.id = null;
-        this.title = title;
-        this.date = date;
-    }
-
-    public Habit(String title, String reason, Date date) {
-        this.id = null;
-        this.title = title;
-        this.reason = reason;
-        this.date = date;
+    public Habit(String title, String reason, Date date) throws HabitTitleTooLongException,
+                                                            HabitReasonTooLongException{
+        this(title, date);
+        this.setReason(reason);
     }
 
     public String getTitle() {

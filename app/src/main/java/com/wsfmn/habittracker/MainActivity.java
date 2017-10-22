@@ -33,7 +33,16 @@ public class MainActivity extends AppCompatActivity {
         setResult(RESULT_OK);
         habitTitleText = (EditText) findViewById(R.id.habit_title_text);
         String text = habitTitleText.getText().toString();
-        Habit newHabit = new Habit(text, new Date());
+
+        Habit newHabit = null;
+
+        try {
+            newHabit = new Habit(text, new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+
         habitList.addHabit(newHabit);
 
 

@@ -21,11 +21,14 @@ public class HabitEvent{
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
   
-    public HabitEvent(Habit habit, Date date, String comment, Boolean done) {
+
+    public HabitEvent(Habit habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
+        this.habit = habit;
         this.date = date;
         this.done = done;
-        this.comment = comment;
+        this.setComment(comment);
     }
+
 
     public Habit getHabit() {
         return habit;
@@ -39,25 +42,18 @@ public class HabitEvent{
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setComment(String comment) throws HabitCommentTooLongException {
+        if(comment.length() > 20){
+            throw new HabitCommentTooLongException();
+        }
         this.comment = comment;
     }
-
-    public void location(){this.location = 5;}
-    public void AddPic(){this.pic = "Image";}
-    public void updateHabitHistory(){}
-
 
 
     public Date getDate(){return date;}
 
     public void setDate(Date date){this.date = date;}
 
-
-
-    public Integer getLocation(){return this.location;}
-
-    public String getPic(){return this.pic;}
 
     public void setDone(Boolean done) {
         this.done = done;
@@ -66,5 +62,17 @@ public class HabitEvent{
     public Boolean getDone() {
         return done;
     }
+
+    public Integer getLocation(){return this.location;}
+
+    public String getPic(){return this.pic;}
+
+    public void location(){this.location = 5;}
+
+    public void AddPic(){this.pic = "Image";}
+
+    public void updateHabitHistory(){}
+
+
 
 }

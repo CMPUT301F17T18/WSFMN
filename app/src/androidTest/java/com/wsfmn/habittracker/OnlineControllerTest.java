@@ -20,21 +20,29 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
 
     public void testAddHabitOnline(){
-        HabitList habitList;
-        final Habit newHabit = new Habit("TestHabit", new Date());
-        assertNull("New habit ID was not null", newHabit.getId());
 
-        Log.d("NewHabitIs:", newHabit.toString());
+        try {
+            final Habit newHabit = new Habit("TestHabit", new Date());
 
-        OnlineController.AddHabit addHabitOnline
-                = new OnlineController.AddHabit();
-        addHabitOnline.execute(newHabit);
+            assertNull("New habit ID was not null", newHabit.getId());
 
-        // Delay 1 second for transaction to finish (usual time is around 200 ms)
-        long currentTime = Calendar.getInstance().getTimeInMillis();
-        while(Calendar.getInstance().getTimeInMillis() - currentTime < 1000 ){}
+            Log.d("NewHabitIs:", newHabit.toString());
 
-        assertNotNull("New habit ID was null", newHabit.getId());
+            OnlineController.AddHabit addHabitOnline
+                    = new OnlineController.AddHabit();
+            addHabitOnline.execute(newHabit);
+
+            // Delay 1 second for transaction to finish (usual time is around 200 ms)
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            while(Calendar.getInstance().getTimeInMillis() - currentTime < 1000 ){}
+
+
+            assertNotNull("New habit ID was null", newHabit.getId());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+
+
     }
-
 }

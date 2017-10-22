@@ -15,36 +15,131 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testGetComment(){
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        HabitEvent habitEvent = null;
+
+        try {
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         assertEquals(habitEvent.getComment(), "Comment");
     }
 
     public void testSetComment(){
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
-        habitEvent.setComment("Comment2Test");
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        HabitEvent habitEvent = null;
+
+        try {
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+        try{
+            habitEvent.setComment("Comment2Test");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
         assertEquals(habitEvent.getComment(), "Comment2Test");
     }
 
     public void testGetHabit(){
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        HabitEvent habitEvent = null;
+
+        try {
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
 
         assertEquals(habitEvent.getHabit(), habit);
     }
 
     public void testGetLocation(){
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        HabitEvent habitEvent = null;
+
+        try {
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+
+
         assertNull(habitEvent.getLocation());
         habitEvent.location();
         assertNotNull(habitEvent.getLocation());
     }
 
     public void testGetPic(){
-        Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+
+        HabitEvent habitEvent = null;
+
+        try {
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
 
         assertNull(habitEvent.getPic());
         habitEvent.AddPic();

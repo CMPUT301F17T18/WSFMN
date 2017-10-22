@@ -16,14 +16,31 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
 
     public void testAddHabit(){
         HabitList habits = new HabitList();
-        Habit habit = new Habit("title", new Date());
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+
         habits.addHabit(habit);
         assertTrue(habits.hasHabit(habit));
     }
 
     public void testDeleteHabit(){
         HabitList habits = new HabitList();
-        Habit habit = new Habit("title", new Date());
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+
         habits.addHabit(habit);
         habits.deleteHabit(habit);
         assertFalse(habits.hasHabit(habit));
@@ -31,14 +48,32 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetHabit(){
         HabitList habits = new HabitList();
-        Habit habit = new Habit("title", new Date());
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("title", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+
         habits.addHabit(habit);
         assertEquals(habits.getHabit(0).getTitle(), "title");
     }
 
     public void testHasHabit(){
         HabitList habits = new HabitList();
-        Habit habit = new Habit("title", new Date());
+
+        Habit habit = null;
+
+        try {
+            habit = new Habit("TestHabit", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+
         habits.addHabit(habit);
         assertTrue(habits.hasHabit(habit));
     }
