@@ -2,7 +2,6 @@ package com.wsfmn.habittracker;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
@@ -45,8 +44,10 @@ public class OnlineController {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded())
                     {
-//                        habit.setId(result.getId().toString());
-                        habit.setId("Apples");
+                        habit.setId(result.getId().toString());
+                        Log.d("NewHabitIDInOnline", "From Server: " + result.getId().toString());
+                        Log.d("NewHabitIDInOnline", "Locally: " + habit.getId());
+
                     }
                     else
                     {
