@@ -21,7 +21,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         assertTrue("Habit History should have been empty.", habitHistory.isEmpty());
 
         Habit myHabit = new Habit("Eating Pizza", new Date());
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
         habitHistory.add(habitEvent);
         assertFalse("Habit History should not have been empty.", habitHistory.isEmpty());
     }
@@ -30,7 +30,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         HabitHistory habitHistory = new HabitHistory();
         Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
         habitHistory.add(habitEvent);
 
         HabitEvent receivedHabitEvent = habitHistory.get(0);
@@ -43,7 +43,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         HabitHistory habitHistory = new HabitHistory();
         Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
         habitHistory.add(habitEvent);
 
         HabitEvent removedHabitEvent = habitHistory.remove(0);
@@ -55,7 +55,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         HabitHistory habitHistory = new HabitHistory();
         Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
         habitHistory.add(habitEvent);
 
         assertTrue("Habit history does not contain my habit's event.", habitHistory.contains(habitEvent));
@@ -65,7 +65,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         HabitHistory habitHistory = new HabitHistory();
         Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+        HabitEvent habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!", true);
         habitHistory.add(habitEvent);
 
         assertEquals("Habit history index is incorrect for habitEvent", habitHistory.indexOf(habitEvent), 0);

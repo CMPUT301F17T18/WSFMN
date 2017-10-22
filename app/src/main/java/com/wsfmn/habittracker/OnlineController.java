@@ -45,7 +45,8 @@ public class OnlineController {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded())
                     {
-                        habit.setId(result.getId().toString());
+//                        habit.setId(result.getId().toString());
+                        habit.setId("Apples");
                     }
                     else
                     {

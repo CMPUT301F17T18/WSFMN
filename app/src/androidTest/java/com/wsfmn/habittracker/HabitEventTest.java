@@ -16,27 +16,27 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetComment(){
         Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
         assertEquals(habitEvent.getComment(), "Comment");
     }
 
     public void testSetComment(){
         Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
         habitEvent.setComment("Comment2Test");
         assertEquals(habitEvent.getComment(), "Comment2Test");
     }
 
     public void testGetHabit(){
         Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
 
         assertEquals(habitEvent.getHabit(), habit);
     }
 
     public void testGetLocation(){
         Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
         assertNull(habitEvent.getLocation());
         habitEvent.location();
         assertNotNull(habitEvent.getLocation());
@@ -44,7 +44,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetPic(){
         Habit habit = new Habit("Habit", new Date());
-        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+        HabitEvent habitEvent = new HabitEvent(habit, habit.getDate(), "Comment", true);
 
         assertNull(habitEvent.getPic());
         habitEvent.AddPic();

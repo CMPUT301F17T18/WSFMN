@@ -48,4 +48,16 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    public void testGetId(){
+        Habit habit = new Habit("title", "reason", new Date());
+        assertNull("Habit ID was not null", habit.getId());
+    }
+
+    public void testSetId(){
+        Habit habit = new Habit("title", "reason", new Date());
+        habit.setId("My Unique ID");
+        assertNotNull("Habit ID was null", habit.getId());
+        assertEquals("Habit ID was not equal to the one set.",habit.getId(), "My Unique ID");
+    }
+
 }
