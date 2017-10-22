@@ -38,6 +38,8 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+
+        assertEquals(habit.getTitle(), "title");
     }
 
     public void testGetReason(){
@@ -68,6 +70,8 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitReasonTooLongException e){
             //null
         }
+
+        assertEquals(habit.getReason(), "reason");
     }
 
     public void testGetId(){

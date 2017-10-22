@@ -11,13 +11,14 @@ public class Habit{
     private String id;
     private String title;
     private String reason;
-    private Date date;
+    private Date toStart;
+    private WeekDays weekDays;
     private HabitHistory habitHistory;
 
 
     public Habit(String title, Date date) throws HabitTitleTooLongException {
         this.id = null;
-        this.date = date;
+        this.toStart = date;
         this.setTitle(title);
     }
 
@@ -25,6 +26,12 @@ public class Habit{
                                                             HabitReasonTooLongException{
         this(title, date);
         this.setReason(reason);
+    }
+
+    public Habit(String title, String reason, Date date, WeekDays weekDays) throws HabitTitleTooLongException,
+                                                            HabitReasonTooLongException{
+        this(title, reason, date);
+        this.weekDays = weekDays;
     }
 
     public String getTitle() {
@@ -49,12 +56,12 @@ public class Habit{
         this.reason = reason;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getToStart() {
+        return toStart;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setToStart(Date toStart) {
+        this.toStart = toStart;
     }
 
     public String getId() {
@@ -63,5 +70,21 @@ public class Habit{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public WeekDays getWeekDays() {
+        return weekDays;
+    }
+
+    public void setWeekDays(WeekDays weekDays) {
+        this.weekDays = weekDays;
+    }
+
+    public HabitHistory getHabitHistory() {
+        return habitHistory;
+    }
+
+    public void setHabitHistory(HabitHistory habitHistory) {
+        this.habitHistory = habitHistory;
     }
 }
