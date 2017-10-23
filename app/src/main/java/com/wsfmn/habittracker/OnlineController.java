@@ -63,15 +63,20 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class GetHabitList extends AsyncTask<String, Void, ArrayList<Habit>> {
+    public static class GetHabitList extends AsyncTask<String, Void, HabitList> {
         @Override
-        protected ArrayList<Habit> doInBackground(String... search_parameters) {
+        protected HabitList doInBackground(String... search_parameters) {
             verifySettings();
 
-            ArrayList<Habit> habits = new ArrayList<Habit>();
+            HabitList habits = new HabitList();
 
-//            String query = "{\n" + " \"query\": { \"term\": {\"title\":\"" + search_parameters[0] + "\"} }\n" + "}";
-            String query = "{\n" + " \"query\": { \"term\": {\"title\":\"habit\"} }\n" + "}";
+            String query =
+                            "{\n" +
+                            " \"query\": { \"term\": {\"title\":\"" + search_parameters[0] + "\"} },\n" +
+                            " \"sort\": [\n" +
+                            "  { \"date\": \"desc\" }\n" +
+                            " ]\n" +
+                            "}";
 
             Search search = new Search.Builder(query)
                     .addIndex("testing")
@@ -81,9 +86,8 @@ public class  OnlineController {
                 SearchResult result = client.execute(search);
                 if(result.isSucceeded())
                 {
-                    List<Habit> foundHabits
-                            = result.getSourceAsObjectList(Habit.class);
-                    habits.addAll(foundHabits);
+                    List<Habit> foundHabits = result.getSourceAsObjectList(Habit.class);
+                    habits.addAllHabits(foundHabits);
                 }
                 else
                 {
@@ -96,8 +100,6 @@ public class  OnlineController {
             return habits;
         }
     }
-
-
 
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.

@@ -2,7 +2,6 @@ package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -10,10 +9,10 @@ import java.util.Date;
  */
 
 
-public class OfflineTest extends ActivityInstrumentationTestCase2 {
+public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
 
-    public OfflineTest() {
-        super(Offline.class);
+    public OfflineControllerTest() {
+        super(OfflineController.class);
     }
 
 
@@ -21,7 +20,7 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
     public void testGetLocal(){
         HabitList habits = new HabitList();
         Date date = new Date();
-        Offline offline = new Offline();
+        OfflineController offline = new OfflineController();
 
         Habit testHabit = null;
 
@@ -48,7 +47,7 @@ public class OfflineTest extends ActivityInstrumentationTestCase2 {
     public void testStoreLocal(){
         HabitList habits = new HabitList();
         Date date = new Date();
-        Offline offline = new Offline();
+        OfflineController offline = new OfflineController();
 
         Habit testHabit = null;
 

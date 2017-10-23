@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Fredric on 2017-10-16.
  */
 
-public class Offline {
+public class OfflineController {
     private static final String FILENAME = "file.sav";
 
     public void storeLocal(){

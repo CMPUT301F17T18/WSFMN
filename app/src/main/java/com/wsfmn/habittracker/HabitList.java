@@ -1,12 +1,13 @@
 package com.wsfmn.habittracker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Fredric on 2017-10-21.
  */
 
-public class HabitList extends ArrayList{
+public class HabitList {
     private ArrayList<Habit> habits;
 
     public HabitList() {
@@ -24,9 +25,17 @@ public class HabitList extends ArrayList{
     // delete the Habit from a lsit of Habits
     public void deleteHabit(Habit habit){
         habits.remove(habit);
-
     }
 
+    // TODO nmayne: added this, needs a test in TestHabitList
+    public int getSize() {
+        return habits.size();
+    }
+
+    // TODO nmayne: added this, needs a test in TestHabitList
+    public void addAllHabits(List<Habit> habitsToAdd) {
+        habits.addAll(habitsToAdd);
+    }
 
     public Habit getHabit(int index){
         return habits.get(index);

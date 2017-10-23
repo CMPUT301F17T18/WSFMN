@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private HabitList habitList;
+    HabitList habits = null;
     private EditText habitTitleText;
     private TextView HABIT_LIST_VIEW;
 
@@ -43,11 +44,9 @@ public class MainActivity extends AppCompatActivity {
             // TODO: handle exception
         }
 
-        habitList.addHabit(newHabit);
+        habits.addHabit(newHabit);
 
-
-        OnlineController.AddHabit addHabitOnline
-                = new OnlineController.AddHabit();
+        OnlineController.AddHabit addHabitOnline = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
 
         updateHabitList();
@@ -55,30 +54,34 @@ public class MainActivity extends AppCompatActivity {
 
     /** Update the local HabitList with a search of online Habits */
     public void updateHabitList() {
-        OnlineController.GetHabitList getHabitList
-                = new OnlineController.GetHabitList();
-        getHabitList.execute("habit");
+        EditText editText = (EditText) findViewById(R.id.habit_title_text);
+        String searchString = editText.getText().toString().replaceAll(" ", "").toLowerCase();
 
+        // TODO nmayne: add OfflineController, for speed this should run first, followed by online
+//        habitList = Offlinecontroller.getHabitList();
+
+        //Get habits from server
+        OnlineController.GetHabitList getHabitList = new OnlineController.GetHabitList();
         try {
-            habitList = new HabitList(getHabitList.get());
+            getHabitList.execute(searchString);
+            habits = getHabitList.get();
+            // Delay 1 second for transaction to finish (usual time is around 200 ms)
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            while((Calendar.getInstance().getTimeInMillis() - currentTime) < 1000 ){}
+
         } catch (Exception e) {
             Log.i("Error", "Failed to get the habits from the async object");
-
-//            habitList = Offlinecontroller.getHabitList();
         }
 
-        HABIT_LIST_VIEW = (TextView) findViewById(R.id.habit_list_view);
 
-        // nmayne: lazily checking that there are habits on the server
-        // we need to do this with a ListView and an adapter
+        // TODO nmayne: lazily checking that there are habits on the server, we need to do this with a ListView and an adapter
+        HABIT_LIST_VIEW = (TextView) findViewById(R.id.habit_list_view);
         String allTheHabits = "";
-        for (int i = 0; i < 5; i++) {
-            allTheHabits = allTheHabits
-                    + "\n" + habitList.getHabit(i).getTitle()
-                    + habitList.getHabit(i).getDate().toString()
-                    + habitList.getHabit(i).getId();
+        for (int i = 0; i < habits.getSize(); i++) {
+            allTheHabits = allTheHabits + "\n"
+                    + habits.getHabit(i).getTitle() + " "
+                    + habits.getHabit(i).getDate().toString();
         }
         HABIT_LIST_VIEW.setText(allTheHabits);
     }
-
 }
