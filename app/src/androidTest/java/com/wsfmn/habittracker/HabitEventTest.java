@@ -116,7 +116,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
 
 
         assertNull(habitEvent.getLocation());
-        habitEvent.location();
+        habitEvent.setLocation();
         assertNotNull(habitEvent.getLocation());
     }
 

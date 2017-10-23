@@ -1,5 +1,6 @@
 package com.wsfmn.habittracker;
 
+import android.location.Location;
 import android.media.Image;
 import android.widget.ImageView;
 
@@ -16,8 +17,8 @@ public class HabitEvent{
     private Habit habit;
     private Date date;
     private Boolean done;
-
-    Integer location;
+    //change by wei, change location parts
+    private Geolocation location;
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
   
@@ -63,11 +64,14 @@ public class HabitEvent{
         return done;
     }
 
-    public Integer getLocation(){return this.location;}
+    public void setLocation(){}
+
+    public Geolocation getLocation() {return this.location;}
+
 
     public String getPic(){return this.pic;}
 
-    public void location(){this.location = 5;}
+    //public void location(){this.location = 5;}
 
     public void AddPic(){this.pic = "Image";}
 
