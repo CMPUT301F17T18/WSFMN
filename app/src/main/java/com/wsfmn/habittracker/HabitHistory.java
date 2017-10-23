@@ -80,4 +80,9 @@ public class HabitHistory {
         return habitHistory.indexOf(habitEvent);
     }
 
+    public void addAllHabitEvents(List<HabitEvent> habitEvents) {
+        this.habitHistory.addAll(habitEvents);
+    }
+
+
 }
