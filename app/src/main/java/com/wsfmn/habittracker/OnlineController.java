@@ -30,7 +30,7 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class AddHabit extends AsyncTask<Habit, Void, Void> {
+    public static class StoreHabitsOnline extends AsyncTask<Habit, Void, Void> {
 
         @Override
         protected Void doInBackground(Habit... habits) {
@@ -63,7 +63,7 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class GetHabitList extends AsyncTask<String, Void, HabitList> {
+    public static class GetHabitsOnline extends AsyncTask<String, Void, HabitList> {
         @Override
         protected HabitList doInBackground(String... search_parameters) {
             verifySettings();
@@ -100,6 +100,56 @@ public class  OnlineController {
             return habits;
         }
     }
+
+    /**
+     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+     */
+    public static class StoreHabitEventsOnline extends AsyncTask<HabitEvent, Void, Void> {
+
+        @Override
+        protected Void doInBackground(HabitEvent... habitEvents) {
+            verifySettings();
+
+            for (HabitEvent habitEvent : habitEvents) {
+                Index index = new Index.Builder(habitEvent).index("testing").type("habit").build();
+
+                try {
+                    // where is the client?
+                    DocumentResult result = client.execute(index);
+                    if(result.isSucceeded())
+                    {
+                        habitEvent.setId(result.getId().toString());
+                    }
+                    else
+                    {
+                        Log.i("Error","Elasticsearch was not able to add the habit");
+                    }
+                }
+                catch (Exception e) {
+                    Log.i("Error", "Habit Tracker failed to build and send the habits");
+                }
+
+            }
+            return null;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.

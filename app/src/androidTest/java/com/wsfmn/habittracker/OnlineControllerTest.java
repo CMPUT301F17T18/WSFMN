@@ -18,19 +18,20 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testAddHabitOnline(){
+    public void testStoreHabitsOnline(){
 
         try {
             final Habit newHabit = new Habit("HabitTitle", new Date());
 
             assertNull("New habit ID was not null", newHabit.getId());
 
-            OnlineController.AddHabit addHabitOnline = new OnlineController.AddHabit();
-            addHabitOnline.execute(newHabit);
+            OnlineController.StoreHabitsOnline storeHabitsOnline =
+                    new OnlineController.StoreHabitsOnline();
+            storeHabitsOnline.execute(newHabit);
 
-            // Delay 1 second for transaction to finish (usual time is around 200 ms)
+            // Delay 0.5 second for transaction to finish (usual time is around 200 ms)
             long currentTime = Calendar.getInstance().getTimeInMillis();
-            while(newHabit.getId() == null && (Calendar.getInstance().getTimeInMillis() - currentTime) < 1000 ){}
+            while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
 
             assertNotNull("New habit ID was null", newHabit.getId());
         }
@@ -41,9 +42,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testGetHabitList() {
+    public void testGetHabitsOnline() {
         HabitList habits = null;
-        OnlineController.GetHabitList getHabitList = new OnlineController.GetHabitList();
+        OnlineController.GetHabitsOnline getHabitList = new OnlineController.GetHabitsOnline();
         String searchString = "testhabit";
 
         assertNull("New Habit List was not null", habits);
@@ -54,12 +55,42 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             Log.i("Error", "Failed to get the habits from the async object");
         }
 
-        // Delay 1 second for transaction to finish (usual time is around 200 ms)
+        // Delay 0.5 second for transaction to finish (usual time is around 200 ms)
         long currentTime = Calendar.getInstance().getTimeInMillis();
-        while((Calendar.getInstance().getTimeInMillis() - currentTime) < 1000 ){}
+        while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
 
         assertNotNull("Habit List from server was null", habits);
         assertTrue("Habit in Habit List does not contain search string",
                 habits.getHabit(0).getTitle().toLowerCase().contains(searchString));
     }
+
+
+    public void testAddHabitEventsOnline(){
+
+        try {
+            final HabitEvent newHabitEvent =
+                    new HabitEvent("MyHabit", new Date(), true, "I did it!" );
+
+            assertNull("NewHabitEvent ID was not null", newHabitEvent.getId());
+
+            OnlineController.StoreHabitEventsOnline storeHabitEventsOnline =
+                    new OnlineController.StoreHabitEventsOnline();
+            storeHabitEventsOnline.execute(newHabitEvent);
+
+            // Delay 0.5 second for transaction to finish (usual time is around 200 ms)
+            long currentTime = Calendar.getInstance().getTimeInMillis();
+            while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
+
+            assertNotNull("NewHabitEvent ID was null", newHabitEvent.getId());
+        }
+        catch(HabitCommentTooLongException e){
+            // TODO: handle exception
+        }
+
+    }
+
+
+
+
+
 }

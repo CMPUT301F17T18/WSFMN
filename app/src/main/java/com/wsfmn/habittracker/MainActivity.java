@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         habits.addHabit(newHabit);
 
-        OnlineController.AddHabit addHabitOnline = new OnlineController.AddHabit();
+        OnlineController.StoreHabitsOnline addHabitOnline = new OnlineController.StoreHabitsOnline();
         addHabitOnline.execute(newHabit);
 
         ///// FOR NOW... Delay .5 second for transaction to finish (usual time is around 200 ms)
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 //        habitList = Offlinecontroller.getHabitList();
 
         //Get habits from server
-        OnlineController.GetHabitList getHabitList = new OnlineController.GetHabitList();
+        OnlineController.GetHabitsOnline getHabitList = new OnlineController.GetHabitsOnline();
         try {
             getHabitList.execute(searchString);
             habits = getHabitList.get();

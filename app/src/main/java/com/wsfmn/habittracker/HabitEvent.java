@@ -13,6 +13,7 @@ import java.util.Date;
  */
 
 public class HabitEvent{
+    private String id;
     private String habit;
     private String comment;
     private Date date;
@@ -79,6 +80,11 @@ public class HabitEvent{
 
     public void updateHabitHistory(){}
 
+    public String getId() {
+        return id;
+    }
 
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }
