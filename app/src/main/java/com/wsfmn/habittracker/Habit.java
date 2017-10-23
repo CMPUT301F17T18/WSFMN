@@ -11,14 +11,14 @@ public class Habit{
     private String id;
     private String title;
     private String reason;
-    private Date toStart;
+    private Date date;
     private WeekDays weekDays;
     private HabitHistory habitHistory;
 
 
     public Habit(String title, Date date) throws HabitTitleTooLongException {
         this.id = null;
-        this.toStart = date;
+        this.date = date;
         this.setTitle(title);
     }
 
@@ -56,12 +56,12 @@ public class Habit{
         this.reason = reason;
     }
 
-    public Date getToStart() {
-        return toStart;
+    public Date getDate() {
+        return date;
     }
 
-    public void setToStart(Date toStart) {
-        this.toStart = toStart;
+    public void setDate(Date toStart) {
+        this.date = toStart;
     }
 
     public String getId() {
