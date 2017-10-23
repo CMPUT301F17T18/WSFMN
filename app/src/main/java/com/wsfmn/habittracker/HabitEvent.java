@@ -13,7 +13,7 @@ import java.util.Date;
  */
 
 public class HabitEvent{
-    private String habit;
+    private Habit habit;
     private String comment;
     private Date date;
     private Boolean done;
@@ -23,7 +23,7 @@ public class HabitEvent{
     String pic;
   
 
-    public HabitEvent(String habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
+    public HabitEvent(Habit habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
         this.habit = habit;
         this.date = date;
         this.done = done;
@@ -31,11 +31,11 @@ public class HabitEvent{
     }
 
 
-    public String getHabitType() {
+    public Habit getHabitType() {
         return habit;
     }
 
-    public void setHabitType(String habitType) {
+    public void setHabitType(Habit habitType) {
         this.habit = habitType;
     }
 

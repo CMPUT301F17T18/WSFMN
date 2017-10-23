@@ -28,7 +28,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -52,7 +52,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -83,14 +83,14 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
 
-        assertEquals(habitEvent.getHabitType(), habit.toString());
+        assertEquals(habitEvent.getHabitType(), habit);
     }
 
     public void testGetLocation(){
@@ -107,7 +107,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -132,7 +132,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
