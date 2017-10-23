@@ -14,6 +14,7 @@ public class Habit{
     private Date date;
     private WeekDays weekDays;
 
+
     public Habit(String title, Date date) throws HabitTitleTooLongException {
         this.id = null;
         this.date = date;

@@ -28,18 +28,16 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
             testHabit = new Habit("Test", date);
         }
         catch(HabitTitleTooLongException e){
-            //null
+            habits.addHabit(testHabit);
+
+            offline.storeLocal();
+            habits.deleteHabit(testHabit);
+            assertFalse(habits.hasHabit(testHabit));
+            offline.getLocal();
+
+            assertEquals(habits.getHabit(0), testHabit);
         }
 
-        habits.addHabit(testHabit);
-
-
-        offline.storeLocal();
-        habits.deleteHabit(testHabit);
-        assertFalse(habits.hasHabit(testHabit));
-        offline.getLocal();
-
-        assertEquals(habits.getHabit(0), testHabit);
 
     }
 
@@ -65,7 +63,6 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
         assertFalse(habits.hasHabit(testHabit));
         offline.getLocal();
         assertEquals(habits.getHabit(0), testHabit);
-
 
     }
 }

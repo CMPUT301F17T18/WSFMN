@@ -20,7 +20,6 @@ public class ProfileTest extends ActivityInstrumentationTestCase2{
         //Other user should check their profile, but in this case own user sends to themself.
         // Following request.
         assertTrue(requestTest.hasRequest(test));
-
     }
 
     public void testshareWithUser(){
