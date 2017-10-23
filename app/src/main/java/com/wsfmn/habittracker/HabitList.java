@@ -13,6 +13,7 @@ public class HabitList {
     public HabitList() {
         this.habits = new ArrayList<Habit>();
     }
+
     public HabitList(ArrayList<Habit> habits) {
         this.habits = habits;
     }
@@ -45,6 +46,5 @@ public class HabitList {
     public boolean hasHabit(Habit habit){
         return habits.contains(habit);
     }
-
 
 }

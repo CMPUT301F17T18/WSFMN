@@ -28,7 +28,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -52,7 +52,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -83,14 +83,14 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
 
-        assertEquals(habitEvent.getHabit(), habit);
+        assertEquals(habitEvent.getHabitType(), habit.toString());
     }
 
     public void testGetLocation(){
@@ -107,17 +107,15 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
-
-
-        assertNull(habitEvent.getLocation());
-        habitEvent.setLocation();
-        assertNotNull(habitEvent.getLocation());
+        assertNull("Habit's Location is not null", habitEvent.getLocation());
+        habitEvent.setLocation(new Geolocation());
+        assertNotNull("Habit's Location is null", habitEvent.getLocation());
     }
 
     public void testGetPic(){
@@ -134,7 +132,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), true, "Comment");
+            habitEvent = new HabitEvent(habit.toString(), habit.getDate(), true, "Comment");
         }
         catch(HabitCommentTooLongException e){
             //null

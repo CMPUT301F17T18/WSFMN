@@ -44,10 +44,16 @@ public class MainActivity extends AppCompatActivity {
             // TODO: handle exception
         }
 
+
         habits.addHabit(newHabit);
 
         OnlineController.AddHabit addHabitOnline = new OnlineController.AddHabit();
         addHabitOnline.execute(newHabit);
+
+        ///// FOR NOW... Delay .5 second for transaction to finish (usual time is around 200 ms)
+        long currentTime = Calendar.getInstance().getTimeInMillis();
+        while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
+        /////
 
         updateHabitList();
     }
@@ -65,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
         try {
             getHabitList.execute(searchString);
             habits = getHabitList.get();
-            // Delay 1 second for transaction to finish (usual time is around 200 ms)
+
+            ///// FOR NOW... Delay .5 second for transaction to finish (usual time is around 200 ms)
             long currentTime = Calendar.getInstance().getTimeInMillis();
-            while((Calendar.getInstance().getTimeInMillis() - currentTime) < 1000 ){}
+            while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
+            /////
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the habits from the async object");

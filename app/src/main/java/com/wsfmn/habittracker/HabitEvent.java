@@ -13,8 +13,8 @@ import java.util.Date;
  */
 
 public class HabitEvent{
+    private String habit;
     private String comment;
-    private Habit habit;
     private Date date;
     private Boolean done;
     //change by wei, change location parts
@@ -23,7 +23,7 @@ public class HabitEvent{
     String pic;
   
 
-    public HabitEvent(Habit habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
+    public HabitEvent(String habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
         this.habit = habit;
         this.date = date;
         this.done = done;
@@ -31,12 +31,12 @@ public class HabitEvent{
     }
 
 
-    public Habit getHabit() {
+    public String getHabitType() {
         return habit;
     }
 
-    public void setHabit(Habit habit) {
-        this.habit = habit;
+    public void setHabitType(String habitType) {
+        this.habit = habitType;
     }
 
     public String getComment() {
@@ -64,7 +64,9 @@ public class HabitEvent{
         return done;
     }
 
-    public void setLocation(){}
+    public void setLocation(Geolocation location){
+        this.location = location;
+    }
 
     public Geolocation getLocation() {return this.location;}
 

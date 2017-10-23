@@ -31,7 +31,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit.toString(), new Date(), true, "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -57,7 +57,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit.toString(), new Date(), true, "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -87,7 +87,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit.toString(), new Date(), true, "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -116,7 +116,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit.toString(), new Date(), true, "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -144,7 +144,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit.toString(), new Date(), true, "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
