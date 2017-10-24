@@ -68,7 +68,7 @@ public class  OnlineController {
         protected HabitList doInBackground(String... search_parameters) {
             verifySettings();
 
-            HabitList habits = new HabitList();
+            HabitList habitList = new HabitList();
 
             String query =
                             "{\n" +
@@ -87,7 +87,7 @@ public class  OnlineController {
                 if(result.isSucceeded())
                 {
                     List<Habit> foundHabits = result.getSourceAsObjectList(Habit.class);
-                    habits.addAllHabits(foundHabits);
+                    habitList.addAllHabits(foundHabits);
                 }
                 else
                 {
@@ -97,7 +97,7 @@ public class  OnlineController {
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
-            return habits;
+            return habitList;
         }
     }
 
@@ -118,6 +118,7 @@ public class  OnlineController {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded())
                     {
+                        Log.d("STORED", "STORED");
                         habitEvent.setId(result.getId().toString());
                     }
                     else
@@ -134,22 +135,46 @@ public class  OnlineController {
         }
     }
 
+    /**
+     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+     */
+    public static class GetHabitEventsOnline extends AsyncTask<String, Void, HabitHistory> {
+        @Override
+        protected HabitHistory doInBackground(String... search_parameters) {
+            verifySettings();
 
+            HabitHistory habitHistory = new HabitHistory();
 
+            String query =
+                    "{\n" +
+                            " \"query\": { \"term\": {\"habit\":\"" + search_parameters[0] + "\"} },\n" +
+                            " \"sort\": [\n" +
+                            "  { \"date\": \"desc\" }\n" +
+                            " ]\n" +
+                            "}";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Search search = new Search.Builder(query)
+                    .addIndex("testing")
+                    .addType("habitevent")
+                    .build();
+            try {
+                SearchResult result = client.execute(search);
+                if(result.isSucceeded())
+                {
+                    List<HabitEvent> foundHabitEvents = result.getSourceAsObjectList(HabitEvent.class);
+                    habitHistory.addAllHabitEvents(foundHabitEvents);
+                }
+                else
+                {
+                    Log.i("Error","The search query failed");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return habitHistory;
+        }
+    }
 
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
