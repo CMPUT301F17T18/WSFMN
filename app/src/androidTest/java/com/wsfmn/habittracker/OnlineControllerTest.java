@@ -25,8 +25,8 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
             assertNull("New habit ID was not null", newHabit.getId());
 
-            OnlineController.StoreHabitsOnline storeHabitsOnline =
-                    new OnlineController.StoreHabitsOnline();
+            OnlineController.StoreHabits storeHabitsOnline =
+                    new OnlineController.StoreHabits();
             storeHabitsOnline.execute(newHabit);
 
             // Delay 0.5 second for transaction to finish (usual time is around 200 ms)
@@ -44,7 +44,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
     public void testGetHabitsOnline() {
         HabitList habits = null;
-        OnlineController.GetHabitsOnline getHabitList = new OnlineController.GetHabitsOnline();
+        OnlineController.GetHabits getHabitList = new OnlineController.GetHabits();
         String searchString = "testhabit";
 
         assertNull("New Habit List was not null", habits);

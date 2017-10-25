@@ -22,15 +22,14 @@ import io.searchbox.core.SearchResult;
 
 
 
-public class  OnlineController {
+public class OnlineController {
 
     private static JestDroidClient client;
-
 
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class StoreHabitsOnline extends AsyncTask<Habit, Void, Void> {
+    public static class StoreHabits extends AsyncTask<Habit, Void, Void> {
 
         @Override
         protected Void doInBackground(Habit... habits) {
@@ -63,7 +62,7 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class GetHabitsOnline extends AsyncTask<String, Void, HabitList> {
+    public static class GetHabits extends AsyncTask<String, Void, HabitList> {
         @Override
         protected HabitList doInBackground(String... search_parameters) {
             verifySettings();
@@ -104,7 +103,7 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class StoreHabitEventsOnline extends AsyncTask<HabitEvent, Void, Void> {
+    public static class StoreHabitEvents extends AsyncTask<HabitEvent, Void, Void> {
 
         @Override
         protected Void doInBackground(HabitEvent... habitEvents) {
@@ -138,7 +137,7 @@ public class  OnlineController {
     /**
      * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
      */
-    public static class GetHabitEventsOnline extends AsyncTask<String, Void, HabitHistory> {
+    public static class GetHabitEvents extends AsyncTask<String, Void, HabitHistory> {
         @Override
         protected HabitHistory doInBackground(String... search_parameters) {
             verifySettings();

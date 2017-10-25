@@ -1,11 +1,15 @@
 package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Fredric on 2017-10-21.
+ * Edited by nmayne on 2017-10-25.
+ *
  */
 
 
@@ -16,53 +20,74 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    // hard to test needs to already have something stored in Local
-    public void testGetLocal(){
-        HabitList habits = new HabitList();
-        Date date = new Date();
-        OfflineController offline = new OfflineController();
-
-        Habit testHabit = null;
+    public void testStoreGetHabitList() {
+        HabitList habitList = new HabitList();
 
         try {
-            testHabit = new Habit("Test", date);
+            Habit myHabit = new Habit("My Habit", new Date());
+            habitList.addHabit(myHabit);
+
+            OfflineController.StoreHabitList storeHabitListOffline = new OfflineController.StoreHabitList();
+            storeHabitListOffline.execute(habitList);
+
+            OfflineController.GetHabitList getHabitListOffline = new OfflineController.GetHabitList();
+            getHabitListOffline.execute();
+
+            HabitList habitListNew = getHabitListOffline.get();
+
+            assertEquals(habitList.getHabit(0).getTitle(), habitListNew.getHabit(0).getTitle());
+        } catch (HabitTitleTooLongException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (InterruptedException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (ExecutionException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
         }
-        catch(HabitTitleTooLongException e){
-            habits.addHabit(testHabit);
-
-            offline.storeLocal();
-            habits.deleteHabit(testHabit);
-            assertFalse(habits.hasHabit(testHabit));
-            offline.getLocal();
-
-            assertEquals(habits.getHabit(0), testHabit);
-        }
-
-
     }
 
-    //hard to test needs to load from file.
-    public void testStoreLocal(){
-        HabitList habits = new HabitList();
-        Date date = new Date();
-        OfflineController offline = new OfflineController();
 
-        Habit testHabit = null;
+    public void testStoreGetHabitHistory() {
+        HabitHistory habitHistory = new HabitHistory();
 
         try {
-            testHabit = new Habit("Test", date);
+            Habit myHabit = new Habit("My Habit", new Date());
+            HabitEvent myDoneHabitEvent = new HabitEvent(myHabit, new Date(), true, "I did my Habit");
+            HabitEvent myNotDoneHabitEvent = new HabitEvent(myHabit, new Date(), true, "I did not do my Habit");
+
+            habitHistory.add(myDoneHabitEvent);
+            habitHistory.add(myNotDoneHabitEvent);
+
+            assertTrue(habitHistory.contains(myDoneHabitEvent));
+            assertTrue(habitHistory.contains(myNotDoneHabitEvent));
+
+            OfflineController.StoreHabitHistory storeHabitHistoryOffline = new OfflineController.StoreHabitHistory();
+            storeHabitHistoryOffline.execute(habitHistory);
+
+            OfflineController.GetHabitHistory getHabitHistoryOffline = new OfflineController.GetHabitHistory();
+            getHabitHistoryOffline.execute();
+
+            HabitHistory habitHistoryNew = getHabitHistoryOffline.get();
+
+            assertTrue(habitHistoryNew.contains(myDoneHabitEvent));
+            assertTrue(habitHistoryNew.contains(myNotDoneHabitEvent));
+
+
+
+        } catch (HabitTitleTooLongException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (InterruptedException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (ExecutionException e) {
+            Log.i("TestStoreGetHabits", e.toString());
         }
-        catch(HabitTitleTooLongException e){
-            //null
+        catch (HabitCommentTooLongException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
         }
-
-        habits.addHabit(testHabit);
-
-        offline.storeLocal();
-        habits.deleteHabit(testHabit);
-        assertFalse(habits.hasHabit(testHabit));
-        offline.getLocal();
-        assertEquals(habits.getHabit(0), testHabit);
-
     }
 }
