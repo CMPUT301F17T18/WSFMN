@@ -47,4 +47,9 @@ public class HabitList {
         return habits.contains(habit);
     }
 
+    // TODO alsobaie: added this, needs testing
+    public ArrayList<Habit> getHabitList(){
+        return  habits;
+    }
+
 }

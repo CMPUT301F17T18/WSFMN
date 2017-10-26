@@ -2,7 +2,10 @@
     <string name="app_name">HabitTracker</string>
     <string name="add_habit">Add Habit</string>
     <string name="new_habit_title">Habit Title</string>
-
+    <string name="reason_to_start_habit">Reason to start habit</string>
+    <string name="confirm">Confirm</string>
+    <string name="set_date">Set Date</string>
+    <string name="set_weekly_schedule">Set Weekly Schedule</string>
 
 
 </resources>

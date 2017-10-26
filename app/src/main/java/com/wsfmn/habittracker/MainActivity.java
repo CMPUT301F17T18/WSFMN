@@ -1,58 +1,88 @@
 package com.wsfmn.habittracker;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    HabitList habitList = null;
-    private EditText habitTitleText;
-    private TextView HABIT_LIST_VIEW;
+    private final static int CREATE_HABIT_REQUEST = 1;
+
+    private ListView habitListView;
+    private ArrayAdapter<Habit> adapter;
+    private HabitList habitList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        habitListView = (ListView) findViewById(R.id.habit_list_view);
+
+        habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         updateHabitList();
+        adapter = new ArrayAdapter<Habit>(this,
+                android.R.layout.simple_list_item_1, habitList.getHabitList());
+        habitListView.setAdapter(adapter);
     }
 
     /** Called when the user taps the Add New Habit button */
     public void addNewHabit(View view){
-        setResult(RESULT_OK);
-        habitTitleText = (EditText) findViewById(R.id.habit_title_text);
-        String habitTitle = habitTitleText.getText().toString();
+        Intent intent = new Intent(this, addNewHabitActivity.class);
+        startActivityForResult(intent, CREATE_HABIT_REQUEST);
+    }
 
-        Habit newHabit = null;
+    /**
+     *
+     * this function receives data from addNewHabitActivity.
+     * The data is a Habit objects that either replaces a
+     * Habit object or adds it to the array
+     *
+     */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CREATE_HABIT_REQUEST && resultCode == RESULT_OK) {
+            Bundle b = data.getExtras();
 
-        try {
-            newHabit = new Habit(habitTitle, new Date());
+            String object = b.getString("Habit");
+            Gson gson = new Gson();
+            Type objectType = new TypeToken<Habit>() {
+            }.getType();
+            Habit habit = gson.fromJson(object, objectType);
+
+            habitList.addHabit(habit);
+
+            adapter.notifyDataSetChanged();
+            updateHabitList();
         }
-        catch(HabitTitleTooLongException e){
-            // TODO: handle exception
-        }
-
-        habitList.addHabit(newHabit);
-
-        OfflineController.StoreHabitList storeHabitListOffline =
-                new OfflineController.StoreHabitList();
-        storeHabitListOffline.execute(habitList);
-
-        updateHabitList();
-
     }
 
     /** Update the local HabitList*/
@@ -73,15 +103,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        // TODO nmayne: lazily printing out habitList
-        // we need to do this with a ListView and an adapter
-        HABIT_LIST_VIEW = (TextView) findViewById(R.id.habit_list_view);
-        String allTheHabits = "";
-        for (int i = 0; i < habitList.getSize(); i++) {
-            allTheHabits = allTheHabits + "\n"
-                    + habitList.getHabit(i).getTitle() + " "
-                    + habitList.getHabit(i).getDate().toString();
-        }
-        HABIT_LIST_VIEW.setText(allTheHabits);
     }
 }
