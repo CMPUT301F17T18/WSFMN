@@ -3,6 +3,7 @@ package com.wsfmn.habittracker;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,7 +66,9 @@ public class OfflineController {
                 habitList = gson.fromJson(in, HabitList[].class);
             } catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
+                Log.d("FileNotfound", e.getMessage());
                 habitList = new HabitList[1];
+                habitList[0] = new HabitList();
             }
             return habitList[0];
         }
