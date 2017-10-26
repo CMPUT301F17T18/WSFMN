@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        habitList = new HabitList();
 
         habitListView = (ListView) findViewById(R.id.habit_list_view);
 
@@ -81,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
             habitList.addHabit(habit);
 
             adapter.notifyDataSetChanged();
-            updateHabitList();
+            OfflineController.StoreHabitList storeHabitListOffline = new OfflineController.StoreHabitList();
+            storeHabitListOffline.execute(habitList);
         }
     }
 

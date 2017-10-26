@@ -35,7 +35,7 @@ public class addNewHabitActivity extends AppCompatActivity {
     private EditText habitReason;
     private Button setDateButton;
     private Button confirmButton;
-    private Date date;
+    private Date date = null;
     private WeekDays weekDays;
 
     @Override
@@ -45,7 +45,6 @@ public class addNewHabitActivity extends AppCompatActivity {
 
         context = this;
         weekDays = new WeekDays();
-        date = new Date();
 
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
@@ -73,6 +72,8 @@ public class addNewHabitActivity extends AppCompatActivity {
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        if(date == null)
+            date = new Date();
 
         try {
             Habit habit = new Habit(habitTitle.getText().toString(),
