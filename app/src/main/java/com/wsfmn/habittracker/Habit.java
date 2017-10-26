@@ -1,6 +1,5 @@
 package com.wsfmn.habittracker;
 
-import java.util.Date;
 
 /**
  * Created by musaed on 2017-10-16.
@@ -82,6 +81,6 @@ public class Habit{
     // is dependent upon Date, which is an issue... probably a better way to do this
     @Override
     public String toString(){
-        return title + " " + date;
+        return title + "    " + date;
     }
 }

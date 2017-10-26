@@ -3,7 +3,7 @@ package com.wsfmn.habittracker;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
-import java.util.Date;
+
 import java.util.concurrent.ExecutionException;
 
 /**

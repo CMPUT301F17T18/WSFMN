@@ -17,12 +17,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
+
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.Date;
+
 
 public class addNewHabitActivity extends AppCompatActivity {
 
@@ -35,7 +37,7 @@ public class addNewHabitActivity extends AppCompatActivity {
     private EditText habitReason;
     private Button setDateButton;
     private Button confirmButton;
-    private Date date = null;
+    private Date date;
     private WeekDays weekDays;
 
     @Override
@@ -45,7 +47,7 @@ public class addNewHabitActivity extends AppCompatActivity {
 
         context = this;
         weekDays = new WeekDays();
-
+        date = null;
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
@@ -53,12 +55,32 @@ public class addNewHabitActivity extends AppCompatActivity {
         confirmButton = (Button) findViewById(R.id.confirmButton);
 
 
+        setDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @TargetApi(24)
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        addNewHabitActivity.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
         // sets up listener for the date UI object
         mDateSetListener = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month += 1;
                 date = new Date(year, month, dayOfMonth);
+                Toast.makeText(addNewHabitActivity.this, date.toString(),
+                        Toast.LENGTH_LONG).show();
             }
         };
 
@@ -103,17 +125,7 @@ public class addNewHabitActivity extends AppCompatActivity {
     // it might be changed later
     @TargetApi(24)
     public void setDate(){
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dialog = new DatePickerDialog(
-                addNewHabitActivity.this,
-                android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener,
-                year, month, day);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
     }
 
 

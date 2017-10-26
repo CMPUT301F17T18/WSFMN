@@ -4,7 +4,6 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import junit.framework.Assert;
 
-import java.util.Date;
 
 /**
  * Created by musaed on 2017-10-21.

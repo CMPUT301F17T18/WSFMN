@@ -25,7 +25,8 @@
         <activity android:name=".ViewHabitEventActivity" />
         <activity android:name=".HabitListViewActivity" />
         <activity android:name=".HabitListViewDetailActivity" />
-        <activity android:name=".addNewHabitActivity" />
+        <activity android:name=".addNewHabitActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".DaysOfTheWeekActivity"></activity>
     </application>
 

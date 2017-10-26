@@ -6,8 +6,6 @@ import android.widget.ImageView;
 
 import org.apache.commons.lang3.ObjectUtils;
 
-import java.util.Date;
-
 /**
  * Created by skhanna1 on 10/16/17.
  */

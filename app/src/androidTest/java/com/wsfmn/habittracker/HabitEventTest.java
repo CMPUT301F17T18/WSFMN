@@ -3,7 +3,6 @@ package com.wsfmn.habittracker;
 import android.test.ActivityInstrumentationTestCase;
 import android.test.ActivityInstrumentationTestCase2;
 
-import java.util.Date;
 
 /**
  * Created by siddhant on 2017-10-22.
