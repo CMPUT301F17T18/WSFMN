@@ -3,7 +3,6 @@ package com.wsfmn.habittracker;
 import android.test.ActivityInstrumentationTestCase;
 import android.test.ActivityInstrumentationTestCase2;
 
-import java.util.Date;
 
 /**
  * Created by siddhant on 2017-10-22.
@@ -90,7 +89,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         }
 
 
-        assertEquals(habitEvent.getHabit(), habit);
+        assertEquals(habitEvent.getHabitType(), habit);
     }
 
     public void testGetLocation(){
@@ -113,11 +112,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-
-
-        assertNull(habitEvent.getLocation());
-        habitEvent.setLocation();
-        assertNotNull(habitEvent.getLocation());
+        assertNull("Habit's Location is not null", habitEvent.getLocation());
+        habitEvent.setLocation(new Geolocation());
+        assertNotNull("Habit's Location is null", habitEvent.getLocation());
     }
 
     public void testGetPic(){

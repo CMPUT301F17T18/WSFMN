@@ -35,7 +35,7 @@ public class WeekDays {
         return weekDays[day];
     }
 
-    public void setDat(int day){
+    public void setDay(int day){
         weekDays[day] = true;
     }
 

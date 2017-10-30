@@ -6,15 +6,14 @@ import android.widget.ImageView;
 
 import org.apache.commons.lang3.ObjectUtils;
 
-import java.util.Date;
-
 /**
  * Created by skhanna1 on 10/16/17.
  */
 
 public class HabitEvent{
-    private String comment;
+    private String id;
     private Habit habit;
+    private String comment;
     private Date date;
     private Boolean done;
     //change by wei, change location parts
@@ -31,12 +30,12 @@ public class HabitEvent{
     }
 
 
-    public Habit getHabit() {
+    public Habit getHabitType() {
         return habit;
     }
 
-    public void setHabit(Habit habit) {
-        this.habit = habit;
+    public void setHabitType(Habit habitType) {
+        this.habit = habitType;
     }
 
     public String getComment() {
@@ -64,7 +63,9 @@ public class HabitEvent{
         return done;
     }
 
-    public void setLocation(){}
+    public void setLocation(Geolocation location){
+        this.location = location;
+    }
 
     public Geolocation getLocation() {return this.location;}
 
@@ -77,6 +78,11 @@ public class HabitEvent{
 
     public void updateHabitHistory(){}
 
+    public String getId() {
+        return id;
+    }
 
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }

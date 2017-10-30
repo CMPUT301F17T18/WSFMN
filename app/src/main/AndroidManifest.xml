@@ -3,7 +3,9 @@
     package="com.wsfmn.habittracker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +24,10 @@
         <activity android:name=".MapActivity" />
         <activity android:name=".ViewHabitEventActivity" />
         <activity android:name=".HabitListViewActivity" />
-        <activity android:name=".HabitListViewDetailActivity"></activity>
+        <activity android:name=".HabitListViewDetailActivity" />
+        <activity android:name=".addNewHabitActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".DaysOfTheWeekActivity"></activity>
     </application>
 
 </manifest>

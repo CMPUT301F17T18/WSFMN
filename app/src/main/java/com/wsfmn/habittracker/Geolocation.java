@@ -15,6 +15,12 @@ public class Geolocation {
     LocationManager locationManager;
     String provider = LocationManager.GPS_PROVIDER;
 
+
+    // empty constructor for testing
+    public Geolocation(){
+
+    }
+
     public Geolocation(Context context){
         this.context = context;
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);

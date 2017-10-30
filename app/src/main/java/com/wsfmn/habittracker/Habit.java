@@ -1,6 +1,5 @@
 package com.wsfmn.habittracker;
 
-import java.util.Date;
 
 /**
  * Created by musaed on 2017-10-16.
@@ -13,7 +12,6 @@ public class Habit{
     private String reason;
     private Date date;
     private WeekDays weekDays;
-    private HabitHistory habitHistory;
 
 
     public Habit(String title, Date date) throws HabitTitleTooLongException {
@@ -55,7 +53,6 @@ public class Habit{
         }
         this.reason = reason;
     }
-
     public Date getDate() {
         return date;
     }
@@ -80,11 +77,10 @@ public class Habit{
         this.weekDays = weekDays;
     }
 
-    public HabitHistory getHabitHistory() {
-        return habitHistory;
-    }
-
-    public void setHabitHistory(HabitHistory habitHistory) {
-        this.habitHistory = habitHistory;
+    // nmayne: A local key for a habit, as a combination of title and date... but this
+    // is dependent upon Date, which is an issue... probably a better way to do this
+    @Override
+    public String toString(){
+        return title + "    " + date;
     }
 }

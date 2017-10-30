@@ -1,6 +1,7 @@
 package com.wsfmn.habittracker;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by nicholasmayne on 2017-10-16.
@@ -12,14 +13,16 @@ import java.util.ArrayList;
  * History refers to the list of all past HabitEvents.
  */
 public class HabitHistory {
-
+    private String habitTitle;
     private ArrayList<HabitEvent> habitHistory;
+
 
     /**
      * Construct a new Habit History to store Habit Events.
      */
     public HabitHistory(){
         this.habitHistory = new ArrayList<HabitEvent>();
+
     }
 
     /**
@@ -76,5 +79,10 @@ public class HabitHistory {
     public int indexOf(HabitEvent habitEvent){
         return habitHistory.indexOf(habitEvent);
     }
+
+    public void addAllHabitEvents(List<HabitEvent> habitEvents) {
+        this.habitHistory.addAll(habitEvents);
+    }
+
 
 }
