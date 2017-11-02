@@ -16,7 +16,8 @@
         android:hint="@string/add_habit"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp" />
 
 
     <EditText
@@ -29,7 +30,8 @@
         android:hint="@string/reason_to_start_habit"
         android:inputType="textPersonName"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/habitTitleEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/habitTitleEditText"
+        android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/setDateButton"
@@ -39,7 +41,8 @@
         android:layout_marginTop="32dp"
         android:text="@string/set_date"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/habitReasonEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/habitReasonEditText"
+        android:layout_marginStart="16dp" />
 
     <Button
         android:id="@+id/confirmButton"
@@ -50,7 +53,8 @@
         android:onClick="confirm"
         android:text="@string/confirm"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setDateButton" />
+        app:layout_constraintTop_toBottomOf="@+id/setDateButton"
+        android:layout_marginStart="280dp" />
 
     <CheckBox
         android:id="@+id/mondayCheckBox"
@@ -61,7 +65,8 @@
         android:text="Monday"
         android:onClick="mondayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setDateButton" />
+        app:layout_constraintTop_toBottomOf="@+id/setDateButton"
+        android:layout_marginStart="16dp" />
 
     <CheckBox
         android:id="@+id/tuesdayCheckBox"
@@ -72,7 +77,8 @@
         android:text="Tuesday"
         android:onClick="tuesdayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mondayCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/mondayCheckBox"
+        android:layout_marginStart="16dp" />
 
     <CheckBox
         android:id="@+id/wednesdayCheckBox"
@@ -83,7 +89,8 @@
         android:text="Wednesday"
         android:onClick="wednesdayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/tuesdayCheckBox"
+        android:layout_marginStart="16dp" />
 
     <CheckBox
         android:id="@+id/thursdayCheckBox"
@@ -94,7 +101,8 @@
         android:text="Thursday"
         android:onClick="thursdayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wednesdayCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/wednesdayCheckBox"
+        android:layout_marginStart="16dp" />
 
     <CheckBox
         android:id="@+id/fridayCheckBox"
@@ -105,7 +113,8 @@
         android:text="Friday"
         android:onClick="fridayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thursdayCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/thursdayCheckBox"
+        android:layout_marginStart="16dp" />
 
     <CheckBox
         android:id="@+id/saturdayCheckBox"
@@ -116,7 +125,8 @@
         android:text="Saturday"
         android:onClick="saturdayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fridayCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/fridayCheckBox"
+        android:layout_marginStart="16dp" />
 
     <CheckBox
         android:id="@+id/sundayCheckBox"
@@ -127,6 +137,18 @@
         android:text="Sunday"
         android:onClick="sundayCheckBox"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saturdayCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/saturdayCheckBox"
+        android:layout_marginStart="16dp" />
+
+    <EditText
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="date"
+        app:layout_constraintLeft_toRightOf="@+id/setDateButton"
+        app:layout_constraintTop_toBottomOf="@+id/habitReasonEditText" />
 
 </android.support.constraint.ConstraintLayout>

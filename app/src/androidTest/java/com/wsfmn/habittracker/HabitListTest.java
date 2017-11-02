@@ -22,6 +22,9 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         habits.addHabit(habit);
         assertTrue(habits.hasHabit(habit));
@@ -37,6 +40,9 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         }
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
+        }
+        catch(DateNotValidException e){
+            //null
         }
 
         habits.addHabit(habit);
@@ -55,6 +61,9 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         habits.addHabit(habit);
         assertEquals(habits.getHabit(0).getTitle(), "title");
@@ -70,6 +79,9 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         }
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
+        }
+        catch(DateNotValidException e){
+            //null
         }
 
         habits.addHabit(habit);

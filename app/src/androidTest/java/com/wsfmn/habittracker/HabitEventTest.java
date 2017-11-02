@@ -23,6 +23,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         HabitEvent habitEvent = null;
 
@@ -45,6 +48,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -78,6 +84,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         HabitEvent habitEvent = null;
 
@@ -100,6 +109,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -126,6 +138,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         }
         catch(HabitTitleTooLongException e){
             //null
+        }
+        catch(DateNotValidException e){
+
         }
 
         HabitEvent habitEvent = null;

@@ -24,6 +24,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         assertEquals(habit.getTitle(), "title");
     }
@@ -36,6 +39,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e) {
             assertNull("Title Constraint Enforcement Failed", habit);
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try{
             habit = new Habit("title", new Date());
@@ -43,7 +49,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
-
+        catch(DateNotValidException e){
+            //null
+        }
 
         assertEquals(habit.getTitle(), "title");
     }
@@ -58,6 +66,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
             //null
         }
         catch(HabitReasonTooLongException e){
+            //null
+        }
+        catch (DateNotValidException e){
             //null
         }
 
@@ -75,6 +86,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitReasonTooLongException e){
             assertNull("Reason Constraint Enforcement Failed", habit);
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try{
             habit = new Habit("title", "reason", new Date());
@@ -82,6 +96,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
         }
         catch(HabitReasonTooLongException e){
+        }
+        catch (DateNotValidException e){
+            //null
         }
 
 
@@ -99,6 +116,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitReasonTooLongException e){
 
         }
+        catch (DateNotValidException e){
+            //null
+        }
 
         assertNull("Habit ID was not null", habit.getId());
     }
@@ -113,6 +133,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         }
         catch(HabitReasonTooLongException e){
 
+        }
+        catch (DateNotValidException e){
+            //null
         }
 
         habit.setId("My Unique ID");
@@ -132,8 +155,27 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(HabitReasonTooLongException e){
 
         }
+        catch (DateNotValidException e){
+            //null
+        }
 
         assertTrue("Habit as a string was incorrect", habit.toString().contains("title"+" "+date));
+    }
+
+    public void testSetDate(){
+        Date date = new Date(2017, 10, 10);
+        Habit habit = null;
+
+        try {
+            habit = new Habit("title", date);
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
+            assertNull("Date Constraint Enforcement Failed", habit);
+        }
+
     }
 
 }

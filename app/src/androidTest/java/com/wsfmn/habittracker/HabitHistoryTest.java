@@ -28,6 +28,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
@@ -52,6 +55,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
             myHabit = new Habit("Eating Pizza", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -84,6 +90,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
@@ -113,6 +122,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
@@ -139,6 +151,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
             myHabit = new Habit("Eating Pizza", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 

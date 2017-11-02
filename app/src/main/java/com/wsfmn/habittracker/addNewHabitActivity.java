@@ -35,6 +35,7 @@ public class addNewHabitActivity extends AppCompatActivity {
 
     private EditText habitTitle;
     private EditText habitReason;
+    private EditText dateText;
     private Button setDateButton;
     private Button confirmButton;
     private Date date;
@@ -47,13 +48,15 @@ public class addNewHabitActivity extends AppCompatActivity {
 
         context = this;
         weekDays = new WeekDays();
-        date = null;
+        date = new Date();
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
         setDateButton = (Button) findViewById(R.id.setDateButton);
         confirmButton = (Button) findViewById(R.id.confirmButton);
+        dateText = (EditText) findViewById(R.id.dateText);
 
+        dateText.setText(date.toString());
 
         setDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,8 +82,7 @@ public class addNewHabitActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month += 1;
                 date = new Date(year, month, dayOfMonth);
-                Toast.makeText(addNewHabitActivity.this, date.toString(),
-                        Toast.LENGTH_LONG).show();
+                dateText.setText(date.toString());
             }
         };
 
@@ -94,8 +96,7 @@ public class addNewHabitActivity extends AppCompatActivity {
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-        if(date == null)
-            date = new Date();
+
 
         try {
             Habit habit = new Habit(habitTitle.getText().toString(),
@@ -106,14 +107,21 @@ public class addNewHabitActivity extends AppCompatActivity {
             intent.putExtra("Habit", object);
 
 
+
             setResult(RESULT_OK, intent);
             finish();
         }
-        catch(HabitTitleTooLongException r){
-            // TODO: handle exception
+        catch(HabitTitleTooLongException e){
+            Toast.makeText(addNewHabitActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
         catch(HabitReasonTooLongException e){
-            // TODO: handle exception
+            Toast.makeText(addNewHabitActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
+        catch(DateNotValidException e){
+            Toast.makeText(addNewHabitActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
 
 

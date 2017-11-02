@@ -39,6 +39,9 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (HabitTitleTooLongException e) {
             Log.i("TestStoreGetHabits", e.toString());
 
+        } catch (DateNotValidException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
         } catch (InterruptedException e) {
             Log.i("TestStoreGetHabits", e.toString());
 
@@ -77,6 +80,9 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
 
 
         } catch (HabitTitleTooLongException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (DateNotValidException e){
             Log.i("TestStoreGetHabits", e.toString());
 
         } catch (InterruptedException e) {

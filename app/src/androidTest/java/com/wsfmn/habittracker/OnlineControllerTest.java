@@ -37,6 +37,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             // TODO: handle exception
         }
+        catch(DateNotValidException e){
+            // TODO: handle exception
+        }
 
     }
 
