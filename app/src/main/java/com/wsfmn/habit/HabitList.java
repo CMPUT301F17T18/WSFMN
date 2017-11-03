@@ -56,4 +56,15 @@ public class HabitList {
         return  habits;
     }
 
+    public ArrayList<Habit> getHabitsWithDate(Date date){
+        ArrayList<Habit> habitsWithDate = new ArrayList<Habit>();
+
+        for(int i = 0; i < habits.size(); i++){
+            if(habits.get(i).getDate().equalDate(date)){
+                habitsWithDate.add(habits.get(i));
+            }
+        }
+        return habitsWithDate;
+    }
+
 }

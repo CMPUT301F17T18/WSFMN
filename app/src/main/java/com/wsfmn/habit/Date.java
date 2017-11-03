@@ -49,6 +49,12 @@ public class Date {
         this.day = day;
     }
 
+    public boolean equalDate(Date date){
+        return this.getYear() == date.getYear() &&
+                this.getMonth() == date.getMonth() &&
+                this.getDay() == date.getDay();
+    }
+
     public int compareDate(Date date){
 
         if(this.getYear() < date.getYear())

@@ -23,12 +23,19 @@
         <activity android:name=".HabitHistoryActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".ViewHabitEventActivity" />
-        <activity android:name=".HabitListViewActivity" />
-        <activity android:name=".HabitListViewDetailActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".addNewHabitActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".DaysOfTheWeekActivity"></activity>
+        <activity
+            android:name=".HabitListViewActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".HabitListViewDetailActivity"
+            android:parentActivityName=".HabitListViewActivity" />
+        <activity
+            android:name=".addNewHabitActivity"
+            android:parentActivityName=".HabitListViewActivity" />
+        <activity android:name=".DaysOfTheWeekActivity" />
+        <activity android:name=".HabitsForTodayActivity"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
