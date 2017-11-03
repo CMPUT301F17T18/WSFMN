@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -7,7 +7,6 @@ import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.searchbox.core.DocumentResult;

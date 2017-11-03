@@ -2,10 +2,9 @@ package com.wsfmn.habittracker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import com.wsfmn.habit.HabitList;
 
 public class HabitListViewActivity extends AppCompatActivity {
 

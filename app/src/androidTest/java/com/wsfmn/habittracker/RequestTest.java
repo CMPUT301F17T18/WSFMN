@@ -2,6 +2,8 @@ package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.wsfmn.habit.Request;
+
 /**
  * Created by Fredric on 2017-10-21.
  */

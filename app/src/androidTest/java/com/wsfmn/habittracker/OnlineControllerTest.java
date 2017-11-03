@@ -3,6 +3,13 @@ package com.wsfmn.habittracker;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitList;
+import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habit.OnlineController;
+
 import java.util.Calendar;
 
 

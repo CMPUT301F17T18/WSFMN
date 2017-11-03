@@ -4,6 +4,16 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
 
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitCommentTooLongException;
+import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitList;
+import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habit.OfflineController;
+
 import java.util.concurrent.ExecutionException;
 
 /**

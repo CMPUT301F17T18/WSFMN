@@ -2,7 +2,11 @@ package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import junit.framework.Assert;
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitReasonTooLongException;
+import com.wsfmn.habit.HabitTitleTooLongException;
 
 
 /**

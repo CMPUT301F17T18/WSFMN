@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
 /**
  * Created by Fredric on 2017-10-21.

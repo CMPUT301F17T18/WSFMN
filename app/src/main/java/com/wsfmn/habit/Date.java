@@ -1,8 +1,5 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
-import android.widget.Toast;
-
-import java.io.CharArrayReader;
 import java.util.Calendar;
 
 /**

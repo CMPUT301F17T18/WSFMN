@@ -2,6 +2,8 @@ package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.wsfmn.habit.Map;
+
 /**
  * Created by ${WeiLi5} on ${12}.
  */

@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +40,10 @@ public class HabitList {
 
     public Habit getHabit(int index){
         return habits.get(index);
+    }
+
+    public void setHabit(int index, Habit habit){
+        habits.set(index, habit);
     }
 
 

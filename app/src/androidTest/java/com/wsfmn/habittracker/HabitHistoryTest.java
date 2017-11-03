@@ -2,6 +2,14 @@ package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitCommentTooLongException;
+import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitTitleTooLongException;
+
 
 /**
  * Created by nicholasmayne on 2017-10-17.

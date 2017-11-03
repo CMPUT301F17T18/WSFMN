@@ -7,11 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
-import android.nfc.Tag;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,9 +18,12 @@ import android.widget.Toast;
 
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitReasonTooLongException;
+import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habit.WeekDays;
 
 
 public class addNewHabitActivity extends AppCompatActivity {
