@@ -33,9 +33,9 @@
             android:name=".addNewHabitActivity"
             android:parentActivityName=".HabitListViewActivity" />
         <activity android:name=".DaysOfTheWeekActivity" />
-        <activity android:name=".HabitsForTodayActivity"
+        <activity
+            android:name=".HabitsForTodayActivity"
             android:parentActivityName=".MainActivity" />
-
     </application>
 
 </manifest>

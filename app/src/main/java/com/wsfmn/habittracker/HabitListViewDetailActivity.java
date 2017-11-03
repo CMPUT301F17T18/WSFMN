@@ -167,6 +167,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             String object = gson.toJson(habit);
             intent.putExtra("Habit", object);
             intent.putExtra("position", position);
+            intent.putExtra("delete", false);
 
             setResult(RESULT_OK, intent);
             finish();
@@ -180,6 +181,20 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+    /**
+     *  called when delete button is clicked
+     *  informs HabitListView that delete button
+     *  was clicked
+     */
+
+    public void delete(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("position", position);
+        intent.putExtra("delete", true);  //  used to indicate that delete button was clicked
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
 

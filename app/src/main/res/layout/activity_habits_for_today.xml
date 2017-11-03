@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.wsfmn.habittracker.HabitsForTodayActivity">
 
-    
+
     <ListView
         android:id="@+id/habit_list_view"
         android:layout_width="fill_parent"

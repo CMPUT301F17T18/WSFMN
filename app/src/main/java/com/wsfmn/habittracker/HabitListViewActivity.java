@@ -97,14 +97,20 @@ public class HabitListViewActivity extends AppCompatActivity {
 
         if (requestCode == VIEW_HABIT_REQUEST && resultCode == RESULT_OK) {
             Bundle b = data.getExtras();
-
             int position = b.getInt("position");
-            String object = b.getString("Habit");
-            Gson gson = new Gson();
-            Type objectType = new TypeToken<Habit>(){}.getType();
-            Habit habit = gson.fromJson(object, objectType);
+            boolean delete = b.getBoolean("delete");
 
-            habitList.setHabit(position, habit);
+            if(delete){
+                habitList.deleteHabitAt(position);
+            }
+            else {
+                String object = b.getString("Habit");
+                Gson gson = new Gson();
+                Type objectType = new TypeToken<Habit>() {
+                }.getType();
+                Habit habit = gson.fromJson(object, objectType);
+                habitList.setHabit(position, habit);
+            }
 
             adapter.notifyDataSetChanged();
             OfflineController.StoreHabitList storeHabitListOffline = new OfflineController.StoreHabitList();

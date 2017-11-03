@@ -9,6 +9,7 @@
     <string name="view_habits">View Habits</string>
     <string name="habits_for_today">Habits For Today</string>
     <string name="habit_history">Habit History</string>
+    <string name="delete">Delete</string>
 
 
 </resources>

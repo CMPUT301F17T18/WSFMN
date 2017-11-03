@@ -28,6 +28,10 @@ public class HabitList {
         habits.remove(habit);
     }
 
+    public void deleteHabitAt(int index){
+        habits.remove(index);
+    }
+
     // TODO nmayne: added this, needs a test in TestHabitList
     public int getSize() {
         return habits.size();
