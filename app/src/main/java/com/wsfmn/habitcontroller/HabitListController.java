@@ -16,8 +16,10 @@ import java.util.concurrent.ExecutionException;
 
 public class HabitListController {
 
-
+    
     /**
+     * https://drive.google.com/file/d/0B-dXFEI__NgkZ2F5Y2ZXWlY1cWM/view
+     *
      * This controller uses Singleton design pattern.
      * One instance of the model HabitList is created
      * and can be accessed anywhere in the program by
@@ -43,6 +45,8 @@ public class HabitListController {
      */
 
     private static HabitList habitList = null;
+
+
 
     public HabitListController(){
         getInstance();
@@ -99,7 +103,7 @@ public class HabitListController {
     }
 
     /**
-     * used to load data into habitlist once it is created
+     * used to load data into habitList once it is created
      */
     public static void init() {
         try {
