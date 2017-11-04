@@ -16,11 +16,14 @@ import java.util.concurrent.ExecutionException;
 
 public class HabitListController {
 
+    
     /**
      * This controller uses Singleton design pattern.
      * One instance of the model HabitList is created
      * and can be accessed anywhere in the program by
      * creating a HabitListController object
+     * (we don't use intents to pass model data between
+     * activities)
      *
      *
      *      HabitListController c = new HabitListController();
