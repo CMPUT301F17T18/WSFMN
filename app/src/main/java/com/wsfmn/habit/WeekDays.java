@@ -43,4 +43,13 @@ public class WeekDays {
         weekDays[day] = false;
     }
 
+    public WeekDays copy(){
+        WeekDays copy = new WeekDays();
+        for(int i = 0; i < 7; i++){
+            if(this.getDay(i))
+                copy.setDay(i);
+        }
+        return copy;
+    }
+
 }

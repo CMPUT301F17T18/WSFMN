@@ -96,13 +96,15 @@ public class AddNewHabitActivity extends AppCompatActivity {
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, HabitListViewActivity.class);
-        Habit habit = null;
 
         try {
-            habit = new Habit(habitTitle.getText().toString(),
+            Habit habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     date, weekDays);
-
+            HabitListController c = new HabitListController();
+            c.addHabit(habit);
+            c.store();
+            startActivity(intent);
         }
         catch(HabitTitleTooLongException e){
             Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
@@ -116,21 +118,8 @@ public class AddNewHabitActivity extends AppCompatActivity {
             Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
-
-        HabitListController c = new HabitListController();
-        c.addHabit(habit);
-        c.store();
-        startActivity(intent);
     }
 
-
-    // the setDate method uses methods that don't work
-    // well with API lower than 24.
-    // it might be changed later
-    @TargetApi(24)
-    public void setDate(){
-
-    }
 
 
     public void mondayCheckBox(View view){

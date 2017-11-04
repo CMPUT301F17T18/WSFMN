@@ -84,33 +84,14 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         weekDays = habit.getWeekDays();
 
 
-        if(habit.getWeekDays().getDay(WeekDays.MONDAY)){
-            monday.setChecked(true);
-        }
+        monday.setChecked(weekDays.getDay(WeekDays.MONDAY));
+        tuesday.setChecked(weekDays.getDay(WeekDays.TUESDAY));
+        wednesday.setChecked(weekDays.getDay(WeekDays.WEDNESDAY));
+        thursday.setChecked(weekDays.getDay(WeekDays.THURSDAY));
+        friday.setChecked(weekDays.getDay(WeekDays.FRDIAY));
+        saturday.setChecked(weekDays.getDay(WeekDays.SATURDAY));
+        sunday.setChecked(weekDays.getDay(WeekDays.SUNDAY));
 
-        if(habit.getWeekDays().getDay(WeekDays.TUESDAY)){
-            tuesday.setChecked(true);
-        }
-
-        if(habit.getWeekDays().getDay(WeekDays.WEDNESDAY)){
-            wednesday.setChecked(true);
-        }
-
-        if(habit.getWeekDays().getDay(WeekDays.THURSDAY)){
-            thursday.setChecked(true);
-        }
-
-        if(habit.getWeekDays().getDay(WeekDays.FRDIAY)){
-            friday.setChecked(true);
-        }
-
-        if(habit.getWeekDays().getDay(WeekDays.SATURDAY)){
-            saturday.setChecked(true);
-        }
-
-        if(habit.getWeekDays().getDay(WeekDays.SUNDAY)){
-            sunday.setChecked(true);
-        }
 
         setDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,12 +131,16 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, HabitListViewActivity.class);
-        Habit habit = null;
 
         try {
-            habit = new Habit(habitTitle.getText().toString(),
+            Habit habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     date, weekDays);
+
+            HabitListController c = new HabitListController();
+            c.setHabit(position, habit);
+            c.store();
+            startActivity(intent);
 
         } catch (HabitTitleTooLongException e) {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
@@ -167,11 +152,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
-
-        HabitListController c = new HabitListController();
-        c.setHabit(position, habit);
-        c.store();
-        startActivity(intent);
     }
 
     /**
