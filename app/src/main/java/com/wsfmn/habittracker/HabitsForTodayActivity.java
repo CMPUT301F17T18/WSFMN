@@ -9,6 +9,7 @@ import android.widget.ListView;
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitList;
+import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habitcontroller.OfflineController;
 
 import java.util.concurrent.ExecutionException;
@@ -31,29 +32,10 @@ public class HabitsForTodayActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        updateHabitList();
         adapter = new ArrayAdapter<Habit>(this,
                 android.R.layout.simple_list_item_1,
-                habitsForTodayList.getHabitsWithDate(new Date()));
+                HabitListController.getInstance().getHabitsWithDate(new Date()));
         habitListView.setAdapter(adapter);
     }
 
-    public void updateHabitList() {
-
-        try {
-            OfflineController.GetHabitList getHabitListOffline =
-                    new OfflineController.GetHabitList();
-            getHabitListOffline.execute();
-            habitsForTodayList = getHabitListOffline.get();
-        }
-        catch (InterruptedException e){
-            Log.i("Error", e.getMessage());
-
-        }
-        catch (ExecutionException e) {
-            Log.i("Error", e.getMessage());
-
-        }
-
-    }
 }

@@ -24,9 +24,8 @@ public class HabitListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_list_view);
+
         context = this;
-
-
         habitListView = (ListView) findViewById(R.id.habit_list_view);
 
         habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
