@@ -1,19 +1,15 @@
 package com.wsfmn.habittracker;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitList;
-import com.wsfmn.habit.OfflineController;
+import com.wsfmn.habitcontroller.OfflineController;
 
 import java.util.concurrent.ExecutionException;
 

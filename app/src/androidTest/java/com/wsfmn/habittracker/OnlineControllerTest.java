@@ -8,7 +8,7 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
-import com.wsfmn.habit.OnlineController;
+import com.wsfmn.habitcontroller.OnlineController;
 
 import java.util.Calendar;
 

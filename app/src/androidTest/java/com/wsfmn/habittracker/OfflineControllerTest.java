@@ -12,7 +12,7 @@ import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
-import com.wsfmn.habit.OfflineController;
+import com.wsfmn.habitcontroller.OfflineController;
 
 import java.util.concurrent.ExecutionException;
 

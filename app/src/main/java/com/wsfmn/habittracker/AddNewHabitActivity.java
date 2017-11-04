@@ -17,16 +17,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-import com.google.gson.Gson;
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habit.WeekDays;
+import com.wsfmn.habitcontroller.HabitListController;
 
 
-public class addNewHabitActivity extends AppCompatActivity {
+public class AddNewHabitActivity extends AppCompatActivity {
 
     private final static int DAYS_OF_THE_WEEK = 1;
 
@@ -68,7 +68,7 @@ public class addNewHabitActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        addNewHabitActivity.this,
+                        AddNewHabitActivity.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -95,36 +95,32 @@ public class addNewHabitActivity extends AppCompatActivity {
      * converting it to a string using Gson.
      */
     public void confirm(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-
+        Intent intent = new Intent(this, HabitListViewActivity.class);
+        Habit habit = null;
 
         try {
-            Habit habit = new Habit(habitTitle.getText().toString(),
+            habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     date, weekDays);
-            Gson gson = new Gson();
-            String object = gson.toJson(habit);
-            intent.putExtra("Habit", object);
 
-
-
-            setResult(RESULT_OK, intent);
-            finish();
         }
         catch(HabitTitleTooLongException e){
-            Toast.makeText(addNewHabitActivity.this, e.getMessage(),
+            Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
         catch(HabitReasonTooLongException e){
-            Toast.makeText(addNewHabitActivity.this, e.getMessage(),
+            Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
         catch(DateNotValidException e){
-            Toast.makeText(addNewHabitActivity.this, e.getMessage(),
+            Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
 
-
+        HabitListController c = new HabitListController();
+        c.addHabit(habit);
+        c.store();
+        startActivity(intent);
     }
 
 

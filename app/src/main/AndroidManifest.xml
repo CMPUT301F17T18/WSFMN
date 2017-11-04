@@ -30,7 +30,7 @@
             android:name=".HabitListViewDetailActivity"
             android:parentActivityName=".HabitListViewActivity" />
         <activity
-            android:name=".addNewHabitActivity"
+            android:name=".AddNewHabitActivity"
             android:parentActivityName=".HabitListViewActivity" />
         <activity android:name=".DaysOfTheWeekActivity" />
         <activity

@@ -16,16 +16,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
+import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habit.WeekDays;
-
-import java.lang.reflect.Type;
 
 public class HabitListViewDetailActivity extends AppCompatActivity {
 
@@ -75,14 +72,10 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         sunday = (CheckBox) findViewById(R.id.sundayCheckBox);
 
         Intent intent = getIntent();
-
         Bundle b = getIntent().getExtras();
         position = b.getInt("position");
 
-        String object = b.getString("Habit");
-        Gson gson = new Gson();
-        Type objectType = new TypeToken<Habit>(){}.getType();
-        Habit habit = gson.fromJson(object, objectType);
+        Habit habit = HabitListController.getInstance().getHabit(position);
 
         habitTitle.setText(habit.getTitle());
         habitReason.setText(habit.getReason());
@@ -156,21 +149,14 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
      * converting it to a string using Gson.
      */
     public void confirm(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HabitListViewActivity.class);
+        Habit habit = null;
 
         try {
-            Habit habit = new Habit(habitTitle.getText().toString(),
+            habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     date, weekDays);
 
-            Gson gson = new Gson();
-            String object = gson.toJson(habit);
-            intent.putExtra("Habit", object);
-            intent.putExtra("position", position);
-            intent.putExtra("delete", false);
-
-            setResult(RESULT_OK, intent);
-            finish();
         } catch (HabitTitleTooLongException e) {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
@@ -181,6 +167,11 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
+
+        HabitListController c = new HabitListController();
+        c.setHabit(position, habit);
+        c.store();
+        startActivity(intent);
     }
 
     /**
@@ -190,11 +181,11 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
      */
 
     public void delete(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("position", position);
-        intent.putExtra("delete", true);  //  used to indicate that delete button was clicked
-        setResult(RESULT_OK, intent);
-        finish();
+        Intent intent = new Intent(this, HabitListViewActivity.class);
+        HabitListController c = new HabitListController();
+        c.deleteHabitAt(position);
+        c.store();
+        startActivity(intent);
     }
 
 

@@ -1,4 +1,4 @@
-package com.wsfmn.habit;
+package com.wsfmn.habitcontroller;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -6,6 +6,10 @@ import android.util.Log;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitList;
 
 import java.util.List;
 
