@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 
 public class HabitListController {
 
-    
+
     /**
      * This controller uses Singleton design pattern.
      * One instance of the model HabitList is created
@@ -43,6 +43,10 @@ public class HabitListController {
      */
 
     private static HabitList habitList = null;
+
+    public HabitListController(){
+        getInstance();
+    }
 
     public static HabitList getInstance() {
         if (habitList == null) {
