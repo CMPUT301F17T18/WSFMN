@@ -18,30 +18,31 @@ public class HabitListController {
 
     
     /**
-     * https://drive.google.com/file/d/0B-dXFEI__NgkZ2F5Y2ZXWlY1cWM/view
+     *  https://drive.google.com/file/d/0B-dXFEI__NgkZ2F5Y2ZXWlY1cWM/view
      *
-     * This controller uses Singleton design pattern.
-     * One instance of the model HabitList is created
-     * and can be accessed anywhere in the program by
-     * creating a HabitListController object
-     * (we don't use intents to pass model data between
-     * activities)
+     *  This controller uses Singleton design pattern.
+     *  One instance of the model HabitList is created
+     *  during the duration of the program and can be
+     *  accessed anywhere in the program by creating a
+     *  HabitListController object (we don't use intents
+     *  to pass model data between activities)
      *
      *
      *      HabitListController c = new HabitListController();
      *
      *
-     * When this is first called, a new model is initialized
-     * and we call init to populate the model with the data
-     * (you don't need to do this, this is done by the constructor)
+     *  When this is first called, a new model is initialized
+     *  and we call init to populate the model with data from local
+     *  storage
+     *  (you don't need to do this, this is done by the constructor)
      *
-     * Everything in the model is updated by calling methods
-     * from the controller
+     *  Everything in the model is updated by calling methods
+     *  from the controller
      *
      *      c.addHabit(Habit);
      *      c.store();
      *
-     * we call c.store to store the new habit in the file
+     *  we call c.store to store the new habit locally.
      */
 
     private static HabitList habitList = null;
@@ -103,7 +104,7 @@ public class HabitListController {
     }
 
     /**
-     * used to load data into habitList once it is created
+     *  Used to load local data into habitList once it is first created.
      */
     public static void init() {
         try {
@@ -118,9 +119,13 @@ public class HabitListController {
             Log.i("Error", e.getMessage());
         }
     }
-
+    
+    /**
+     *  Stores HabitList data locally.
+     */
     public void store(){
-        OfflineController.StoreHabitList storeHabitListOffline = new OfflineController.StoreHabitList();
+        OfflineController.StoreHabitList storeHabitListOffline =
+                new OfflineController.StoreHabitList();
         storeHabitListOffline.execute(habitList);
     }
 }
