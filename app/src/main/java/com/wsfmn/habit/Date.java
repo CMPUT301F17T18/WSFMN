@@ -49,6 +49,34 @@ public class Date {
         this.day = day;
     }
 
+    public int getDaysinMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        return calendar.getActualMaximum(Calendar.DATE);
+    }
+
+    public int getDayOfWeek(){
+        int d = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        switch (d){
+            case 1: //sunday
+                return 7;
+            case 2: //monday
+                return 1;
+            case 3: //tuesday
+                return 2;
+            case 4:
+                return 3;
+            case 5:
+                return 4;
+            case 6:
+                return 5;
+            default:
+                return 6;
+        }
+
+    }
+
     public boolean equalDate(Date date){
         return this.getYear() == date.getYear() &&
                 this.getMonth() == date.getMonth() &&

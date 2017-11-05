@@ -65,7 +65,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="Monday"
-        android:onClick="mondayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setDateButton"
         android:layout_marginStart="16dp" />
@@ -77,7 +77,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Tuesday"
-        android:onClick="tuesdayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mondayCheckBox"
         android:layout_marginStart="16dp" />
@@ -89,7 +89,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Wednesday"
-        android:onClick="wednesdayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tuesdayCheckBox"
         android:layout_marginStart="16dp" />
@@ -101,7 +101,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Thursday"
-        android:onClick="thursdayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wednesdayCheckBox"
         android:layout_marginStart="16dp" />
@@ -113,7 +113,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Friday"
-        android:onClick="fridayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thursdayCheckBox"
         android:layout_marginStart="16dp" />
@@ -125,7 +125,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Saturday"
-        android:onClick="saturdayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fridayCheckBox"
         android:layout_marginStart="16dp" />
@@ -137,7 +137,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Sunday"
-        android:onClick="sundayCheckBox"
+        android:onClick="checkBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/saturdayCheckBox"
         android:layout_marginStart="16dp" />

@@ -1,6 +1,7 @@
 package com.wsfmn.habit;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -60,15 +61,21 @@ public class HabitList {
         return  habits;
     }
 
-    public ArrayList<Habit> getHabitsWithDate(Date date){
-        ArrayList<Habit> habitsWithDate = new ArrayList<Habit>();
+    public ArrayList<Habit> getHabitsForToday(){
+        ArrayList<Habit> habitsForToday = new ArrayList<Habit>();
+
+        Date today = new Date();
+        int dayOfWeek = today.getDayOfWeek();
 
         for(int i = 0; i < habits.size(); i++){
-            if(habits.get(i).getDate().equalDate(date)){
-                habitsWithDate.add(habits.get(i));
+            int com = habits.get(i).getDate().compareDate(today);
+
+            if(com == -1 || com == 0){
+                if(habits.get(i).getWeekDays().getDay(dayOfWeek-1))
+                    habitsForToday.add(habits.get(i));
             }
         }
-        return habitsWithDate;
+        return habitsForToday;
     }
 
 }

@@ -76,7 +76,7 @@ public class Habit{
     }
 
     public WeekDays getWeekDays() {
-        return weekDays.copy();
+        return weekDays;
     }
 
     public void setWeekDays(WeekDays weekDays) {

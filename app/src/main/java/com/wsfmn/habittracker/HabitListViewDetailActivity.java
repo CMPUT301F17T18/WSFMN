@@ -24,6 +24,14 @@ import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habit.WeekDays;
 
+import static com.wsfmn.habittracker.R.id.fridayCheckBox;
+import static com.wsfmn.habittracker.R.id.mondayCheckBox;
+import static com.wsfmn.habittracker.R.id.saturdayCheckBox;
+import static com.wsfmn.habittracker.R.id.sundayCheckBox;
+import static com.wsfmn.habittracker.R.id.thursdayCheckBox;
+import static com.wsfmn.habittracker.R.id.tuesdayCheckBox;
+import static com.wsfmn.habittracker.R.id.wednesdayCheckBox;
+
 public class HabitListViewDetailActivity extends AppCompatActivity {
 
 
@@ -36,9 +44,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
 
     private Button setDateButton;
     private Button confirmButton;
-
-    private Date date;
-    private WeekDays weekDays;
 
     private int position;
 
@@ -64,33 +69,31 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         confirmButton = (Button) findViewById(R.id.confirmButton);
         dateText = (EditText) findViewById(R.id.dateText);
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
-        tuesday = (CheckBox) findViewById(R.id.tuesdayCheckBox);
-        wednesday = (CheckBox) findViewById(R.id.wednesdayCheckBox);
-        thursday = (CheckBox) findViewById(R.id.thursdayCheckBox);
-        friday = (CheckBox) findViewById(R.id.fridayCheckBox);
-        saturday = (CheckBox) findViewById(R.id.saturdayCheckBox);
-        sunday = (CheckBox) findViewById(R.id.sundayCheckBox);
+        tuesday = (CheckBox) findViewById(tuesdayCheckBox);
+        wednesday = (CheckBox) findViewById(wednesdayCheckBox);
+        thursday = (CheckBox) findViewById(thursdayCheckBox);
+        friday = (CheckBox) findViewById(fridayCheckBox);
+        saturday = (CheckBox) findViewById(saturdayCheckBox);
+        sunday = (CheckBox) findViewById(sundayCheckBox);
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
         position = b.getInt("position");
 
-        Habit habit = HabitListController.getInstance().getHabit(position);
+        HabitListController c = new HabitListController();
 
-        habitTitle.setText(habit.getTitle());
-        habitReason.setText(habit.getReason());
-        date = habit.getDate();
-        dateText.setText(habit.getDate().toString());
-        weekDays = habit.getWeekDays();
+        habitTitle.setText(c.getHabit(position).getTitle());
+        habitReason.setText(c.getHabit(position).getReason());
+        dateText.setText(c.getHabit(position).getDate().toString());
 
 
-        monday.setChecked(weekDays.getDay(WeekDays.MONDAY));
-        tuesday.setChecked(weekDays.getDay(WeekDays.TUESDAY));
-        wednesday.setChecked(weekDays.getDay(WeekDays.WEDNESDAY));
-        thursday.setChecked(weekDays.getDay(WeekDays.THURSDAY));
-        friday.setChecked(weekDays.getDay(WeekDays.FRDIAY));
-        saturday.setChecked(weekDays.getDay(WeekDays.SATURDAY));
-        sunday.setChecked(weekDays.getDay(WeekDays.SUNDAY));
+        monday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.MONDAY));
+        tuesday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.TUESDAY));
+        wednesday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.WEDNESDAY));
+        thursday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.THURSDAY));
+        friday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.FRDIAY));
+        saturday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.SATURDAY));
+        sunday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.SUNDAY));
 
 
         setDateButton.setOnClickListener(new View.OnClickListener() {
@@ -116,8 +119,15 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month += 1;
-                date = new Date(year, month, dayOfMonth);
-                dateText.setText(date.toString());
+                HabitListController c = new HabitListController();
+                try {
+                    c.getHabit(position).setDate(new Date(year, month, dayOfMonth));
+                }
+                catch(DateNotValidException e){
+                    Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+                dateText.setText(c.getHabit(position).getDate().toString());
             }
         };
 
@@ -133,22 +143,18 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HabitListViewActivity.class);
 
         try {
-            Habit habit = new Habit(habitTitle.getText().toString(),
-                    habitReason.getText().toString(),
-                    date, weekDays);
 
             HabitListController c = new HabitListController();
-            c.setHabit(position, habit);
+            c.getHabit(position).setTitle(habitTitle.getText().toString());
+            c.getHabit(position).setReason(habitReason.getText().toString());
             c.store();
+
             startActivity(intent);
 
         } catch (HabitTitleTooLongException e) {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch (HabitReasonTooLongException e) {
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        } catch (DateNotValidException e) {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
@@ -170,75 +176,41 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
 
 
 
-    public void mondayCheckBox(View view){
+    public void checkBox(View view){
+        int day = 0;
         CheckBox checkBox = (CheckBox) view;
+        HabitListController c = new HabitListController();
+
+        if(checkBox.getId() == mondayCheckBox){
+            day = WeekDays.MONDAY;
+        }
+        else if(checkBox.getId() == tuesdayCheckBox){
+            day = WeekDays.TUESDAY;
+        }
+        else if(checkBox.getId() == wednesdayCheckBox){
+            day = WeekDays.WEDNESDAY;
+        }
+        else if(checkBox.getId() == thursdayCheckBox){
+            day = WeekDays.THURSDAY;
+        }
+        else if(checkBox.getId() == fridayCheckBox){
+            day = WeekDays.FRDIAY;
+        }
+        else if(checkBox.getId() == saturdayCheckBox){
+            day = WeekDays.SATURDAY;
+        }
+        else if(checkBox.getId() == sundayCheckBox){
+            day = WeekDays.SUNDAY;
+        }
+
         if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.MONDAY);
+            c.getHabit(position).getWeekDays().setDay(day);
         }
         else{
-            weekDays.unsetDay(WeekDays.MONDAY);
+            c.getHabit(position).getWeekDays().unsetDay(day);
         }
     }
 
-    public void tuesdayCheckBox(View view){
-        CheckBox checkBox = (CheckBox) view;
-        if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.TUESDAY);
-        }
-        else{
-            weekDays.unsetDay(WeekDays.TUESDAY);
-        }
-    }
-
-    public void wednesdayCheckBox(View view){
-        CheckBox checkBox = (CheckBox) view;
-        if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.WEDNESDAY);
-        }
-        else{
-            weekDays.unsetDay(WeekDays.WEDNESDAY);
-        }
-    }
-
-    public void thursdayCheckBox(View view){
-        CheckBox checkBox = (CheckBox) view;
-        if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.THURSDAY);
-        }
-        else{
-            weekDays.unsetDay(WeekDays.THURSDAY);
-        }
-    }
-
-    public void fridayCheckBox(View view){
-        CheckBox checkBox = (CheckBox) view;
-        if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.FRDIAY);
-        }
-        else{
-            weekDays.unsetDay(WeekDays.FRDIAY);
-        }
-    }
-
-    public void saturdayCheckBox(View view){
-        CheckBox checkBox = (CheckBox) view;
-        if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.SATURDAY);
-        }
-        else{
-            weekDays.unsetDay(WeekDays.SATURDAY);
-        }
-    }
-
-    public void sundayCheckBox(View view){
-        CheckBox checkBox = (CheckBox) view;
-        if(checkBox.isChecked()){
-            weekDays.setDay(WeekDays.SUNDAY);
-        }
-        else{
-            weekDays.unsetDay(WeekDays.SUNDAY);
-        }
-    }
 
 
 }

@@ -98,8 +98,8 @@ public class HabitListController {
         return  habitList.getHabitList();
     }
 
-    public ArrayList<Habit> getHabitsWithDate(Date date){
-        return getHabitsWithDate(date);
+    public ArrayList<Habit> getHabitsForToday(){
+        return habitList.getHabitsForToday();
     }
 
     /**

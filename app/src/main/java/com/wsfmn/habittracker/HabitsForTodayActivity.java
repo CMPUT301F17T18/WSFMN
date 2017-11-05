@@ -34,7 +34,7 @@ public class HabitsForTodayActivity extends AppCompatActivity {
         super.onStart();
         adapter = new ArrayAdapter<Habit>(this,
                 android.R.layout.simple_list_item_1,
-                HabitListController.getInstance().getHabitsWithDate(new Date()));
+                HabitListController.getInstance().getHabitsForToday());
         habitListView.setAdapter(adapter);
     }
 
