@@ -59,11 +59,11 @@ public class Date {
     public int getDayOfWeek(){
         int d = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
         switch (d){
-            case 1: //sunday
+            case 1:
                 return 7;
-            case 2: //monday
+            case 2:
                 return 1;
-            case 3: //tuesday
+            case 3:
                 return 2;
             case 4:
                 return 3;
@@ -74,7 +74,6 @@ public class Date {
             default:
                 return 6;
         }
-
     }
 
     public boolean equalDate(Date date){
