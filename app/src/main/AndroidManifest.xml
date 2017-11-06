@@ -25,9 +25,17 @@
         <activity android:name=".ViewHabitEventActivity" />
         <activity android:name=".HabitListViewActivity" />
         <activity android:name=".HabitListViewDetailActivity" />
-        <activity android:name=".addNewHabitActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".DaysOfTheWeekActivity"></activity>
+        <activity
+            android:name=".addNewHabitActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".DaysOfTheWeekActivity" />
+        <activity android:name=".UserName_Activity"
+            android:parentActivityName=".ProfileActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ProfileActivity" />
+        </activity>
     </application>
 
 </manifest>
