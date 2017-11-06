@@ -30,4 +30,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void profileActivity(View view){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
 }
