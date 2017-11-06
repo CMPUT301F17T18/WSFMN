@@ -6,7 +6,11 @@ import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitList;
+import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habit.WeekDays;
+
+import java.util.ArrayList;
 
 /**
  * Created by musaed on 2017-10-21.
@@ -115,6 +119,31 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
         habits.setHabit(0, habit2);
 
         assertEquals(habit2.getTitle(), habits.getHabit(0).getTitle());
+    }
+
+    public void testGetHabitsForToday(){
+        HabitList habitList = new HabitList();
+
+        Habit habit = null;
+
+        try{
+            habit = new Habit("title", "reason", new Date(), new WeekDays());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
+            //null
+        }
+        catch(HabitReasonTooLongException e){
+            //null
+        }
+
+        habit.getWeekDays().setDay(WeekDays.MONDAY);
+        habitList.addHabit(habit);
+
+        ArrayList<Habit> h = habitList.getHabitsForToday();
+        assertEquals(habitList.getHabitsForToday().size(), 1);
     }
 
 

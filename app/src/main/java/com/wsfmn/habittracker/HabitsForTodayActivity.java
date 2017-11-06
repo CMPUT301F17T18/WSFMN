@@ -18,7 +18,6 @@ public class HabitsForTodayActivity extends AppCompatActivity {
 
     private ListView habitListView;
     private ArrayAdapter<Habit> adapter;
-    private HabitList habitsForTodayList;
 
 
     @Override

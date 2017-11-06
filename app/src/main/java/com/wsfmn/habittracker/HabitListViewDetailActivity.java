@@ -86,14 +86,13 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         habitReason.setText(c.getHabit(position).getReason());
         dateText.setText(c.getHabit(position).getDate().toString());
 
-
-        monday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.MONDAY));
-        tuesday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.TUESDAY));
-        wednesday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.WEDNESDAY));
-        thursday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.THURSDAY));
-        friday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.FRDIAY));
-        saturday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.SATURDAY));
-        sunday.setChecked(c.getHabit(position).getWeekDays().getDay(WeekDays.SUNDAY));
+        setCheckBox(monday, WeekDays.MONDAY);
+        setCheckBox(tuesday, WeekDays.TUESDAY);
+        setCheckBox(wednesday, WeekDays.WEDNESDAY);
+        setCheckBox(thursday, WeekDays.THURSDAY);
+        setCheckBox(friday, WeekDays.FRIDAY);
+        setCheckBox(saturday, WeekDays.SATURDAY);
+        setCheckBox(sunday, WeekDays.SUNDAY);
 
 
         setDateButton.setOnClickListener(new View.OnClickListener() {
@@ -119,15 +118,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month += 1;
-                HabitListController c = new HabitListController();
-                try {
-                    c.getHabit(position).setDate(new Date(year, month, dayOfMonth));
-                }
-                catch(DateNotValidException e){
-                    Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
-                            Toast.LENGTH_LONG).show();
-                }
-                dateText.setText(c.getHabit(position).getDate().toString());
+                dateText.setText(year + " / " + month + " / " + dayOfMonth);
             }
         };
 
@@ -143,12 +134,21 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HabitListViewActivity.class);
 
         try {
-
             HabitListController c = new HabitListController();
+
             c.getHabit(position).setTitle(habitTitle.getText().toString());
             c.getHabit(position).setReason(habitReason.getText().toString());
-            c.store();
+            c.getHabit(position).setDate(getDateUI());
 
+            setUnset(monday, WeekDays.MONDAY);
+            setUnset(tuesday, WeekDays.TUESDAY);
+            setUnset(wednesday, WeekDays.WEDNESDAY);
+            setUnset(thursday, WeekDays.THURSDAY);
+            setUnset(friday, WeekDays.FRIDAY);
+            setUnset(saturday, WeekDays.SATURDAY);
+            setUnset(sunday, WeekDays.SUNDAY);
+
+            c.store();
             startActivity(intent);
 
         } catch (HabitTitleTooLongException e) {
@@ -157,15 +157,16 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         } catch (HabitReasonTooLongException e) {
             Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
+        } catch(DateNotValidException e){
+            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
     /**
      *  called when delete button is clicked
-     *  informs HabitListView that delete button
-     *  was clicked
+     *  is clicked
      */
-
     public void delete(View view){
         Intent intent = new Intent(this, HabitListViewActivity.class);
         HabitListController c = new HabitListController();
@@ -174,41 +175,26 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
-    public void checkBox(View view){
-        int day = 0;
-        CheckBox checkBox = (CheckBox) view;
+    public void setUnset(CheckBox checkBox, int day){
         HabitListController c = new HabitListController();
-
-        if(checkBox.getId() == mondayCheckBox){
-            day = WeekDays.MONDAY;
-        }
-        else if(checkBox.getId() == tuesdayCheckBox){
-            day = WeekDays.TUESDAY;
-        }
-        else if(checkBox.getId() == wednesdayCheckBox){
-            day = WeekDays.WEDNESDAY;
-        }
-        else if(checkBox.getId() == thursdayCheckBox){
-            day = WeekDays.THURSDAY;
-        }
-        else if(checkBox.getId() == fridayCheckBox){
-            day = WeekDays.FRDIAY;
-        }
-        else if(checkBox.getId() == saturdayCheckBox){
-            day = WeekDays.SATURDAY;
-        }
-        else if(checkBox.getId() == sundayCheckBox){
-            day = WeekDays.SUNDAY;
-        }
-
-        if(checkBox.isChecked()){
+        if(checkBox.isChecked())
             c.getHabit(position).getWeekDays().setDay(day);
-        }
-        else{
+        else
             c.getHabit(position).getWeekDays().unsetDay(day);
-        }
+    }
+
+    public void setCheckBox(CheckBox checkBox, int day){
+        HabitListController c = new HabitListController();
+        checkBox.setChecked(c.getHabit(position).getWeekDays().getDay(day));
+    }
+
+    public Date getDateUI(){
+        String date = dateText.getText().toString();
+        String[] list = date.split(" / ");
+        int year = Integer.parseInt(list[0]);
+        int month = Integer.parseInt(list[1]);
+        int day = Integer.parseInt(list[2]);
+        return new Date(year, month, day);
     }
 
 

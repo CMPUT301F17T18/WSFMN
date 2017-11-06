@@ -18,11 +18,7 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
     public void testGetDaysOfMonth(){
         Date today = new Date();
         if(today.getMonth() == 11)
-            assertEquals(today.getDaysinMonth(), 31);
+            assertEquals(today.getDaysInMonth(), 31);
     }
 
-    public void testGetDayOfWeek(){
-        Date today = new Date();
-        assertEquals(today.getDayOfWeek(), 7);
-    }
 }

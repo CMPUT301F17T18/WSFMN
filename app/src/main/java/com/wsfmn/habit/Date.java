@@ -49,7 +49,7 @@ public class Date {
         this.day = day;
     }
 
-    public int getDaysinMonth() {
+    public int getDaysInMonth() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -57,23 +57,11 @@ public class Date {
     }
 
     public int getDayOfWeek(){
-        int d = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        switch (d){
-            case 1:
-                return 7;
-            case 2:
-                return 1;
-            case 3:
-                return 2;
-            case 4:
-                return 3;
-            case 5:
-                return 4;
-            case 6:
-                return 5;
-            default:
-                return 6;
-        }
+        Calendar c = Calendar.getInstance();
+        int d = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+        if(d == 0)
+            return 7;
+        return d;
     }
 
     public boolean equalDate(Date date){

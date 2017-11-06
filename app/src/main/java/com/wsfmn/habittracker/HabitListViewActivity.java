@@ -15,7 +15,6 @@ import com.wsfmn.habitcontroller.HabitListController;
 public class HabitListViewActivity extends AppCompatActivity {
 
     private Context context;
-
     private ListView habitListView;
     private ArrayAdapter<Habit> adapter;
 

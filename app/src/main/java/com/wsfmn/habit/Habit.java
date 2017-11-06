@@ -1,6 +1,8 @@
 package com.wsfmn.habit;
 
 
+import java.util.Calendar;
+
 /**
  * Created by musaed on 2017-10-16.
  */
@@ -35,6 +37,14 @@ public class Habit{
         this.weekDays = weekDays;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -67,20 +77,70 @@ public class Habit{
         this.date = toStart;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public WeekDays getWeekDays() {
         return weekDays;
     }
 
     public void setWeekDays(WeekDays weekDays) {
         this.weekDays = weekDays;
+    }
+
+    public int getHabitOccurrencePercentage(){
+        Calendar c = Calendar.getInstance();
+        int totalPossibleOccurrence = 0;
+        int totalOccurred = 0;
+
+        Date today = new Date();
+
+        int weeks = today.getDay() / 7;
+        int d = today.getDay() % 7;
+
+        int tm = today.getMonth();
+        int dm = this.date.getMonth();
+
+
+
+        for(int i = 0; i <= tm - dm; i++){
+            int beg;
+            int dayOfWeek;
+            int end;
+
+            if(i == tm - dm){   //  current month of habit
+
+                if(dm == tm){
+                    beg = this.date.getDay();
+                }
+                else{
+                    beg = 1;
+                }
+
+                c.setFirstDayOfWeek(Calendar.MONDAY);
+                Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+                c.set(Calendar.MONTH, dm + i);
+
+
+                end = c.getActualMaximum(Calendar.DATE);
+            }
+            else{
+                int dd = 0;
+
+            }
+        }
+
+
+        return totalPossibleOccurrence;
+        //return (totalOccurred / totalPossibleOccurrence) * 100;
+    }
+
+    /**
+     *  beg: day in month
+     *  dayOfWeek: dayOfWeek beg corresponds to
+     *  end: end of day in month
+     */
+    public int caldays(int beg, int dayOfWeek, int end){
+        int total = 0;
+        //simple for loop
+        return total;
     }
 
     // nmayne: A local key for a habit, as a combination of title and date... but this
