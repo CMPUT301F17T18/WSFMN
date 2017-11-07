@@ -3,6 +3,13 @@ package com.wsfmn.habittracker;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitList;
+import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habitcontroller.OnlineController;
+
 import java.util.Calendar;
 
 
@@ -35,6 +42,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             assertNotNull("New habit ID was null", newHabit.getId());
         }
         catch(HabitTitleTooLongException e){
+            // TODO: handle exception
+        }
+        catch(DateNotValidException e){
             // TODO: handle exception
         }
 

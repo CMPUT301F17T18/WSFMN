@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habitcontroller;
 
 
 import android.content.Context;
@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitList;
+import com.wsfmn.habittracker.App;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

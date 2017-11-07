@@ -20,19 +20,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity" />
+
+
         <activity android:name=".HabitHistoryActivity" />
+
         <activity android:name=".MapActivity" />
+
         <activity android:name=".ViewHabitEventActivity" />
-        <activity android:name=".HabitListViewActivity" />
-        <activity android:name=".HabitListViewDetailActivity" />
+
         <activity
-            android:name=".addNewHabitActivity"
+            android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".DaysOfTheWeekActivity" />
-        <activity android:name=".UserName_Activity"
-            android:parentActivityName=".ProfileActivity" >
-        </activity>
+
+        <activity
+            android:name=".HabitListViewDetailActivity"
+            android:parentActivityName=".HabitListViewActivity" />
+
+        <activity
+            android:name=".AddNewHabitActivity"
+            android:parentActivityName=".HabitListViewActivity" />
+
+        <activity
+            android:name=".HabitsForTodayActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".ProfileActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".UserName_Activity"
+            android:parentActivityName=".ProfileActivity" />
+
     </application>
 
 </manifest>

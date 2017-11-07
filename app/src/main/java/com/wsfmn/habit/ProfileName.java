@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
 import io.searchbox.annotations.JestId;
 

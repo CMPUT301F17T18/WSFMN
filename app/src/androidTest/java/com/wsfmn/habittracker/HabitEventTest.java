@@ -1,7 +1,14 @@
 package com.wsfmn.habittracker;
 
-import android.test.ActivityInstrumentationTestCase;
 import android.test.ActivityInstrumentationTestCase2;
+
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Geolocation;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitCommentTooLongException;
+import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitTitleTooLongException;
 
 
 /**
@@ -21,6 +28,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -45,6 +55,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -78,6 +91,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         HabitEvent habitEvent = null;
 
@@ -100,6 +116,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -126,6 +145,9 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         }
         catch(HabitTitleTooLongException e){
             //null
+        }
+        catch(DateNotValidException e){
+
         }
 
         HabitEvent habitEvent = null;

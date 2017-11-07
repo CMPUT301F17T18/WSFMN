@@ -4,6 +4,16 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
 
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitCommentTooLongException;
+import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitList;
+import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habitcontroller.OfflineController;
+
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -37,6 +47,9 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
 
             assertEquals(habitList.getHabit(0).getTitle(), habitListNew.getHabit(0).getTitle());
         } catch (HabitTitleTooLongException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (DateNotValidException e) {
             Log.i("TestStoreGetHabits", e.toString());
 
         } catch (InterruptedException e) {
@@ -77,6 +90,9 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
 
 
         } catch (HabitTitleTooLongException e) {
+            Log.i("TestStoreGetHabits", e.toString());
+
+        } catch (DateNotValidException e){
             Log.i("TestStoreGetHabits", e.toString());
 
         } catch (InterruptedException e) {

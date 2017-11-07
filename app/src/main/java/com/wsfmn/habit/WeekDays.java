@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
 import android.support.annotation.NonNull;
 
@@ -18,7 +18,7 @@ public class WeekDays {
     public static final int TUESDAY = 1;
     public static final int WEDNESDAY = 2;
     public static final int THURSDAY = 3;
-    public static final int FRDIAY = 4;
+    public static final int FRIDAY = 4;
     public static final int SATURDAY = 5;
     public static final int SUNDAY = 6;
 
@@ -41,6 +41,15 @@ public class WeekDays {
 
     public void unsetDay(int day){
         weekDays[day] = false;
+    }
+
+    public WeekDays copy(){
+        WeekDays copy = new WeekDays();
+        for(int i = 0; i < 7; i++){
+            if(this.getDay(i))
+                copy.setDay(i);
+        }
+        return copy;
     }
 
 }

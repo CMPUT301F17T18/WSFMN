@@ -14,17 +14,14 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import org.apache.commons.lang3.ObjectUtils;
+import com.wsfmn.habit.Request;
+import com.wsfmn.habitcontroller.ProfileOnlineController;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -115,8 +112,6 @@ public class ProfileActivity extends Activity {
             }
 
         });
-
-
     }
 
     @Override
@@ -133,8 +128,6 @@ public class ProfileActivity extends Activity {
             onActivityResult(1, 1, intent);
             flag = false;
         }
-
-
 
         ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
         //String text = "Name3";

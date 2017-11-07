@@ -16,13 +16,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
-import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habit.WeekDays;
+import com.wsfmn.habitcontroller.HabitListController;
 
 import static com.wsfmn.habittracker.R.id.fridayCheckBox;
 import static com.wsfmn.habittracker.R.id.mondayCheckBox;
@@ -32,20 +33,17 @@ import static com.wsfmn.habittracker.R.id.thursdayCheckBox;
 import static com.wsfmn.habittracker.R.id.tuesdayCheckBox;
 import static com.wsfmn.habittracker.R.id.wednesdayCheckBox;
 
-public class HabitListViewDetailActivity extends AppCompatActivity {
+
+public class AddNewHabitActivity extends AppCompatActivity {
 
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private Context context;
 
     private EditText habitTitle;
     private EditText habitReason;
     private EditText dateText;
-
     private Button setDateButton;
     private Button confirmButton;
-
-    private int position;
 
     private CheckBox monday;
     private CheckBox tuesday;
@@ -58,9 +56,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_list_view_detail);
-
-        context = this;
+        setContentView(R.layout.activity_add_new_habit);
 
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
@@ -68,6 +64,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         setDateButton = (Button) findViewById(R.id.setDateButton);
         confirmButton = (Button) findViewById(R.id.confirmButton);
         dateText = (EditText) findViewById(R.id.dateText);
+
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
         tuesday = (CheckBox) findViewById(tuesdayCheckBox);
         wednesday = (CheckBox) findViewById(wednesdayCheckBox);
@@ -76,24 +73,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         saturday = (CheckBox) findViewById(saturdayCheckBox);
         sunday = (CheckBox) findViewById(sundayCheckBox);
 
-        Intent intent = getIntent();
-        Bundle b = getIntent().getExtras();
-        position = b.getInt("position");
-
-        HabitListController c = new HabitListController();
-
-        habitTitle.setText(c.getHabit(position).getTitle());
-        habitReason.setText(c.getHabit(position).getReason());
-        dateText.setText(c.getHabit(position).getDate().toString());
-
-        setCheckBox(monday, WeekDays.MONDAY);
-        setCheckBox(tuesday, WeekDays.TUESDAY);
-        setCheckBox(wednesday, WeekDays.WEDNESDAY);
-        setCheckBox(thursday, WeekDays.THURSDAY);
-        setCheckBox(friday, WeekDays.FRIDAY);
-        setCheckBox(saturday, WeekDays.SATURDAY);
-        setCheckBox(sunday, WeekDays.SUNDAY);
-
+        dateText.setText(new Date().toString());
 
         setDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +85,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        HabitListViewDetailActivity.this,
+                        AddNewHabitActivity.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -127,65 +107,51 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
 
     /**
      * this creates a new Habit object with values it receives from
-     * the user, and sends the object back to MainActivity after
-     * converting it to a string using Gson.
+     * the user, and adds is to the list of habits.
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, HabitListViewActivity.class);
 
         try {
+
+            WeekDays w = new WeekDays();
+
+            setUnset(w, monday, WeekDays.MONDAY);
+            setUnset(w, tuesday, WeekDays.TUESDAY);
+            setUnset(w, wednesday, WeekDays.WEDNESDAY);
+            setUnset(w, thursday, WeekDays.THURSDAY);
+            setUnset(w, friday, WeekDays.FRIDAY);
+            setUnset(w, saturday, WeekDays.SATURDAY);
+            setUnset(w, sunday, WeekDays.SUNDAY);
+
+            Habit habit = new Habit(habitTitle.getText().toString(),
+                    habitReason.getText().toString(),
+                    getDateUI(), w);
             HabitListController c = new HabitListController();
 
-            c.getHabit(position).setTitle(habitTitle.getText().toString());
-            c.getHabit(position).setReason(habitReason.getText().toString());
-            c.getHabit(position).setDate(getDateUI());
-
-            setUnset(monday, WeekDays.MONDAY);
-            setUnset(tuesday, WeekDays.TUESDAY);
-            setUnset(wednesday, WeekDays.WEDNESDAY);
-            setUnset(thursday, WeekDays.THURSDAY);
-            setUnset(friday, WeekDays.FRIDAY);
-            setUnset(saturday, WeekDays.SATURDAY);
-            setUnset(sunday, WeekDays.SUNDAY);
-
+            c.addHabit(habit);
             c.store();
             startActivity(intent);
-
-        } catch (HabitTitleTooLongException e) {
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+        }
+        catch(HabitTitleTooLongException e){
+            Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
-        } catch (HabitReasonTooLongException e) {
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+        }
+        catch(HabitReasonTooLongException e){
+            Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
-        } catch(DateNotValidException e){
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+        }
+        catch(DateNotValidException e){
+            Toast.makeText(AddNewHabitActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
     }
 
-    /**
-     *  called when delete button is clicked
-     *  is clicked
-     */
-    public void delete(View view){
-        Intent intent = new Intent(this, HabitListViewActivity.class);
-        HabitListController c = new HabitListController();
-        c.deleteHabitAt(position);
-        c.store();
-        startActivity(intent);
-    }
-
-    public void setUnset(CheckBox checkBox, int day){
-        HabitListController c = new HabitListController();
+    public void setUnset(WeekDays weekDays, CheckBox checkBox, int day){
         if(checkBox.isChecked())
-            c.getHabit(position).getWeekDays().setDay(day);
+            weekDays.setDay(day);
         else
-            c.getHabit(position).getWeekDays().unsetDay(day);
-    }
-
-    public void setCheckBox(CheckBox checkBox, int day){
-        HabitListController c = new HabitListController();
-        checkBox.setChecked(c.getHabit(position).getWeekDays().getDay(day));
+            weekDays.unsetDay(day);
     }
 
     public Date getDateUI(){
@@ -196,7 +162,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         int day = Integer.parseInt(list[2]);
         return new Date(year, month, day);
     }
-
 
 
 }

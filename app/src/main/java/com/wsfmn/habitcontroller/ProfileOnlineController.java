@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habitcontroller;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -6,18 +6,19 @@ import android.util.Log;
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
+import com.wsfmn.habit.ProfileName;
+import com.wsfmn.habit.Request;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
 import io.searchbox.client.JestResult;
-import io.searchbox.core.Count;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 import io.searchbox.core.DeleteByQuery;
+
 
 
 public class ProfileOnlineController {

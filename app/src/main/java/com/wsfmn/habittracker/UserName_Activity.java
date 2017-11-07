@@ -6,10 +6,11 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import com.wsfmn.habit.ProfileName;
+import com.wsfmn.habitcontroller.ProfileOnlineController;
 
 public class UserName_Activity extends AppCompatActivity {
 
