@@ -24,7 +24,7 @@ public class UserName_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_name_);
 
-        yourName = (EditText) findViewById(R.id.yourName);
+        yourName = (EditText) findViewById(R.id.createYouName);
     }
 
     public void confirmClick(View view){
