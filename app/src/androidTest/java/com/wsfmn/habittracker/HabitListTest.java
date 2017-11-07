@@ -30,7 +30,7 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
-            // TODO: handle exception
+            //null
         }
         catch(DateNotValidException e){
             //null
@@ -49,7 +49,7 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
-            // TODO: handle exception
+            //null
         }
         catch(DateNotValidException e){
             //null
@@ -69,7 +69,7 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("title", new Date());
         }
         catch(HabitTitleTooLongException e){
-            // TODO: handle exception
+            //null
         }
         catch(DateNotValidException e){
             //null
@@ -88,7 +88,7 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
             habit = new Habit("TestHabit", new Date());
         }
         catch(HabitTitleTooLongException e){
-            // TODO: handle exception
+            //null
         }
         catch(DateNotValidException e){
             //null
@@ -139,10 +139,9 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-        habit.getWeekDays().setDay(WeekDays.MONDAY);
+        habit.getWeekDays().setDay(new Date().getDayOfWeek()-1);
         habitList.addHabit(habit);
 
-        ArrayList<Habit> h = habitList.getHabitsForToday();
         assertEquals(habitList.getHabitsForToday().size(), 1);
     }
 

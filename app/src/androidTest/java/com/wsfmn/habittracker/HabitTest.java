@@ -1,6 +1,7 @@
 package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
@@ -93,14 +94,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         assertEquals(habit.getTitle(), "title2");
     }
 
-    public void testGetReason(){
-
-        String date = "2017 / 20 / 20";
-        String[] list = date.split(" / ");
-        int year = Integer.parseInt(list[0]);
-        int month = Integer.parseInt(list[1]);
-        int day = Integer.parseInt(list[2]);
-        Date dd = new Date(year, month, day);
+    public void testGetReason(){ 
         Habit habit = null;
 
         try{
@@ -299,6 +293,30 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(DateNotValidException e){
             assertNull("Date Constraint Enforcement Failed", habit);
         }
+    }
+
+    public void testCalDay(){
+        Habit habit = new Habit();
+        int result = 0;
+
+        habit.getDate().setMonth(10);
+        habit.getDate().setDay(26);
+        habit.getWeekDays().setDay(WeekDays.FRIDAY);
+        habit.getWeekDays().setDay(WeekDays.MONDAY);
+        habit.getWeekDays().setDay(WeekDays.TUESDAY);
+
+        result = habit.caldays(habit.getDate().getDay(),
+                habit.getDate().getDayOfWeek(),
+                habit.getDate().getDaysInMonth());
+
+        assertEquals(result, 3);
+    }
+
+    public void testTotalOccurrence(){
+        Habit habit = new Habit();
+
+        habit.getWeekDays().setDay(WeekDays.TUESDAY);
+        assertEquals(habit.totalOccurrence(), 2);
     }
 
 
