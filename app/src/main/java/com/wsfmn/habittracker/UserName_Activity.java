@@ -15,7 +15,7 @@ public class UserName_Activity extends AppCompatActivity {
 
     private String profileName;
     private EditText yourName;
-    private ProfileName flag;
+    private Boolean flag;
 
 
     @Override
@@ -35,8 +35,8 @@ public class UserName_Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // bring the profileName back
-              /*  ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
-                check.execute(name);
+                ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
+                check.execute(profileName);
                 try{
                    flag  = check.get();
                     System.out.println(flag);
@@ -44,9 +44,9 @@ public class UserName_Activity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.i("Error", "Failed to get the tweets from the async object");
                 }
-                if (flag.getName() == "not") {
+                if (flag == false) {
                     AlertDialog.Builder builder2 = new AlertDialog.Builder(UserName_Activity.this);
-                    builder2.setTitle("Name is Taken, Typer another!");
+                    builder2.setTitle("Name is Taken, Type another!");
                     builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -58,18 +58,18 @@ public class UserName_Activity extends AppCompatActivity {
                 }
                 else {
                     ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
-                    storeName.execute(profileName);
+                    storeName.execute(name);
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("uniqueName", profileName);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
-                }*/
-                ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
+                }
+               /* ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
                 storeName.execute(name);
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("uniqueName", profileName);
                 setResult(Activity.RESULT_OK, returnIntent);
-                finish();
+                finish();*/
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

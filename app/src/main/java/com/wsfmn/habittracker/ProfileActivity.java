@@ -55,6 +55,7 @@ public class ProfileActivity extends Activity {
         Button getRequest = (Button) findViewById(R.id.getRequest);
         requestsFromUser = (ListView) findViewById(R.id.requestStuff);
 
+
         userOK.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -76,16 +77,17 @@ public class ProfileActivity extends Activity {
                 String text = searchName.getText().toString();
                 requestsList.clear();
                 adapter.notifyDataSetChanged();
-                System.out.println(profileName);
-                //loadFromFile();
-                /*ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
-                getTweetsTask.execute(text);
+
+             ProfileOnlineController.DeleteRequest deleteRequest = new ProfileOnlineController.DeleteRequest();
+                deleteRequest.execute("name3");
                 try{
-                    tweetList = getTweetsTask.get();
+                    requestsList = deleteRequest.get();
+                    adapter.notifyDataSetChanged();
 
                 } catch (Exception e) {
                     Log.i("Error", "Failed to get the tweets from the async object");
-                }*/
+                }
+                adapter.notifyDataSetChanged();
 
             }
         });
@@ -96,7 +98,7 @@ public class ProfileActivity extends Activity {
                 String text = searchName.getText().toString();
 
 
-                ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
+                /*ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
                 getRequest.execute("name3");
                 System.out.println("execute");
                 try{
@@ -108,7 +110,7 @@ public class ProfileActivity extends Activity {
                     Log.i("Error", "Failed to get the tweets from the async object");
                 }
                 adapter.notifyDataSetChanged();
-                System.out.println("update");
+                System.out.println("update");*/
 
             }
 
@@ -121,8 +123,7 @@ public class ProfileActivity extends Activity {
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        loadFromFile(); // TODO replace this with elastic search
-        System.out.println(profileName);
+        loadFromFile();
 
         //If User does not have a ProfileNam yet then have them create one.
         if (profileName == "" & flag == false){
@@ -136,7 +137,7 @@ public class ProfileActivity extends Activity {
 
 
         ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
-        String text = "Name3";
+        //String text = "Name3";
         getRequest.execute(profileName);
         try{
             requestsList = getRequest.get();
@@ -147,6 +148,7 @@ public class ProfileActivity extends Activity {
         adapter = new ArrayAdapter<Request>(this,
                 android.R.layout.simple_list_item_1, requestsList);
         requestsFromUser.setAdapter(adapter);
+
     }
 
 
