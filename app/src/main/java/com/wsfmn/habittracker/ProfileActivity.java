@@ -35,6 +35,7 @@ public class ProfileActivity extends Activity {
     private boolean flag = false;
 
     private TextView userName;
+    private TextView yourName;
     private TextView searchName;
     private ListView requestsFromUser;
     private ArrayList<Request> requestsList = new ArrayList<Request>();
@@ -51,6 +52,9 @@ public class ProfileActivity extends Activity {
         Button searchOK = (Button) findViewById(R.id.searchOK);
         Button getRequest = (Button) findViewById(R.id.getRequest);
         requestsFromUser = (ListView) findViewById(R.id.requestStuff);
+        yourName = (TextView) findViewById(R.id.showName);
+
+        System.out.println(profileName);
 
 
         userOK.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +132,7 @@ public class ProfileActivity extends Activity {
             onActivityResult(1, 1, intent);
             flag = false;
         }
+        yourName.setText(profileName);
 
        /* ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
         //String text = "Name3";
