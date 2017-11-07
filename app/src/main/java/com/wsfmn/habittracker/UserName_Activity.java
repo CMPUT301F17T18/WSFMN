@@ -36,7 +36,7 @@ public class UserName_Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // bring the profileName back
-                ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
+               /* ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
                 check.execute(profileName);
                 try{
                    flag  = check.get();
@@ -64,13 +64,13 @@ public class UserName_Activity extends AppCompatActivity {
                     returnIntent.putExtra("uniqueName", profileName);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
-                }
-               /* ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
+                }*/
+                ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
                 storeName.execute(name);
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("uniqueName", profileName);
                 setResult(Activity.RESULT_OK, returnIntent);
-                finish();*/
+                finish();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

@@ -129,7 +129,7 @@ public class ProfileActivity extends Activity {
             flag = false;
         }
 
-        ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
+       /* ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
         //String text = "Name3";
         getRequest.execute(profileName);
         try{
@@ -137,7 +137,7 @@ public class ProfileActivity extends Activity {
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the tweets from the async object");
-        }
+        }*/
         adapter = new ArrayAdapter<Request>(this,
                 android.R.layout.simple_list_item_1, requestsList);
         requestsFromUser.setAdapter(adapter);
