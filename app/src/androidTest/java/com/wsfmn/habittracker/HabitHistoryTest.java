@@ -71,7 +71,6 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
-
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -104,12 +103,10 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
-
         }
         catch(HabitCommentTooLongException e){
             //null
         }
-
 
         habitHistory.add(habitEvent);
 
@@ -142,7 +139,6 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-
         habitHistory.add(habitEvent);
 
         assertTrue("Habit history does not contain my habit's event.", habitHistory.contains(habitEvent));
@@ -150,7 +146,6 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
     public void testIndexOf() {
         HabitHistory habitHistory = new HabitHistory();
-
 
         Habit myHabit = null;
         HabitEvent habitEvent = null;
@@ -167,12 +162,10 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
-
         }
         catch(HabitCommentTooLongException e){
             //null
         }
-
 
         habitHistory.add(habitEvent);
 

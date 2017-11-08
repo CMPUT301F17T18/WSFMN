@@ -12,24 +12,35 @@ import java.util.concurrent.ExecutionException;
  * Created by nicholasmayne on 2017-11-08.
  */
 
-class HabitHistoryController {
-    private static final HabitHistoryController ourInstance = new HabitHistoryController();
-    private static HabitHistory habitHistory = null;
+public class HabitHistoryController {
+    private static final HabitHistoryController INSTANCE = new HabitHistoryController();
+    private static HabitHistory habitHistory = new HabitHistory();
 
-
+    /**
+     * Instantiate the habitHistory
+     */
     private HabitHistoryController() {
-        getInstance();
-    }
+        try {
+            OfflineController.GetHabitHistory getHabitHistoryOffline =
+                    new OfflineController.GetHabitHistory();
+            getHabitHistoryOffline.execute();
+            habitHistory = getHabitHistoryOffline.get();
+        } catch (InterruptedException e) {
+            Log.i("Error", e.getMessage());
 
-
-    static HabitHistoryController getInstance() {
-        if (habitHistory == null) {
-            habitHistory = new HabitHistory();
-            init();
+        } catch (ExecutionException e) {
+            Log.i("Error", e.getMessage());
         }
-        return ourInstance;
+
     }
 
+    /**
+     *
+     * @return INSTANCE: the instance of this Singleton HabitHistoryController
+     */
+    public static HabitHistoryController getInstance() {
+        return INSTANCE;
+    }
 
     /**
      * Checks it the HabitHistory is empty
@@ -38,7 +49,6 @@ class HabitHistoryController {
     public static Boolean isEmpty() {
         return habitHistory.isEmpty();
     }
-
 
     /**
      * Appends a HabitEvent to the end of HabitHistory
@@ -100,21 +110,4 @@ class HabitHistoryController {
         habitHistory.addAllHabitEvents(habitEvents);
     }
 
-
-    /**
-     *  Used to load local data into habitHistory once it is first created.
-     */
-    public static void init() {
-        try {
-            OfflineController.GetHabitHistory getHabitHistoryOffline =
-                    new OfflineController.GetHabitHistory();
-            getHabitHistoryOffline.execute();
-            habitHistory = getHabitHistoryOffline.get();
-        } catch (InterruptedException e) {
-            Log.i("Error", e.getMessage());
-
-        } catch (ExecutionException e) {
-            Log.i("Error", e.getMessage());
-        }
-    }
 }
