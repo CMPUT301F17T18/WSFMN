@@ -30,7 +30,7 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testStoreGetHabitList() {
+    public void testStoreHabitList() {
         HabitList habitList = new HabitList();
 
         try {
@@ -62,7 +62,7 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testStoreGetHabitHistory() {
+    public void testStoreHabitHistory() {
         HabitHistory habitHistory = new HabitHistory();
 
         try {

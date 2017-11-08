@@ -149,6 +149,8 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             setUnset(sunday, WeekDays.SUNDAY);
 
             c.store();
+            c.updateOnline(c.getHabit(position));
+
             startActivity(intent);
 
         } catch (HabitTitleTooLongException e) {

@@ -168,8 +168,6 @@ public class Habit{
         return total;
     }
 
-    // nmayne: A local key for a habit, as a combination of title and date... but this
-    // is dependent upon Date, which is an issue... probably a better way to do this
     @Override
     public String toString(){
         return title + "    " + date;
