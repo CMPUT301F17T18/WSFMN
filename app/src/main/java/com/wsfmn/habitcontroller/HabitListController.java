@@ -48,7 +48,6 @@ public class HabitListController {
     private static HabitList habitList = null;
 
 
-
     public HabitListController(){
         getInstance();
     }

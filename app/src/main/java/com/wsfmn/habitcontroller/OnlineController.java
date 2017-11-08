@@ -30,11 +30,12 @@ import io.searchbox.core.SearchResult;
 
 
 public class OnlineController {
-
+    private static final String INDEX_BASE = "team18";
+    private static String USERNAME = "";
     private static JestDroidClient client;
 
     /**
-     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+     * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class StoreHabits extends AsyncTask<Habit, Void, Void> {
 
@@ -44,15 +45,19 @@ public class OnlineController {
 
             for (Habit habit : habits) {
                 Index index;
+                // If the habit has been stored already it will have a non-null ID,
+                // in this case the Index command will update the existing habit at ID
+                // otherwise Index will store a new habit and ElasticSearch will return
+                // the auto-generated ID which is then attributed to habit for future use.
                 if (habit.getId() != null) {
                     index = new Index.Builder(habit)
-                            .index("team18")
+                            .index(INDEX_BASE+USERNAME)
                             .type("habit")
                             .id(habit.getId())
                             .build();
                 } else {
                     index = new Index.Builder(habit)
-                            .index("team18")
+                            .index(INDEX_BASE+USERNAME)
                             .type("habit")
                             .build();
                 }
@@ -75,7 +80,7 @@ public class OnlineController {
 
 
     /**
-     * Created by nmayne
+     * Created by nmayne 11/07/17.
      */
     public static class DeleteHabits extends AsyncTask<Habit, Void, Void> {
         @Override
@@ -84,7 +89,7 @@ public class OnlineController {
             for (Habit habit : habits) {
                 Log.d("DeletingHabit:", habit.getId());
                 Delete delete = new Delete.Builder(habit.getId())
-                        .index("team18")
+                        .index(INDEX_BASE+USERNAME)
                         .type("habit")
                         .build();
                 try {
@@ -99,7 +104,7 @@ public class OnlineController {
 
 
     /**
-     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+     * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class GetHabits extends AsyncTask<String, Void, HabitList> {
         @Override
@@ -111,7 +116,7 @@ public class OnlineController {
                     + search_parameters[0] + "\" } } }\n";
 
             Search search = new Search.Builder(query)
-                    .addIndex("team18")
+                    .addIndex(INDEX_BASE+USERNAME)
                     .addType("habit")
                     .build();
             try {
@@ -141,7 +146,7 @@ public class OnlineController {
 
 
 //    /**
-//     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+//     * Created by romansky on 10/20/16. Customized by nmayne 11/08/17.
 //     */
 //    public static class StoreHabitEvents extends AsyncTask<HabitEvent, Void, Void> {
 //
@@ -151,7 +156,7 @@ public class OnlineController {
 //
 //            for (HabitEvent habitEvent : habitEvents) {
 //                Index index = new Index.Builder(habitEvent)
-//                        .index("team18")
+//                        .index(INDEX_BASE+USERNAME)
 //                        .type("habitevent")
 //                        .build();
 //
@@ -173,7 +178,7 @@ public class OnlineController {
 //    }
 
 //    /**
-//     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+//     * Created by romansky on 10/20/16. Customized by nmayne 11/08/17.
 //     */
 //    public static class GetHabitEvents extends AsyncTask<String, Void, HabitHistory> {
 //        @Override
@@ -186,7 +191,7 @@ public class OnlineController {
 //                    + search_parameters[0] + "\" } } }\n";
 //
 //            Search search = new Search.Builder(query)
-//                    .addIndex("team18")
+//                    .addIndex(INDEX_BASE+USERNAME)
 //                    .addType("habitevent")
 //                    .build();
 //            try {
@@ -209,7 +214,7 @@ public class OnlineController {
 //    }
 
     /**
-     * Created by romansky on 10/20/16. Edited by nmayne 10/22/17.
+     * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static void verifySettings() {
         if (client == null) {
