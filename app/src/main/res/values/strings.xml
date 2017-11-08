@@ -11,6 +11,7 @@
     <string name="habit_history">Habit History</string>
     <string name="delete">Delete</string>
     <string name="profile">Profile</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
