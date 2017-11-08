@@ -45,6 +45,7 @@ public class HabitListController {
      *  we call c.store to store the new habit locally.
      */
 
+    private static final HabitListController ourInstance = new HabitListController();
     private static HabitList habitList = null;
 
 
@@ -52,13 +53,13 @@ public class HabitListController {
         getInstance();
     }
 
-    public static HabitList getInstance() {
+    public static HabitListController getInstance() {
         if (habitList == null) {
             habitList = new HabitList();
             init();
         }
 
-        return habitList;
+        return ourInstance;
     }
 
     public void addHabit(Habit habit) {
