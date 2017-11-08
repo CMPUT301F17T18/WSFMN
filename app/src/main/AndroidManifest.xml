@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wsfmn.habittracker">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,38 +23,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".HabitHistoryActivity" />
-
         <activity android:name=".MapActivity" />
-
         <activity android:name=".ViewHabitEventActivity" />
-
         <activity
             android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".HabitListViewDetailActivity"
             android:parentActivityName=".HabitListViewActivity" />
-
         <activity
             android:name=".AddNewHabitActivity"
             android:parentActivityName=".HabitListViewActivity" />
-
         <activity
             android:name=".HabitsForTodayActivity"
             android:parentActivityName=".MainActivity" />
-
-        <activity android:name=".ProfileActivity"
+        <activity
+            android:name=".ProfileActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity
             android:name=".UserName_Activity"
             android:parentActivityName=".ProfileActivity" />
-
-
+        <activity
+            android:name=".HabitEventActivity"
+            android:label="@string/title_activity_habit_event"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".imageActivity"></activity>
     </application>
 
 </manifest>

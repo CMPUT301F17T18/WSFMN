@@ -1,10 +1,15 @@
 package com.wsfmn.habit;
 
+import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
+
+import com.wsfmn.habittracker.R;
+
 /**
  * Created by skhanna1 on 10/16/17.
  */
 
-public class HabitEvent{
+public class HabitEvent extends AppCompatActivity {
     private String id;
     private Habit habit;
     private String comment;
@@ -14,7 +19,9 @@ public class HabitEvent{
     private Geolocation location;
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
-  
+
+
+
 
     public HabitEvent(Habit habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
         this.habit = habit;
@@ -33,6 +40,7 @@ public class HabitEvent{
     }
 
     public String getComment() {
+
         return comment;
     }
 

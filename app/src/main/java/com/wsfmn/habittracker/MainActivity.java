@@ -35,4 +35,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void habitEventHistory(View view){
+        Intent intent = new Intent(this, )
+    }
+
 }
