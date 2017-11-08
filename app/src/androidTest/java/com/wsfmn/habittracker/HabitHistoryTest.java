@@ -2,7 +2,14 @@ package com.wsfmn.habittracker;
 
 import android.test.ActivityInstrumentationTestCase2;
 
-import java.util.Date;
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitCommentTooLongException;
+import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitTitleTooLongException;
+
 
 /**
  * Created by nicholasmayne on 2017-10-17.
@@ -29,6 +36,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
@@ -53,6 +63,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
             myHabit = new Habit("Eating Pizza", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 
@@ -85,6 +98,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
@@ -114,6 +130,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         catch(HabitTitleTooLongException e){
             //null
         }
+        catch(DateNotValidException e){
+            //null
+        }
 
         try {
             habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
@@ -140,6 +159,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
             myHabit = new Habit("Eating Pizza", new Date());
         }
         catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
             //null
         }
 

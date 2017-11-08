@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,6 @@ import java.util.List;
  * History refers to the list of all past HabitEvents.
  */
 public class HabitHistory {
-    private String habitTitle;
     private ArrayList<HabitEvent> habitHistory;
 
 
@@ -22,7 +21,6 @@ public class HabitHistory {
      */
     public HabitHistory(){
         this.habitHistory = new ArrayList<HabitEvent>();
-
     }
 
     /**

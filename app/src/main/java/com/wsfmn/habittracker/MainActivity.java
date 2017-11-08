@@ -1,21 +1,12 @@
 package com.wsfmn.habittracker;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-
-    HabitList habits = null;
-    private EditText habitTitleText;
-    private TextView HABIT_LIST_VIEW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,70 +17,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        updateHabitList();
+
     }
 
-    /** Called when the user taps the Add New Habit button */
-    public void addNewHabit(View view){
-        setResult(RESULT_OK);
-        habitTitleText = (EditText) findViewById(R.id.habit_title_text);
-        String text = habitTitleText.getText().toString();
-
-        Habit newHabit = null;
-
-        try {
-            newHabit = new Habit(text, new Date());
-        }
-        catch(HabitTitleTooLongException e){
-            // TODO: handle exception
-        }
-
-
-        habits.addHabit(newHabit);
-
-        OnlineController.StoreHabitsOnline addHabitOnline = new OnlineController.StoreHabitsOnline();
-        addHabitOnline.execute(newHabit);
-
-        ///// FOR NOW... Delay .5 second for transaction to finish (usual time is around 200 ms)
-        long currentTime = Calendar.getInstance().getTimeInMillis();
-        while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
-        /////
-
-        updateHabitList();
+    public void habitList(View view){
+        Intent intent = new Intent(this, HabitListViewActivity.class);
+        startActivity(intent);
     }
 
-    /** Update the local HabitList with a search of online Habits */
-    public void updateHabitList() {
-        EditText editText = (EditText) findViewById(R.id.habit_title_text);
-        String searchString = editText.getText().toString().replaceAll(" ", "").toLowerCase();
-
-        // TODO nmayne: add OfflineController, for speed this should run first, followed by online
-//        habitList = Offlinecontroller.getHabitList();
-
-        //Get habits from server
-        OnlineController.GetHabitsOnline getHabitList = new OnlineController.GetHabitsOnline();
-        try {
-            getHabitList.execute(searchString);
-            habits = getHabitList.get();
-
-            ///// FOR NOW... Delay .5 second for transaction to finish (usual time is around 200 ms)
-            long currentTime = Calendar.getInstance().getTimeInMillis();
-            while((Calendar.getInstance().getTimeInMillis() - currentTime) < 500 ){}
-            /////
-
-        } catch (Exception e) {
-            Log.i("Error", "Failed to get the habits from the async object");
-        }
-
-
-        // TODO nmayne: lazily checking that there are habits on the server, we need to do this with a ListView and an adapter
-        HABIT_LIST_VIEW = (TextView) findViewById(R.id.habit_list_view);
-        String allTheHabits = "";
-        for (int i = 0; i < habits.getSize(); i++) {
-            allTheHabits = allTheHabits + "\n"
-                    + habits.getHabit(i).getTitle() + " "
-                    + habits.getHabit(i).getDate().toString();
-        }
-        HABIT_LIST_VIEW.setText(allTheHabits);
+    public void habitsForToday(View view){
+        Intent intent = new Intent(this, HabitsForTodayActivity.class);
+        startActivity(intent);
     }
+
+    public void profileActivity(View view){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
 }

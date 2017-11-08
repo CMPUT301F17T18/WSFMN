@@ -1,12 +1,4 @@
-package com.wsfmn.habittracker;
-
-import android.location.Location;
-import android.media.Image;
-import android.widget.ImageView;
-
-import org.apache.commons.lang3.ObjectUtils;
-
-import java.util.Date;
+package com.wsfmn.habit;
 
 /**
  * Created by skhanna1 on 10/16/17.
