@@ -80,7 +80,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         position = b.getInt("position");
 
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
 
         habitTitle.setText(c.getHabit(position).getTitle());
         habitReason.setText(c.getHabit(position).getReason());
@@ -134,7 +134,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HabitListViewActivity.class);
 
         try {
-            HabitListController c = new HabitListController();
+            HabitListController c = HabitListController.getInstance();
 
             c.getHabit(position).setTitle(habitTitle.getText().toString());
             c.getHabit(position).setReason(habitReason.getText().toString());
@@ -171,14 +171,14 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
      */
     public void delete(View view){
         Intent intent = new Intent(this, HabitListViewActivity.class);
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
         c.deleteHabitAt(position);
         c.store();
         startActivity(intent);
     }
 
     public void setUnset(CheckBox checkBox, int day){
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
         if(checkBox.isChecked())
             c.getHabit(position).getWeekDays().setDay(day);
         else
@@ -186,7 +186,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     }
 
     public void setCheckBox(CheckBox checkBox, int day){
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
         checkBox.setChecked(c.getHabit(position).getWeekDays().getDay(day));
     }
 
