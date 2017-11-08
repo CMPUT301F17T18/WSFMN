@@ -58,7 +58,6 @@ public class HabitHistoryController {
         habitHistory.add(habitEvent);
     }
 
-
     /**
      *
      * @param index int: the index of the HabitEvent to get
@@ -69,18 +68,32 @@ public class HabitHistoryController {
         return habitHistory.get(index);
     }
 
-
     /**
      * Removes and returns a HabitEvent at the specified index in HabitHistory,
      * and decrements the HabitHistory indices that follow it.
      * @param index int: the index of the HabitEvent to remove
-     * @return HabitEvent remove from the specified index
+     * @return HabitEvent removed from the specified index
      * @throws IndexOutOfBoundsException
      */
     public static HabitEvent remove(int index) throws IndexOutOfBoundsException{
         return habitHistory.remove(index);
     }
 
+    /**
+     * Removes and returns a HabitEvent from HabitHistory,
+     * and decrements the HabitHistory indices that follow it.
+     * @param habitEvent int: the index of the HabitEvent to remove
+     * @return HabitEvent removed from HabitHistory or null if in HabitHistory
+     * @throws IndexOutOfBoundsException
+     */
+    public static HabitEvent remove(HabitEvent habitEvent) throws IndexOutOfBoundsException{
+        int idx = habitHistory.indexOf(habitEvent);
+        if (idx != -1) {
+            return habitHistory.remove(idx);
+        } else {
+            return null;
+        }
+    }
 
     /**
      * Check to see it a HabitEvent is in HabitHistory
@@ -91,7 +104,6 @@ public class HabitHistoryController {
         return habitHistory.contains(habitEvent);
     }
 
-
     /**
      * Get the first index of the specified HabitEvent, if it is in HabitHistory
      * @param habitEvent HabitEvent: return the first index of this HabitEvent
@@ -101,7 +113,6 @@ public class HabitHistoryController {
         return habitHistory.indexOf(habitEvent);
     }
 
-
     /**
      * Add a List of HabitEvents to the HabitHistory
      * @param habitEvents List<HabitEvent>: a List of HabitEvents to add to HabitHistory
@@ -110,4 +121,11 @@ public class HabitHistoryController {
         habitHistory.addAllHabitEvents(habitEvents);
     }
 
+    /**
+     * Get the size of the habit history
+     * @return int the number of entries in HabitHistory
+     */
+    public static int size() {
+        return habitHistory.size();
+    }
 }

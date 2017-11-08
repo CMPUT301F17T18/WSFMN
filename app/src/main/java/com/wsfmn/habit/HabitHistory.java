@@ -53,7 +53,7 @@ public class HabitHistory {
      * Removes and returns a HabitEvent at the specified index in HabitHistory,
      * and decrements the HabitHistory indices that follow it.
      * @param index int: the index of the HabitEvent to remove
-     * @return HabitEvent remove from the specified index
+     * @return HabitEvent removed from the specified index
      * @throws IndexOutOfBoundsException
      */
     public HabitEvent remove(int index) throws IndexOutOfBoundsException{
@@ -78,8 +78,20 @@ public class HabitHistory {
         return habitHistory.indexOf(habitEvent);
     }
 
+    /**
+     * Adds a full list of HabitEvents to the HabitHistory
+     * @param habitEvents
+     */
     public void addAllHabitEvents(List<HabitEvent> habitEvents) {
         this.habitHistory.addAll(habitEvents);
+    }
+
+    /**
+     * Get the size of the habit history
+     * @return int the number of entries in HabitHistory
+     */
+    public int size() {
+        return habitHistory.size();
     }
 
 
