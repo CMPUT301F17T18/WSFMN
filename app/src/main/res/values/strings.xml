@@ -12,6 +12,7 @@
     <string name="delete">Delete</string>
     <string name="profile">Profile</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_habit_event">HabitEventActivity</string>
 
 
 </resources>
