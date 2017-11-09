@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wsfmn.habittracker">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!--
@@ -65,7 +69,14 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".HabitEventActivity"
+            android:label="@string/title_activity_habit_event"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".imageActivity"></activity>
+
+
     </application>
 
 </manifest>
