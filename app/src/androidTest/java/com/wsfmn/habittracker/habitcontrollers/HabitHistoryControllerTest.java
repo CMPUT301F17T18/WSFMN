@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habitcontrollers;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
@@ -42,7 +42,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), true, "");
+            he = new HabitEvent(h, new Date(), "");
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), true, "");
+            he = new HabitEvent(h, new Date(), "");
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -91,7 +91,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), true, "");
+            he = new HabitEvent(h, new Date(), "");
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), true, "");
+            he = new HabitEvent(h, new Date(), "");
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (HabitTitleTooLongException e) {

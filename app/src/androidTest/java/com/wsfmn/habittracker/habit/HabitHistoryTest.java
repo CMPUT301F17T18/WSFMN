@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habit;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -41,7 +41,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -70,7 +70,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -102,7 +102,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -132,7 +132,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -161,7 +161,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
         }
         catch(HabitCommentTooLongException e){
             //null

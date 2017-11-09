@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habit;
 
 import android.test.ActivityInstrumentationTestCase2;
 

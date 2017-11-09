@@ -1,10 +1,11 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habittracker;
 
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.habittracker.HabitListViewDetailActivity;
 
 /**
  * Created by musaed on 2017-11-06.
