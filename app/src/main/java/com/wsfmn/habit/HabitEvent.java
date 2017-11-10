@@ -55,7 +55,6 @@ public class HabitEvent{
         return habit;
     }
 
-
     public String getTitle(){return title;}
 
     public String setTitle(String title) throws HabitTitleTooLongException{
@@ -77,5 +76,13 @@ public class HabitEvent{
     }
 
     public Bitmap getImage(){return image;}
+
+//    public void setLocation(Geolocation location){
+//        this.location = location;
+//    }
+//
+//    public Geolocation getLocation() {return this.location;}
+
+//    public void location(){this.location = 5;}
 
 }

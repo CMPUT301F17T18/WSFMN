@@ -36,12 +36,10 @@ public class HabitList {
         habits.remove(index);
     }
 
-    // TODO nmayne: added this, needs a test in TestHabitList
-    public int getSize() {
+    public int size() {
         return habits.size();
     }
 
-    // TODO nmayne: added this, needs a test in TestHabitList
     public void addAllHabits(List<Habit> habitsToAdd) {
         habits.addAll(habitsToAdd);
     }

@@ -2,12 +2,10 @@ package com.wsfmn.habitcontroller;
 
 import android.util.Log;
 
-import com.wsfmn.habit.Date;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitList;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -88,22 +86,10 @@ public class HabitListController {
         habitList.deleteHabitAt(index);
     }
 
-    public int getSize() {
-        return habitList.getSize();
+    public int size() {
+        return habitList.size();
     }
 
-    public void addAllHabits(List<Habit> habitsToAdd) {
-        // Added by nmayne on 2017-11-07
-        OnlineController.StoreHabits storeHabitsOnline =
-                new OnlineController.StoreHabits();
-        Habit[] habitArray = new Habit[habitsToAdd.size()];
-        for (int i = 0; i < habitsToAdd.size(); i++) {
-            habitArray[i] = habitsToAdd.get(i);
-        }
-        storeHabitsOnline.execute(habitArray);
-
-        habitList.addAllHabits(habitsToAdd);
-    }
 
     public Habit getHabit(int index){
         return habitList.getHabit(index);

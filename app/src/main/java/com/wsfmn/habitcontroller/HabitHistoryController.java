@@ -1,5 +1,6 @@
 package com.wsfmn.habitcontroller;
 
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.wsfmn.habit.HabitEvent;
@@ -18,7 +19,8 @@ public class HabitHistoryController {
     private static HabitHistory habitHistory = new HabitHistory();
 
     /**
-     * Instantiate the habitHistory
+     * Instantiate the habitHistory attribute
+     * This pulls the data from the locally saved version via OfflineController
      */
     private HabitHistoryController() {
         try {
@@ -36,8 +38,8 @@ public class HabitHistoryController {
     }
 
     /**
-     *
-     * @return INSTANCE: the instance of this Singleton HabitHistoryController
+     * Access the instance of the HabitHistoryController singleton
+     * @return INSTANCE: the instance of singleton HabitHistoryController
      */
     public static HabitHistoryController getInstance() {
         return INSTANCE;
@@ -52,32 +54,62 @@ public class HabitHistoryController {
     }
 
     /**
-     * Appends a HabitEvent to the end of HabitHistory
-     * @param habitEvent HabitEvent: HabitEvent to add to HabitHistory
+     * Get the size of the habit history
+     * @return int the number of entries in HabitHistory
      */
-    public static void add(HabitEvent habitEvent) {
-        habitHistory.add(habitEvent);
+    public static int size() {
+        return habitHistory.size();
     }
 
     /**
-     *
-     * @param index int: the index of the HabitEvent to get
+     * Appends a HabitEvent to the end of HabitHistory
+     * @param he HabitEvent: HabitEvent to add to HabitHistory
+     */
+    public static void add(HabitEvent he) {
+        habitHistory.add(he);
+    }
+
+    /**
+     * Stores a HabitEvent online, locally (appended to HabitHistory), and offline
+     * @param he HabitEvent: HabitEvent to add to HabitHistory
+     */
+    public static void addAndStore(HabitEvent he) {
+        OnlineController.StoreHabitEvents storeHabitEvents =
+                new OnlineController.StoreHabitEvents();
+        OfflineController.StoreHabitHistory storeHabitHistory =
+                new OfflineController.StoreHabitHistory();
+
+        try {
+            storeHabitEvents.execute(he).get(); // .get() waits for this task to complete
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        habitHistory.add(he);
+        storeHabitHistory.execute(habitHistory);
+    }
+
+    /**
+     * Return the HabitEvent at a particular index
+     * @param idx int: the index of the HabitEvent to get
      * @return HabitEvent at the specified index
      * @throws IndexOutOfBoundsException
      */
-    public static HabitEvent get(int index) throws IndexOutOfBoundsException {
-        return habitHistory.get(index);
+    public static HabitEvent get(int idx) throws IndexOutOfBoundsException {
+        return habitHistory.get(idx);
     }
 
     /**
      * Removes and returns a HabitEvent at the specified index in HabitHistory,
      * and decrements the HabitHistory indices that follow it.
-     * @param index int: the index of the HabitEvent to remove
+     * @param idx int: the index of the HabitEvent to remove
      * @return HabitEvent removed from the specified index
      * @throws IndexOutOfBoundsException
      */
-    public static HabitEvent remove(int index) throws IndexOutOfBoundsException{
-        return habitHistory.remove(index);
+    public static HabitEvent remove(int idx) throws IndexOutOfBoundsException{
+        return habitHistory.remove(idx);
     }
 
     /**
@@ -87,6 +119,7 @@ public class HabitHistoryController {
      * @return HabitEvent removed from HabitHistory or null if in HabitHistory
      * @throws IndexOutOfBoundsException
      */
+    @Nullable
     public static HabitEvent remove(HabitEvent habitEvent) throws IndexOutOfBoundsException{
         int idx = habitHistory.indexOf(habitEvent);
         if (idx != -1) {
@@ -97,7 +130,7 @@ public class HabitHistoryController {
     }
 
     /**
-     * Check to see it a HabitEvent is in HabitHistory
+     * Check to see if a HabitEvent is in HabitHistory
      * @param habitEvent HabitEvent: check HabitHistory for this HabitEvent
      * @return Boolean true if the HabitEvent is in HabitHistory
      */
@@ -123,11 +156,31 @@ public class HabitHistoryController {
     }
 
     /**
-     * Get the size of the habit history
-     * @return int the number of entries in HabitHistory
+     * Stores HabitHistory online, and offline
      */
-    public static int size() {
-        return habitHistory.size();
+    public static void storeAll() {
+        OnlineController.StoreHabitEvents storeHabitEvents =
+                new OnlineController.StoreHabitEvents();
+
+        OfflineController.StoreHabitHistory storeHabitHistory =
+                new OfflineController.StoreHabitHistory();
+
+        int size = habitHistory.size();
+        HabitEvent[] habitEvents = new HabitEvent[size];
+
+        for (int i = 0; i < size; i++){
+            habitEvents[i] = habitHistory.get(i);
+        }
+
+        try {
+            storeHabitEvents.execute(habitEvents).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        storeHabitHistory.execute(habitHistory);
+
     }
 
     public ArrayList<HabitEvent> getHabitEventList(){
