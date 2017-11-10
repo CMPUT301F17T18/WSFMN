@@ -37,7 +37,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -64,7 +64,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -98,14 +98,14 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
 
-        assertEquals(habitEvent.getHabitType(), habit);
+        assertEquals(habitEvent.getHabit(), habit);
     }
 
     public void testGetLocation(){
@@ -125,7 +125,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -153,15 +153,15 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, habit.getDate(), "Comment");
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
 
-        assertNull(habitEvent.getPic());
-        habitEvent.AddPic();
-        assertNotNull(habitEvent.getPic());
+        assertNull(habitEvent.getImage());
+        habitEvent.setImage(null);
+        assertNotNull(habitEvent.getImage());
     }
 }
