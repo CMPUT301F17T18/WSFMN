@@ -1,8 +1,10 @@
 package com.wsfmn.habit;
-
-import android.graphics.Bitmap;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 
+import com.wsfmn.habittracker.R;
+import android.graphics.Bitmap;
+import android.widget.EditText;
 /**
  * Created by skhanna1 on 10/16/17.
  */
@@ -16,7 +18,6 @@ public class HabitEvent{
     //private Date date;
     //change by wei, change location parts
     //private Geolocation location;
-
 
     //Need to Add Location
     public HabitEvent(Habit habit, String title, String comment, Bitmap image) throws HabitCommentTooLongException {

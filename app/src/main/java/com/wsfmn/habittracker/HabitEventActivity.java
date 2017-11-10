@@ -1,3 +1,4 @@
+
 package com.wsfmn.habittracker;
 
 import android.app.Activity;
@@ -45,7 +46,6 @@ public class HabitEventActivity extends AppCompatActivity {
     //int i;
     int i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +155,6 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         }
     }
-
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();

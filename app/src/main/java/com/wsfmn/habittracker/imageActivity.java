@@ -1,5 +1,4 @@
 package com.wsfmn.habittracker;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +18,5 @@ public class imageActivity extends AppCompatActivity {
 
         Bitmap imgBitmap = (Bitmap)intent.getParcelableExtra("imBitmap");
         imge.setImageBitmap(imgBitmap);
-
     }
 }

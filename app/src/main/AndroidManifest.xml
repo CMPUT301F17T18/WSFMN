@@ -6,6 +6,8 @@
         android:name="android.hardware.camera"
         android:required="true" />
 
+<<<<<<< HEAD
+=======
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
@@ -19,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.provide.gsf.permission.READ_GSERVICES" />
 
@@ -48,6 +51,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".HabitHistoryActivity" />
+<<<<<<< HEAD
+        <activity android:name=".MapActivity" />
+=======
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
         <activity android:name=".ViewHabitEventActivity" />
         <activity
             android:name=".HabitListViewActivity"
@@ -67,6 +74,8 @@
         <activity
             android:name=".UserName_Activity"
             android:parentActivityName=".ProfileActivity" />
+<<<<<<< HEAD
+=======
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -83,13 +92,18 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
         <activity
             android:name=".HabitEventActivity"
             android:label="@string/title_activity_habit_event"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
+        <activity android:name=".imageActivity"></activity>
+=======
         <activity android:name=".selectHabitActivity" />
         <activity android:name=".imageActivity" />
         <activity android:name=".habitHistoryDetailActivity"></activity>
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
     </application>
 
 </manifest>
