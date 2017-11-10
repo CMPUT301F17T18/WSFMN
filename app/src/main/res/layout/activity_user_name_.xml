@@ -7,7 +7,7 @@
     tools:context="com.wsfmn.habittracker.UserName_Activity">
 
     <EditText
-        android:id="@+id/createYouName"
+        android:id="@+id/yourName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -27,7 +27,7 @@
         android:onClick="confirmClick"
         android:text="Confirm"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createYouName" />
+        app:layout_constraintTop_toBottomOf="@+id/yourName" />
 
     <TextView
         android:id="@+id/textView2"

@@ -81,6 +81,16 @@ public class HabitEventActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+
+        Button B_Location = (Button) findViewById(R.id.Location);
+        B_Location.setOnClickListener(new View.OnClickListener(){
+            @Override
+            //https://developer.android.com/training/basics/intents/result.html
+            public void onClick(View v){
+                Intent  intent = new Intent(HabitEventActivity.this,AddLocationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean checkCamera(){

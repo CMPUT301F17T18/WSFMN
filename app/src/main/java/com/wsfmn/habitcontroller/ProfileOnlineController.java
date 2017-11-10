@@ -23,7 +23,7 @@ import io.searchbox.core.DeleteByQuery;
 
 public class ProfileOnlineController {
 
-    private static JestDroidClient client;
+    private static JestDroidClient client2;
 
     public static class SendRequest extends AsyncTask<Request, Void, Void> {
 
@@ -33,22 +33,20 @@ public class ProfileOnlineController {
 
             for (Request request : requests) {
                 Index index = new Index.Builder(request).index("7f2m").type("request").build();
-
                 try {
-                    DocumentResult execute = client.execute(index);
+                    DocumentResult execute = client2.execute(index);
 
                     if(execute.isSucceeded()) {
                         request.setId(execute.getId());
-
                     }
                     else
                     {
-                        Log.i("Error", "Could not send Tweet");
+                        Log.i("Error", "Could not send request");
 
                     }
                 }
                 catch (Exception e) {
-                    Log.i("Error", "The application failed to build and send the tweets");
+                    Log.i("Error", "The application failed to build and send the requests");
                 }
 
             }
@@ -76,7 +74,7 @@ public class ProfileOnlineController {
 
             try {
                 // TODO get the results of the query
-                SearchResult result = client.execute(search);
+                SearchResult result = client2.execute(search);
                 if (result.isSucceeded()){
                     List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
 
@@ -84,7 +82,7 @@ public class ProfileOnlineController {
 
                 }
                 else {
-                    Log.i("Error", "The search query failed to find any tweets that matched");
+                    Log.i("Error", "The search query failed to find any requests that matched");
                 }
             }
             catch (Exception e) {
@@ -113,14 +111,7 @@ public class ProfileOnlineController {
 
             try {
                 // TODO get the results of the query
-                JestResult result = client.execute(delete);
-                if (result.isSucceeded()){
-                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
-                    requests.addAll(foundRequests);
-                }
-                else {
-                    Log.i("Error", "The search query failed to find any tweets that matched");
-                }
+                JestResult result = client2.execute(delete);
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
@@ -142,15 +133,15 @@ public class ProfileOnlineController {
                     .build();
             try {
                 // TODO get the results of the query
-                SearchResult result = client.execute(search);
+                SearchResult result = client2.execute(search);
                 if (result.isSucceeded()){
-                    flag = false;
-                    return flag;
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
+                        Log.d("Name Exisits:", "Name already in database");
+                        return false;
+                    }
                 }
-                else {
-                    flag = true;
-                    return flag;
-                }
+                return true;
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
@@ -167,17 +158,14 @@ public class ProfileOnlineController {
 
             for (ProfileName profileName : names) {
                 Index index = new Index.Builder(profileName).index("7f2m").type("profilename").build();
-
                 try {
-                    DocumentResult execute = client.execute(index);
-
-                    if(execute.isSucceeded()) {
-                        profileName.setId(execute.getId());
-
+                    DocumentResult result = client2.execute(index);
+                    if(result.isSucceeded()) {
+                        profileName.setId(result.getId());
                     }
                     else
                     {
-                        Log.i("Error", "Could not send ");
+                        Log.i("Error", "Could not send name to elasticsearch");
 
                     }
                 }
@@ -192,13 +180,13 @@ public class ProfileOnlineController {
 
 
     public static void verifySettings() {
-        if (client == null) {
+        if (client2 == null) {
             DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080");
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();
             factory.setDroidClientConfig(config);
-            client = (JestDroidClient) factory.getObject();
+            client2 = (JestDroidClient) factory.getObject();
         }
     }
 
