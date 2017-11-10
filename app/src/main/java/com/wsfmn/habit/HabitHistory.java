@@ -93,6 +93,4 @@ public class HabitHistory {
     public int size() {
         return habitHistory.size();
     }
-
-
 }
