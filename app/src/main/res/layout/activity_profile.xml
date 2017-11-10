@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
-        android:id="@+id/searchOK"
+        android:id="@+id/deleteRequest"
         android:layout_width="96dp"
         android:layout_height="48dp"
         android:layout_marginBottom="300dp"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/searchName"
+        android:id="@+id/deleteName"
         android:layout_width="96dp"
         android:layout_height="48dp"
         android:layout_marginRight="16dp"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/createYouName"
+        android:id="@+id/yourName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -94,7 +94,7 @@
         android:text="Test"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createYouName" />
+        app:layout_constraintTop_toBottomOf="@+id/yourName" />
 
 
 </android.support.constraint.ConstraintLayout>

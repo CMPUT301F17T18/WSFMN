@@ -23,7 +23,7 @@ import io.searchbox.core.DeleteByQuery;
 
 public class ProfileOnlineController {
 
-    private static JestDroidClient client;
+    private static JestDroidClient client2;
 
     public static class SendRequest extends AsyncTask<Request, Void, Void> {
 
@@ -33,13 +33,14 @@ public class ProfileOnlineController {
 
             for (Request request : requests) {
                 Index index = new Index.Builder(request).index("7f2m").type("request").build();
-
+                System.out.println("Made index");
                 try {
-                    DocumentResult execute = client.execute(index);
+                    DocumentResult execute = client2.execute(index);
+                    System.out.println("INSIDE");
 
                     if(execute.isSucceeded()) {
                         request.setId(execute.getId());
-
+                        System.out.println("INSIDE2");
                     }
                     else
                     {
@@ -76,7 +77,7 @@ public class ProfileOnlineController {
 
             try {
                 // TODO get the results of the query
-                SearchResult result = client.execute(search);
+                SearchResult result = client2.execute(search);
                 if (result.isSucceeded()){
                     List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
 
@@ -113,7 +114,7 @@ public class ProfileOnlineController {
 
             try {
                 // TODO get the results of the query
-                JestResult result = client.execute(delete);
+                JestResult result = client2.execute(delete);
                 if (result.isSucceeded()){
                     List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
                     requests.addAll(foundRequests);
@@ -142,7 +143,7 @@ public class ProfileOnlineController {
                     .build();
             try {
                 // TODO get the results of the query
-                SearchResult result = client.execute(search);
+                SearchResult result = client2.execute(search);
                 if (result.isSucceeded()){
                     flag = false;
                     return flag;
@@ -167,12 +168,15 @@ public class ProfileOnlineController {
 
             for (ProfileName profileName : names) {
                 Index index = new Index.Builder(profileName).index("7f2m").type("profilename").build();
+                System.out.println("Made index");
 
                 try {
-                    DocumentResult execute = client.execute(index);
+                    DocumentResult result = client2.execute(index);
+                    System.out.println("INSIDE");
 
-                    if(execute.isSucceeded()) {
-                        profileName.setId(execute.getId());
+                    if(result.isSucceeded()) {
+                        profileName.setId(result.getId());
+                        System.out.println("INSIDE2");
 
                     }
                     else
@@ -192,13 +196,13 @@ public class ProfileOnlineController {
 
 
     public static void verifySettings() {
-        if (client == null) {
+        if (client2 == null) {
             DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080");
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();
             factory.setDroidClientConfig(config);
-            client = (JestDroidClient) factory.getObject();
+            client2 = (JestDroidClient) factory.getObject();
         }
     }
 

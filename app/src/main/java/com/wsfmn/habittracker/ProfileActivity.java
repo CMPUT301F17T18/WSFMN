@@ -36,7 +36,7 @@ public class ProfileActivity extends Activity {
 
     private TextView userName;
     private TextView yourName;
-    private TextView searchName;
+    private TextView deleteName;
     private ListView requestsFromUser;
     private ArrayList<Request> requestsList = new ArrayList<Request>();
     private ArrayAdapter<Request> adapter;
@@ -47,14 +47,12 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
 
         userName = (EditText) findViewById(R.id.userName);
-        searchName = (EditText) findViewById(R.id.searchName);
+        deleteName = (EditText) findViewById(R.id.deleteName);
         Button userOK = (Button) findViewById(R.id.userOK);
-        Button searchOK = (Button) findViewById(R.id.searchOK);
+        Button deleteOK = (Button) findViewById(R.id.deleteRequest);
         Button getRequest = (Button) findViewById(R.id.getRequest);
         requestsFromUser = (ListView) findViewById(R.id.requestStuff);
         yourName = (TextView) findViewById(R.id.showName);
-
-        System.out.println(profileName);
 
 
         userOK.setOnClickListener(new View.OnClickListener() {
@@ -64,23 +62,26 @@ public class ProfileActivity extends Activity {
                 String text = userName.getText().toString();
                 Request newRequest = new Request(profileName, text);
                 requestsList.add(newRequest);
-                adapter.notifyDataSetChanged();
+
                 //saveInFile(); // TODO replace this with elastic search
                 ProfileOnlineController.SendRequest sendRequest = new ProfileOnlineController.SendRequest();
+                System.out.println("STEP 1");
                 sendRequest.execute(newRequest);
+                System.out.println("STEP 2");
+                adapter.notifyDataSetChanged();
             }
         });
 
-        searchOK.setOnClickListener(new View.OnClickListener() {
+        deleteOK.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
-                String text = searchName.getText().toString();
+                String text = deleteName.getText().toString();
                 requestsList.clear();
                 adapter.notifyDataSetChanged();
 
              ProfileOnlineController.DeleteRequest deleteRequest = new ProfileOnlineController.DeleteRequest();
-                deleteRequest.execute("name3");
+                deleteRequest.execute(text);
                 try{
                     requestsList = deleteRequest.get();
                     adapter.notifyDataSetChanged();
@@ -96,7 +97,7 @@ public class ProfileActivity extends Activity {
         getRequest.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 setResult(RESULT_OK);
-                String text = searchName.getText().toString();
+                String text = deleteName.getText().toString();
 
 
                 /*ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
