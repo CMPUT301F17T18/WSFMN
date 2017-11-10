@@ -11,10 +11,7 @@
     <string name="habit_history">Habit History</string>
     <string name="delete">Delete</string>
     <string name="profile">Profile</string>
-<<<<<<< HEAD
-=======
     <string name="title_activity_maps">Map</string>
->>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
     <string name="title_activity_habit_event">HabitEventActivity</string>
 
 
