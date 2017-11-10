@@ -48,12 +48,9 @@ dependencies {
     compile files('libs/robotium-solo-5.5.4.jar')
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-<<<<<<< HEAD
     compile 'com.android.support:design:26.+'
-=======
     compile 'com.google.android.gms:play-services-maps:11.0.4'
     compile 'com.google.android.gms:play-services-location:11.0.4'
     compile 'com.google.android.gms:play-services-maps:YourVersionOfGoolgePlayServicesHereIfItsNot-10.2.6'
->>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
     testCompile 'junit:junit:4.12'
 }
