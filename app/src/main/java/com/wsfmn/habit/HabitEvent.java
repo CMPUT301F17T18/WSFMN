@@ -9,16 +9,14 @@ public class HabitEvent{
     private Habit habit;
     private String comment;
     private Date date;
-    private Boolean done;
     //change by wei, change location parts
-    private Geolocation location;
+//    private Geolocation location;
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
 
-    public HabitEvent(Habit habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
+    public HabitEvent(Habit habit, Date date, String comment) throws HabitCommentTooLongException {
         this.habit = habit;
         this.date = date;
-        this.done = done;
         this.setComment(comment);
     }
 
@@ -47,25 +45,15 @@ public class HabitEvent{
 
     public void setDate(Date date){this.date = date;}
 
+//    public void setLocation(Geolocation location){
+//        this.location = location;
+//    }
+//
+//    public Geolocation getLocation() {return this.location;}
 
-    public void setDone(Boolean done) {
-        this.done = done;
-    }
-
-    public Boolean getDone() {
-        return done;
-    }
-
-    public void setLocation(Geolocation location){
-        this.location = location;
-    }
-
-    public Geolocation getLocation() {return this.location;}
-
+//    public void location(){this.location = 5;}
 
     public String getPic(){return this.pic;}
-
-    //public void location(){this.location = 5;}
 
     public void AddPic(){this.pic = "Image";}
 
