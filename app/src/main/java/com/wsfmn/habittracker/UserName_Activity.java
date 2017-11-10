@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -36,14 +37,14 @@ public class UserName_Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // bring the profileName back
-               /* ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
+                ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
                 check.execute(profileName);
                 try{
                    flag  = check.get();
                     System.out.println(flag);
 
                 } catch (Exception e) {
-                    Log.i("Error", "Failed to get the tweets from the async object");
+                    Log.i("Error", "Couldn't get flag from async object");
                 }
                 if (flag == false) {
                     AlertDialog.Builder builder2 = new AlertDialog.Builder(UserName_Activity.this);
@@ -64,13 +65,13 @@ public class UserName_Activity extends AppCompatActivity {
                     returnIntent.putExtra("uniqueName", profileName);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
-                }*/
-                ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
+                }
+               /* ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
                 storeName.execute(name);
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("uniqueName", profileName);
                 setResult(Activity.RESULT_OK, returnIntent);
-                finish();
+                finish();*/
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

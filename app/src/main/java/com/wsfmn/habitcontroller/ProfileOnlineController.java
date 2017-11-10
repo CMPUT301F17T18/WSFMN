@@ -33,23 +33,20 @@ public class ProfileOnlineController {
 
             for (Request request : requests) {
                 Index index = new Index.Builder(request).index("7f2m").type("request").build();
-                System.out.println("Made index");
                 try {
                     DocumentResult execute = client2.execute(index);
-                    System.out.println("INSIDE");
 
                     if(execute.isSucceeded()) {
                         request.setId(execute.getId());
-                        System.out.println("INSIDE2");
                     }
                     else
                     {
-                        Log.i("Error", "Could not send Tweet");
+                        Log.i("Error", "Could not send request");
 
                     }
                 }
                 catch (Exception e) {
-                    Log.i("Error", "The application failed to build and send the tweets");
+                    Log.i("Error", "The application failed to build and send the requests");
                 }
 
             }
@@ -85,7 +82,7 @@ public class ProfileOnlineController {
 
                 }
                 else {
-                    Log.i("Error", "The search query failed to find any tweets that matched");
+                    Log.i("Error", "The search query failed to find any requests that matched");
                 }
             }
             catch (Exception e) {
@@ -115,13 +112,6 @@ public class ProfileOnlineController {
             try {
                 // TODO get the results of the query
                 JestResult result = client2.execute(delete);
-                if (result.isSucceeded()){
-                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
-                    requests.addAll(foundRequests);
-                }
-                else {
-                    Log.i("Error", "The search query failed to find any tweets that matched");
-                }
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
@@ -145,13 +135,13 @@ public class ProfileOnlineController {
                 // TODO get the results of the query
                 SearchResult result = client2.execute(search);
                 if (result.isSucceeded()){
-                    flag = false;
-                    return flag;
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
+                        Log.d("Name Exisits:", "Name already in database");
+                        return false;
+                    }
                 }
-                else {
-                    flag = true;
-                    return flag;
-                }
+                return true;
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
@@ -168,20 +158,14 @@ public class ProfileOnlineController {
 
             for (ProfileName profileName : names) {
                 Index index = new Index.Builder(profileName).index("7f2m").type("profilename").build();
-                System.out.println("Made index");
-
                 try {
                     DocumentResult result = client2.execute(index);
-                    System.out.println("INSIDE");
-
                     if(result.isSucceeded()) {
                         profileName.setId(result.getId());
-                        System.out.println("INSIDE2");
-
                     }
                     else
                     {
-                        Log.i("Error", "Could not send ");
+                        Log.i("Error", "Could not send name to elasticsearch");
 
                     }
                 }

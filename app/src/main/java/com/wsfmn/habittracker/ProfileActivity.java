@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wsfmn.habit.Request;
+import com.wsfmn.habit.RequestAdapter;
 import com.wsfmn.habitcontroller.ProfileOnlineController;
 
 import java.io.BufferedReader;
@@ -39,7 +40,8 @@ public class ProfileActivity extends Activity {
     private TextView deleteName;
     private ListView requestsFromUser;
     private ArrayList<Request> requestsList = new ArrayList<Request>();
-    private ArrayAdapter<Request> adapter;
+    //private ArrayAdapter<Request> adapter;
+    RequestAdapter adapter = new RequestAdapter(requestsList, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +137,7 @@ public class ProfileActivity extends Activity {
         }
         yourName.setText(profileName);
 
-       /* ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
+        ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
         //String text = "Name3";
         getRequest.execute(profileName);
         try{
@@ -143,7 +145,7 @@ public class ProfileActivity extends Activity {
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the tweets from the async object");
-        }*/
+        }
         adapter = new ArrayAdapter<Request>(this,
                 android.R.layout.simple_list_item_1, requestsList);
         requestsFromUser.setAdapter(adapter);
