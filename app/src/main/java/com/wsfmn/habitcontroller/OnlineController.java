@@ -49,9 +49,9 @@ public class OnlineController {
      *
      * If the device is not connected to the internet this method fails silently.
      *
-     * When the the Habit is stored an ElasticSearch ID is returned and the Habit ID attribute is
-     * updated with this value. This ID is used to update and delete the stored copy of each Habit
-     * passed to StoreHabits.execute(Habit... habits).
+     * When each Habit is stored, an ElasticSearch ID is returned and the local Habit ID attribute
+     * is updated with this value. This ID is used to update and delete the remote copy of each
+     * Habit passed to StoreHabits.execute(Habit... habits).
      *
      * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
@@ -131,16 +131,11 @@ public class OnlineController {
     }
 
     /**
-     * When GetHabits.execute(Habit... habits) is called on a GetHabits object,
-     * this method will proceed if the device is connected to the internet and will return a
-     * HabitList of at most 10
-     * given habits on an ElasticSearch DB.
+     * When GetHabits.execute(String... search_params) is called on a GetHabits object, this method
+     * will proceed if the device is connected to the internet and currently will return a
+     * HabitList object containing at most 10 Habit objects that match the search parameter.
      *
-     * If the device is not connected to the internet this method fails silently.
-     *
-     * When the the Habit is stored an ElasticSearch ID is returned and the Habit ID attribute is
-     * updated with this value. This ID is used to update and delete the stored copy of each Habit
-     * passed to StoreHabits.execute(Habit... habits).
+     * If the device is not connected to the internet this method fails silently and returns null
      *
      * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
@@ -183,6 +178,15 @@ public class OnlineController {
     }
 
     /**
+     * When StoreHabitEvents.execute(HabitEvent... habitEvents) is called on a StoreHabitEvents
+     * object, this method will proceed if the device is connected to the internet and will store
+     * the given habitEvents on an ElasticSearch DB.
+     *
+     * If the device is not connected to the internet this method fails silently.
+     *
+     * When each HabitEvent is stored, an ElasticSearch ID is returned and the local HabitEvent ID
+     * attribute is updated with this value. This ID is used to update and delete the remote copy of each Habit
+     * passed to StoreHabits.execute(Habit... habits).
      * Created by romansky on 10/20/16. Customized by nmayne 11/08/17.
      */
     public static class StoreHabitEvents extends AsyncTask<HabitEvent, Void, Void> {
@@ -225,6 +229,12 @@ public class OnlineController {
     }
 
     /**
+     * When GetHabits.execute(String... search_params) is called on a GetHabits object, this method
+     * will proceed if the device is connected to the internet and currently will return a
+     * HabitList object containing at most 10 Habit objects that match the search parameter.
+     *
+     * If the device is not connected to the internet this method fails silently and returns null
+     *
      * Created by nmayne 11/07/17.
      */
     public static class DeleteHabitEvents extends AsyncTask<HabitEvent, Void, Void> {
