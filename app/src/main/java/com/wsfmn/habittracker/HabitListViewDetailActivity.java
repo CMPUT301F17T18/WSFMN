@@ -199,6 +199,4 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         return new Date(year, month, day);
     }
 
-
-
 }

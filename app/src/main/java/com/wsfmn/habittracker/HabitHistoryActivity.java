@@ -14,21 +14,14 @@ import java.util.ArrayList;
 
 public class HabitHistoryActivity extends Activity {
 
-    String nameOfHabitEvent;
-    EditText habitEventTitle;
-
     private ArrayList<HabitEvent> habitAdapter;
 
-    Button addHabitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habits_history);
 
-
-        addHabitButton = (Button)findViewById(R.id.addHabit);
-        habitEventTitle = (EditText)findViewById(R.id.nameEvent);
 
     }
 

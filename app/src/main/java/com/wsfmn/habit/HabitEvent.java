@@ -14,7 +14,6 @@ public class HabitEvent{
     private Geolocation location;
     //Will change to appropriate Data Type when implement it(ImageView).
     String pic;
-  
 
     public HabitEvent(Habit habit, Date date, Boolean done, String comment) throws HabitCommentTooLongException {
         this.habit = habit;
@@ -79,4 +78,5 @@ public class HabitEvent{
     public void setId(String id) {
         this.id = id;
     }
+
 }
