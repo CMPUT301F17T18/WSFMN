@@ -1,32 +1,68 @@
 package com.wsfmn.habit;
 
+import android.graphics.Bitmap;
+import android.widget.EditText;
+
 /**
  * Created by skhanna1 on 10/16/17.
  */
 
 public class HabitEvent{
-    private String id;
+    private String title;
     private Habit habit;
     private String comment;
-    private Date date;
+    private Bitmap image;
+    String id;
+    //private Date date;
     //change by wei, change location parts
-//    private Geolocation location;
-    //Will change to appropriate Data Type when implement it(ImageView).
-    String pic;
+    //private Geolocation location;
 
-    public HabitEvent(Habit habit, Date date, String comment) throws HabitCommentTooLongException {
+
+    //Need to Add Location
+    public HabitEvent(Habit habit, String title, String comment, Bitmap image) throws HabitCommentTooLongException {
         this.habit = habit;
-        this.date = date;
-        this.setComment(comment);
+        this.title = title;
+        this.comment =comment;
+        this.image = image;
+        this.id = null;
     }
 
+//    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
+//        this.habit = habit;
+//        this.image = image;
+//        this.comment = "No Comment";
+//        this.title = "title";
+//    }
 
-    public Habit getHabitType() {
+    public Habit getHabitFromEvent(){
         return habit;
     }
 
-    public void setHabitType(Habit habitType) {
-        this.habit = habitType;
+    public String getHabitTitle(){
+        return this.habit.getTitle();
+    }
+
+    public void setHabit(Habit habit){
+        this.habit = habit;
+    }
+    public String getId() {return id;}
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Habit getHabit() {
+        return habit;
+    }
+
+
+    public String getTitle(){return title;}
+
+    public String setTitle(String title) throws HabitTitleTooLongException{
+        if (title.length() < 1 || title.length() > 20) {
+            throw new HabitTitleTooLongException();
+        }
+        return this.title = title;
     }
 
     public String getComment() {
@@ -40,31 +76,6 @@ public class HabitEvent{
         this.comment = comment;
     }
 
-
-    public Date getDate(){return date;}
-
-    public void setDate(Date date){this.date = date;}
-
-//    public void setLocation(Geolocation location){
-//        this.location = location;
-//    }
-//
-//    public Geolocation getLocation() {return this.location;}
-
-//    public void location(){this.location = 5;}
-
-    public String getPic(){return this.pic;}
-
-    public void AddPic(){this.pic = "Image";}
-
-    public void updateHabitHistory(){}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    public Bitmap getImage(){return image;}
 
 }

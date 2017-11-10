@@ -5,6 +5,7 @@ import android.util.Log;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitHistory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -127,5 +128,9 @@ public class HabitHistoryController {
      */
     public static int size() {
         return habitHistory.size();
+    }
+
+    public ArrayList<HabitEvent> getHabitEventList(){
+        return  habitHistory.getHabitEventList();
     }
 }

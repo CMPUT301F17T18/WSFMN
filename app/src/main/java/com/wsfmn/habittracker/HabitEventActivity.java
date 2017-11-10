@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,10 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Date;
 
+import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
-import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
@@ -42,6 +43,7 @@ public class HabitEventActivity extends AppCompatActivity {
     EditText nameHabitEvent;
     Bitmap imageBitmap;
     //int i;
+    int i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
@@ -49,14 +51,14 @@ public class HabitEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_event);
 
-        Comment = (EditText)findViewById(R.id.Comment);
-        addPic = (Button)findViewById(R.id.Picture);
-        nameHabitEvent = (EditText)findViewById(R.id.nameEvent);
+        Comment = (EditText)findViewById(R.id.Comment2);
+        addPic = (Button)findViewById(R.id.Picture2);
+        nameHabitEvent = (EditText)findViewById(R.id.nameEvent2);
 
         Location = (Button)findViewById(R.id.Location);
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
-        addHabit = (Button)findViewById(R.id.addHabit);
+        addHabit = (Button)findViewById(R.id.addHabit2);
 
         //Checking If have camera
         if(!checkCamera()){
@@ -139,7 +141,7 @@ public class HabitEventActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bitmap imageBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+            imageBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
             ImageView img = (ImageView)findViewById(R.id.imageView3);
             img.setImageBitmap(imageBitmap);
 
@@ -148,7 +150,7 @@ public class HabitEventActivity extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
                 Bundle b = data.getExtras();
-                int i = b.getInt("position");
+                i = b.getInt("position");
                 changeName(i);
             }
         }
@@ -159,6 +161,27 @@ public class HabitEventActivity extends AppCompatActivity {
         HabitListController control = HabitListController.getInstance();
         nameHabit.setText(control.getHabit(i).getTitle().toString());
     }
+
+
+    //Adding the values we got into habitEvent
+    public void confirmHabitEvent(View view){
+        Intent intent = new Intent(this, HabitHistoryActivity.class);
+        try {
+            HabitListController control = HabitListController.getInstance();
+            HabitEvent hEvent = new HabitEvent(control.getHabit(i),
+                    nameHabitEvent.getText().toString(), Comment.getText().toString(), imageBitmap);
+            //Adding Habit Event to the list
+            HabitHistoryController control2 = HabitHistoryController.getInstance();
+            control2.add(hEvent);
+            startActivity(intent);
+        }
+        catch(HabitCommentTooLongException e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
 
 //    public void confirmHabitEvent(View view){
 //        Intent intent = new Intent(this, HabitHistoryActivity.class);

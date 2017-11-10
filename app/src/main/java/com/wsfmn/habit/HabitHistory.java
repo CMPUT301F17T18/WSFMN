@@ -95,4 +95,8 @@ public class HabitHistory {
     }
 
 
+    public ArrayList<HabitEvent> getHabitEventList(){
+        return  habitHistory;
+    }
+
 }
