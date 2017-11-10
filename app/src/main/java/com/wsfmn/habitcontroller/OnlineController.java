@@ -29,20 +29,30 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
 
+
 /**
- * Created by nicholasmayne on 2017-10-16.
+ * A controller for managing Habit and HabitEvent model data stored on an ElasticSearch server.
  */
-
-
 public class OnlineController {
+    private static final String SERVER_URL = "http://cmput301.softwareprocess.es:8080";
     private static final String INDEX_BASE = "team18";
-    private static final int ID_LENGTH = 20;
-    private static final int ID_TAG_OFFSET = 6;
     private static final String ID_TAG = "_id";
-    private static String USERNAME = "";
+    private static final int ID_TAG_OFFSET = 6;
+    private static final int ID_LENGTH = 20;
+    private static String USERNAME = "";    // need to get the username form the ProfileController
     private static JestDroidClient client;
 
     /**
+     * When StoreHabits.execute(Habit... habits) is called on a StoreHabits object,
+     * this method will proceed if the device is connected to the internet and will store the
+     * given habits on an ElasticSearch DB.
+     *
+     * If the device is not connected to the internet this method fails silently.
+     *
+     * When the the Habit is stored an ElasticSearch ID is returned and the Habit ID attribute is
+     * updated with this value. This ID is used to update and delete the stored copy of each Habit
+     * passed to StoreHabits.execute(Habit... habits).
+     *
      * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class StoreHabits extends AsyncTask<Habit, Void, Void> {
@@ -87,6 +97,16 @@ public class OnlineController {
     }
 
     /**
+     * When DeleteHabits.execute(Habit... habits) is called on a DeleteHabits object,
+     * this method will proceed if the device is connected to the internet and will delete the
+     * given habits on an ElasticSearch DB.
+     *
+     * If the device is not connected to the internet this method fails silently.
+     *
+     * The delete functionality depends upon there being a non-null id for the habit being deleted.
+     * If a habit has not yet been stored on ElasticSearch then it's ID will be null and nothing
+     * will happen.
+     *
      * Created by nmayne 11/07/17.
      */
     public static class DeleteHabits extends AsyncTask<Habit, Void, Void> {
@@ -111,6 +131,17 @@ public class OnlineController {
     }
 
     /**
+     * When GetHabits.execute(Habit... habits) is called on a GetHabits object,
+     * this method will proceed if the device is connected to the internet and will return a
+     * HabitList of at most 10
+     * given habits on an ElasticSearch DB.
+     *
+     * If the device is not connected to the internet this method fails silently.
+     *
+     * When the the Habit is stored an ElasticSearch ID is returned and the Habit ID attribute is
+     * updated with this value. This ID is used to update and delete the stored copy of each Habit
+     * passed to StoreHabits.execute(Habit... habits).
+     *
      * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class GetHabits extends AsyncTask<String, Void, HabitList> {
@@ -270,7 +301,7 @@ public class OnlineController {
      */
     public static void verifySettings() {
         if (client == null) {
-            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080");
+            DroidClientConfig.Builder builder = new DroidClientConfig.Builder(SERVER_URL);
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();
@@ -280,7 +311,7 @@ public class OnlineController {
     }
 
     /**
-     * Check if the device is connected to the internet
+     * Check if the device is connected to the internet via wifi or mobile.
      * https://stackoverflow.com/questions/5474089/how-to-check-currently-internet-connection-is-available-or-not-in-android
      * @return Boolean: true is connection is alive, otherwise false
      */
