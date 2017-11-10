@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habit;
 
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -41,7 +41,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
@@ -70,8 +70,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
-
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -103,13 +102,11 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
-
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
         }
         catch(HabitCommentTooLongException e){
             //null
         }
-
 
         habitHistory.add(habitEvent);
 
@@ -135,13 +132,12 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
 
         }
         catch(HabitCommentTooLongException e){
             //null
         }
-
 
         habitHistory.add(habitEvent);
 
@@ -150,7 +146,6 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
     public void testIndexOf() {
         HabitHistory habitHistory = new HabitHistory();
-
 
         Habit myHabit = null;
         HabitEvent habitEvent = null;
@@ -166,13 +161,11 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, new Date(), true, "I ate all the pizza!");
-
+            habitEvent = new HabitEvent(myHabit, new Date(), "I ate all the pizza!");
         }
         catch(HabitCommentTooLongException e){
             //null
         }
-
 
         habitHistory.add(habitEvent);
 

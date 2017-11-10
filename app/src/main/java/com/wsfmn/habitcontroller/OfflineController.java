@@ -31,6 +31,9 @@ public class OfflineController {
     private static final String HABITHISTORY_FILENAME = "HabitHistory.sav";
 
 
+    /**
+     *
+     */
     public static class StoreHabitList extends AsyncTask<HabitList, Void, Void> {
 
         @Override
@@ -55,7 +58,9 @@ public class OfflineController {
         }
     }
 
-
+    /**
+     *
+     */
     public static class GetHabitList extends AsyncTask<Void, Void, HabitList> {
 
         @Override
@@ -77,7 +82,9 @@ public class OfflineController {
         }
     }
 
-
+    /**
+     *
+     */
     public static class StoreHabitHistory extends AsyncTask<HabitHistory, Void, Void> {
 
         @Override
@@ -102,7 +109,9 @@ public class OfflineController {
         }
     }
 
-
+    /**
+     *
+     */
     public static class GetHabitHistory extends AsyncTask<Void, Void, HabitHistory> {
 
         @Override
@@ -121,4 +130,5 @@ public class OfflineController {
             return habitHistory[0];
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habitcontrollers;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
@@ -30,7 +30,7 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testStoreGetHabitList() {
+    public void testStoreHabitList() {
         HabitList habitList = new HabitList();
 
         try {
@@ -62,13 +62,13 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testStoreGetHabitHistory() {
+    public void testStoreHabitHistory() {
         HabitHistory habitHistory = new HabitHistory();
 
         try {
             Habit myHabit = new Habit("My Habit", new Date());
-            HabitEvent myDoneHabitEvent = new HabitEvent(myHabit, new Date(), true, "I did my Habit");
-            HabitEvent myNotDoneHabitEvent = new HabitEvent(myHabit, new Date(), true, "I did not do my Habit");
+            HabitEvent myDoneHabitEvent = new HabitEvent(myHabit, new Date(), "I did my Habit");
+            HabitEvent myNotDoneHabitEvent = new HabitEvent(myHabit, new Date(),  "I did not do my Habit");
 
             habitHistory.add(myDoneHabitEvent);
             habitHistory.add(myNotDoneHabitEvent);

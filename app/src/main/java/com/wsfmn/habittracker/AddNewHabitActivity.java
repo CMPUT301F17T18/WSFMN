@@ -127,7 +127,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
             Habit habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     getDateUI(), w);
-            HabitListController c = new HabitListController();
+            HabitListController c = HabitListController.getInstance();
 
             c.addHabit(habit);
             c.store();

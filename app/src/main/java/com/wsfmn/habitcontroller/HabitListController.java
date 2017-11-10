@@ -45,32 +45,46 @@ public class HabitListController {
      *  we call c.store to store the new habit locally.
      */
 
+    private static HabitListController INSTANCE = null;
     private static HabitList habitList = null;
 
 
-
-    public HabitListController(){
-        getInstance();
+    private HabitListController(){
+        habitList = new HabitList();
+        init();
     }
 
-    public static HabitList getInstance() {
-        if (habitList == null) {
-            habitList = new HabitList();
-            init();
+    public static HabitListController getInstance() {
+        if(INSTANCE == null){
+            INSTANCE = new HabitListController();
         }
-
-        return habitList;
+        return INSTANCE;
     }
 
     public void addHabit(Habit habit) {
+        // Added by nmayne on 2017-11-07
+        OnlineController.StoreHabits storeHabitsOnline =
+                new OnlineController.StoreHabits();
+        storeHabitsOnline.execute(habit);
+
         habitList.addHabit(habit);
     }
 
     public void deleteHabit(Habit habit){
+        // Added by nmayne on 2017-11-07
+        OnlineController.DeleteHabits deleteHabitsOnline =
+                new OnlineController.DeleteHabits();
+        deleteHabitsOnline.execute(habit);
+
         habitList.deleteHabit(habit);
     }
 
     public void deleteHabitAt(int index){
+        // Added by nmayne on 2017-11-07
+        OnlineController.DeleteHabits deleteHabitsOnline =
+                new OnlineController.DeleteHabits();
+        deleteHabitsOnline.execute(habitList.getHabit(index));
+
         habitList.deleteHabitAt(index);
     }
 
@@ -79,6 +93,15 @@ public class HabitListController {
     }
 
     public void addAllHabits(List<Habit> habitsToAdd) {
+        // Added by nmayne on 2017-11-07
+        OnlineController.StoreHabits storeHabitsOnline =
+                new OnlineController.StoreHabits();
+        Habit[] habitArray = new Habit[habitsToAdd.size()];
+        for (int i = 0; i < habitsToAdd.size(); i++) {
+            habitArray[i] = habitsToAdd.get(i);
+        }
+        storeHabitsOnline.execute(habitArray);
+
         habitList.addAllHabits(habitsToAdd);
     }
 
@@ -128,4 +151,15 @@ public class HabitListController {
                 new OfflineController.StoreHabitList();
         storeHabitListOffline.execute(habitList);
     }
+
+    /**
+     * Updates a Habit online
+     * @param h a habit to update online
+     */
+    public void updateOnline(Habit h) {
+        OnlineController.StoreHabits storeHabitsOnline =
+                new OnlineController.StoreHabits();
+        storeHabitsOnline.execute(h);
+    }
+
 }

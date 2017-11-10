@@ -10,28 +10,28 @@ import android.location.LocationManager;
 
 
 public class Geolocation {
-    Context context;
-    Location location;
-    LocationManager locationManager;
-    String provider = LocationManager.GPS_PROVIDER;
+//    private Context context;
+//    private Location location;
+//    private LocationManager locationManager;
+//    private String provider = LocationManager.GPS_PROVIDER;
 
 
     // empty constructor for testing
     public Geolocation(){
 
     }
-
-    public Geolocation(Context context){
-        this.context = context;
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        //TODO: I think it requires permission in Manifest
-    }
-
-    public Location getLocation(){
-        return this.location;
-    }
-
-    public void setLocation(Location location){
-        this.location = location;
-    }
+//
+//    public Geolocation(Context context){
+//        this.context = context;
+//        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+//        //TODO: I think it requires permission in Manifest
+//    }
+//
+//    public Location getLocation(){
+//        return this.location;
+//    }
+//
+//    public void setLocation(Location location){
+//        this.location = location;
+//    }
 }

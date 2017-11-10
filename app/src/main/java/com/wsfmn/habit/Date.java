@@ -52,13 +52,17 @@ public class Date {
     public int getDaysInMonth() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.MONTH, getMonth()-1);
         return calendar.getActualMaximum(Calendar.DATE);
     }
 
     public int getDayOfWeek(){
         Calendar c = Calendar.getInstance();
-        int d = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+        c.set(Calendar.DAY_OF_MONTH, getDay());
+        c.set(Calendar.MONTH, getMonth()-1);
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        int d = c.get(Calendar.DAY_OF_WEEK) - 1;
+
         if(d == 0)
             return 7;
         return d;
