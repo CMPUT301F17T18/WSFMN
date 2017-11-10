@@ -1,6 +1,8 @@
 package com.wsfmn.habit;
 
 
+import android.util.Log;
+
 import java.util.Calendar;
 
 /**
@@ -15,12 +17,21 @@ public class Habit{
     private Date date;
     private WeekDays weekDays;
 
+    public Habit(){
+        date = new Date(2017, 10, 26);
+        weekDays = new WeekDays();
+        title = "title";
+        reason = "reason";
+        id = null;
+    }
+
 
     public Habit(String title, Date date) throws HabitTitleTooLongException,
                                                 DateNotValidException {
         this.id = null;
         this.setDate(date);
         this.setTitle(title);
+        this.weekDays = new WeekDays();
     }
 
     public Habit(String title, String reason, Date date) throws HabitTitleTooLongException,
@@ -86,50 +97,55 @@ public class Habit{
     }
 
     public int getHabitOccurrencePercentage(){
-        Calendar c = Calendar.getInstance();
-        int totalPossibleOccurrence = 0;
         int totalOccurred = 0;
+        return (totalOccurred / totalOccurrence()) * 100;
+    }
 
+    public int totalOccurrence(){
+        int totalPossibleOccurrence = 0;
         Date today = new Date();
-
-        int weeks = today.getDay() / 7;
-        int d = today.getDay() % 7;
-
         int tm = today.getMonth();
         int dm = this.date.getMonth();
 
 
+        for(int m = dm; m <= tm; m++){
+            Date tempDate = new Date();
+            int beg = 0, dayOfWeek = 0, end = 0;
 
-        for(int i = 0; i <= tm - dm; i++){
-            int beg;
-            int dayOfWeek;
-            int end;
-
-            if(i == tm - dm){   //  current month of habit
-
-                if(dm == tm){
-                    beg = this.date.getDay();
-                }
-                else{
-                    beg = 1;
-                }
-
-                c.setFirstDayOfWeek(Calendar.MONDAY);
-                Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-                c.set(Calendar.MONTH, dm + i);
-
-
-                end = c.getActualMaximum(Calendar.DATE);
+            tempDate.setMonth(m);
+            if(tm == dm){  //  current month of habit
+                tempDate.setDay(this.date.getDay());
+                beg = tempDate.getDay();
+                end = today.getDay();
             }
+
+            else if(m == dm){
+                tempDate.setDay(this.date.getDay());
+                beg = tempDate.getDay();
+                end = tempDate.getDaysInMonth();
+            }
+
+            else if(m == tm){
+                tempDate.setDay(1);
+                beg = tempDate.getDay();
+                end = today.getDay();
+            }
+
             else{
-                int dd = 0;
-
+                tempDate.setDay(this.getDate().getDay());
+                beg = tempDate.getDay();
+                end = tempDate.getDaysInMonth();
             }
+            dayOfWeek = tempDate.getDayOfWeek();
+
+
+            totalPossibleOccurrence += caldays(beg,
+                    dayOfWeek,
+                    end);
         }
 
-
         return totalPossibleOccurrence;
-        //return (totalOccurred / totalPossibleOccurrence) * 100;
+
     }
 
     /**
@@ -139,12 +155,19 @@ public class Habit{
      */
     public int caldays(int beg, int dayOfWeek, int end){
         int total = 0;
-        //simple for loop
+
+        for(int i = beg; i <= end; i++){
+
+            if(this.getWeekDays().getDay(dayOfWeek-1))
+                total++;
+
+            if(++dayOfWeek > 7)
+                dayOfWeek = 1;
+        }
+
         return total;
     }
 
-    // nmayne: A local key for a habit, as a combination of title and date... but this
-    // is dependent upon Date, which is an issue... probably a better way to do this
     @Override
     public String toString(){
         return title + "    " + date;

@@ -12,10 +12,13 @@ import com.wsfmn.habit.Request;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.searchbox.client.JestResult;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
+import io.searchbox.core.DeleteByQuery;
+
 
 
 public class ProfileOnlineController {
@@ -91,35 +94,62 @@ public class ProfileOnlineController {
         }
     }
 
-    public static class CheckUnique extends AsyncTask<String, Void, ProfileName> {
+
+    public static class DeleteRequest extends AsyncTask<String, Void, ArrayList<Request>> {
         @Override
-        protected ProfileName doInBackground(String... search_parameters) {
+        protected ArrayList<Request> doInBackground(String... search_parameters) {
             verifySettings();
 
-            ProfileName flag = new ProfileName("failed");
+            ArrayList<Request> requests = new ArrayList<Request>();
 
             // TODO Build the query
-            String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ search_parameters[0] + "\"} }\n" + "}";
+            String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
 
 
-            Search search = new Search.Builder(query)
+            DeleteByQuery delete = new DeleteByQuery.Builder(query)
                     .addIndex("7f2m")
-                    .addType("profilename")
+                    .addType("request")
                     .build();
 
             try {
                 // TODO get the results of the query
-                SearchResult result = client.execute(search);
+                JestResult result = client.execute(delete);
                 if (result.isSucceeded()){
-                    try {
-                       flag = result.getSourceAsObject(ProfileName.class);
-
-                    }catch(Exception e){
-                        Log.i("Error", "The search query failed to find any tweets that matched");
-                    }
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+                    requests.addAll(foundRequests);
                 }
                 else {
-                    Log.i("Error", "Could not send profilename");
+                    Log.i("Error", "The search query failed to find any tweets that matched");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return requests;
+        }
+    }
+
+    public static class CheckUnique extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... search_parameters) {
+            verifySettings();
+            Boolean flag = false;
+            // TODO Build the query
+            String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ search_parameters[0] + "\"} }\n" + "}";
+            Search search = new Search.Builder(query)
+                    .addIndex("7f2m")
+                    .addType("profilename")
+                    .build();
+            try {
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()){
+                    flag = false;
+                    return flag;
+                }
+                else {
+                    flag = true;
+                    return flag;
                 }
             }
             catch (Exception e) {

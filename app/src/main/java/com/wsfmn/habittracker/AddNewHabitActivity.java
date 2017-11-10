@@ -2,7 +2,6 @@ package com.wsfmn.habittracker;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -26,7 +25,6 @@ import com.wsfmn.habit.WeekDays;
 import com.wsfmn.habitcontroller.HabitListController;
 
 import static com.wsfmn.habittracker.R.id.fridayCheckBox;
-import static com.wsfmn.habittracker.R.id.mondayCheckBox;
 import static com.wsfmn.habittracker.R.id.saturdayCheckBox;
 import static com.wsfmn.habittracker.R.id.sundayCheckBox;
 import static com.wsfmn.habittracker.R.id.thursdayCheckBox;
@@ -62,7 +60,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
         setDateButton = (Button) findViewById(R.id.setDateButton);
-        confirmButton = (Button) findViewById(R.id.confirmButton);
+        confirmButton = (Button) findViewById(R.id.confirmButton2);
         dateText = (EditText) findViewById(R.id.dateText);
 
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
@@ -127,7 +125,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
             Habit habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     getDateUI(), w);
-            HabitListController c = new HabitListController();
+            HabitListController c = HabitListController.getInstance();
 
             c.addHabit(habit);
             c.store();

@@ -1,9 +1,10 @@
-package com.wsfmn.habittracker;
+package com.wsfmn.habittracker.habit;
 
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.wsfmn.habit.Profile;
 import com.wsfmn.habit.Request;
+import com.wsfmn.habittracker.MainActivity;
 
 /**
  * Created by Fredric on 2017-10-21.

@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/Picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,13 +18,29 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="26dp"
         android:layout_marginTop="231dp" />
+=======
+        android:id="@+id/Picture2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="228dp"
+        android:text="Add Picture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
 
     <Button
         android:id="@+id/Location"
         android:layout_width="118dp"
         android:layout_height="52dp"
         android:text="Add Location"
+<<<<<<< HEAD
         app:layout_constraintLeft_toRightOf="@+id/Picture"
+=======
+        app:layout_constraintLeft_toRightOf="@+id/Picture2"
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,6 +49,7 @@
         android:layout_marginTop="229dp" />
 
     <EditText
+<<<<<<< HEAD
         android:id="@+id/Comment"
         android:layout_width="133dp"
         android:layout_height="42dp"
@@ -45,11 +63,27 @@
         android:layout_marginLeft="26dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintVertical_bias="0.482" />
+=======
+        android:id="@+id/Comment2"
+        android:layout_width="133dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Add Comment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Picture2"
+        app:layout_constraintVertical_bias="0.373" />
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
 
     <Button
         android:id="@+id/ViewImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="View Image"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
@@ -57,12 +91,23 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintHorizontal_bias="0.923"
         android:layout_marginTop="90dp"
+=======
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="90dp"
+        android:onClick="viewPic"
+        android:text="View Image"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintLeft_toRightOf="@+id/Comment2"
+        app:layout_constraintRight_toRightOf="parent"
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
         app:layout_constraintTop_toBottomOf="@+id/Location" />
 
     <Button
         android:id="@+id/AddHabitEvent"
         android:layout_width="170dp"
         android:layout_height="50dp"
+<<<<<<< HEAD
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:text="Add Habit Event"
@@ -72,10 +117,24 @@
 
     <Button
         android:id="@+id/addHabit"
+=======
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="confirmHabitEvent"
+        android:text="Add Habit Event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/addHabit2"
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
+<<<<<<< HEAD
         android:layout_marginTop="49dp"
         android:text="Add Habit"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -83,3 +142,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
+=======
+        android:layout_marginTop="32dp"
+        android:onClick="selectHabit"
+        android:text="Add Habit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameEvent2" />
+
+    <EditText
+        android:id="@+id/nameEvent2"
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name Of Event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/habitName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="HabitName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addHabit2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
+        tools:layout_editor_absoluteY="303dp" />
+
+</android.support.constraint.ConstraintLayout>
+>>>>>>> 3c324f6243069f0e44e4c261993a12e9742ca3ba

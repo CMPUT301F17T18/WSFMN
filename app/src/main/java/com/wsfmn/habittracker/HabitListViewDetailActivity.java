@@ -18,14 +18,12 @@ import android.widget.Toast;
 
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
-import com.wsfmn.habit.Habit;
 import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habit.WeekDays;
 
 import static com.wsfmn.habittracker.R.id.fridayCheckBox;
-import static com.wsfmn.habittracker.R.id.mondayCheckBox;
 import static com.wsfmn.habittracker.R.id.saturdayCheckBox;
 import static com.wsfmn.habittracker.R.id.sundayCheckBox;
 import static com.wsfmn.habittracker.R.id.thursdayCheckBox;
@@ -66,7 +64,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
         setDateButton = (Button) findViewById(R.id.setDateButton);
-        confirmButton = (Button) findViewById(R.id.confirmButton);
+        confirmButton = (Button) findViewById(R.id.confirmButton2);
         dateText = (EditText) findViewById(R.id.dateText);
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
         tuesday = (CheckBox) findViewById(tuesdayCheckBox);
@@ -80,7 +78,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         position = b.getInt("position");
 
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
 
         habitTitle.setText(c.getHabit(position).getTitle());
         habitReason.setText(c.getHabit(position).getReason());
@@ -134,7 +132,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HabitListViewActivity.class);
 
         try {
-            HabitListController c = new HabitListController();
+            HabitListController c = HabitListController.getInstance();
 
             c.getHabit(position).setTitle(habitTitle.getText().toString());
             c.getHabit(position).setReason(habitReason.getText().toString());
@@ -149,6 +147,8 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             setUnset(sunday, WeekDays.SUNDAY);
 
             c.store();
+            c.updateOnline(c.getHabit(position));
+
             startActivity(intent);
 
         } catch (HabitTitleTooLongException e) {
@@ -169,14 +169,14 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
      */
     public void delete(View view){
         Intent intent = new Intent(this, HabitListViewActivity.class);
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
         c.deleteHabitAt(position);
         c.store();
         startActivity(intent);
     }
 
     public void setUnset(CheckBox checkBox, int day){
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
         if(checkBox.isChecked())
             c.getHabit(position).getWeekDays().setDay(day);
         else
@@ -184,7 +184,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     }
 
     public void setCheckBox(CheckBox checkBox, int day){
-        HabitListController c = new HabitListController();
+        HabitListController c = HabitListController.getInstance();
         checkBox.setChecked(c.getHabit(position).getWeekDays().getDay(day));
     }
 
@@ -196,7 +196,5 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         int day = Integer.parseInt(list[2]);
         return new Date(year, month, day);
     }
-
-
 
 }

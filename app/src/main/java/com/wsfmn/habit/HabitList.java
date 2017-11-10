@@ -1,5 +1,7 @@
 package com.wsfmn.habit;
 
+import com.wsfmn.habitcontroller.OnlineController;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 public class HabitList {
     private ArrayList<Habit> habits;
 
+
     public HabitList() {
         this.habits = new ArrayList<Habit>();
     }
@@ -19,12 +22,12 @@ public class HabitList {
         this.habits = habits;
     }
 
-    // add Habit to a list of Habits
+    // add Habit to HabitList
     public void addHabit(Habit habit){
         habits.add(habit);
     }
 
-    // delete the Habit from a lsit of Habits
+    // delete the Habit from HabitList
     public void deleteHabit(Habit habit){
         habits.remove(habit);
     }
@@ -33,12 +36,10 @@ public class HabitList {
         habits.remove(index);
     }
 
-    // TODO nmayne: added this, needs a test in TestHabitList
-    public int getSize() {
+    public int size() {
         return habits.size();
     }
 
-    // TODO nmayne: added this, needs a test in TestHabitList
     public void addAllHabits(List<Habit> habitsToAdd) {
         habits.addAll(habitsToAdd);
     }
@@ -50,7 +51,6 @@ public class HabitList {
     public void setHabit(int index, Habit habit){
         habits.set(index, habit);
     }
-
 
     public boolean hasHabit(Habit habit){
         return habits.contains(habit);
