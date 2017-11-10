@@ -42,7 +42,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), "");
+            he = new HabitEvent(h, "Title", "Did my habit!", null);
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), "");
+            he = new HabitEvent(h, "Title", "Did my habit!", null);
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -91,7 +91,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), "");
+            he = new HabitEvent(h, "Title", "Did my habit!", null);
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -117,16 +117,13 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testAddAll(){
 
-        while (!HabitHistoryController.isEmpty()) {
-            HabitHistoryController.remove(0);
-        }
+        // Clear out the habit history.
+        while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
-
-        int addNum = 10;
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, new Date(), "");
+            he = new HabitEvent(h, "Title", "Did my habit!", null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (HabitTitleTooLongException e) {
@@ -135,6 +132,8 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
             e.printStackTrace();
         }
 
+        // Add 10 new habit events
+        int addNum = 10;
         ArrayList<HabitEvent> habitEvents = new ArrayList<HabitEvent>();
         for (int i = 0; i < addNum; i++){
             habitEvents.add(he);
@@ -150,6 +149,6 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         Log.d("Size:", String.valueOf(size));
 
         assertTrue(size == addNum);
-
     }
+
 }

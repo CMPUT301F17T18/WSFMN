@@ -31,6 +31,13 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
     /**
+     * Test the online connection
+     */
+    public void testIsConnected(){
+        assertTrue(OnlineController.isConnected());
+    }
+
+    /**
      * Test that Habits can be successfully stored via ElasticSearch
      */
     public void testStoreHabits(){
@@ -99,8 +106,8 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         assertNotNull("Habit List from server was null", habits);
 
-        Habit[] toDelete = new Habit[habits.getSize()];
-        for (int i = 0; i < habits.getSize(); i++) {
+        Habit[] toDelete = new Habit[habits.size()];
+        for (int i = 0; i < habits.size(); i++) {
             assertTrue("Habit in Habit List does not contain search string",
                     habits.getHabit(i).getTitle().toLowerCase().contains(searchString));
             toDelete[i] = habits.getHabit(i);
@@ -124,9 +131,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), new Date(), "Did my habit 1!" );
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), new Date(), "Did my habit 2!");
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {
@@ -139,7 +146,8 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         assertNull("NewHabitEvent2 ID was not null", habitEvent2.getId());
 
         storeHabitEvents.execute(habitEvent1, habitEvent2);
-        Delay(1000); // Delay for transaction to finish
+
+        Delay(2000); // Delay for transaction to finish
 
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
@@ -166,9 +174,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), new Date(), "Did my habit 1!" );
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), new Date(), "Did my habit 2!");
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {

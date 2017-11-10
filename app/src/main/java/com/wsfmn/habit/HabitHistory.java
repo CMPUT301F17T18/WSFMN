@@ -94,5 +94,9 @@ public class HabitHistory {
         return habitHistory.size();
     }
 
+    public ArrayList<HabitEvent> getHabitEventList(){
+        return  habitHistory;
+    }
 
 }
+
