@@ -78,6 +78,8 @@ public class HabitEvent{
 
     public Bitmap getImage(){return image;}
 
+    public void setImage(Bitmap bit){this.image = bit;}
+
 //    public void setLocation(Geolocation location){
 //        this.location = location;
 //    }
