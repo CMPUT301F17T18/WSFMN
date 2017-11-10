@@ -37,6 +37,16 @@ public class HabitHistoryActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        Button B_Map = (Button) findViewById(R.id.B_map);
+        B_Map.setOnClickListener(new View.OnClickListener(){
+            @Override
+            //https://developer.android.com/training/basics/intents/result.html
+            public void onClick(View v){
+                Intent  intent = new Intent(HabitHistoryActivity.this,MapsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
