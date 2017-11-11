@@ -16,6 +16,7 @@ public class Habit{
     private String reason;
     private Date date;
     private WeekDays weekDays;
+    private int[] stats;
 
     public Habit(){
         date = new Date(2017, 10, 26);
@@ -23,6 +24,7 @@ public class Habit{
         title = "title";
         reason = "reason";
         id = null;
+        stats = new int[2];
     }
 
 
