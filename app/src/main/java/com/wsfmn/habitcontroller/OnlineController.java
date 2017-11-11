@@ -15,14 +15,18 @@ import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
+import com.wsfmn.habit.ProfileName;
+import com.wsfmn.habit.Request;
 import com.wsfmn.habittracker.App;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Delete;
+import io.searchbox.core.DeleteByQuery;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
@@ -306,6 +310,158 @@ public class OnlineController {
         }
     }
 
+    public static class SendRequest extends AsyncTask<Request, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Request... requests) {
+            verifySettings();
+
+            for (Request request : requests) {
+                Index index = new Index.Builder(request).index("7f2m").type("request").build();
+                try {
+                    DocumentResult execute = client.execute(index);
+
+                    if(execute.isSucceeded()) {
+                        request.setId(execute.getId());
+                    }
+                    else
+                    {
+                        Log.i("Error", "Could not send request");
+
+                    }
+                }
+                catch (Exception e) {
+                    Log.i("Error", "The application failed to build and send the requests");
+                }
+
+            }
+            return null;
+        }
+    }
+
+
+
+    public static class GetRequest extends AsyncTask<String, Void, ArrayList<Request>> {
+        @Override
+        protected ArrayList<Request> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<Request> requests = new ArrayList<Request>();
+
+            // TODO Build the query
+            String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
+
+
+            Search search = new Search.Builder(query)
+                    .addIndex("7f2m")
+                    .addType("request")
+                    .build();
+
+            try {
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()){
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+
+                    requests.addAll(foundRequests);
+
+                }
+                else {
+                    Log.i("Error", "The search query failed to find any requests that matched");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return requests;
+        }
+    }
+
+
+    public static class DeleteRequest extends AsyncTask<String, Void, ArrayList<Request>> {
+        @Override
+        protected ArrayList<Request> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<Request> requests = new ArrayList<Request>();
+
+            // TODO Build the query
+            String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
+
+
+            DeleteByQuery delete = new DeleteByQuery.Builder(query)
+                    .addIndex("7f2m")
+                    .addType("request")
+                    .build();
+
+            try {
+                // TODO get the results of the query
+                JestResult result = client.execute(delete);
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return requests;
+        }
+    }
+
+    public static class CheckUnique extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... search_parameters) {
+            verifySettings();
+            Boolean flag = false;
+            // TODO Build the query
+            String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ search_parameters[0] + "\"} }\n" + "}";
+            Search search = new Search.Builder(query)
+                    .addIndex("7f2m")
+                    .addType("profilename")
+                    .build();
+            try {
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()){
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
+                        Log.d("Name Exisits:", "Name already in database");
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return flag;
+        }
+    }
+
+    public static class StoreNameInDataBase extends AsyncTask<ProfileName, Void, Void> {
+
+        @Override
+        protected Void doInBackground(ProfileName... names) {
+            verifySettings();
+
+            for (ProfileName profileName : names) {
+                Index index = new Index.Builder(profileName).index("7f2m").type("profilename").build();
+                try {
+                    DocumentResult result = client.execute(index);
+                    if(result.isSucceeded()) {
+                        profileName.setId(result.getId());
+                    }
+                    else
+                    {
+                        Log.i("Error", "Could not send name to elasticsearch");
+
+                    }
+                }
+                catch (Exception e) {
+                    Log.i("Error", "The application failed to build and send the tweets");
+                }
+
+            }
+            return null;
+        }
+    }
 
 
     /**
