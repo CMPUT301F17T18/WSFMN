@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,7 +14,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wsfmn.habit.Request;
 import com.wsfmn.habit.RequestAdapter;
-import com.wsfmn.habitcontroller.ProfileOnlineController;
+import com.wsfmn.habitcontroller.OnlineController;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -79,7 +78,7 @@ public class ProfileActivity extends Activity {
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "share");
         requestsList.add(newRequest);
-        ProfileOnlineController.SendRequest sendRequest = new ProfileOnlineController.SendRequest();
+        OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
         sendRequest.execute(newRequest);
         adapter.notifyDataSetChanged();
     }
@@ -88,7 +87,7 @@ public class ProfileActivity extends Activity {
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "follow");
         requestsList.add(newRequest);
-        ProfileOnlineController.SendRequest sendRequest = new ProfileOnlineController.SendRequest();
+        OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
         sendRequest.execute(newRequest);
         adapter.notifyDataSetChanged();
     }
@@ -109,7 +108,7 @@ public class ProfileActivity extends Activity {
         }
         yourName.setText(profileName);
 
-        ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
+        OnlineController.GetRequest getRequest = new OnlineController.GetRequest();
         getRequest.execute(profileName);
         try{
             requestsList = getRequest.get();

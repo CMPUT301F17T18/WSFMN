@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wsfmn.habit.ProfileName;
-import com.wsfmn.habitcontroller.ProfileOnlineController;
+import com.wsfmn.habitcontroller.OnlineController;
 
 public class UserName_Activity extends AppCompatActivity {
 
@@ -38,7 +38,7 @@ public class UserName_Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // bring the profileName back
-                ProfileOnlineController.CheckUnique check = new ProfileOnlineController.CheckUnique();
+                OnlineController.CheckUnique check = new OnlineController.CheckUnique();
                 check.execute(profileName);
                 try{
                    flag  = check.get();
@@ -51,32 +51,14 @@ public class UserName_Activity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
                 else {
-                    ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
+                    OnlineController.StoreNameInDataBase storeName = new OnlineController.StoreNameInDataBase();
                     storeName.execute(name);
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("uniqueName", profileName);
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
                 }
-                /*if (flag == false) {
-                    AlertDialog.Builder builder2 = new AlertDialog.Builder(UserName_Activity.this);
-                    builder2.setTitle("Name is Taken, Type another!");
-                    builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder2.show();
-                }
-                else {
-                    ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
-                    storeName.execute(name);
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("uniqueName", profileName);
-                    setResult(Activity.RESULT_OK, returnIntent);
-                    finish();
-                }*/
+
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
