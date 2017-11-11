@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wsfmn.habit.Request;
+import com.wsfmn.habit.RequestAdapter;
 import com.wsfmn.habitcontroller.ProfileOnlineController;
 
 import java.io.BufferedReader;
@@ -39,8 +40,7 @@ public class ProfileActivity extends Activity {
     private TextView deleteName;
     private ListView requestsFromUser;
     private ArrayList<Request> requestsList = new ArrayList<Request>();
-    private ArrayAdapter<Request> adapter;
-    //RequestAdapter adapter = new RequestAdapter(requestsList, this);
+    RequestAdapter adapter = new RequestAdapter(requestsList, this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,32 +48,10 @@ public class ProfileActivity extends Activity {
         setContentView(R.layout.activity_profile);
 
         userName = (EditText) findViewById(R.id.userName);
-        deleteName = (EditText) findViewById(R.id.deleteName);
-        Button userOK = (Button) findViewById(R.id.userOK);
-        Button deleteOK = (Button) findViewById(R.id.deleteRequest);
-        Button getRequest = (Button) findViewById(R.id.getRequest);
         requestsFromUser = (ListView) findViewById(R.id.requestStuff);
         yourName = (TextView) findViewById(R.id.showName);
 
-
-        userOK.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                setResult(RESULT_OK);
-                String text = userName.getText().toString();
-                Request newRequest = new Request(profileName, text);
-                requestsList.add(newRequest);
-
-                //saveInFile(); // TODO replace this with elastic search
-                ProfileOnlineController.SendRequest sendRequest = new ProfileOnlineController.SendRequest();
-                System.out.println("STEP 1");
-                sendRequest.execute(newRequest);
-                System.out.println("STEP 2");
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-        deleteOK.setOnClickListener(new View.OnClickListener() {
+       /* deleteOK.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
@@ -93,31 +71,26 @@ public class ProfileActivity extends Activity {
                 adapter.notifyDataSetChanged();
 
             }
-        });
+        });*/
 
-        getRequest.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                setResult(RESULT_OK);
-                String text = deleteName.getText().toString();
+    }
 
+    public void shareOnClick(View view){
+        String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
+        Request newRequest = new Request(profileName, text, "share");
+        requestsList.add(newRequest);
+        ProfileOnlineController.SendRequest sendRequest = new ProfileOnlineController.SendRequest();
+        sendRequest.execute(newRequest);
+        adapter.notifyDataSetChanged();
+    }
 
-                /*ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
-                getRequest.execute("name3");
-                System.out.println("execute");
-                try{
-                    requestsList = getRequest.get();
-                    adapter.notifyDataSetChanged();
-                    System.out.println("Got");
-
-                } catch (Exception e) {
-                    Log.i("Error", "Failed to get the tweets from the async object");
-                }
-                adapter.notifyDataSetChanged();
-                System.out.println("update");*/
-
-            }
-
-        });
+    public void followOnClick(View view){
+        String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
+        Request newRequest = new Request(profileName, text, "follow");
+        requestsList.add(newRequest);
+        ProfileOnlineController.SendRequest sendRequest = new ProfileOnlineController.SendRequest();
+        sendRequest.execute(newRequest);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -126,7 +99,7 @@ public class ProfileActivity extends Activity {
         super.onStart();
         loadFromFile();
 
-        //If User does not have a ProfileNam yet then have them create one.
+        //If User does not have a ProfileName yet then have them create one.
         if (profileName == "" & flag == false){
             Intent intent = new Intent(this,UserName_Activity.class);
             flag = true;
@@ -137,16 +110,14 @@ public class ProfileActivity extends Activity {
         yourName.setText(profileName);
 
         ProfileOnlineController.GetRequest getRequest = new ProfileOnlineController.GetRequest();
-        //String text = "Name3";
         getRequest.execute(profileName);
         try{
             requestsList = getRequest.get();
 
         } catch (Exception e) {
-            Log.i("Error", "Failed to get the tweets from the async object");
+            Log.i("Error", "Failed to get the requests from the async object");
         }
-        adapter = new ArrayAdapter<Request>(this,
-                android.R.layout.simple_list_item_1, requestsList);
+        RequestAdapter adapter = new RequestAdapter(requestsList, this);
         requestsFromUser.setAdapter(adapter);
 
     }

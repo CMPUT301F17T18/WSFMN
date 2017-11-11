@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.wsfmn.habit.ProfileName;
 import com.wsfmn.habitcontroller.ProfileOnlineController;
@@ -29,10 +30,10 @@ public class UserName_Activity extends AppCompatActivity {
     }
 
     public void confirmClick(View view){
-        profileName = yourName.getText().toString().toLowerCase();
+        profileName = yourName.getText().toString().toLowerCase().replaceAll("\\s+","");
         final ProfileName name = new ProfileName(profileName);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("You won't be able to change your name. Have this name?");
+        builder.setTitle("Have this name?  "+ profileName);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -41,22 +42,13 @@ public class UserName_Activity extends AppCompatActivity {
                 check.execute(profileName);
                 try{
                    flag  = check.get();
-                    System.out.println(flag);
 
                 } catch (Exception e) {
                     Log.i("Error", "Couldn't get flag from async object");
                 }
-                if (flag == false) {
-                    AlertDialog.Builder builder2 = new AlertDialog.Builder(UserName_Activity.this);
-                    builder2.setTitle("Name is Taken, Type another!");
-                    builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    builder2.show();
-
+                if (flag == false){
+                    Toast.makeText(UserName_Activity.this, "Name is taken! Type another!",
+                            Toast.LENGTH_LONG).show();
                 }
                 else {
                     ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
@@ -66,12 +58,25 @@ public class UserName_Activity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
                 }
-               /* ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
-                storeName.execute(name);
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("uniqueName", profileName);
-                setResult(Activity.RESULT_OK, returnIntent);
-                finish();*/
+                /*if (flag == false) {
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(UserName_Activity.this);
+                    builder2.setTitle("Name is Taken, Type another!");
+                    builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder2.show();
+                }
+                else {
+                    ProfileOnlineController.StoreNameInDataBase storeName = new ProfileOnlineController.StoreNameInDataBase();
+                    storeName.execute(name);
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("uniqueName", profileName);
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+                }*/
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
