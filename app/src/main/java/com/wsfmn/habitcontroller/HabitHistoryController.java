@@ -202,8 +202,27 @@ public class HabitHistoryController {
             e.printStackTrace();
         }
         storeHabitHistory.execute(habitHistory);
-
     }
+
+    /**
+     *  Stores HabitHistory data locally.
+     */
+    public void store(){
+        OfflineController.StoreHabitHistory storeHabitHistoryOffline =
+                new OfflineController.StoreHabitHistory();
+        storeHabitHistoryOffline.execute(habitHistory);
+    }
+
+    /**
+     * Updates a Habit online
+     * @param he a HabitEvent to update online
+     */
+    public void updateOnline(HabitEvent he) {
+        OnlineController.StoreHabitEvents storeHabitEventsOnline =
+                new OnlineController.StoreHabitEvents();
+        storeHabitEventsOnline.execute(he);
+    }
+
 
     public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
