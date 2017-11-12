@@ -43,6 +43,14 @@ public class WeekDays {
         weekDays[day] = false;
     }
 
+    public boolean equal(WeekDays weekDays){
+        for(int i = 0; i < 7; i++){
+            if(this.weekDays[i] != weekDays.getDay(i))
+                return false;
+        }
+        return true;
+    }
+
     public WeekDays copy(){
         WeekDays copy = new WeekDays();
         for(int i = 0; i < 7; i++){
