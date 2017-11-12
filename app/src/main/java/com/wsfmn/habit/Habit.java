@@ -150,10 +150,7 @@ public class Habit{
 
 
 
-
-
     public int getTotalOccurrence(){
-
         //today
         Date today = new Date();
         if(!hasChanged){
@@ -167,6 +164,7 @@ public class Habit{
             occ = oldOcc + tempOcc;
             hasChanged = false;
         }
+
         return occ;
     }
 

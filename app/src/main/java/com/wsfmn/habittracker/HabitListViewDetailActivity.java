@@ -147,7 +147,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
 
             c.getHabit(position).setTitle(habitTitle.getText().toString());
             c.getHabit(position).setReason(habitReason.getText().toString());
-            c.getHabit(position).setDate(getDateUI());
 
             setUnset(monday, WeekDays.MONDAY);
             setUnset(tuesday, WeekDays.TUESDAY);
@@ -156,6 +155,8 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             setUnset(friday, WeekDays.FRIDAY);
             setUnset(saturday, WeekDays.SATURDAY);
             setUnset(sunday, WeekDays.SUNDAY);
+
+            c.getHabit(position).setDate(getDateUI());
 
             c.store();
             c.updateOnline(c.getHabit(position));
@@ -189,9 +190,9 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     public void setUnset(CheckBox checkBox, int day){
         HabitListController c = HabitListController.getInstance();
         if(checkBox.isChecked())
-            c.getHabit(position).getWeekDays().setDay(day);
+            c.getHabit(position).setDay(day);
         else
-            c.getHabit(position).getWeekDays().unsetDay(day);
+            c.getHabit(position).unsetDay(day);
     }
 
     public void setCheckBox(CheckBox checkBox, int day){
