@@ -120,28 +120,37 @@ public class HabitHistoryController {
 
     /**
      * Removes and returns a HabitEvent at the specified index in HabitHistory,
-     * and decrements the HabitHistory indices that follow it.
+     * and decrements the HabitHistory indices that follow it, and removes it online
      *
      * @param idx int: the index of the HabitEvent to remove
      * @return HabitEvent removed from the specified index
      * @throws IndexOutOfBoundsException
      */
     public static HabitEvent remove(int idx) throws IndexOutOfBoundsException{
-        return habitHistory.remove(idx);
+        HabitEvent removed = habitHistory.remove(idx);
+        OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
+                new OnlineController.DeleteHabitEvents();
+        deleteHabitEventsOnline.execute(removed);
+        return removed;
     }
 
+    //TODO: Handle the case where removing a habit but the user is offline and we need
+    // to remove it later online when they are connected again
     /**
-     * Removes and returns a HabitEvent from HabitHistory,
+     * Removes and returns a HabitEvent from HabitHistory, and online,
      * and decrements the HabitHistory indices that follow it.
      *
-     * @param habitEvent int: the index of the HabitEvent to remove
+     * @param he HabitEvent: the HabitEvent to remove
      * @return HabitEvent removed from HabitHistory or null if in HabitHistory
      * @throws IndexOutOfBoundsException
      */
     @Nullable
-    public static HabitEvent remove(HabitEvent habitEvent) throws IndexOutOfBoundsException{
-        int idx = habitHistory.indexOf(habitEvent);
+    public static HabitEvent remove(HabitEvent he) throws IndexOutOfBoundsException{
+        int idx = habitHistory.indexOf(he);
         if (idx != -1) {
+            OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
+                    new OnlineController.DeleteHabitEvents();
+            deleteHabitEventsOnline.execute(he);
             return habitHistory.remove(idx);
         } else {
             return null;
@@ -223,6 +232,21 @@ public class HabitHistoryController {
         storeHabitEventsOnline.execute(he);
     }
 
+
+    /**
+     * Store the changes to HabitHistory and update the HabitEvent online
+     * @param he a HabitEvent to update online
+     */
+    public void storeAndUpdate(HabitEvent he) {
+        OfflineController.StoreHabitHistory storeHabitHistoryOffline =
+                new OfflineController.StoreHabitHistory();
+        storeHabitHistoryOffline.execute(habitHistory);
+
+        OnlineController.StoreHabitEvents storeHabitEventsOnline =
+                new OnlineController.StoreHabitEvents();
+        storeHabitEventsOnline.execute(he);
+
+    }
 
     public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
