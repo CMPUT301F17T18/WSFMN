@@ -30,6 +30,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Test to ensure Singleton class HabitHistoryController returns correctly typed instance
      */
     public void testGetInstance(){
+        HabitHistoryController.getInstance();
         assertEquals("The instance returned was not a HabitHistoryController",
                 HabitHistoryController.getInstance().getClass(), HabitHistoryController.class);
     }
@@ -40,6 +41,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testAddAndStore(){
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         assertTrue("HabitHistory should have been empty", HabitHistoryController.isEmpty());
@@ -47,7 +49,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
             HabitHistoryController.addAndStore(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -68,12 +70,13 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testGet(){
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -97,12 +100,13 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testRemove() {
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
             HabitHistoryController.add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -127,14 +131,14 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Also tests remove(int idx) to ensure that HabitHistory isEmpty
      */
     public void testAddAll(){
-
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (HabitTitleTooLongException e) {
@@ -168,6 +172,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testHabitOccurrence(){
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitHistoryController c = HabitHistoryController.getInstance();
@@ -196,19 +201,19 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         }
 
         try {
-            he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null);
+            he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
 
         try {
-            he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null);
+            he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
 
         try {
-            he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null);
+            he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }

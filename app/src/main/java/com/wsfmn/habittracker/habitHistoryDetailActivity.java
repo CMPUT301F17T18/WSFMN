@@ -7,22 +7,18 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitEventNameException;
-import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
 import java.io.File;
-import java.io.IOException;
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
@@ -110,13 +106,13 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getmCurrentPhotoPath());
+        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getCurrentPhotoPath());
         startActivity(intent);
     }
 
     public void changePicture2(View view){
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        dispatchTakePictureIntent(control4.get(position2).getmCurrentPhotoPath());
+        dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
     }
 
 
