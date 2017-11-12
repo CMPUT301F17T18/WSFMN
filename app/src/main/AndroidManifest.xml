@@ -49,7 +49,6 @@
         </activity>
         <activity android:name=".HabitHistoryActivity" />
 
-        <activity android:name=".ViewHabitEventActivity" />
         <activity
             android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity" />

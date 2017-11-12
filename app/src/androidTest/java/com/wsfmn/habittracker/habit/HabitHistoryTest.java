@@ -84,6 +84,71 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
                 habitEvent.getComment(), receivedHabitEvent.getComment());
     }
 
+    /**
+     * For a given Habit, test that HabitOccurrence returns the correct number of HabitEvents in
+     * the HabitHistory.
+     */
+    public void testHabitOccurrence(){
+        HabitHistory hh = new HabitHistory();
+        Habit h1 = null;
+        Habit h2 = null;
+        HabitEvent he1 = null;
+        HabitEvent he2 = null;
+        HabitEvent he3 = null;
+
+
+        try {
+            h1 = new Habit("My Habit", new Date());
+        } catch (HabitTitleTooLongException e) {
+            e.printStackTrace();
+        } catch (DateNotValidException e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            h2 = new Habit("My Habit", new Date());
+        } catch (HabitTitleTooLongException e) {
+            e.printStackTrace();
+        } catch (DateNotValidException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null);
+        } catch (HabitCommentTooLongException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null);
+        } catch (HabitCommentTooLongException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null);
+        } catch (HabitCommentTooLongException e) {
+            e.printStackTrace();
+        }
+
+        hh.add(he1);
+        assertEquals("HabitEvent 1 should have existed for habit h1", hh.habitOccurrence(h1), 1);
+        hh.add(he2);
+        assertEquals("HabitEvent 2 should have existed for habit h1", hh.habitOccurrence(h1), 2);
+        hh.remove(1);
+        assertEquals("A HabitEvent for h1 wasn't removed", hh.habitOccurrence(h1), 1);
+
+        hh.add(he3);
+        hh.add(he3);
+        hh.add(he3);
+        assertEquals("Adding HabitEvents for a different Habit changed the" +
+                "number of occurrences of another habit", hh.habitOccurrence(h1), 1);
+
+        assertEquals("The sum of all Habit occurrences in the HabitHistory" +
+                "was not the same as the size of the HabitHistory",
+                hh.size(), (hh.habitOccurrence(h1) + hh.habitOccurrence(h2)));
+    }
 
     public void testRemove() {
         HabitHistory habitHistory = new HabitHistory();

@@ -3,6 +3,7 @@ package com.wsfmn.habitcontroller;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitHistory;
 
@@ -19,8 +20,8 @@ public class HabitHistoryController {
     private static HabitHistory habitHistory = new HabitHistory();
 
     /**
-     * Instantiate the habitHistory attribute
-     * This pulls the data from the locally saved version via OfflineController
+     * Instantiate the habitHistory attribute.
+     * This pulls the data from the locally saved HabitHistory via OfflineController.
      */
     private HabitHistoryController() {
         try {
@@ -38,15 +39,17 @@ public class HabitHistoryController {
     }
 
     /**
-     * Access the instance of the HabitHistoryController singleton
-     * @return INSTANCE: the instance of singleton HabitHistoryController
+     * Access the instance of the HabitHistoryController singleton.
+     *
+     * @return HabitHistoryController the instance of singleton HabitHistoryController
      */
     public static HabitHistoryController getInstance() {
         return INSTANCE;
     }
 
     /**
-     * Checks it the HabitHistory is empty
+     * Checks it the HabitHistory is empty.
+     *
      * @return Boolean true if HabitHistory is empty
      */
     public static Boolean isEmpty() {
@@ -54,7 +57,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Get the size of the habit history
+     * Get the size of the habit history.
+     *
      * @return int the number of entries in HabitHistory
      */
     public static int size() {
@@ -62,7 +66,18 @@ public class HabitHistoryController {
     }
 
     /**
-     * Appends a HabitEvent to the end of HabitHistory
+     * For a given Habit, get its number of HabitEvents in habitHistory.
+     *
+     * @param h Habit: the Habit to get the number of occurrances of
+     * @return int the number of occurances of the given Habit
+     */
+    public int habitOccurrence(Habit h) {
+        return habitHistory.habitOccurrence(h);
+    }
+
+    /**
+     * Appends a HabitEvent to the end of HabitHistory.
+     *
      * @param he HabitEvent: HabitEvent to add to HabitHistory
      */
     public static void add(HabitEvent he) {
@@ -70,7 +85,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Stores a HabitEvent online, locally (appended to HabitHistory), and offline
+     * Stores a HabitEvent online, locally (appended to HabitHistory), and offline.
+     *
      * @param he HabitEvent: HabitEvent to add to HabitHistory
      */
     public static void addAndStore(HabitEvent he) {
@@ -87,12 +103,13 @@ public class HabitHistoryController {
             e.printStackTrace();
         }
 
-        habitHistory.add(he);
+        add(he);
         storeHabitHistory.execute(habitHistory);
     }
 
     /**
-     * Return the HabitEvent at a particular index
+     * Return the HabitEvent at a particular index.
+     *
      * @param idx int: the index of the HabitEvent to get
      * @return HabitEvent at the specified index
      * @throws IndexOutOfBoundsException
@@ -104,6 +121,7 @@ public class HabitHistoryController {
     /**
      * Removes and returns a HabitEvent at the specified index in HabitHistory,
      * and decrements the HabitHistory indices that follow it.
+     *
      * @param idx int: the index of the HabitEvent to remove
      * @return HabitEvent removed from the specified index
      * @throws IndexOutOfBoundsException
@@ -115,6 +133,7 @@ public class HabitHistoryController {
     /**
      * Removes and returns a HabitEvent from HabitHistory,
      * and decrements the HabitHistory indices that follow it.
+     *
      * @param habitEvent int: the index of the HabitEvent to remove
      * @return HabitEvent removed from HabitHistory or null if in HabitHistory
      * @throws IndexOutOfBoundsException
@@ -130,7 +149,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Check to see if a HabitEvent is in HabitHistory
+     * Check to see if a HabitEvent is in HabitHistory.
+     *
      * @param habitEvent HabitEvent: check HabitHistory for this HabitEvent
      * @return Boolean true if the HabitEvent is in HabitHistory
      */
@@ -139,7 +159,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Get the first index of the specified HabitEvent, if it is in HabitHistory
+     * Get the first index of the specified HabitEvent, if it is in HabitHistory.
+     *
      * @param habitEvent HabitEvent: return the first index of this HabitEvent
      * @return int first index of the specified HabitEvent
      */
@@ -148,7 +169,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Add a List of HabitEvents to the HabitHistory
+     * Add a List of HabitEvents to the HabitHistory.
+     *
      * @param habitEvents List<HabitEvent>: a List of HabitEvents to add to HabitHistory
      */
     public static void addAllHabitEvents(List<HabitEvent> habitEvents) {
@@ -156,7 +178,7 @@ public class HabitHistoryController {
     }
 
     /**
-     * Stores HabitHistory online, and offline
+     * Stores HabitHistory online, and offline.
      */
     public static void storeAll() {
         OnlineController.StoreHabitEvents storeHabitEvents =

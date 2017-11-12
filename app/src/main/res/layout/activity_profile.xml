@@ -7,37 +7,26 @@
     tools:context="com.wsfmn.habittracker.ProfileActivity">
 
     <Button
-        android:id="@+id/userOK"
+        android:id="@+id/follow"
         android:layout_width="96dp"
         android:layout_height="48dp"
         android:layout_marginBottom="300dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:text="AddTest"
+        android:onClick="followOnClick"
+        android:text="Follow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
-        android:id="@+id/deleteRequest"
+        android:id="@+id/share"
         android:layout_width="96dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="300dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <Button
-        android:id="@+id/getRequest"
-        android:layout_width="96dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="300dp"
-        android:layout_marginRight="8dp"
-        android:text="Get"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="shareOnClick"
+        android:text="Share"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/follow" />
 
     <ListView
         android:id="@+id/requestStuff"
@@ -63,18 +52,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/deleteName"
-        android:layout_width="96dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/yourName"
         android:layout_width="wrap_content"
@@ -95,6 +72,27 @@
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourName" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="118dp"
+        android:layout_height="71dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Type in a Name you would like to share or follow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+    <Button
+        android:id="@+id/viewFriendEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="300dp"
+        android:layout_marginRight="16dp"
+        android:onClick="viewFriendEventOnClick"
+        android:text="Vew Events"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -15,6 +15,7 @@ import com.wsfmn.habitcontroller.OnlineController;
 import com.wsfmn.habittracker.MainActivity;
 
 import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -57,14 +58,26 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        storeHabits.execute(myHabit1, myHabit2);
-        Delay(1000); // Delay for transaction to finish
+        try {
+            storeHabits.execute(myHabit1, myHabit2);
+            storeHabits.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         assertNotNull(myHabit1.getId());
         assertNotNull(myHabit2.getId());
 
-        deleteHabits.execute(myHabit1, myHabit2);
-        Delay(1000); // Delay for transaction to finish
+        try {
+            deleteHabits.execute(myHabit1, myHabit2);
+            deleteHabits.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -93,9 +106,14 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        storeHabits.execute(myHabit1, myHabit2);
-        Delay(1000); // Delay for transaction to finish
-
+        try {
+            storeHabits.execute(myHabit1, myHabit2);
+            storeHabits.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         getHabits.execute(searchString);
         try {
@@ -114,9 +132,14 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         }
 
         // Delete all the matching habits from the server
-        deleteHabits.execute(toDelete);
-        Delay(1000); // Delay for transaction to finish
-
+        try {
+            deleteHabits.execute(toDelete);
+            deleteHabits.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -145,16 +168,26 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         assertNull("NewHabitEvent1 ID was not null", habitEvent1.getId());
         assertNull("NewHabitEvent2 ID was not null", habitEvent2.getId());
 
-        storeHabitEvents.execute(habitEvent1, habitEvent2);
-
-        Delay(2000); // Delay for transaction to finish
+        try {
+            storeHabitEvents.execute(habitEvent1, habitEvent2);
+            storeHabitEvents.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
 
-        deleteHabitEvents.execute(habitEvent1, habitEvent2);
-        Delay(1000); // Delay for transaction to finish
-
+        try {
+            deleteHabitEvents.execute(habitEvent1, habitEvent2);
+            deleteHabitEvents.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -185,8 +218,14 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        storeHabitEvents.execute(habitEvent1, habitEvent2);
-        Delay(2000); // Delay for transaction to finish
+        try {
+            storeHabitEvents.execute(habitEvent1, habitEvent2);
+            storeHabitEvents.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         getHabitEvents.execute(searchString);
         try {
@@ -195,7 +234,6 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             Log.i("Error", "Failed to get the habits from the async object");
         }
 
-        Delay(1000); // Delay for transaction to finish
         assertNotNull("Habit History from server was null", habitHistory);
 
         HabitEvent[] toDelete = new HabitEvent[habitHistory.size()];
@@ -206,17 +244,23 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         }
 
         // Delete all the matching habits from the server
-        deleteHabitEvents.execute(toDelete);
-        Delay(2000); // Delay for transaction to finish
+        try {
+            deleteHabitEvents.execute(toDelete);
+            deleteHabitEvents.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Delay for this many milliseconds
-     * @param ms milliseconds to delay
-     */
-    private void Delay(int ms){
-        // Delay 1 second for transaction to finish
-        long currentTime = Calendar.getInstance().getTimeInMillis();
-        while((Calendar.getInstance().getTimeInMillis() - currentTime) < ms ){}
-    }
+//    /**
+//     * Delay for this many milliseconds
+//     * @param ms milliseconds to delay
+//     */
+//    private void Delay(int ms){
+//        // Delay 1 second for transaction to finish
+//        long currentTime = Calendar.getInstance().getTimeInMillis();
+//        while((Calendar.getInstance().getTimeInMillis() - currentTime) < ms ){}
+//    }
 }
