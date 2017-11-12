@@ -48,8 +48,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".HabitHistoryActivity" />
-
-        <activity android:name=".ViewHabitEventActivity" />
         <activity
             android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity" />
@@ -68,7 +66,6 @@
         <activity
             android:name=".UserName_Activity"
             android:parentActivityName=".ProfileActivity" />
-
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -89,11 +86,11 @@
             android:name=".HabitEventActivity"
             android:label="@string/title_activity_habit_event"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".selectHabitActivity" />
         <activity android:name=".imageActivity" />
-        <activity android:name=".habitHistoryDetailActivity"></activity>
-
+        <activity android:name=".AddLocationActivity" />
+        <activity android:name=".habitHistoryDetailActivity" />
+        <activity android:name=".ChangeLocationActivity"></activity>
     </application>
 
 </manifest>

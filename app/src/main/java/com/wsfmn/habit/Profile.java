@@ -11,7 +11,7 @@ public class Profile {
 
     private ArrayList<Request> requestList = new ArrayList<Request>();
 
-    private String Name;
+    private String Name = "";
 
 
     public String getName() {
