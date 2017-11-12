@@ -25,7 +25,7 @@ public class HabitEvent{
     String id;
     String date;
     //Path of the file Where image is stored
-    String mCurrentPhotoPath;
+    String CurrentPhotoPath;
 
     //private Bitmap image;
     //private Date date;
@@ -39,15 +39,15 @@ public class HabitEvent{
      * @param habit
      * @param title
      * @param comment
-     * @param mCurrentPhotoPath
+     * @param CurrentPhotoPath
      * @param date
      * @throws HabitCommentTooLongException
      */
-    public HabitEvent(Habit habit, String title, String comment, String mCurrentPhotoPath, String date) throws HabitCommentTooLongException {
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date) throws HabitCommentTooLongException {
         this.habit = habit;
         this.title = title;
         this.comment =comment;
-        this.mCurrentPhotoPath = mCurrentPhotoPath;
+        this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
         this.date = date;
     }
@@ -71,8 +71,8 @@ public class HabitEvent{
      * Get the path of the file where image is stored for the habit Event
      * @return mCurrentPhotoPath: filename of the image
      */
-    public String getmCurrentPhotoPath(){
-        return mCurrentPhotoPath;
+    public String getCurrentPhotoPath(){
+        return CurrentPhotoPath;
     }
 
     /**

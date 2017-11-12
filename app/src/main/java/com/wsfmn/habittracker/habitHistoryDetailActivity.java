@@ -3,6 +3,7 @@ package com.wsfmn.habittracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,9 @@ import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
@@ -106,23 +110,46 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getCurrentPhotoPath());
+        intent.putExtra("CurrentPhotoPath", control4.get(position2).getCurrentPhotoPath());
         startActivity(intent);
     }
 
     public void changePicture2(View view){
-        HabitHistoryController control4 = HabitHistoryController.getInstance();
-        dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
+        try {
+            HabitHistoryController control4 = HabitHistoryController.getInstance();
+            dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
+        }catch (NullPointerException e){
+
+        }
+
+    }
+
+    String CurrentPhotoPath;
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp;
+        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        CurrentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
 
-    private void dispatchTakePictureIntent(String mCurrentPhotoPath) {
+    private void dispatchTakePictureIntent(String CurrentPhotoPath) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
-            photoFile = new File(mCurrentPhotoPath);
+            photoFile = new File(CurrentPhotoPath);
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,

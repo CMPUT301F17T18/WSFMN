@@ -87,7 +87,8 @@
         <activity
             android:name=".HabitEventActivity"
             android:label="@string/title_activity_habit_event"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HabitHistoryActivity"/>
 
         <activity android:name=".selectHabitActivity" />
         <activity android:name=".imageActivity" />
