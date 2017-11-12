@@ -11,6 +11,7 @@ import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habit.ProfileName;
 import com.wsfmn.habitcontroller.OnlineController;
 import com.wsfmn.habittracker.MainActivity;
 
@@ -253,6 +254,25 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Test if we can store a profilename in ElasticSearch
+     */
+    public void testStoreNameinDataBase(){
+        OnlineController store = new OnlineController();
+        ProfileName profilename = new ProfileName("junittest");
+        assertEquals(store.checkName("junittest"), true);
+        store.storeName(profilename);
+
+        assertEquals(store.checkName("junittest"), false);
+
+        OnlineController.DeleteProfileName delete = new OnlineController.DeleteProfileName();
+        delete.execute("junittest");
+
+        assertEquals(store.checkName("junittest"), true);
+
+    }
+
 
 //    /**
 //     * Delay for this many milliseconds

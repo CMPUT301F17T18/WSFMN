@@ -13,6 +13,7 @@ import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habit.Profile;
+import com.wsfmn.habit.ProfileName;
 import com.wsfmn.habitcontroller.OfflineController;
 
 import java.util.Calendar;
@@ -122,7 +123,7 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
         OfflineController.GetUserProfile getUserProfile =
                 new OfflineController.GetUserProfile();
 
-        Profile profile = new Profile();
+        ProfileName profile = new ProfileName();
         profile.setName("USERNAME");
 
         storeUserProfile.execute(profile);

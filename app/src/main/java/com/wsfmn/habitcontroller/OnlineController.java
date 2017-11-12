@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Delete;
@@ -309,6 +310,10 @@ public class OnlineController {
         }
     }
 
+    /**
+     * Send Requests to ElasticSearch  proceed if the device is connected to the internet and will store the
+     * given Request on an ElasticSearch DB. Request will be given an id from ElasticSearch.
+     */
     public static class SendRequest extends AsyncTask<Request, Void, Void> {
 
         @Override
@@ -316,7 +321,10 @@ public class OnlineController {
             verifySettings();
 
             for (Request request : requests) {
-                Index index = new Index.Builder(request).index("7f2m").type("request").build();
+                Index index = new Index.Builder(request)
+                        .index(INDEX_BASE)
+                        .type("request")
+                        .build();
                 try {
                     DocumentResult execute = client.execute(index);
 
@@ -326,20 +334,21 @@ public class OnlineController {
                     else
                     {
                         Log.i("Error", "Could not send request");
-
                     }
                 }
                 catch (Exception e) {
                     Log.i("Error", "The application failed to build and send the requests");
                 }
-
             }
             return null;
         }
     }
 
 
-
+    /**
+     * Retrieve requests from ElasticSearch, Get back at most 10 Requests from Elastic Search with
+     * given query search based on search_parameters.
+     */
     public static class GetRequest extends AsyncTask<String, Void, ArrayList<Request>> {
         @Override
         protected ArrayList<Request> doInBackground(String... search_parameters) {
@@ -352,7 +361,7 @@ public class OnlineController {
 
 
             Search search = new Search.Builder(query)
-                    .addIndex("7f2m")
+                    .addIndex(INDEX_BASE)
                     .addType("request")
                     .build();
 
@@ -376,7 +385,9 @@ public class OnlineController {
         }
     }
 
-
+    /**
+     * Delete a specific Request from ElasticSearch based on give search_parameters
+     */
     public static class DeleteRequest extends AsyncTask<String, Void, ArrayList<Request>> {
         @Override
         protected ArrayList<Request> doInBackground(String... search_parameters) {
@@ -389,7 +400,7 @@ public class OnlineController {
 
 
             DeleteByQuery delete = new DeleteByQuery.Builder(query)
-                    .addIndex("7f2m")
+                    .addIndex(INDEX_BASE)
                     .addType("request")
                     .build();
 
@@ -404,6 +415,51 @@ public class OnlineController {
         }
     }
 
+    /**
+     * Check for a certain Request matching name, searchName, and  requestType. Checks ElasticSearch if
+     * request exists and returns true or false if there is a hit.
+     */
+    public static class RequestExist extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... search_parameters) {
+            verifySettings();
+            Boolean flag = false;
+            // TODO Build the query
+            String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ USERNAME + "\"} }\n" + "}";
+            String query2 = "{\n" + " \"query\": { \"bool\": {\"must\":" +
+                    "[{\"match\":  {\"name\":\"someone\"}}, " +
+                    "{{\"match\":  {\"searchName\":\"someoneelse\"}} ] } } }";
+
+            System.out.println(search_parameters[1]);
+
+            Search search = new Search.Builder(query2)
+                    .addIndex(INDEX_BASE )
+                    .addType("request")
+                    .build();
+            try {
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()){
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(Request.class)) {
+                        Log.d("Name Exisits:", "Name already in database");
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return flag;
+        }
+    }
+
+    /**
+     * Checking ElasticSearch if a name exists in DB. Will return true if the name is unique and false
+     * if there is a hit.
+     *
+     */
     public static class CheckUnique extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... search_parameters) {
@@ -412,7 +468,7 @@ public class OnlineController {
             // TODO Build the query
             String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
-                    .addIndex("7f2m")
+                    .addIndex(INDEX_BASE )
                     .addType("profilename")
                     .build();
             try {
@@ -434,6 +490,31 @@ public class OnlineController {
         }
     }
 
+    /**
+     * OnlineController method to check name for activities to use
+     * @param name
+     * @return
+     */
+    public boolean checkName(String name){
+        //Check controller for name
+        boolean flag = false;
+        OnlineController.CheckUnique check =
+                new OnlineController.CheckUnique();
+        check.execute(name);
+
+        try{
+            flag = check.get();
+
+        } catch (Exception e) {
+            Log.i("Error", "Couldn't get flag from async object");
+        }
+        return flag;
+
+    }
+
+    /**
+     * Storing the user's ProfileName in ElasticSearch DB
+     */
     public static class StoreNameInDataBase extends AsyncTask<ProfileName, Void, Void> {
 
         @Override
@@ -441,7 +522,10 @@ public class OnlineController {
             verifySettings();
 
             for (ProfileName profileName : names) {
-                Index index = new Index.Builder(profileName).index("7f2m").type("profilename").build();
+                Index index = new Index.Builder(profileName)
+                        .index(INDEX_BASE )
+                        .type("profilename")
+                        .build();
                 try {
                     DocumentResult result = client.execute(index);
                     if(result.isSucceeded()) {
@@ -462,6 +546,45 @@ public class OnlineController {
         }
     }
 
+    /**
+     * OnlineController Method for Activties to use to store profilename to ElasticSearch.
+     * @param name
+     */
+    public void storeName(ProfileName name){
+        OnlineController.StoreNameInDataBase store =
+                new OnlineController.StoreNameInDataBase();
+        store.execute(name);
+    }
+
+    /**
+     * Deletes a profilename in ElasticSearch, Main use for intent testing. Cleaning up ElasticSearch DB
+     */
+    public static class DeleteProfileName extends AsyncTask<String, Void, ArrayList<ProfileName>> {
+        @Override
+        protected ArrayList<ProfileName> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<ProfileName> requests = new ArrayList<ProfileName>();
+
+            // TODO Build the query
+            String query = "{\n" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
+
+
+            DeleteByQuery delete = new DeleteByQuery.Builder(query)
+                    .addIndex(INDEX_BASE)
+                    .addType("profilename")
+                    .build();
+
+            try {
+                // TODO get the results of the query
+                JestResult result = client.execute(delete);
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return requests;
+        }
+    }
 
     /**
      * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.

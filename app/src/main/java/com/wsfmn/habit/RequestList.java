@@ -1,30 +1,52 @@
 package com.wsfmn.habit;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Fredric on 2017-11-03.
  */
 
 public class RequestList {
-    private ArrayList<Request> requests = new ArrayList<Request>();
+    private ArrayList<Request> requests;
+    public RequestList() {
+        this.requests = new ArrayList<Request>();
+    }
 
-    public void addTweet(Request request){
+    public RequestList(ArrayList<Request> requests) {
+        this.requests = requests;
+    }
+
+    public void addRequst(Request request){
         requests.add(request);
     }
 
-
-    public void deleteTweet(Request request){
+    public void deleteRequest(Request request){
         requests.remove(request);
-
     }
 
-    public boolean hasTweet(Request request){
-        return requests.contains(request);
+    public void deleteRequestAt(int index){
+        requests.remove(index);
     }
 
-    public Request getTweet(int index){
+    public int size() {
+        return requests.size();
+    }
+
+    public void addAllRequests(List<Request> requestsToAdd) {
+        requests.addAll(requestsToAdd);
+    }
+
+    public Request getRequest(int index){
         return requests.get(index);
+    }
+
+    public void setRequest(int index, Request request){
+        requests.set(index, request);
+    }
+
+    public boolean hasRequest(Request request){
+        return requests.contains(request);
     }
 
 }
