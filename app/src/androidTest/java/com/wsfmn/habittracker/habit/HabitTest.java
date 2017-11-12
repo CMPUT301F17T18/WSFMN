@@ -296,7 +296,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testCalDay(){
-        Habit habit = new Habit();
+        /*Habit habit = new Habit();
         int result = 0;
 
         habit.getDate().setMonth(10);
@@ -309,15 +309,56 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
                 habit.getDate().getDayOfWeek(),
                 habit.getDate().getDaysInMonth());
 
-        assertEquals(result, 3);
+        assertEquals(result, 3);*/
     }
+
 
     public void testTotalOccurrence(){
-        Habit habit = new Habit();
 
-        habit.getWeekDays().setDay(WeekDays.TUESDAY);
-        assertEquals(habit.totalOccurrence(), 2);
+        Date start = new Date(2017, 10, 20);
+        Date end = new Date(2017, 11, 10);
+        WeekDays weekDays = new WeekDays();
+        weekDays.setDay(WeekDays.SATURDAY);
+        weekDays.setDay(WeekDays.SUNDAY);
+        Habit habit = new Habit(start, weekDays);
+
+        assertEquals(habit.totalOccurrence(start, end), 6);
     }
+
+    public void testTotalOccurrenceSameDate(){
+
+        Date start = new Date(2017, 11, 11);
+        Date end = new Date(2017, 11, 11);
+        WeekDays weekDays = new WeekDays();
+        weekDays.setDay(WeekDays.SATURDAY);
+        Habit habit = new Habit(start, weekDays);
+
+        assertEquals(habit.totalOccurrence(start, end), 1);
+    }
+
+    public void testGetTotalOccurrence(){
+
+        //  initial plan
+        Date date = new Date(2017, 10, 20);
+        WeekDays weekDays = new WeekDays();
+        weekDays.setDay(WeekDays.SATURDAY);
+        Habit habit = new Habit(date, weekDays);
+
+        //  to make a change, this call would have been made.
+        habit.getTotalOccurrence();
+
+        //  plan is changed
+        habit.setDay(WeekDays.FRIDAY);
+        habit.unsetDay(WeekDays.SATURDAY);
+        habit.setDay(WeekDays.WEDNESDAY);
+
+
+        //  has to be updated depending on the day, since possible occurrences for a habit
+        //  changes depending on the day.
+        Log.i("musaed", "result = " + habit.getTotalOccurrence());
+        assertEquals(habit.getTotalOccurrence(), 4);
+    }
+
 
 
 }
