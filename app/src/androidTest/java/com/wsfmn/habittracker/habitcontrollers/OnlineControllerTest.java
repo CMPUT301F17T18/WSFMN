@@ -29,6 +29,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
      */
     public OnlineControllerTest() {
         super(MainActivity.class);
+        OnlineController.setUSERNAME("testing");
     }
 
     /**
@@ -36,6 +37,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
      */
     public void testIsConnected(){
         assertTrue(OnlineController.isConnected());
+
     }
 
     /**
@@ -66,6 +68,8 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        Delay(1000); // Wait for server to catch up
 
         assertNotNull(myHabit1.getId());
         assertNotNull(myHabit2.getId());
@@ -114,6 +118,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        Delay(1000); // Wait for server to catch up
+
 
         getHabits.execute(searchString);
         try {
@@ -177,6 +184,8 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
+        Delay(1000); // Wait for server to catch up
+
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
 
@@ -227,6 +236,8 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
+        Delay(1000); // Wait for server to catch up
+
         getHabitEvents.execute(searchString);
         try {
             habitHistory = getHabitEvents.get();
@@ -243,6 +254,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             toDelete[i] = habitHistory.get(i);
         }
 
+        assertTrue(habitHistory.contains(habitEvent1));
+        assertTrue(habitHistory.contains(habitEvent2));
+
         // Delete all the matching habits from the server
         try {
             deleteHabitEvents.execute(toDelete);
@@ -254,13 +268,13 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
-//    /**
-//     * Delay for this many milliseconds
-//     * @param ms milliseconds to delay
-//     */
-//    private void Delay(int ms){
-//        // Delay 1 second for transaction to finish
-//        long currentTime = Calendar.getInstance().getTimeInMillis();
-//        while((Calendar.getInstance().getTimeInMillis() - currentTime) < ms ){}
-//    }
+    /**
+     * Delay for this many milliseconds
+     * @param ms milliseconds to delay
+     */
+    private void Delay(int ms){
+        // Delay 1 second for transaction to finish
+        long currentTime = Calendar.getInstance().getTimeInMillis();
+        while((Calendar.getInstance().getTimeInMillis() - currentTime) < ms ){}
+    }
 }

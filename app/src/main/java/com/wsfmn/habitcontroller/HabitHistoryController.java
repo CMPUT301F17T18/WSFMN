@@ -187,7 +187,7 @@ public class HabitHistoryController {
     }
 
     /**
-     * Stores HabitHistory online, and offline.
+     * Stores instance of HabitHistory online, and offline.
      */
     public static void storeAll() {
         OnlineController.StoreHabitEvents storeHabitEvents =
@@ -214,7 +214,7 @@ public class HabitHistoryController {
     }
 
     /**
-     *  Stores HabitHistory data locally.
+     *  Store the current instance of HabitHistory locally.
      */
     public void store(){
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
@@ -223,7 +223,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Updates a Habit online
+     * Add/update a HabitEvent online.
+     *
      * @param he a HabitEvent to update online
      */
     public void updateOnline(HabitEvent he) {
@@ -232,9 +233,9 @@ public class HabitHistoryController {
         storeHabitEventsOnline.execute(he);
     }
 
-
     /**
-     * Store the changes to HabitHistory and update the HabitEvent online
+     * Store the changes to HabitHistory and update the HabitEvent online.
+     *
      * @param he a HabitEvent to update online
      */
     public void storeAndUpdate(HabitEvent he) {
@@ -248,6 +249,11 @@ public class HabitHistoryController {
 
     }
 
+    /**
+     * Get the underlying HabitEventList.
+     *
+     * @return ArrayList<HabitEvent> containing all the HabitEvents in HabitHistory
+     */
     public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
     }
