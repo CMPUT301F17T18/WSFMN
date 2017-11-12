@@ -55,7 +55,7 @@ public class HabitEvent{
     }
 
     /*Get the path of the file where image is stored for the habit Event*/
-    public String getmCurrentPhotoPath(){
+    public String getCurrentPhotoPath(){
         return mCurrentPhotoPath;
     }
 

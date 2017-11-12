@@ -8,6 +8,7 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
@@ -161,9 +162,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null, null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {
@@ -216,9 +217,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null, null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {
@@ -249,8 +250,12 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         HabitEvent[] toDelete = new HabitEvent[habitHistory.size()];
         for (int i = 0; i < habitHistory.size(); i++) {
-            assertTrue("HabitEvent in HabitHistory does not contain search string",
-                    habitHistory.get(i).getComment().toLowerCase().contains(searchString));
+            try {
+                assertTrue("HabitEvent in HabitHistory does not contain search string",
+                        habitHistory.get(i).getComment().toLowerCase().contains(searchString));
+            } catch (HabitEventCommentTooLongException e) {
+                e.printStackTrace();
+            }
             toDelete[i] = habitHistory.get(i);
         }
 
