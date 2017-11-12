@@ -35,23 +35,5 @@ public class imageActivity extends AppCompatActivity {
 //        }
 //        image.setImageBitmap(bitmap);
 
-<<<<<<< HEAD
-=======
-        int targetW = 256;
-        int targetH = 256;
-
-        int scaleFactor = Math.max(targetH, targetW);
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile("mCurrentPhotoPath", bmOptions);
-
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
-        Bitmap imageBitmap = BitmapFactory.decodeFile(intent.getStringExtra("mCurrentPhotoPath"));
-        image.setImageBitmap(imageBitmap);
-
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     }
 }

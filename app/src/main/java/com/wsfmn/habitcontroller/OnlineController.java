@@ -43,16 +43,8 @@ public class OnlineController {
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;
     private static final int ID_LENGTH = 20;
-    private static String USERNAME = "";
+    private static String USERNAME = "";    // need to get the username form the ProfileController
     private static JestDroidClient client;
-
-    /**
-     * Set the username for all online transactions.
-     * @param un String: username for online access
-     */
-    public static void setUSERNAME(String un) {
-        USERNAME = un;
-    }
 
     /**
      * When StoreHabits.execute(Habit... habits) is called on a StoreHabits object,
@@ -299,6 +291,7 @@ public class OnlineController {
                             idx = JsonString.indexOf(ID_TAG, idx) + ID_TAG_OFFSET;
                             he.setId(JsonString.substring(idx, idx + ID_LENGTH));
                             habitHistory.add(he);
+                            Log.d("GotHabit:", he.getComment());
                         }
                     }
 
@@ -316,12 +309,6 @@ public class OnlineController {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     *
-     */
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     public static class SendRequest extends AsyncTask<Request, Void, Void> {
 
         @Override
@@ -351,14 +338,8 @@ public class OnlineController {
         }
     }
 
-<<<<<<< HEAD
 
 
-=======
-    /**
-     *
-     */
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     public static class GetRequest extends AsyncTask<String, Void, ArrayList<Request>> {
         @Override
         protected ArrayList<Request> doInBackground(String... search_parameters) {
@@ -395,13 +376,7 @@ public class OnlineController {
         }
     }
 
-<<<<<<< HEAD
 
-=======
-    /**
-     *
-     */
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     public static class DeleteRequest extends AsyncTask<String, Void, ArrayList<Request>> {
         @Override
         protected ArrayList<Request> doInBackground(String... search_parameters) {
@@ -429,12 +404,6 @@ public class OnlineController {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     *
-     */
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     public static class CheckUnique extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... search_parameters) {
@@ -452,11 +421,7 @@ public class OnlineController {
                 if (result.isSucceeded()){
                     String JsonString = result.getJsonString();
                     for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
-<<<<<<< HEAD
                         Log.d("Name Exisits:", "Name already in database");
-=======
-                        Log.d("Name Exists:", "Name already in database");
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
                         return false;
                     }
                 }
@@ -469,12 +434,6 @@ public class OnlineController {
         }
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     *
-     */
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     public static class StoreNameInDataBase extends AsyncTask<ProfileName, Void, Void> {
 
         @Override

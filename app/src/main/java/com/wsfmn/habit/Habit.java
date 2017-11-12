@@ -3,7 +3,6 @@ package com.wsfmn.habit;
 
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -12,11 +11,9 @@ import java.util.Calendar;
 
 public class Habit{
 
-
     private String id;
     private String title;
     private String reason;
-<<<<<<< HEAD
     private Date date;
     private WeekDays weekDays;
     private int[] stats;
@@ -28,32 +25,6 @@ public class Habit{
         reason = "reason";
         id = null;
         stats = new int[2];
-=======
-    protected Date date = null;
-    protected WeekDays weekDays;
-
-
-
-    //  these attributes are used calculate possible times the habit could occur,
-    //  taking into consideration that the user might change the Habit plan.
-
-
-    protected int oldOcc = 0;
-    protected int occ = 0;
-    protected int tempOcc = 0;
-    protected boolean hasChanged = false;
-    protected Date currDate;  //  currDate is set to today when any change to the plan occurs
-
-    //  default constructor: required for MockHabit
-    public Habit(){};
-
-    //  custom constructor
-    //  used for testing totalOccurrence
-    public Habit(Date date, WeekDays weekDays){
-        this.currDate = date;
-        this.date = date;
-        this.weekDays = weekDays;
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     }
 
 
@@ -63,7 +34,6 @@ public class Habit{
         this.setDate(date);
         this.setTitle(title);
         this.weekDays = new WeekDays();
-        currDate = date;
     }
 
     public Habit(String title, String reason, Date date) throws HabitTitleTooLongException,
@@ -110,84 +80,34 @@ public class Habit{
         this.reason = reason;
     }
 
-    //  Date object is not accessible outside this class.
     public Date getDate() {
         return date;
     }
 
     public void setDate(Date toStart) throws DateNotValidException {
-        if(this.date == null) {
-            if (toStart.compareDate(new Date()) == -1)
-                throw new DateNotValidException();
-        }
-        else{
-            if(toStart.compareDate(this.date) == -1)
-                throw new DateNotValidException();
-        }
-
-        hasChanged = true;
-        currDate = toStart;
+        if(toStart.compareDate(new Date()) == -1)
+            throw new DateNotValidException();
         this.date = toStart;
     }
 
-    //  WeekDays objects are not accessible outside this class
     public WeekDays getWeekDays() {
         return weekDays;
     }
 
     public void setWeekDays(WeekDays weekDays) {
-        hasChanged = true;
-        currDate = new Date();
         this.weekDays = weekDays;
     }
 
-    public void setDay(int day){
-        hasChanged = true;
-        currDate = new Date();
-        weekDays.setDay(day);
+    public int getHabitOccurrencePercentage(){
+        int totalOccurred = 0;
+        return (totalOccurred / totalOccurrence()) * 100;
     }
 
-    public void unsetDay(int day){
-        hasChanged = true;
-        currDate = new Date();
-        weekDays.unsetDay(day);
-    }
-
-
-
-    @Override
-    public String toString(){
-        return title + "    " + date;
-    }
-
-
-
-
-
-
-
-    public int getTotalOccurrence(){
-
-        //today
-        Date today = new Date();
-        if(!hasChanged){
-            tempOcc = totalOccurrence(currDate, today);
-            occ = tempOcc + oldOcc;
-        }
-
-        else{
-            oldOcc = occ;
-            tempOcc = totalOccurrence(currDate, today);
-            occ = oldOcc + tempOcc;
-            hasChanged = false;
-        }
-        return occ;
-    }
-
-    public int totalOccurrence(Date startDate, Date endDate){
+    public int totalOccurrence(){
         int totalPossibleOccurrence = 0;
-        int tm = endDate.getMonth();
-        int dm = startDate.getMonth();
+        Date today = new Date();
+        int tm = today.getMonth();
+        int dm = this.date.getMonth();
 
 
         for(int m = dm; m <= tm; m++){
@@ -196,13 +116,13 @@ public class Habit{
 
             tempDate.setMonth(m);
             if(tm == dm){  //  current month of habit
-                tempDate.setDay(startDate.getDay());
+                tempDate.setDay(this.date.getDay());
                 beg = tempDate.getDay();
-                end = endDate.getDay();
+                end = today.getDay();
             }
 
             else if(m == dm){
-                tempDate.setDay(startDate.getDay());
+                tempDate.setDay(this.date.getDay());
                 beg = tempDate.getDay();
                 end = tempDate.getDaysInMonth();
             }
@@ -210,26 +130,30 @@ public class Habit{
             else if(m == tm){
                 tempDate.setDay(1);
                 beg = tempDate.getDay();
-                end = endDate.getDay();
+                end = today.getDay();
             }
 
             else{
-                tempDate.setDay(startDate.getDay());
+                tempDate.setDay(this.getDate().getDay());
                 beg = tempDate.getDay();
                 end = tempDate.getDaysInMonth();
             }
-
             dayOfWeek = tempDate.getDayOfWeek();
-            totalPossibleOccurrence += caldays(beg, dayOfWeek, end);
+
+
+            totalPossibleOccurrence += caldays(beg,
+                    dayOfWeek,
+                    end);
         }
 
         return totalPossibleOccurrence;
+
     }
 
     /**
-     *  beg: beg day in month
+     *  beg: day in month
      *  dayOfWeek: dayOfWeek beg corresponds to
-     *  end: end day in month
+     *  end: end of day in month
      */
     public int caldays(int beg, int dayOfWeek, int end){
         int total = 0;
@@ -244,5 +168,10 @@ public class Habit{
         }
 
         return total;
+    }
+
+    @Override
+    public String toString(){
+        return title + "    " + date;
     }
 }

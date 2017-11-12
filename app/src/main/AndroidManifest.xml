@@ -48,10 +48,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".HabitHistoryActivity" />
-<<<<<<< HEAD
-=======
-
->>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         <activity
             android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity" />
