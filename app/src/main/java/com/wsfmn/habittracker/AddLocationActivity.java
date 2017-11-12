@@ -99,6 +99,7 @@ public class AddLocationActivity extends AppCompatActivity {
 
         configure_button();
         newplace_button();
+        confirm_button();
     }
 
     @Override
@@ -111,6 +112,19 @@ public class AddLocationActivity extends AppCompatActivity {
             default:
                 break;
         }
+    }
+
+    void confirm_button(){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
     }
 
     void newplace_button(){
