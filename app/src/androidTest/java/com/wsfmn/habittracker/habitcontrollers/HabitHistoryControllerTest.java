@@ -36,14 +36,14 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Test that HabitHistory is empty before adding a HabitEvent, and not empty after
      * adding a HabitEvent. This tests both add(HabitEvent h) and isEmpty()
      */
-    public void testAdd(){
+    public void testAddAndStore(){
         assertTrue("HabitHistory should have been empty", HabitHistoryController.isEmpty());
 
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
             he = new HabitEvent(h, "Title", "Did my habit!", null);
-            HabitHistoryController.add(he);
+            HabitHistoryController.addAndStore(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (HabitTitleTooLongException e) {
