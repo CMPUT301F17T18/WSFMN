@@ -44,7 +44,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         }
 
 
-        assertEquals(habitEvent.getComment(), "Comment");
+        assertEquals(habitEvent.getComment(), "Did my habit!");
     }
 
     public void testSetComment(){

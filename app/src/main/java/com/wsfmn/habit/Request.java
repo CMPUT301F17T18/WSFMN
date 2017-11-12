@@ -7,13 +7,16 @@ import io.searchbox.annotations.JestId;
 
 public class Request extends ProfileName{
     private String searchName;
+    private String requestType;
+
     public Request(String name) {
         super(name);
     }
 
-    public Request(String name, String searchName){
+    public Request(String name, String searchName, String requestType){
         super(name);
         this.searchName = searchName;
+        this.requestType = requestType;
     }
 
     public String getSearchName() {
@@ -22,5 +25,13 @@ public class Request extends ProfileName{
 
     public void setSearchName(String searchName) {
         this.searchName = searchName;
+    }
+
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
     }
 }
