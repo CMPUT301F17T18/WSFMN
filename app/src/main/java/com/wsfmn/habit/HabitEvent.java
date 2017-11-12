@@ -72,18 +72,29 @@ public class HabitEvent{
         return habit;
     }
 
-    public String getHabitEventTitle(){return title;}
+    public String getHabitEventTitle() throws HabitEventNameException{
+        if(title.length() > 20 || title.length()<1){
+            throw new HabitEventNameException();
+        }
+        return title;
+    }
 
-    public String setTitle(String title){
+    public String setTitle(String title)throws HabitEventNameException{
+        if(title.length() > 20 || title.length()<1){
+            throw new HabitEventNameException();
+        }
         return this.title = title;
     }
 
-    public String getComment() {
+    public String getComment() throws HabitEventCommentTooLongException {
+        if(comment.length() > 20){
+            throw new HabitEventCommentTooLongException();
+        }
         return comment;
     }
 
     public void setComment(String comment) throws HabitEventCommentTooLongException {
-        if(comment.length() >= 20){
+        if(comment.length() > 20){
             throw new HabitEventCommentTooLongException();
         }
         this.comment = comment;

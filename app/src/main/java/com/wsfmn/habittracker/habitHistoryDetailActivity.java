@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
@@ -58,9 +59,18 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController control = HabitHistoryController.getInstance();
 
-        nameEvent.setText(control.get(position2).getHabitEventTitle());
+        try {
+            nameEvent.setText(control.get(position2).getHabitEventTitle());
+        } catch (HabitEventNameException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
         habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
-        comment.setText(control.get(position2).getComment());
+        try {
+            comment.setText(control.get(position2).getComment());
+        } catch (HabitEventCommentTooLongException e) {
+            e.printStackTrace();
+        }
         date.setText(control.get(position2).getDate());
 
     }
@@ -72,9 +82,13 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setTitle(nameEvent.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
-            //control2.addAndStore(control2.get(position2));
+            control2.store();
+            control2.storeAndUpdate(control2.get(position2));
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (HabitEventNameException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
@@ -84,6 +98,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
         control3.remove(position2);
+        control3.store();
         startActivity(intent);
     }
 
