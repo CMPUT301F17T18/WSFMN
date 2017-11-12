@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -24,9 +23,14 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
+<<<<<<< HEAD
+=======
+import com.wsfmn.habit.HabitEventNameException;
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
@@ -50,8 +54,12 @@ public class HabitEventActivity extends AppCompatActivity {
     ImageView img;
     Uri photoURI;
     String datevalue;
+<<<<<<< HEAD
     //int i;
     int i;
+=======
+    Integer i = null;
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     static final int REQUEST_IMAGE_CAPTURE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +95,13 @@ public class HabitEventActivity extends AppCompatActivity {
         });
 
 
+<<<<<<< HEAD
         Button Location = (Button) findViewById(R.id.Location);
         Location.setOnClickListener(new View.OnClickListener(){
+=======
+        Button B_Location = (Button) findViewById(R.id.Location);
+        B_Location.setOnClickListener(new View.OnClickListener(){
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
@@ -185,6 +198,7 @@ public class HabitEventActivity extends AppCompatActivity {
             String test = nameHabitEvent.getText().toString();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
                     nameHabitEvent.getText().toString(), Comment.getText().toString(), mCurrentPhotoPath, date.getText().toString());
+<<<<<<< HEAD
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
             control2.addAndStore(hEvent);
@@ -192,6 +206,34 @@ public class HabitEventActivity extends AppCompatActivity {
             startActivity(intent);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
+=======
+            Habit habit = control.getHabit(i);
+            //Adding Habit Event to the list
+            HabitHistoryController control2 = HabitHistoryController.getInstance();
+
+
+//            control2.get(control2.indexOf(hEvent)).getComment();
+//            control2.get(control2.indexOf(hEvent)).getHabitEventTitle();
+            hEvent.getComment();
+            hEvent.getHabitEventTitle();
+
+            control2.store();
+            control2.addAndStore(hEvent);
+
+
+            startActivity(intent);
+        } catch (HabitCommentTooLongException e) {
+            e.printStackTrace();
+        } catch (HabitEventCommentTooLongException e) {
+            Toast.makeText(HabitEventActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (HabitEventNameException e) {
+            Toast.makeText(HabitEventActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch(NullPointerException e){
+            Toast.makeText(HabitEventActivity.this, "Habit Event needs to contain Habit",
+                    Toast.LENGTH_LONG).show();
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         }
     }
 

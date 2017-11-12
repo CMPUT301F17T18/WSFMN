@@ -66,21 +66,34 @@ public class HabitHistory {
     /**
      * Check to see it a HabitEvent is in HabitHistory.
      *
+<<<<<<< HEAD
      * @param habitEvent HabitEvent: check HabitHistory for this HabitEvent
+=======
+     * @param he HabitEvent: check HabitHistory for this HabitEvent
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
      * @return Boolean true if the HabitEvent is in HabitHistory
      */
-    public Boolean contains(HabitEvent habitEvent) {
-        return habitHistory.contains(habitEvent);
+    public Boolean contains(HabitEvent he) {
+        for (int i = 0; i < habitHistory.size(); i++) {
+            if (he.getId() != null && habitHistory.get(i).getId().contains(he.getId())) {
+                return true;
+            }
+        }
+        return habitHistory.contains(he);
     }
 
     /**
      * Get the first index of the specified HabitEvent, if it is in HabitHistory.
      *
+<<<<<<< HEAD
      * @param habitEvent HabitEvent: get the first index of this HabitEvent
+=======
+     * @param he HabitEvent: get the first index of this HabitEvent
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
      * @return int first index of the specified HabitEvent
      */
-    public int indexOf(HabitEvent habitEvent){
-        return habitHistory.indexOf(habitEvent);
+    public int indexOf(HabitEvent he){
+        return habitHistory.indexOf(he);
     }
 
     /**

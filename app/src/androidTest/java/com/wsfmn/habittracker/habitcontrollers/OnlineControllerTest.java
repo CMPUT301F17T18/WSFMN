@@ -8,6 +8,7 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
@@ -29,6 +30,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
      */
     public OnlineControllerTest() {
         super(MainActivity.class);
+        OnlineController.setUSERNAME("testing");
     }
 
     /**
@@ -36,6 +38,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
      */
     public void testIsConnected(){
         assertTrue(OnlineController.isConnected());
+
     }
 
     /**
@@ -66,6 +69,11 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+=======
+
+        Delay(1000); // Wait for server to catch up
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 
         assertNotNull(myHabit1.getId());
         assertNotNull(myHabit2.getId());
@@ -114,6 +122,12 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+=======
+
+        Delay(1000); // Wait for server to catch up
+
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 
         getHabits.execute(searchString);
         try {
@@ -154,9 +168,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null, null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {
@@ -176,6 +190,11 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+=======
+
+        Delay(1000); // Wait for server to catch up
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
@@ -207,9 +226,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null, null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {
@@ -226,6 +245,11 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+=======
+
+        Delay(1000); // Wait for server to catch up
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 
         getHabitEvents.execute(searchString);
         try {
@@ -238,10 +262,17 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         HabitEvent[] toDelete = new HabitEvent[habitHistory.size()];
         for (int i = 0; i < habitHistory.size(); i++) {
-            assertTrue("HabitEvent in HabitHistory does not contain search string",
-                    habitHistory.get(i).getComment().toLowerCase().contains(searchString));
+            try {
+                assertTrue("HabitEvent in HabitHistory does not contain search string",
+                        habitHistory.get(i).getComment().toLowerCase().contains(searchString));
+            } catch (HabitEventCommentTooLongException e) {
+                e.printStackTrace();
+            }
             toDelete[i] = habitHistory.get(i);
         }
+
+        assertTrue(habitHistory.contains(habitEvent1));
+        assertTrue(habitHistory.contains(habitEvent2));
 
         // Delete all the matching habits from the server
         try {

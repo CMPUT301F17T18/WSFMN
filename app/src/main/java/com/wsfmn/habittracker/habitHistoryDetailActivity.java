@@ -14,14 +14,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
+=======
+import com.wsfmn.habit.HabitEventCommentTooLongException;
+import com.wsfmn.habit.HabitEventNameException;
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
 import java.io.File;
+<<<<<<< HEAD
 import java.io.IOException;
+=======
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
@@ -58,9 +66,24 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController control = HabitHistoryController.getInstance();
 
+<<<<<<< HEAD
         nameEvent.setText(control.get(position2).getHabitEventTitle());
         habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
         comment.setText(control.get(position2).getComment());
+=======
+        try {
+            nameEvent.setText(control.get(position2).getHabitEventTitle());
+        } catch (HabitEventNameException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
+        habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
+        try {
+            comment.setText(control.get(position2).getComment());
+        } catch (HabitEventCommentTooLongException e) {
+            e.printStackTrace();
+        }
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         date.setText(control.get(position2).getDate());
 
     }
@@ -72,11 +95,22 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setTitle(nameEvent.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
+<<<<<<< HEAD
             //control2.addAndStore(control2.get(position2));
+=======
+            control2.store();
+            control2.storeAndUpdate(control2.get(position2));
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
+<<<<<<< HEAD
+=======
+        } catch (HabitEventNameException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         }
     }
 
@@ -84,6 +118,10 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
         control3.remove(position2);
+<<<<<<< HEAD
+=======
+        control3.store();
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         startActivity(intent);
     }
 
@@ -95,13 +133,21 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
+<<<<<<< HEAD
         intent.putExtra("mCurrentPhotoPath", control4.get(position2).getmCurrentPhotoPath());
+=======
+        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getCurrentPhotoPath());
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         startActivity(intent);
     }
 
     public void changePicture2(View view){
         HabitHistoryController control4 = HabitHistoryController.getInstance();
+<<<<<<< HEAD
         dispatchTakePictureIntent(control4.get(position2).getmCurrentPhotoPath());
+=======
+        dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
     }
 
 

@@ -7,6 +7,7 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitTitleTooLongException;
 
@@ -41,7 +42,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null);
+            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
 
         }
         catch(HabitCommentTooLongException e){
@@ -70,7 +71,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null);
+            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -80,8 +81,12 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         habitHistory.add(habitEvent);
 
         HabitEvent receivedHabitEvent = habitHistory.get(0);
-        assertEquals("HabitEvent in HabitHistory was not the same as the HabitEvent just added.",
-                habitEvent.getComment(), receivedHabitEvent.getComment());
+        try {
+            assertEquals("HabitEvent in HabitHistory was not the same as the HabitEvent just added.",
+                    habitEvent.getComment(), receivedHabitEvent.getComment());
+        } catch (HabitEventCommentTooLongException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -115,19 +120,31 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
+<<<<<<< HEAD
             he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null);
+=======
+            he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null, null);
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
 
         try {
+<<<<<<< HEAD
             he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null);
+=======
+            he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null, null);
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
 
         try {
+<<<<<<< HEAD
             he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null);
+=======
+            he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null, null);
+>>>>>>> a8dcb796c7cf68f71f53f3868ca229daed2fbd5c
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
@@ -167,7 +184,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit,"Title", "Did my habit!", null);
+            habitEvent = new HabitEvent(myHabit,"Title", "Did my habit!", null, null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -176,8 +193,12 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         habitHistory.add(habitEvent);
 
         HabitEvent removedHabitEvent = habitHistory.remove(0);
-        assertEquals("HabitEvent removed from HabitHistory was not the same as the HabitEvent just added.",
-                habitEvent.getComment(), removedHabitEvent.getComment());
+        try {
+            assertEquals("HabitEvent removed from HabitHistory was not the same as the HabitEvent just added.",
+                    habitEvent.getComment(), removedHabitEvent.getComment());
+        } catch (HabitEventCommentTooLongException e) {
+            e.printStackTrace();
+        }
     }
 
     public void testContains() {
@@ -197,7 +218,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null);
+            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
 
         }
         catch(HabitCommentTooLongException e){
@@ -226,7 +247,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         }
 
         try {
-            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null);
+            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
         }
         catch(HabitCommentTooLongException e){
             //null
