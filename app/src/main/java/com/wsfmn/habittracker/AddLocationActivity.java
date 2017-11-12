@@ -31,6 +31,7 @@ public class AddLocationActivity extends AppCompatActivity {
     private Button button;
     private Button B_new;
     private TextView T_address;
+    private TextView T_coord;
     private LocationManager locationManager;
     private LocationListener listener;
     private EditText E_address;
@@ -41,7 +42,8 @@ public class AddLocationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_location);
 
-        T_address = (TextView) findViewById(R.id.T_coordination);
+        T_coord = (TextView) findViewById(R.id.T_coordination);
+        T_address = (TextView) findViewById(R.id.T_address);
         button = (Button) findViewById(R.id.B_Current);
         B_new = (Button) findViewById(R.id.B_New);
         E_address = (EditText) findViewById(R.id.E_address);
@@ -54,7 +56,11 @@ public class AddLocationActivity extends AppCompatActivity {
         listener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                T_address.append("\n " + location.getLongitude() + " " + location.getLatitude());
+
+                T_coord.setText("");
+                T_address.setText("");
+
+                T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
                 Geocoder geocoder = new Geocoder(AddLocationActivity.this);
                 LatLng latLng = new LatLng(location.getLongitude(),location.getLatitude());
                 try {
@@ -62,10 +68,10 @@ public class AddLocationActivity extends AppCompatActivity {
                     Address myAddress = addressList.get(0);
                     //set to Geolocation
                     Geolocation geolocation = new Geolocation(myAddress,latLng);
-                    E_address.append(myAddress.toString());
+                    T_address.append(myAddress.toString());
 
-                    Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
-                    startActivity(intent);
+                    //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                    //startActivity(intent);
 
 
                 } catch (IOException e) {
@@ -137,6 +143,12 @@ public class AddLocationActivity extends AppCompatActivity {
 
                 Address myAddress = addressList.get(0);
                 LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                T_coord.setText("");
+                T_address.setText("");
+
+                T_coord.append("\n"+myAddress.getLatitude()+" "+myAddress.getLongitude());
+                T_address.append(myAddress.toString());
+
 
                 Geolocation geolocation = new Geolocation(myAddress,latlng);
 
