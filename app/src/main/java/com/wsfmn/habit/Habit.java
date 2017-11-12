@@ -16,7 +16,7 @@ public class Habit{
     private String id;
     private String title;
     private String reason;
-    protected Date date;
+    protected Date date = null;
     protected WeekDays weekDays;
 
 
@@ -102,8 +102,14 @@ public class Habit{
     }
 
     public void setDate(Date toStart) throws DateNotValidException {
-        if(toStart.compareDate(new Date()) == -1)
-            throw new DateNotValidException();
+        if(this.date == null) {
+            if (toStart.compareDate(new Date()) == -1)
+                throw new DateNotValidException();
+        }
+        else{
+            if(toStart.compareDate(this.date) == -1)
+                throw new DateNotValidException();
+        }
 
         hasChanged = true;
         currDate = toStart;
@@ -124,14 +130,12 @@ public class Habit{
     public void setDay(int day){
         hasChanged = true;
         currDate = new Date();
-        //currDate = new Date(2017, 11, 2);
         weekDays.setDay(day);
     }
 
     public void unsetDay(int day){
         hasChanged = true;
         currDate = new Date();
-        //currDate = new Date(2017, 11, 2);
         weekDays.unsetDay(day);
     }
 

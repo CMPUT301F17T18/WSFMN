@@ -71,12 +71,12 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         confirmButton = (Button) findViewById(R.id.confirmButton2);
         dateText = (EditText) findViewById(R.id.dateText);
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
-        tuesday = (CheckBox) findViewById(tuesdayCheckBox);
-        wednesday = (CheckBox) findViewById(wednesdayCheckBox);
-        thursday = (CheckBox) findViewById(thursdayCheckBox);
-        friday = (CheckBox) findViewById(fridayCheckBox);
-        saturday = (CheckBox) findViewById(saturdayCheckBox);
-        sunday = (CheckBox) findViewById(sundayCheckBox);
+        tuesday = (CheckBox) findViewById(R.id.tuesdayCheckBox);
+        wednesday = (CheckBox) findViewById(R.id.wednesdayCheckBox);
+        thursday = (CheckBox) findViewById(R.id.thursdayCheckBox);
+        friday = (CheckBox) findViewById(R.id.fridayCheckBox);
+        saturday = (CheckBox) findViewById(R.id.saturdayCheckBox);
+        sunday = (CheckBox) findViewById(R.id.sundayCheckBox);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
