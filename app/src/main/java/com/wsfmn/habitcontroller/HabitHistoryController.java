@@ -16,14 +16,15 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class HabitHistoryController {
-    private static final HabitHistoryController INSTANCE = new HabitHistoryController();
-    private static HabitHistory habitHistory = new HabitHistory();
+    private static HabitHistoryController INSTANCE = null;
+    private static HabitHistory habitHistory = null;
 
     /**
      * Instantiate the habitHistory attribute.
      * This pulls the data from the locally saved HabitHistory via OfflineController.
      */
     private HabitHistoryController() {
+        habitHistory = new HabitHistory();
         try {
             OfflineController.GetHabitHistory getHabitHistoryOffline =
                     new OfflineController.GetHabitHistory();
@@ -44,6 +45,9 @@ public class HabitHistoryController {
      * @return HabitHistoryController the instance of singleton HabitHistoryController
      */
     public static HabitHistoryController getInstance() {
+        if(INSTANCE == null){
+            INSTANCE = new HabitHistoryController();
+        }
         return INSTANCE;
     }
 
