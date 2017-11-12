@@ -14,12 +14,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
-import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
@@ -55,8 +53,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     private CheckBox saturday;
     private CheckBox sunday;
 
-    private ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,14 +67,12 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         confirmButton = (Button) findViewById(R.id.confirmButton2);
         dateText = (EditText) findViewById(R.id.dateText);
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
-        tuesday = (CheckBox) findViewById(R.id.tuesdayCheckBox);
-        wednesday = (CheckBox) findViewById(R.id.wednesdayCheckBox);
-        thursday = (CheckBox) findViewById(R.id.thursdayCheckBox);
-        friday = (CheckBox) findViewById(R.id.fridayCheckBox);
-        saturday = (CheckBox) findViewById(R.id.saturdayCheckBox);
-        sunday = (CheckBox) findViewById(R.id.sundayCheckBox);
-
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        tuesday = (CheckBox) findViewById(tuesdayCheckBox);
+        wednesday = (CheckBox) findViewById(wednesdayCheckBox);
+        thursday = (CheckBox) findViewById(thursdayCheckBox);
+        friday = (CheckBox) findViewById(fridayCheckBox);
+        saturday = (CheckBox) findViewById(saturdayCheckBox);
+        sunday = (CheckBox) findViewById(sundayCheckBox);
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
@@ -126,11 +120,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             }
         };
 
-
-        HabitHistoryController c2 = HabitHistoryController.getInstance();
-        int occurred = c2.habitOccurrence(c.getHabit(position));
-        int occurrence = c.getHabit(position).getTotalOccurrence();
-        progressBar.setProgress((occurred / occurrence) * 100);
     }
 
 
@@ -147,7 +136,6 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
 
             c.getHabit(position).setTitle(habitTitle.getText().toString());
             c.getHabit(position).setReason(habitReason.getText().toString());
-            c.getHabit(position).setDate(getDateUI());
 
             setUnset(monday, WeekDays.MONDAY);
             setUnset(tuesday, WeekDays.TUESDAY);
@@ -156,6 +144,8 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             setUnset(friday, WeekDays.FRIDAY);
             setUnset(saturday, WeekDays.SATURDAY);
             setUnset(sunday, WeekDays.SUNDAY);
+
+            c.getHabit(position).setDate(getDateUI());
 
             c.store();
             c.updateOnline(c.getHabit(position));
@@ -189,9 +179,9 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     public void setUnset(CheckBox checkBox, int day){
         HabitListController c = HabitListController.getInstance();
         if(checkBox.isChecked())
-            c.getHabit(position).getWeekDays().setDay(day);
+            c.getHabit(position).setDay(day);
         else
-            c.getHabit(position).getWeekDays().unsetDay(day);
+            c.getHabit(position).unsetDay(day);
     }
 
     public void setCheckBox(CheckBox checkBox, int day){

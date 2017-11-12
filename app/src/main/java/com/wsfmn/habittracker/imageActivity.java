@@ -21,21 +21,19 @@ public class imageActivity extends AppCompatActivity {
 
         image = (ImageView)findViewById(R.id.viewImageNew);
         Intent intent = getIntent();
-
-        int targetW = 256;
-        int targetH = 256;
-
-        int scaleFactor = Math.max(targetH, targetW);
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile("mCurrentPhotoPath", bmOptions);
-
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
+//        Uri uri = intent.getParcelableExtra("imageUri");
         Bitmap imageBitmap = BitmapFactory.decodeFile(intent.getStringExtra("mCurrentPhotoPath"));
         image.setImageBitmap(imageBitmap);
+
+
+
+//        Bitmap bitmap = null;
+//        try {
+//            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        image.setImageBitmap(bitmap);
 
     }
 }

@@ -296,11 +296,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testCalDay(){
-        /*Habit habit = new Habit();
+        Habit habit = new Habit(new Date(2017, 10, 26), new WeekDays());
         int result = 0;
 
-        habit.getDate().setMonth(10);
-        habit.getDate().setDay(26);
         habit.getWeekDays().setDay(WeekDays.FRIDAY);
         habit.getWeekDays().setDay(WeekDays.MONDAY);
         habit.getWeekDays().setDay(WeekDays.TUESDAY);
@@ -309,7 +307,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
                 habit.getDate().getDayOfWeek(),
                 habit.getDate().getDaysInMonth());
 
-        assertEquals(result, 3);*/
+        assertEquals(result, 3);
     }
 
 
@@ -336,28 +334,6 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         assertEquals(habit.totalOccurrence(start, end), 1);
     }
 
-    public void testGetTotalOccurrence(){
-
-        //  initial plan
-        Date date = new Date(2017, 10, 20);
-        WeekDays weekDays = new WeekDays();
-        weekDays.setDay(WeekDays.SATURDAY);
-        Habit habit = new Habit(date, weekDays);
-
-        //  to make a change, this call would have been made.
-        habit.getTotalOccurrence();
-
-        //  plan is changed
-        habit.setDay(WeekDays.FRIDAY);
-        habit.unsetDay(WeekDays.SATURDAY);
-        habit.setDay(WeekDays.WEDNESDAY);
-
-
-        //  has to be updated depending on the day, since possible occurrences for a habit
-        //  changes depending on the day.
-        Log.i("musaed", "result = " + habit.getTotalOccurrence());
-        assertEquals(habit.getTotalOccurrence(), 4);
-    }
 
 
 

@@ -5,6 +5,8 @@ package com.wsfmn.habit;
  * Created by musaed on 2017-11-12.
  */
 
+import android.util.Log;
+
 /**
  *  This class imitates Habit, but with customized attributed to test
  *  getTotalOccurrences. The particular purpose of this class is to see
@@ -30,16 +32,24 @@ public class MockHabit extends Habit {
 
     public MockHabit(Date date, WeekDays weekDays){
         this.date = date;
+        this.currDate = date;
         this.weekDays = weekDays;
     }
 
     public void setDate(Date toStart) throws DateNotValidException {
-        if(toStart.compareDate(new Date()) == -1)
-            throw new DateNotValidException();
+        if(this.date == null) {
+            if (toStart.compareDate(new Date()) == -1)
+                throw new DateNotValidException();
+        }
+        else{
+            if(toStart.compareDate(this.date) == -1)
+                throw new DateNotValidException();
+        }
 
         hasChanged = true;
         currDate = toStart;
         this.date = toStart;
+        today = todayAfterChange;
     }
 
 
@@ -53,7 +63,7 @@ public class MockHabit extends Habit {
     public void setDay(int day){
         hasChanged = true;
         currDate = today;
-        currDate = todayAfterChange;
+        today = todayAfterChange;
         weekDays.setDay(day);
     }
 
@@ -77,6 +87,7 @@ public class MockHabit extends Habit {
             occ = oldOcc + tempOcc;
             hasChanged = false;
         }
+
         return occ;
     }
 
