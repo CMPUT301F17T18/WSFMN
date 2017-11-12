@@ -112,7 +112,6 @@ public class HabitListController {
         return habitList.getHabitsForToday();
     }
 
-
     /**
      *  Used to load local data into habitList once it is first created.
      */

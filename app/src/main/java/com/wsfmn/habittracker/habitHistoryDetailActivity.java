@@ -7,18 +7,21 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
-import com.wsfmn.habit.HabitEventNameException;
+import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
 import java.io.File;
+import java.io.IOException;
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
@@ -55,18 +58,9 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController control = HabitHistoryController.getInstance();
 
-        try {
-            nameEvent.setText(control.get(position2).getHabitEventTitle());
-        } catch (HabitEventNameException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        }
+        nameEvent.setText(control.get(position2).getHabitEventTitle());
         habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
-        try {
-            comment.setText(control.get(position2).getComment());
-        } catch (HabitEventCommentTooLongException e) {
-            e.printStackTrace();
-        }
+        comment.setText(control.get(position2).getComment());
         date.setText(control.get(position2).getDate());
 
     }
@@ -78,13 +72,9 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setTitle(nameEvent.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
-            control2.store();
-            control2.storeAndUpdate(control2.get(position2));
+            //control2.addAndStore(control2.get(position2));
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        } catch (HabitEventNameException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
@@ -94,7 +84,6 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
         control3.remove(position2);
-        control3.store();
         startActivity(intent);
     }
 
@@ -106,13 +95,13 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getCurrentPhotoPath());
+        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getmCurrentPhotoPath());
         startActivity(intent);
     }
 
     public void changePicture2(View view){
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
+        dispatchTakePictureIntent(control4.get(position2).getmCurrentPhotoPath());
     }
 
 

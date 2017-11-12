@@ -49,12 +49,6 @@ public class Date {
         this.day = day;
     }
 
-    public Date copy(){
-        return new Date(this.getYear(),
-                this.getMonth(),
-                this.getDay());
-    }
-
     public int getDaysInMonth() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);

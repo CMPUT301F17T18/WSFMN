@@ -16,15 +16,14 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class HabitHistoryController {
-    private static HabitHistoryController INSTANCE = null;
-    private static HabitHistory habitHistory = null;
+    private static final HabitHistoryController INSTANCE = new HabitHistoryController();
+    private static HabitHistory habitHistory = new HabitHistory();
 
     /**
      * Instantiate the habitHistory attribute.
      * This pulls the data from the locally saved HabitHistory via OfflineController.
      */
     private HabitHistoryController() {
-        habitHistory = new HabitHistory();
         try {
             OfflineController.GetHabitHistory getHabitHistoryOffline =
                     new OfflineController.GetHabitHistory();
@@ -36,6 +35,7 @@ public class HabitHistoryController {
         } catch (ExecutionException e) {
             Log.i("Error", e.getMessage());
         }
+
     }
 
     /**
@@ -44,9 +44,6 @@ public class HabitHistoryController {
      * @return HabitHistoryController the instance of singleton HabitHistoryController
      */
     public static HabitHistoryController getInstance() {
-        if(INSTANCE == null){
-            INSTANCE = new HabitHistoryController();
-        }
         return INSTANCE;
     }
 
@@ -190,7 +187,7 @@ public class HabitHistoryController {
     }
 
     /**
-     * Stores instance of HabitHistory online, and offline.
+     * Stores HabitHistory online, and offline.
      */
     public static void storeAll() {
         OnlineController.StoreHabitEvents storeHabitEvents =
@@ -217,7 +214,7 @@ public class HabitHistoryController {
     }
 
     /**
-     *  Store the current instance of HabitHistory locally.
+     *  Stores HabitHistory data locally.
      */
     public void store(){
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
@@ -226,8 +223,7 @@ public class HabitHistoryController {
     }
 
     /**
-     * Add/update a HabitEvent online.
-     *
+     * Updates a Habit online
      * @param he a HabitEvent to update online
      */
     public void updateOnline(HabitEvent he) {
@@ -236,9 +232,9 @@ public class HabitHistoryController {
         storeHabitEventsOnline.execute(he);
     }
 
+
     /**
-     * Store the changes to HabitHistory and update the HabitEvent online.
-     *
+     * Store the changes to HabitHistory and update the HabitEvent online
      * @param he a HabitEvent to update online
      */
     public void storeAndUpdate(HabitEvent he) {
@@ -252,11 +248,6 @@ public class HabitHistoryController {
 
     }
 
-    /**
-     * Get the underlying HabitEventList.
-     *
-     * @return ArrayList<HabitEvent> containing all the HabitEvents in HabitHistory
-     */
     public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
     }

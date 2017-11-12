@@ -4,10 +4,10 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Geolocation;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
-import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 
 
@@ -37,18 +37,14 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null, null);
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
 
-        try {
-            assertEquals(habitEvent.getComment(), "Did my habit!");
-        } catch (HabitEventCommentTooLongException e) {
-            e.printStackTrace();
-        }
+        assertEquals(habitEvent.getComment(), "Comment");
     }
 
     public void testSetComment(){
@@ -68,7 +64,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null, null);
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -76,16 +72,13 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
 
         try{
             habitEvent.setComment("Comment2Test");
-        } catch (HabitEventCommentTooLongException e) {
-            e.printStackTrace();
+        }
+        catch(HabitCommentTooLongException e){
+            //null
         }
 
 
-        try {
-            assertEquals(habitEvent.getComment(), "Comment2Test");
-        } catch (HabitEventCommentTooLongException e) {
-            e.printStackTrace();
-        }
+        assertEquals(habitEvent.getComment(), "Comment2Test");
     }
 
     public void testGetHabit(){
@@ -105,7 +98,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null, null);
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -132,7 +125,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null, null);
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -160,15 +153,15 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2 {
         HabitEvent habitEvent = null;
 
         try {
-            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null, null);
+            habitEvent = new HabitEvent(habit, "Title", "Did my habit!", null);
         }
         catch(HabitCommentTooLongException e){
             //null
         }
 
 
-//        assertNull(habitEvent.getCurrentPhotoPath());
-//        habitEvent.setImage("PATH");
-//        assertNotNull(habitEvent.getCurrentPhotoPath());
+        assertNull(habitEvent.getImage());
+        habitEvent.setImage(null);
+        assertNotNull(habitEvent.getImage());
     }
 }
