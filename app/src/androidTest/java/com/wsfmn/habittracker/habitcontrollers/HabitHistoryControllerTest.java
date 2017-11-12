@@ -30,6 +30,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Test to ensure Singleton class HabitHistoryController returns correctly typed instance
      */
     public void testGetInstance(){
+        HabitHistoryController.getInstance();
         assertEquals("The instance returned was not a HabitHistoryController",
                 HabitHistoryController.getInstance().getClass(), HabitHistoryController.class);
     }
@@ -40,6 +41,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testAddAndStore(){
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         assertTrue("HabitHistory should have been empty", HabitHistoryController.isEmpty());
@@ -68,6 +70,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testGet(){
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitEvent he = null;
@@ -97,6 +100,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testRemove() {
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitEvent he = null;
@@ -127,8 +131,8 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Also tests remove(int idx) to ensure that HabitHistory isEmpty
      */
     public void testAddAll(){
-
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitEvent he = null;
@@ -168,6 +172,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      */
     public void testHabitOccurrence(){
         // Clear out the habit history.
+        HabitHistoryController.getInstance();
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
 
         HabitHistoryController c = HabitHistoryController.getInstance();
