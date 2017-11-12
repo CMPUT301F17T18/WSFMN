@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
@@ -53,6 +55,8 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
     private CheckBox saturday;
     private CheckBox sunday;
 
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +77,8 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         friday = (CheckBox) findViewById(fridayCheckBox);
         saturday = (CheckBox) findViewById(saturdayCheckBox);
         sunday = (CheckBox) findViewById(sundayCheckBox);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
@@ -120,6 +126,11 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             }
         };
 
+
+        HabitHistoryController c2 = HabitHistoryController.getInstance();
+        int occurred = c2.habitOccurrence(c.getHabit(position));
+        int occurrence = c.getHabit(position).getTotalOccurrence();
+        progressBar.setProgress((occurred / occurrence) * 100);
     }
 
 
