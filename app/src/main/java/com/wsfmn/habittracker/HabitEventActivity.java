@@ -62,7 +62,7 @@ public class HabitEventActivity extends AppCompatActivity {
         addPic = (Button)findViewById(R.id.Picture);
         nameHabitEvent = (EditText)findViewById(R.id.nameEvent);
 
-        Location = (Button)findViewById(R.id.Location);
+        //Location = (Button)findViewById(R.id.Location);
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
@@ -200,5 +200,10 @@ public class HabitEventActivity extends AppCompatActivity {
         intent.putExtra("mCurrentPhotoPath", mCurrentPhotoPath);
         startActivity(intent);
     }
+
+//    public void location(){
+//        Intent intent = new Intent(HabitEventActivity.this, MapsActivity.class);
+//        startActivity(intent);
+//    }
 
 }

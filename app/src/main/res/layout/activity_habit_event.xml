@@ -26,6 +26,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="116dp"
+        android:onClick="location"
         android:text="Add Location"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="@+id/Picture2"
