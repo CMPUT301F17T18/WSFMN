@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.habittracker.MainActivity;
 import com.wsfmn.habittracker.ProfileActivity;
 import com.wsfmn.habittracker.R;
 import com.wsfmn.habittracker.UserName_Activity;
 
 import junit.framework.TestCase;
 
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -42,13 +44,10 @@ public class ProfileActivityTest extends ActivityInstrumentationTestCase2<Profil
     // Test if we can get to UserName_Activity from ProfileActivity if there is no profilename.
     public void testProfileName(){
         solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
-        try {
-            solo.wait(100);
-        } catch(Exception e) {
-            Log.i("Error", "Couldn't get flag from async object");
-        }
+        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
+        solo.clickOnButton("Confirm");
+        solo.clickOnButton("OK");
 
-        solo.assertCurrentActivity("Wrong ACtivity", UserName_Activity.class);
     }
 
     //Part 5

@@ -18,6 +18,8 @@ import com.wsfmn.habittracker.MainActivity;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
+import static java.lang.Thread.sleep;
+
 
 /**
  * Created by nicholasmayne on 2017-10-17.
@@ -35,14 +37,14 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     /**
      * Test the online connection
      */
-    public void testIsConnected(){
+    public void testIsConnected() {
         assertTrue(OnlineController.isConnected());
     }
 
     /**
      * Test that Habits can be successfully stored via ElasticSearch
      */
-    public void testStoreHabits(){
+    public void testStoreHabits() {
         Habit myHabit1 = null;
         Habit myHabit2 = null;
         OnlineController.StoreHabits storeHabits = new OnlineController.StoreHabits();
@@ -258,21 +260,37 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     /**
      * Test if we can store a profilename in ElasticSearch
      */
-    public void testStoreNameinDataBase(){
-        OnlineController store = new OnlineController();
-        ProfileName profilename = new ProfileName("junittest");
-        assertEquals(store.checkName("junittest"), true);
-        store.storeName(profilename);
-
-        assertEquals(store.checkName("junittest"), false);
-
+    public void testStoreNameinDataBase() {
+        OnlineController check = new OnlineController();
+        OnlineController.StoreNameInDataBase store = new OnlineController.StoreNameInDataBase();
         OnlineController.DeleteProfileName delete = new OnlineController.DeleteProfileName();
-        delete.execute("junittest");
 
-        assertEquals(store.checkName("junittest"), true);
+        ProfileName profilename = new ProfileName("junit");
+        assertEquals(true, check.checkName("junit"));
+        store.execute(profilename);
+        try {
+            store.get();
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(false, check.checkName("junit"));
+
+        try {
+            delete.execute("junit");
+            delete.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(true, check.checkName("junit"));
 
     }
-
 
 //    /**
 //     * Delay for this many milliseconds
