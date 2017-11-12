@@ -72,8 +72,8 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             Habit myHabit = new Habit("My Habit", new Date());
-            HabitEvent myDoneHabitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null);
-            HabitEvent myNotDoneHabitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null);
+            HabitEvent myDoneHabitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
+            HabitEvent myNotDoneHabitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
 
             habitHistory.add(myDoneHabitEvent);
             habitHistory.add(myNotDoneHabitEvent);

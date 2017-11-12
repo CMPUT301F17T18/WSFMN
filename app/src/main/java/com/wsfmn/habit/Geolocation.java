@@ -1,37 +1,48 @@
 package com.wsfmn.habit;
 
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationManager;
+import android.location.Address;
+
+import com.google.android.gms.maps.model.LatLng;
 
 /**
  * Created by ${WeiLi5} on ${12}.
  */
 
-
 public class Geolocation {
-//    private Context context;
-//    private Location location;
-//    private LocationManager locationManager;
-//    private String provider = LocationManager.GPS_PROVIDER;
+    private Address myAddress;
+    private LatLng latLng;
 
-
-    // empty constructor for testing
     public Geolocation(){
+        myAddress = null;
+        latLng = null;
 
     }
-//
-//    public Geolocation(Context context){
-//        this.context = context;
-//        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-//        //TODO: I think it requires permission in Manifest
-//    }
-//
-//    public Location getLocation(){
-//        return this.location;
-//    }
-//
-//    public void setLocation(Location location){
-//        this.location = location;
-//    }
+
+    public Geolocation(Address myAddress, LatLng latLng){
+        this.setMyAddress(myAddress);
+        this.setLatLng(latLng);
+
+    }
+
+    public Address getAddress(){
+        return this.myAddress;
+
+    }
+
+    public LatLng getLatLng(){
+        return this.latLng;
+
+    }
+
+    public void setMyAddress(Address myAddress){
+        this.myAddress = myAddress;
+
+    }
+
+    public void setLatLng(LatLng latLng){
+        this.latLng = latLng;
+
+    }
+
+
 }

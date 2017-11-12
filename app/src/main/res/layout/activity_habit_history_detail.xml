@@ -8,13 +8,16 @@
 
     <Button
         android:id="@+id/Picture2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="48dp"
-        android:text="Add Picture"
+        android:layout_width="148dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="24dp"
+        android:onClick="changePicture2"
+        android:text="Change Picture"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/habitName2"
+        app:layout_constraintTop_toBottomOf="@+id/dateDetail"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
@@ -22,29 +25,23 @@
         android:id="@+id/Location"
         android:layout_width="118dp"
         android:layout_height="52dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="44dp"
-        android:text="Add Location"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintLeft_toRightOf="@+id/Picture2"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="48dp"
+        android:text="Change Location"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addHabit2" />
 
     <EditText
         android:id="@+id/Comment2"
         android:layout_width="133dp"
-        android:layout_height="42dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Add Comment"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Picture2"
-        app:layout_constraintVertical_bias="0.547" />
+        app:layout_constraintTop_toBottomOf="@+id/Picture2" />
 
     <Button
         android:id="@+id/ViewImg2"
@@ -52,10 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="90dp"
-        android:onClick="viewPic"
+        android:layout_marginTop="96dp"
+        android:onClick="viewImage2"
         android:text="View Image"
-        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintLeft_toRightOf="@+id/Comment2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Location" />
@@ -65,9 +62,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:onClick="selectHabit"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="108dp"
+        android:onClick="changeHabit"
         android:text="Change Habit"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/habitName2"
@@ -88,19 +85,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.209"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Picture2"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
-
     <Button
         android:id="@+id/confirmButton2"
         android:layout_width="wrap_content"
@@ -108,21 +92,53 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="confirmHE"
         android:text="Confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toEndOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@+id/ViewImg2"
+        app:layout_constraintVertical_bias="0.661" />
 
     <TextView
         android:id="@+id/habitName2"
         android:layout_width="187dp"
         android:layout_height="37dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="108dp"
-        android:text="TextView"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="116dp"
+        android:text="HabitName"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:onClick="deleteHE"
+        android:text="DELETE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Comment2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/dateDetail"
+        android:layout_width="129dp"
+        android:layout_height="43dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:text="Date"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/Location"
+        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/habitName2" />
 
 </android.support.constraint.ConstraintLayout>

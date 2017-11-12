@@ -155,9 +155,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null, null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {
@@ -208,9 +208,9 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(
-                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null);
+                    new Habit("My Habit 1", new Date()), "Title", "Did my habit 1!", null, null);
             habitEvent2 = new HabitEvent(
-                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null);
+                    new Habit("My Habit 2", new Date()), "Title", "Did my habit 2!", null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (DateNotValidException e) {

@@ -5,6 +5,11 @@ import android.widget.EditText;
 import com.wsfmn.habittracker.R;
 import android.graphics.Bitmap;
 import android.widget.EditText;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by skhanna1 on 10/16/17.
  */
@@ -15,17 +20,20 @@ public class HabitEvent{
     private String comment;
     private Bitmap image;
     String id;
+    String date;
+    String mCurrentPhotoPath;
     //private Date date;
     //change by wei, change location parts
-    //private Geolocation location;
+    private Geolocation geolocation;
 
     //Need to Add Location
-    public HabitEvent(Habit habit, String title, String comment, Bitmap image) throws HabitCommentTooLongException {
+    public HabitEvent(Habit habit, String title, String comment, String mCurrentPhotoPath, String date) throws HabitCommentTooLongException {
         this.habit = habit;
         this.title = title;
         this.comment =comment;
-        this.image = image;
+        this.mCurrentPhotoPath = mCurrentPhotoPath;
         this.id = null;
+        this.date = date;
     }
 
 //    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
@@ -34,6 +42,14 @@ public class HabitEvent{
 //        this.comment = "No Comment";
 //        this.title = "title";
 //    }
+
+    public String getDate(){
+        return this.date;
+    }
+
+    public String getmCurrentPhotoPath(){
+        return mCurrentPhotoPath;
+    }
 
     public Habit getHabitFromEvent(){
         return habit;
@@ -56,12 +72,9 @@ public class HabitEvent{
         return habit;
     }
 
-    public String getTitle(){return title;}
+    public String getHabitEventTitle(){return title;}
 
-    public String setTitle(String title) throws HabitTitleTooLongException{
-        if (title.length() < 1 || title.length() > 20) {
-            throw new HabitTitleTooLongException();
-        }
+    public String setTitle(String title){
         return this.title = title;
     }
 
@@ -69,9 +82,9 @@ public class HabitEvent{
         return comment;
     }
 
-    public void setComment(String comment) throws HabitCommentTooLongException {
-        if(comment.length() > 20){
-            throw new HabitCommentTooLongException();
+    public void setComment(String comment) throws HabitEventCommentTooLongException {
+        if(comment.length() >= 20){
+            throw new HabitEventCommentTooLongException();
         }
         this.comment = comment;
     }
@@ -81,12 +94,16 @@ public class HabitEvent{
     public void setImage(Bitmap bit) {
         this.image = bit;
     }
-//    public void setLocation(Geolocation location){
-//        this.location = location;
-//    }
-//
-//    public Geolocation getLocation() {return this.location;}
 
-//    public void location(){this.location = 5;}
+    //Geolocation
+    public void setGeolocation(Geolocation geolocation){
+        this.geolocation = geolocation;}
+    public Geolocation getGeolocation(){return geolocation;}
+//
+
+    @Override
+    public String toString(){
+        return title + "    " + date;
+    }
 
 }

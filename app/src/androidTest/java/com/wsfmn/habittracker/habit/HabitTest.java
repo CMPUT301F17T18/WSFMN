@@ -296,11 +296,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
     }
 
     public void testCalDay(){
-        Habit habit = new Habit();
+        Habit habit = new Habit(new Date(2017, 10, 26), new WeekDays());
         int result = 0;
 
-        habit.getDate().setMonth(10);
-        habit.getDate().setDay(26);
         habit.getWeekDays().setDay(WeekDays.FRIDAY);
         habit.getWeekDays().setDay(WeekDays.MONDAY);
         habit.getWeekDays().setDay(WeekDays.TUESDAY);
@@ -312,12 +310,31 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         assertEquals(result, 3);
     }
 
-    public void testTotalOccurrence(){
-        Habit habit = new Habit();
 
-        habit.getWeekDays().setDay(WeekDays.TUESDAY);
-        assertEquals(habit.totalOccurrence(), 2);
+    public void testTotalOccurrence(){
+
+        Date start = new Date(2017, 10, 20);
+        Date end = new Date(2017, 11, 10);
+        WeekDays weekDays = new WeekDays();
+        weekDays.setDay(WeekDays.SATURDAY);
+        weekDays.setDay(WeekDays.SUNDAY);
+        Habit habit = new Habit(start, weekDays);
+
+        assertEquals(habit.totalOccurrence(start, end), 6);
     }
+
+    public void testTotalOccurrenceSameDate(){
+
+        Date start = new Date(2017, 11, 11);
+        Date end = new Date(2017, 11, 11);
+        WeekDays weekDays = new WeekDays();
+        weekDays.setDay(WeekDays.SATURDAY);
+        Habit habit = new Habit(start, weekDays);
+
+        assertEquals(habit.totalOccurrence(start, end), 1);
+    }
+
+
 
 
 }
