@@ -15,22 +15,34 @@ import java.util.Calendar;
  */
 
 public class HabitEvent{
-    /** Variables For the Habit Event that the user will enter or be created
-     * when a user creates a new Habit Event**/
+    /**
+     * Variables For the Habit Event that the user will enter or be created
+     * when a user creates a new Habit Event
+     */
     private String title;
     private Habit habit;
     private String comment;
-//    private Bitmap image;
     String id;
     String date;
     //Path of the file Where image is stored
     String mCurrentPhotoPath;
+
+    //private Bitmap image;
     //private Date date;
     //change by wei, change location parts
     //private Geolocation location;
 
     //Need to Add Location
-    /*Constructor for the Habit Event*/
+
+    /**
+     * Constructor for the Habit Event
+     * @param habit
+     * @param title
+     * @param comment
+     * @param mCurrentPhotoPath
+     * @param date
+     * @throws HabitCommentTooLongException
+     */
     public HabitEvent(Habit habit, String title, String comment, String mCurrentPhotoPath, String date) throws HabitCommentTooLongException {
         this.habit = habit;
         this.title = title;
@@ -47,37 +59,56 @@ public class HabitEvent{
 //        this.title = "title";
 //    }
 
-    /*Get the date of when the HabitEvent was created
-    *
-    * @return Date: Date of the HabitEvent*/
+    /**
+     * Get the date of when the HabitEvent was created
+     * @return Date: Date of the HabitEvent
+     */
     public String getDate(){
         return this.date;
     }
 
-    /*Get the path of the file where image is stored for the habit Event*/
+    /**
+     * Get the path of the file where image is stored for the habit Event
+     * @return mCurrentPhotoPath: filename of the image
+     */
     public String getmCurrentPhotoPath(){
         return mCurrentPhotoPath;
     }
 
-    /*Get the Habit the user selects for the HabitEvent*/
+    /**
+     * Get the Habit the user selects for the HabitEvent
+     * @return Habit
+     */
     public Habit getHabitFromEvent(){
         return habit;
     }
 
-    /*Get the Habit title for the Habit Event*/
+    /**
+     * Get the Habit title for the Habit Event
+     * @return habit Title
+     */
     public String getHabitTitle(){
         return this.habit.getTitle();
     }
 
-    /*Changes the Habit for the HabitEvent*/
+    /**
+     * /*Changes the Habit for the HabitEvent
+     * @param habit
+     */
     public void setHabit(Habit habit){
         this.habit = habit;
     }
 
-    /*Get Id for ElasticSearch*/
+    /**
+     * Get Id for ElasticSearch
+     * @return Id
+     */
     public String getId() {return id;}
 
-    /*Set Id for ElasticSearch*/
+    /**
+     * Set Id for ElasticSearch
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
