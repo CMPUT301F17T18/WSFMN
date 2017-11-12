@@ -71,7 +71,7 @@ public class HabitHistory {
      */
     public Boolean contains(HabitEvent he) {
         for (int i = 0; i < habitHistory.size(); i++) {
-            if (habitHistory.get(i).getId().contains(he.getId())) {
+            if (he.getId() != null && habitHistory.get(i).getId().contains(he.getId())) {
                 return true;
             }
         }
