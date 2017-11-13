@@ -6,6 +6,8 @@ import com.wsfmn.habittracker.R;
 import android.graphics.Bitmap;
 import android.widget.EditText;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

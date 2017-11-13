@@ -19,6 +19,8 @@ import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -107,25 +109,33 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         startActivityForResult(intent, 2);
     }
 
+    //Has the path that is to be calculated in detail
+    String CurrentPhotoPath;
+    //Has the path already present
+    String path;
     public void viewImage2(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        intent.putExtra("CurrentPhotoPath", control4.get(position2).getCurrentPhotoPath());
+        path = control4.get(position2).getCurrentPhotoPath();
+        if(path == null){
+            path = CurrentPhotoPath;
+        }
+        intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
 
-    public void changePicture2(View view){
+    public void changePicture2(View view) throws IOException {
         try {
             HabitHistoryController control4 = HabitHistoryController.getInstance();
             dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
         }catch (NullPointerException e){
-
+            dispatchTakePictureIntent(createImageFile());
         }
 
     }
 
-    String CurrentPhotoPath;
-    private File createImageFile() throws IOException {
+
+    private String createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
         timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -139,7 +149,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         CurrentPhotoPath = image.getAbsolutePath();
-        return image;
+        return CurrentPhotoPath;
     }
 
 
