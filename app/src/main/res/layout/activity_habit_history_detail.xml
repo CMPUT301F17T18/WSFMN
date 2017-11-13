@@ -22,7 +22,7 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/Location"
+        android:id="@+id/B_changeLocation"
         android:layout_width="118dp"
         android:layout_height="52dp"
         android:layout_marginRight="24dp"
@@ -55,7 +55,7 @@
         app:layout_constraintHorizontal_bias="0.813"
         app:layout_constraintLeft_toRightOf="@+id/Comment2"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Location" />
+        app:layout_constraintTop_toBottomOf="@+id/B_changeLocation" />
 
     <Button
         android:id="@+id/addHabit2"
@@ -136,7 +136,7 @@
         android:layout_marginTop="48dp"
         android:text="Date"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/Location"
+        app:layout_constraintEnd_toStartOf="@+id/B_changeLocation"
         app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/habitName2" />

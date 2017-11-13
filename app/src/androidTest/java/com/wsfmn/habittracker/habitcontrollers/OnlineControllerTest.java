@@ -8,15 +8,17 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
-import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
+import com.wsfmn.habit.ProfileName;
 import com.wsfmn.habitcontroller.OnlineController;
 import com.wsfmn.habittracker.MainActivity;
 
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -30,21 +32,19 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
      */
     public OnlineControllerTest() {
         super(MainActivity.class);
-        OnlineController.setUSERNAME("testing");
     }
 
     /**
      * Test the online connection
      */
-    public void testIsConnected(){
+    public void testIsConnected() {
         assertTrue(OnlineController.isConnected());
-
     }
 
     /**
      * Test that Habits can be successfully stored via ElasticSearch
      */
-    public void testStoreHabits(){
+    public void testStoreHabits() {
         Habit myHabit1 = null;
         Habit myHabit2 = null;
         OnlineController.StoreHabits storeHabits = new OnlineController.StoreHabits();
@@ -69,8 +69,6 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-        Delay(1000); // Wait for server to catch up
 
         assertNotNull(myHabit1.getId());
         assertNotNull(myHabit2.getId());
@@ -119,9 +117,6 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-        Delay(1000); // Wait for server to catch up
-
 
         getHabits.execute(searchString);
         try {
@@ -185,8 +180,6 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        Delay(1000); // Wait for server to catch up
-
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
         assertNotNull("NewHabitEvent ID was null", habitEvent1.getId());
 
@@ -237,8 +230,6 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        Delay(1000); // Wait for server to catch up
-
         getHabitEvents.execute(searchString);
         try {
             habitHistory = getHabitEvents.get();
@@ -250,17 +241,10 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
 
         HabitEvent[] toDelete = new HabitEvent[habitHistory.size()];
         for (int i = 0; i < habitHistory.size(); i++) {
-            try {
-                assertTrue("HabitEvent in HabitHistory does not contain search string",
-                        habitHistory.get(i).getComment().toLowerCase().contains(searchString));
-            } catch (HabitEventCommentTooLongException e) {
-                e.printStackTrace();
-            }
+            assertTrue("HabitEvent in HabitHistory does not contain search string",
+                    habitHistory.get(i).getComment().toLowerCase().contains(searchString));
             toDelete[i] = habitHistory.get(i);
         }
-
-        assertTrue(habitHistory.contains(habitEvent1));
-        assertTrue(habitHistory.contains(habitEvent2));
 
         // Delete all the matching habits from the server
         try {
@@ -274,12 +258,47 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
     /**
-     * Delay for this many milliseconds
-     * @param ms milliseconds to delay
+     * Test if we can store a profilename in ElasticSearch
      */
-    private void Delay(int ms){
-        // Delay 1 second for transaction to finish
-        long currentTime = Calendar.getInstance().getTimeInMillis();
-        while((Calendar.getInstance().getTimeInMillis() - currentTime) < ms ){}
+    public void testStoreNameinDataBase() {
+        OnlineController check = new OnlineController();
+        OnlineController.StoreNameInDataBase store = new OnlineController.StoreNameInDataBase();
+        OnlineController.DeleteProfileName delete = new OnlineController.DeleteProfileName();
+
+        ProfileName profilename = new ProfileName("junit");
+        assertEquals(true, check.checkName("junit"));
+        store.execute(profilename);
+        try {
+            store.get();
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(false, check.checkName("junit"));
+
+        try {
+            delete.execute("junit");
+            delete.get(); // wait for thread to finish
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(true, check.checkName("junit"));
+
     }
+
+//    /**
+//     * Delay for this many milliseconds
+//     * @param ms milliseconds to delay
+//     */
+//    private void Delay(int ms){
+//        // Delay 1 second for transaction to finish
+//        long currentTime = Calendar.getInstance().getTimeInMillis();
+//        while((Calendar.getInstance().getTimeInMillis() - currentTime) < ms ){}
+//    }
 }

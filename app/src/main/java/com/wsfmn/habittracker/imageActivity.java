@@ -38,6 +38,7 @@ public class imageActivity extends AppCompatActivity {
 
         Bitmap imageBitmap = BitmapFactory.decodeFile(intent.getStringExtra("CurrentPhotoPath"));
         image.setImageBitmap(imageBitmap);
+
     }
 
 //    @Override

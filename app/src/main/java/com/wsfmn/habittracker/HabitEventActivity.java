@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,11 +25,10 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
-import com.wsfmn.habit.HabitEventCommentTooLongException;
-import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
@@ -38,7 +39,7 @@ import java.text.SimpleDateFormat;
 public class HabitEventActivity extends AppCompatActivity {
 
     Button addPic;
-    Button Location;
+
     EditText Comment;
     Button viewImage;
     Button addHabitEvent;
@@ -51,8 +52,11 @@ public class HabitEventActivity extends AppCompatActivity {
     ImageView img;
     Uri photoURI;
     String datevalue;
-    Integer i = null;
+    //int i;
+    LatLng new_coordinate;
+    int i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int ADD_NEW_LOCATION_CODE = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +65,6 @@ public class HabitEventActivity extends AppCompatActivity {
         Comment = (EditText)findViewById(R.id.Comment);
         addPic = (Button)findViewById(R.id.Picture);
         nameHabitEvent = (EditText)findViewById(R.id.nameEvent);
-
-        //Location = (Button)findViewById(R.id.Location);
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
@@ -87,13 +89,13 @@ public class HabitEventActivity extends AppCompatActivity {
         });
 
 
-        Button B_Location = (Button) findViewById(R.id.Location);
-        B_Location.setOnClickListener(new View.OnClickListener(){
+        Button Location = (Button) findViewById(R.id.B_changeLocation);
+        Location.setOnClickListener(new View.OnClickListener(){
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
                 Intent  intent = new Intent(HabitEventActivity.this,AddLocationActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,ADD_NEW_LOCATION_CODE);
             }
         });
     }
@@ -131,6 +133,7 @@ public class HabitEventActivity extends AppCompatActivity {
 
     String CurrentPhotoPath;
 
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
@@ -169,6 +172,15 @@ public class HabitEventActivity extends AppCompatActivity {
                 changeName(i);
             }
         }
+        //Add new location
+        if(requestCode == ADD_NEW_LOCATION_CODE && requestCode == RESULT_OK)
+        {
+            //Long newCoordination = data.getLongExtra("new_coordination", 0);
+            //String test=newCoordination.toString();
+            //Toast.makeText(getApplicationContext(), "blalbalbal", Toast.LENGTH_LONG).show();
+
+
+        }
     }
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
@@ -188,29 +200,11 @@ public class HabitEventActivity extends AppCompatActivity {
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
-
-
-//            control2.get(control2.indexOf(hEvent)).getComment();
-//            control2.get(control2.indexOf(hEvent)).getHabitEventTitle();
-            hEvent.getComment();
-            hEvent.getHabitEventTitle();
-
-            control2.store();
             control2.addAndStore(hEvent);
-
-
+            control2.storeAll();
             startActivity(intent);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
-        } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(HabitEventActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        } catch (HabitEventNameException e) {
-            Toast.makeText(HabitEventActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        } catch(NullPointerException e){
-            Toast.makeText(HabitEventActivity.this, "Habit Event needs to contain Habit",
-                    Toast.LENGTH_LONG).show();
         }
     }
 

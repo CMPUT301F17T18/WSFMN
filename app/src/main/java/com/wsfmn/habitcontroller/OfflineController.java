@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.Profile;
+import com.wsfmn.habit.ProfileName;
 import com.wsfmn.habittracker.App;
 
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ public class OfflineController {
 
 
     /**
-     *
+     * Store Habit list locally to HabitList.sav
      */
     public static class StoreHabitList extends AsyncTask<HabitList, Void, Void> {
 
@@ -60,7 +61,7 @@ public class OfflineController {
     }
 
     /**
-     *
+     * Retrieve the Habit list Locally from HabitList.sav
      */
     public static class GetHabitList extends AsyncTask<Void, Void, HabitList> {
 
@@ -83,7 +84,7 @@ public class OfflineController {
     }
 
     /**
-     *
+     * Storing habit events from Habit History to HabitHistory.sav
      */
     public static class StoreHabitHistory extends AsyncTask<HabitHistory, Void, Void> {
 
@@ -108,7 +109,7 @@ public class OfflineController {
     }
 
     /**
-     *
+     * Getting Habit events for Habit History in HabitHistory.sav
      */
     public static class GetHabitHistory extends AsyncTask<Void, Void, HabitHistory> {
 
@@ -131,11 +132,11 @@ public class OfflineController {
     }
 
     /**
-     *
+     * Storing the user's profilename locally in Profile.sav
      */
-    public static class StoreUserProfile extends AsyncTask<Profile, Void, Void> {
+    public static class StoreUserProfile extends AsyncTask<ProfileName, Void, Void> {
         @Override
-        protected Void doInBackground(Profile... profile) {
+        protected Void doInBackground(ProfileName... profilename) {
             Context context = App.context;
             try {
                 FileOutputStream fos = context.openFileOutput(PROFILE_FILENAME, 0);
@@ -143,7 +144,7 @@ public class OfflineController {
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
                 builder.serializeNulls();
-                gson.toJson(profile, writer);
+                gson.toJson(profilename, writer);
                 writer.flush();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException();
@@ -155,7 +156,7 @@ public class OfflineController {
     }
 
     /**
-     *
+     * Getting the user's profilename from Profile.sav
      */
     public static class GetUserProfile extends AsyncTask<Void, Void, Profile> {
 

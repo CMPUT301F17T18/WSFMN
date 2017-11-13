@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wsfmn.habit.Request;
 import com.wsfmn.habit.RequestAdapter;
+import com.wsfmn.habitcontroller.OfflineController;
 import com.wsfmn.habitcontroller.OnlineController;
 
 
@@ -28,6 +30,14 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+
+/**
+ * Represents Profiling Activity, Allowing the user to follow, share,
+ * and view other friends' events
+ *
+ * @version 1.0
+ * @see Activity
+ */
 public class ProfileActivity extends Activity {
 
     private static final String USER_FILENAME = "username.sav";
@@ -40,7 +50,14 @@ public class ProfileActivity extends Activity {
     private ListView requestsFromUser;
     private ArrayList<Request> requestsList = new ArrayList<Request>();
     RequestAdapter adapter = new RequestAdapter(requestsList, this);
+    private OnlineController online = new OnlineController();
+    private OfflineController offline = new OfflineController();
 
+    /**
+     * Creates variables and activities
+     *
+     * @param savedInstanceState saves the state of app
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,29 +91,76 @@ public class ProfileActivity extends Activity {
 
     }
 
+    /**
+     *  Button method to Share events with a user. Searching for user with textbox input
+     * @param view
+     */
     public void shareOnClick(View view){
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "share");
-        requestsList.add(newRequest);
+        //requestsList.add(newRequest);
         OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
         sendRequest.execute(newRequest);
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Button method to Follow events from user. Searching for user with textbox input
+     * @param view
+     */
     public void followOnClick(View view){
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "follow");
-        requestsList.add(newRequest);
+
+        OnlineController.RequestExist check = new OnlineController.RequestExist();
+        check.execute(profileName, text);
+        try{
+            flag  = check.get();
+
+        } catch (Exception e) {
+            Log.i("Error", "Couldn't get flag from async object");
+        }
+        if (flag == false){
+            Toast.makeText(ProfileActivity.this, "Request Already Sent!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        //requestsList.add(newRequest);
         OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
         sendRequest.execute(newRequest);
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Button method to go to FriendActivity view.
+     * @param view
+     */
+    public void viewFriendEventOnClick(View view){
+        Intent intent = new Intent(this, FriendActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Starts the Activity with certain conditions.
+     * Checks if user is connected to internet, and if user has a profilename.
+     */
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
+
+        // Check if the user is connected to the internet. Otherwise send back to MainActivity.
+        if (online.isConnected() == true){}
+        else {
+            Toast.makeText(ProfileActivity.this, "Not connected to internet!",
+                    Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        //load the profilename if it exists
         loadFromFile();
+        //offline.GetUserProfile;
 
         //If User does not have a ProfileName yet then have them create one.
         if (profileName == "" & flag == false){
@@ -106,8 +170,10 @@ public class ProfileActivity extends Activity {
             onActivityResult(1, 1, intent);
             flag = false;
         }
+        // Set the name to your profilename.
         yourName.setText(profileName);
 
+        // Get the Requests From ElasticSearch if there are any.
         OnlineController.GetRequest getRequest = new OnlineController.GetRequest();
         getRequest.execute(profileName);
         try{
@@ -116,24 +182,36 @@ public class ProfileActivity extends Activity {
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
         }
+
+        //Update List with Requests
         RequestAdapter adapter = new RequestAdapter(requestsList, this);
         requestsFromUser.setAdapter(adapter);
 
     }
 
-
+    /**
+     * Method to retrieve results from another activity. Used for getting profilename from
+     * UserName_Activity.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 profileName = data.getStringExtra("uniqueName");
-                System.out.println(profileName);
-                //TODO save the name locally
                 saveInFile();
+            }
+            else if(resultCode == Activity.RESULT_CANCELED) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         }
     }
 
+    // Will remove later and replace with OfflineController's methods
     private void loadFromFile() {
         try {
             FileInputStream fis = openFileInput(USER_FILENAME);
@@ -153,16 +231,13 @@ public class ProfileActivity extends Activity {
         }
     }
 
-    //from lonely twitter, changed for custom object
+    //Will remove later and replace with OfflineController's methods
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(USER_FILENAME,
                     Context.MODE_PRIVATE);
-
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-
             Gson gson = new Gson();
-            // convert list into a string. and saving it on output.
             gson.toJson(profileName, out);
             out.flush();
             fos.close();

@@ -7,7 +7,6 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
-import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitTitleTooLongException;
 
@@ -81,12 +80,8 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         habitHistory.add(habitEvent);
 
         HabitEvent receivedHabitEvent = habitHistory.get(0);
-        try {
-            assertEquals("HabitEvent in HabitHistory was not the same as the HabitEvent just added.",
-                    habitEvent.getComment(), receivedHabitEvent.getComment());
-        } catch (HabitEventCommentTooLongException e) {
-            e.printStackTrace();
-        }
+        assertEquals("HabitEvent in HabitHistory was not the same as the HabitEvent just added.",
+                habitEvent.getComment(), receivedHabitEvent.getComment());
     }
 
     /**
@@ -181,12 +176,8 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         habitHistory.add(habitEvent);
 
         HabitEvent removedHabitEvent = habitHistory.remove(0);
-        try {
-            assertEquals("HabitEvent removed from HabitHistory was not the same as the HabitEvent just added.",
-                    habitEvent.getComment(), removedHabitEvent.getComment());
-        } catch (HabitEventCommentTooLongException e) {
-            e.printStackTrace();
-        }
+        assertEquals("HabitEvent removed from HabitHistory was not the same as the HabitEvent just added.",
+                habitEvent.getComment(), removedHabitEvent.getComment());
     }
 
     public void testContains() {

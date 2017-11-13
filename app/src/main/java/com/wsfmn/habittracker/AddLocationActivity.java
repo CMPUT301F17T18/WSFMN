@@ -1,186 +1,291 @@
 package com.wsfmn.habittracker;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.wsfmn.habit.Geolocation;
 
-public class AddLocationActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
 
-    private GoogleMap mMap;
-    private GoogleApiClient client;
-    private LocationRequest locationRequest;
-    private Location lastLocation;
-    private Marker currentLocationMarker;
-    public static final int REQUEST_LOCATION_CODE= 99;
+public class AddLocationActivity extends AppCompatActivity {
 
+    private Button button;
+    private Button B_new;
+    private Button B_confirm;
+    private TextView T_address;
+    private TextView T_coord;
+    private LocationManager locationManager;
+    private LocationListener listener;
+    private EditText E_address;
+    private  Geolocation geolocation;
+    private LatLng latLng;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_location);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            checkLocationPermission();
-        }
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    }
+        T_coord = (TextView) findViewById(R.id.T_coordination);
+        T_address = (TextView) findViewById(R.id.T_address);
+        button = (Button) findViewById(R.id.B_Current);
+        B_new = (Button) findViewById(R.id.B_New);
+        B_confirm = (Button) findViewById(R.id.B_confirm);
+        E_address = (EditText) findViewById(R.id.E_address);
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case REQUEST_LOCATION_CODE:
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
-                    //permission is granted
-                    if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                        if (client == null){
-                            buildGoogleApiClient();
-                        }
-                        mMap.setMyLocationEnabled(true);
-                    }
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+
+        listener = new LocationListener() {
+            @Override
+            /**
+             *
+             * @param location
+             */
+            public void onLocationChanged(Location location) {
+
+                T_coord.setText("");
+                T_address.setText("");
+
+                T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
+                Geocoder geocoder = new Geocoder(AddLocationActivity.this);
+                latLng = new LatLng(location.getLongitude(),location.getLatitude());
+                try {
+                    List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    Address myAddress = addressList.get(0);
+                    //set to Geolocation
+                    geolocation = new Geolocation(myAddress,latLng);
+                    T_address.append(myAddress.toString());
+
+                    //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                    //startActivity(intent);
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                //permission is denied
-                else{
-                    Toast.makeText(this,"Permission Denied", Toast.LENGTH_LONG).show();
+            }
 
-                }
-                return;
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
 
-        }
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(i);
+            }
+        };
+
+        configure_button();
+        newplace_button();
+        confirm_button();
     }
+    /**
+     *
+     * Button method it will save LatLng(coordination)
+     */
 
+    public void saveLatlng()
+    {
+        String latLngSave = T_coord.getText().toString();
+        String file_name = "save_coordination";
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
+            fileOutputStream.write(latLngSave.getBytes());
+            fileOutputStream.close();
+            Toast.makeText(getApplicationContext(), "Coordination saved", Toast.LENGTH_LONG).show();
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     *
+     * Button method it will save Address
      */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+    public void saveAddress()
+    {
+        String addressSave = T_address.getText().toString();
+        String file_name = "save_address";
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
+            fileOutputStream.write(addressSave.getBytes());
+            fileOutputStream.close();
+            Toast.makeText(getApplicationContext(), "Address saved", Toast.LENGTH_LONG).show();
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            buildGoogleApiClient();
-            mMap.setMyLocationEnabled(true);
 
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+
     }
-
-
-
-    protected synchronized void buildGoogleApiClient(){
-        client= new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(LocationServices.API)
-                .build();
-
-        client.connect();
-    }
-
 
     @Override
-    public void onLocationChanged(Location location) {
-        lastLocation = location;
-
-        //check if there is a currentLocationMarker already
-        if(currentLocationMarker != null){
-            currentLocationMarker.remove();
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 10:
+                configure_button();
+                break;
+            default:
+                break;
         }
-
-        //set the new location
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        //new marker's option
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Location");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-
-        currentLocationMarker = mMap.addMarker(markerOptions);
-
-        //move camera to the current position
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
-
-        if (client != null){
-            LocationServices.FusedLocationApi.removeLocationUpdates(client,this);
-        }
-
     }
+    /**
+     *
+     * Button method it will go back to HabitEventActivity
+     */
 
+    void confirm_button(){
+        B_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-        locationRequest = new LocationRequest();
+                saveLatlng();
+                saveAddress();
 
-        locationRequest.setInterval(1000);
-        locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("new_coordination",latLng);
+                setResult(AddLocationActivity.RESULT_OK, returnIntent);
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                finish();
 
-            LocationServices.FusedLocationApi.requestLocationUpdates(client, locationRequest, this);
-        }
-
-    }
-
-
-    public boolean checkLocationPermission(){
-
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
+                //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                //startActivity(intent);
 
             }
-            else{
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
+
+        });
+    }
+
+    /**
+     *
+     * Button method it will get the location which is entered by user
+     */
+
+    void newplace_button(){
+
+
+        B_new.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //noinspection MissingPermission
+                if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                String location = E_address.getText().toString();
+                List<Address> addressList = null;
+
+                //use Geocoder class here
+                Geocoder geocoder = new Geocoder(AddLocationActivity.this);
+                try {
+                    addressList = geocoder.getFromLocationName(location, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Address myAddress = addressList.get(0);
+                latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                T_coord.setText("");
+                T_address.setText("");
+
+                T_coord.append("\n"+myAddress.getLatitude()+" "+myAddress.getLongitude());
+                T_address.append(myAddress.toString());
+
+
+                geolocation = new Geolocation(myAddress,latLng);
+
+
             }
-            return false;
+        });
+
+
+    }
+
+    /**
+     *
+     * Button method it will check the permission and get the current location
+     */
+
+    void configure_button() {
+        // first check for permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}
+                        , 10);
+            }
+            return;
         }
-        else
-            return true;
-    }
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        // this code won'textView execute IF permissions are not allowed, because in the line above there is return statement.
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //noinspection MissingPermission
+                if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                locationManager.requestLocationUpdates("gps", 5000, 0, listener);
+            }
+        });
     }
 }
-

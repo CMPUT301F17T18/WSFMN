@@ -32,7 +32,7 @@ public class HabitEvent{
     //private Bitmap image;
     //private Date date;
     //change by wei, change location parts
-    //private Geolocation location;
+    private Geolocation geolocation;
 
     //Need to Add Location
 
@@ -50,8 +50,8 @@ public class HabitEvent{
         this.title = title;
         this.comment =comment;
         this.CurrentPhotoPath = CurrentPhotoPath;
-        this.id = null;
         this.date = date;
+        this.id = null;
     }
 
 //    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
@@ -65,6 +65,7 @@ public class HabitEvent{
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
      */
+
     public String getDate(){
         return this.date;
     }
@@ -81,6 +82,7 @@ public class HabitEvent{
      * Get the Habit the user selects for the HabitEvent
      * @return Habit
      */
+
     public Habit getHabitFromEvent(){
         return habit;
     }
@@ -92,7 +94,6 @@ public class HabitEvent{
     public String getHabitTitle(){
         return this.habit.getTitle();
     }
-
     /**
      * /*Changes the Habit for the HabitEvent
      * @param habit
@@ -115,66 +116,33 @@ public class HabitEvent{
         this.id = id;
     }
 
-    /*Get the Habit for the HabitEvent*/
     public Habit getHabit() {
         return habit;
     }
 
-    /*Get the Title of the Habit Event*/
-    public String getHabitEventTitle() throws HabitEventNameException{
-        /*Checks the title length of the HabitEvent*/
-        if(title.length() > 20 || title.length()<1){
-            /*Throws Exception if violates the condition*/
-            throw new HabitEventNameException();
-        }
-        return title;
-    }
+    public String getHabitEventTitle(){return title;}
 
-    /*Change Title of the HabitEvent*/
-    public String setTitle(String title)throws HabitEventNameException{
-        /*Checks the length of the title*/
-        if(title.length() > 20 || title.length()<1){
-            /*Throws this exception*/
-            throw new HabitEventNameException();
-        }
+    public String setTitle(String title){
         return this.title = title;
     }
 
-    /*Get the comment for HabitEvent that user created*/
-    public String getComment() throws HabitEventCommentTooLongException {
-        /*If comment larger than 20 characters return and Error*/
-        if(comment.length() > 20){
-            /*Throw HabitEventCommentTooLongException*/
-            throw new HabitEventCommentTooLongException();
-        }
+    public String getComment() {
         return comment;
     }
 
-    /*Changing the Comment of Habit Event*/
     public void setComment(String comment) throws HabitEventCommentTooLongException {
-        /*Checking if comment size does not exceed 20 characters*/
-        if(comment.length() > 20){
-            /* Throw HabitEventCommentTooLongException*/
+        if(comment.length() >= 20){
             throw new HabitEventCommentTooLongException();
         }
         this.comment = comment;
     }
 
-//    public Bitmap getImage(){return image;}
-
-//    public void setImage(Bitmap bit) {
-//        this.image = bit;
-//    }
-
-//    public void setLocation(Geolocation location){
-//        this.location = location;
-//    }
+    //Geolocation
+    public void setGeolocation(Geolocation geolocation){
+        this.geolocation = geolocation;}
+    public Geolocation getGeolocation(){return geolocation;}
 //
-//    public Geolocation getLocation() {return this.location;}
 
-//    public void location(){this.location = 5;}
-
-    /*Displays This when the List is called*/
     @Override
     public String toString(){
         return title + "    " + date;
