@@ -24,7 +24,8 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
     public void testGetId(){
         Habit habit = null;
         try{
-            habit = new Habit("title", "reason", new Date());
+            habit = new Habit("Swimming",
+                    "To spend time with friends", new Date());
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -42,7 +43,12 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
     public void testSetId(){
         Habit habit = null;
         try{
-            habit = new Habit("title", "reason", new Date());
+            habit = new Habit("Eating At A Restaurant",
+                    "To spend time with family", new Date());
+
+            habit.setId("My Unique ID");
+            assertNotNull("Habit ID was null", habit.getId());
+            assertEquals("Habit ID was not equal to the one set.", habit.getId(), "My Unique ID");
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -53,26 +59,19 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch (DateNotValidException e){
             //null
         }
-
-        habit.setId("My Unique ID");
-        assertNotNull("Habit ID was null", habit.getId());
-        assertEquals("Habit ID was not equal to the one set.", habit.getId(), "My Unique ID");
     }
 
-    public void testGetTitle(){
+    public void testGetTitle() {
         Habit habit = null;
 
         try {
-            habit = new Habit("title", new Date());
-        }
-        catch(HabitTitleTooLongException e){
+            habit = new Habit("Visiting the BookStore", new Date());
+            assertEquals("Visiting the BookStore", habit.getTitle());
+        } catch (HabitTitleTooLongException e) {
+            //null
+        } catch (DateNotValidException e) {
             //null
         }
-        catch(DateNotValidException e){
-            //null
-        }
-
-        assertEquals(habit.getTitle(), "title");
     }
 
     public void testSetTitle(){
@@ -80,8 +79,10 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
 
 
         try{
-            habit = new Habit("title1", new Date());
-            habit.setTitle("title2");
+            habit = new Habit("Visiting the Hospital", new Date());
+            habit.setTitle("Playing Poker");
+
+            assertEquals("Playing Poker", habit.getTitle());
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -90,15 +91,15 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-
-        assertEquals(habit.getTitle(), "title2");
     }
 
     public void testGetReason(){ 
         Habit habit = null;
 
         try{
-            habit = new Habit("title", "reason", new Date());
+            habit = new Habit("Visiting the Hospital",
+                    "To check on my wife", new Date());
+            assertEquals(habit.getReason(), "To check on my wife");
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -109,8 +110,6 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch (DateNotValidException e){
             //null
         }
-
-        assertEquals(habit.getReason(), "reason");
     }
 
     public void testSetReason(){
@@ -118,8 +117,9 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
 
 
         try{
-            habit = new Habit("title", "reason1", new Date());
-            habit.setReason("reason2");
+            habit = new Habit("Play Football",
+                    "To lose weight", new Date());
+            habit.setReason("To lose weight and have fun");
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -132,7 +132,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         }
 
 
-        assertEquals(habit.getReason(), "reason2");
+        assertEquals(habit.getReason(), "To lose weight and have fun");
     }
 
     public void testGetDate(){
@@ -140,7 +140,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         Habit habit = null;
 
         try {
-            habit = new Habit("title", date);
+            habit = new Habit("Swimming", date);
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -148,7 +148,6 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         catch(DateNotValidException e){
             //null
         }
-
 
         assertTrue(habit.getDate().equalDate(date));
     }
@@ -161,7 +160,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         Habit habit = null;
 
         try {
-            habit = new Habit("title", date1);
+            habit = new Habit("Playing Poker", date1);
             habit.setDate(date2);
 
         }
@@ -179,7 +178,8 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         Habit habit = null;
 
         try{
-            habit = new Habit("title", "reason", new Date(), new WeekDays());
+            habit = new Habit("Playing Poker",
+                    "To spend time with friends", new Date(), new WeekDays());
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -198,7 +198,8 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         Habit habit = null;
 
         try{
-            habit = new Habit("title", "reason", new Date(), new WeekDays());
+            habit = new Habit("Running",
+                    "To lose weight", new Date(), new WeekDays());
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -228,7 +229,8 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
         Habit habit = null;
         Date date = new Date();
         try{
-            habit = new Habit("title", "reason", new Date());
+            habit = new Habit("Play Football",
+                    "To spend time with son", new Date());
         }
         catch(HabitTitleTooLongException e){
             //null
@@ -240,8 +242,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-
-        assertTrue("Habit as a string was incorrect", habit.toString().contains("title"+"    "+date));
+        assertTrue("Habit as a string was incorrect", habit.toString().contains("Play Football"+"    "+date));
     }
 
     public void testSetTitleException(){
