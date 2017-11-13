@@ -19,10 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.habit.Geolocation;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -30,6 +33,7 @@ public class AddLocationActivity extends AppCompatActivity {
 
     private Button button;
     private Button B_new;
+    private Button B_confirm;
     private TextView T_address;
     private TextView T_coord;
     private LocationManager locationManager;
@@ -46,6 +50,7 @@ public class AddLocationActivity extends AppCompatActivity {
         T_address = (TextView) findViewById(R.id.T_address);
         button = (Button) findViewById(R.id.B_Current);
         B_new = (Button) findViewById(R.id.B_New);
+        B_confirm = (Button) findViewById(R.id.B_confirm);
         E_address = (EditText) findViewById(R.id.E_address);
 
 
@@ -102,6 +107,47 @@ public class AddLocationActivity extends AppCompatActivity {
         confirm_button();
     }
 
+    public void saveLatlng()
+    {
+        String latLngSave = T_coord.getText().toString();
+        String file_name = "save_coordination";
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
+            fileOutputStream.write(latLngSave.getBytes());
+            fileOutputStream.close();
+            Toast.makeText(getApplicationContext(), "Coordination saved", Toast.LENGTH_LONG).show();
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public void saveAddress()
+    {
+        String addressSave = T_address.getText().toString();
+        String file_name = "save_address";
+        try {
+            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
+            fileOutputStream.write(addressSave.getBytes());
+            fileOutputStream.close();
+            Toast.makeText(getApplicationContext(), "Address saved", Toast.LENGTH_LONG).show();
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -115,12 +161,19 @@ public class AddLocationActivity extends AppCompatActivity {
     }
 
     void confirm_button(){
-        button.setOnClickListener(new View.OnClickListener() {
+        B_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
-                startActivity(intent);
+                saveLatlng();
+                saveAddress();
+
+                Intent returnIntent = new Intent();
+                setResult(AddLocationActivity.RESULT_CANCELED, returnIntent);
+                finish();
+
+                //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                //startActivity(intent);
 
             }
 
