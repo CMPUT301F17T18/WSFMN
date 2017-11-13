@@ -43,8 +43,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         solo.clickOnButton("DELETE");
         int size2 = control.size();
         size = size;
-        assertEquals("Delete Habit Event did not occur", size, size2);
-
+        assertEquals("Delete Habit Event did not occur", size-1, size2);
 
     }
 }
