@@ -56,7 +56,8 @@ public class HabitEventActivityTest extends ActivityInstrumentationTestCase2<Hab
         HabitEvent habitE = control.get(control.size()-1);
         assertNotNull(habitE);
         assertEquals("Swimming Class", habitE.getHabitEventTitle());
-        HabitHistoryController.removeAndStore(habitE);
+        HabitHistoryController.remove(habitE);
+        HabitHistoryController.store();
         c.deleteHabit(habit);
     }
 }
