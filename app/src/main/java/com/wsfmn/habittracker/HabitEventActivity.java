@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habitcontroller.HabitHistoryController;
@@ -128,8 +131,9 @@ public class HabitEventActivity extends AppCompatActivity {
 
 
 
-    String mCurrentPhotoPath;
+    String CurrentPhotoPath;
 
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
@@ -143,7 +147,7 @@ public class HabitEventActivity extends AppCompatActivity {
         );
 
         // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
+        CurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
     //For selecting the habit
@@ -192,7 +196,8 @@ public class HabitEventActivity extends AppCompatActivity {
             HabitListController control = HabitListController.getInstance();
             String test = nameHabitEvent.getText().toString();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabitEvent.getText().toString(), Comment.getText().toString(), mCurrentPhotoPath, date.getText().toString());
+                    nameHabitEvent.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, date.getText().toString());
+            Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
             control2.addAndStore(hEvent);
@@ -205,7 +210,7 @@ public class HabitEventActivity extends AppCompatActivity {
 
     public void viewPic(View view){
         Intent intent = new Intent(this, imageActivity.class);
-        intent.putExtra("mCurrentPhotoPath", mCurrentPhotoPath);
+        intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
     }
 

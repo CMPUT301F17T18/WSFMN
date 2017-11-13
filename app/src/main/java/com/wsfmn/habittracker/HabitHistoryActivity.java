@@ -3,6 +3,7 @@ package com.wsfmn.habittracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,11 +15,10 @@ import com.wsfmn.habitcontroller.HabitHistoryController;
 
 import java.util.List;
 
-public class HabitHistoryActivity extends Activity {
+public class HabitHistoryActivity extends AppCompatActivity {
 
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class HabitHistoryActivity extends Activity {
     }
 
     /** Called when the user taps the Add New Habit Event button */
-    public void addHabitEvent(View view){
+    public void addHE(View view){
         Intent intent = new Intent(this, HabitEventActivity.class);
         startActivity(intent);
     }

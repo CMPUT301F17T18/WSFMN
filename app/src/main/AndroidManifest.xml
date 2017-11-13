@@ -47,7 +47,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HabitHistoryActivity" />
+
+        <activity android:name=".HabitHistoryActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity" />
@@ -88,12 +90,14 @@
         <activity
             android:name=".HabitEventActivity"
             android:label="@string/title_activity_habit_event"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".HabitHistoryActivity" />
+
         <activity android:name=".selectHabitActivity" />
+
         <activity android:name=".imageActivity" />
-        <activity android:name=".AddLocationActivity" />
-        <activity android:name=".habitHistoryDetailActivity" />
-        <activity android:name=".ChangeLocationActivity"></activity>
+        <activity android:name=".habitHistoryDetailActivity"
+            android:parentActivityName=".HabitHistoryActivity"></activity>
+
     </application>
 
 </manifest>

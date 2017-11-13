@@ -7,6 +7,7 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitTitleTooLongException;
 
@@ -53,7 +54,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         assertFalse("Habit History should not have been empty.", habitHistory.isEmpty());
     }
 
-    public void testAdd() {
+    public void testAdd() throws HabitEventCommentTooLongException {
         HabitHistory habitHistory = new HabitHistory();
 
         Habit myHabit = null;
@@ -150,7 +151,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
                 hh.size(), (hh.habitOccurrence(h1) + hh.habitOccurrence(h2)));
     }
 
-    public void testRemove() {
+    public void testRemove() throws HabitEventCommentTooLongException {
         HabitHistory habitHistory = new HabitHistory();
 
         Habit myHabit = null;

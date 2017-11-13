@@ -13,6 +13,7 @@
     <string name="profile">Profile</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_habit_event">HabitEventActivity</string>
+    <string name="AddHabitEvent">Add Habit Event</string>
 
 
 </resources>

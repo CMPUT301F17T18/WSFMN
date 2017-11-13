@@ -3,7 +3,10 @@ package com.wsfmn.habittracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +19,17 @@ import android.widget.Toast;
 
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
@@ -56,14 +64,24 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
-        position2 = b.getInt("position");
+        try {
+            position2 = b.getInt("position");
+        }catch (NullPointerException e){
 
+        }
         HabitHistoryController control = HabitHistoryController.getInstance();
-
-        nameEvent.setText(control.get(position2).getHabitEventTitle());
-        habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
-        comment.setText(control.get(position2).getComment());
-        date.setText(control.get(position2).getDate());
+        try {
+            nameEvent.setText(control.get(position2).getHabitEventTitle());
+            habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
+            comment.setText(control.get(position2).getComment());
+            date.setText(control.get(position2).getDate());
+        }catch (HabitEventNameException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (HabitEventCommentTooLongException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
 
         Button B_ = (Button) findViewById(R.id.B_changeLocation);
         B_changeLocation.setOnClickListener(new View.OnClickListener(){
@@ -84,9 +102,13 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setTitle(nameEvent.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
-            //control2.addAndStore(control2.get(position2));
+            control2.storeAndUpdate(control2.get(position2));
+//            control2.storeAll();
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (HabitEventNameException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
@@ -95,7 +117,9 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     public void deleteHE(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
-        control3.remove(position2);
+//        control3.remove(position2);
+//        control3.store();
+        control3.removeAndStore(position2);
         startActivity(intent);
     }
 
@@ -104,26 +128,58 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         startActivityForResult(intent, 2);
     }
 
+    //Has the path that is to be calculated in detail
+    String CurrentPhotoPath;
+    //Has the path already present
+    String path;
     public void viewImage2(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        intent.putExtra("mCurrentPhotoPath", control4.get(position2).getmCurrentPhotoPath());
+        path = control4.get(position2).getCurrentPhotoPath();
+        if(path == null){
+            path = CurrentPhotoPath;
+        }
+        intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
 
-    public void changePicture2(View view){
-        HabitHistoryController control4 = HabitHistoryController.getInstance();
-        dispatchTakePictureIntent(control4.get(position2).getmCurrentPhotoPath());
+    public void changePicture2(View view) throws IOException {
+        try {
+            HabitHistoryController control4 = HabitHistoryController.getInstance();
+            dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
+        }catch (NullPointerException e){
+            dispatchTakePictureIntent(createImageFile());
+        }
+
     }
 
 
-    private void dispatchTakePictureIntent(String mCurrentPhotoPath) {
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
+    private String createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp;
+        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        CurrentPhotoPath = image.getAbsolutePath();
+        return CurrentPhotoPath;
+    }
+
+
+    private void dispatchTakePictureIntent(String CurrentPhotoPath) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
-            photoFile = new File(mCurrentPhotoPath);
+            photoFile = new File(CurrentPhotoPath);
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
