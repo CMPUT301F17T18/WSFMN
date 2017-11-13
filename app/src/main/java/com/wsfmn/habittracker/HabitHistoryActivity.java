@@ -58,7 +58,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
     }
 
     /** Called when the user taps the Add New Habit Event button */
-    public void addHabitEvent(View view){
+    public void addHE(View view){
         Intent intent = new Intent(this, HabitEventActivity.class);
         startActivity(intent);
     }

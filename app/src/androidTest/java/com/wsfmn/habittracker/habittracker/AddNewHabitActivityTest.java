@@ -46,5 +46,7 @@ public class AddNewHabitActivityTest extends ActivityInstrumentationTestCase2<Ad
 
         Habit habit = c.getHabit(c.size() - 1);
         assertEquals("Swimming", habit.getTitle());
+
+
     }
 }

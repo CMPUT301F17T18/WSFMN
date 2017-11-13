@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
@@ -63,14 +64,24 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
-        position2 = b.getInt("position");
+        try {
+            position2 = b.getInt("position");
+        }catch (NullPointerException e){
 
+        }
         HabitHistoryController control = HabitHistoryController.getInstance();
-
-        nameEvent.setText(control.get(position2).getHabitEventTitle());
-        habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
-        comment.setText(control.get(position2).getComment());
-        date.setText(control.get(position2).getDate());
+        try {
+            nameEvent.setText(control.get(position2).getHabitEventTitle());
+            habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
+            comment.setText(control.get(position2).getComment());
+            date.setText(control.get(position2).getDate());
+        }catch (HabitEventNameException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (HabitEventCommentTooLongException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        }
 
         Button B_ = (Button) findViewById(R.id.B_changeLocation);
         B_changeLocation.setOnClickListener(new View.OnClickListener(){
@@ -91,9 +102,13 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setTitle(nameEvent.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
-            //control2.addAndStore(control2.get(position2));
+            control2.storeAndUpdate(control2.get(position2));
+            control2.storeAll();
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
+            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+        } catch (HabitEventNameException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
@@ -103,6 +118,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
         control3.remove(position2);
+        control3.store();
         startActivity(intent);
     }
 

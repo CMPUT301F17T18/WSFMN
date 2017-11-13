@@ -8,6 +8,7 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.HabitTitleTooLongException;
@@ -196,7 +197,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     /**
      * Test that GetHabitEvents returns a HabitHistory via ElasticSearch
      */
-    public void testGetHabitEvents() {
+    public void testGetHabitEvents() throws HabitEventCommentTooLongException {
         HabitHistory habitHistory = null;
         HabitEvent habitEvent1 = null;
         HabitEvent habitEvent2 = null;
