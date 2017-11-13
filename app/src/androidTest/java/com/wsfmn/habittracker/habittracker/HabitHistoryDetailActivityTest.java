@@ -32,9 +32,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
-<<<<<<< HEAD
-    public void testAddHabitEvent() throws HabitEventNameException {
-=======
+
     public void testAddHabitEvent() throws HabitEventNameException, HabitCommentTooLongException, DateNotValidException, HabitTitleTooLongException, HabitReasonTooLongException {
 
         Habit habit =  new Habit("Gym", "lose Weight", new Date());
@@ -44,7 +42,6 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
                 "/storage/","2017/11/13,00:01");
         HabitHistoryController.getInstance();
         HabitHistoryController.addAndStore(event);
->>>>>>> 2dcff8326073803d55fbe93a9623d71fa165586c
 
         solo.assertCurrentActivity("Could not open HabitEventDetail", habitHistoryDetailActivity.class);
         solo.clearEditText((EditText) solo.getView(R.id.nameEvent2));
