@@ -80,8 +80,10 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 try {
                     List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address myAddress = addressList.get(0);
+
+                    String knownName = addressList.get(0).getFeatureName();
                     //set to Geolocation
-                    Geolocation geolocation = new Geolocation(myAddress,latLng);
+                    Geolocation geolocation = new Geolocation(knownName,latLng);
                     T_address.append(myAddress.toString());
 
                     //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
@@ -264,6 +266,7 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 }
 
                 Address myAddress = addressList.get(0);
+                String knownName = addressList.get(0).getFeatureName();
                 LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
                 T_coord.setText("");
                 T_address.setText("");
@@ -272,7 +275,7 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 T_address.append(myAddress.toString());
 
 
-                Geolocation geolocation = new Geolocation(myAddress,latlng);
+                Geolocation geolocation = new Geolocation(knownName,latlng);
 
 
             }
