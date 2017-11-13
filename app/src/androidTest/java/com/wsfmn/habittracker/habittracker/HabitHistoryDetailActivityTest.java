@@ -16,7 +16,6 @@ import com.wsfmn.habittracker.habitHistoryDetailActivity;
  */
 
 public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestCase2<habitHistoryDetailActivity> {
-    private Integer size = 0;
     private Solo solo;
 
     public HabitHistoryDetailActivityTest(){
@@ -38,15 +37,14 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         solo.clickOnButton("Confirm");
         HabitHistoryController control = HabitHistoryController.getInstance();
         HabitEvent habitE = control.get(0);
-//        String title = habitE.getHabitEventTitle();
         assertEquals("Habit Event not Modified", "Swimming Competition", habitE.getHabitEventTitle());
 
-        size = control.size();
-        solo.clickInList(0);
+        int size = control.size();
         solo.clickOnButton("DELETE");
-        size = size;
         int size2 = control.size();
-        //assertEquals("Item was not deleted", size-1, control.size());
+        size = size;
+        assertEquals("Delete Habit Event did not occur", size, size2);
+
 
     }
 }

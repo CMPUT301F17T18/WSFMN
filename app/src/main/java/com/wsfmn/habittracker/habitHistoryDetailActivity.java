@@ -103,7 +103,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
             control2.storeAndUpdate(control2.get(position2));
-            control2.storeAll();
+//            control2.storeAll();
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
@@ -117,8 +117,9 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     public void deleteHE(View view){
         Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
-        control3.remove(position2);
-        control3.store();
+//        control3.remove(position2);
+//        control3.store();
+        control3.removeAndStore(position2);
         startActivity(intent);
     }
 
