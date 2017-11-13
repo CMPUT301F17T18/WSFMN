@@ -289,10 +289,9 @@ public class HabitHistoryController {
         OnlineController.StoreHabitEvents storeHabitEventsOnline =
                 new OnlineController.StoreHabitEvents();
         storeHabitEventsOnline.execute(he);
-
     }
 
-    public ArrayList<HabitEvent> getHabitEventList(){
+    public static ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
     }
 }
