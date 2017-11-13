@@ -245,7 +245,7 @@ public class AddLocationActivity extends AppCompatActivity {
 
                 T_coord.append("\n"+myAddress.getLatitude()+" "+myAddress.getLongitude());
 
-                E_address.append(knownName);
+                T_address.append(knownName);
 
 
                 geolocation = new Geolocation(knownName,latLng);
