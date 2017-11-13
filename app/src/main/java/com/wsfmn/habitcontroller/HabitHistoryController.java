@@ -101,14 +101,15 @@ public class HabitHistoryController {
 
         try {
             storeHabitEvents.execute(he).get(); // .get() waits for this task to complete
+            add(he);
+            storeHabitHistory.execute(habitHistory).get(); // .get() waits for this task to complete
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        add(he);
-        storeHabitHistory.execute(habitHistory);
+
     }
 
     /**
