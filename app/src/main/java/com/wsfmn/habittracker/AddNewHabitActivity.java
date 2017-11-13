@@ -127,8 +127,8 @@ public class AddNewHabitActivity extends AppCompatActivity {
                     getDateUI(), w);
             HabitListController c = HabitListController.getInstance();
 
-            c.addHabit(habit);
-            c.store();
+            c.addAndStore(habit);
+
             startActivity(intent);
         }
         catch(HabitTitleTooLongException e){

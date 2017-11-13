@@ -37,6 +37,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     TextView date;
     int position2;
     int i;
+    Button B_changeLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         viewImage = (Button)findViewById(R.id.ViewImg2);
         confirm = (Button)findViewById(R.id.confirmButton2);
         date = (TextView)findViewById(R.id.dateDetail);
+        B_changeLocation = (Button)findViewById(R.id.B_changeLocation);
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
@@ -62,6 +64,16 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
         comment.setText(control.get(position2).getComment());
         date.setText(control.get(position2).getDate());
+
+        Button B_ = (Button) findViewById(R.id.B_changeLocation);
+        B_changeLocation.setOnClickListener(new View.OnClickListener(){
+            @Override
+            //https://developer.android.com/training/basics/intents/result.html
+            public void onClick(View v){
+                Intent  intent = new Intent(habitHistoryDetailActivity.this,ChangeLocationActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
 
     }
 

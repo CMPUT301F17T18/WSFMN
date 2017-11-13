@@ -1,6 +1,11 @@
 package com.wsfmn.habitcontroller;
 
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitList;
@@ -12,7 +17,7 @@ import java.util.concurrent.ExecutionException;
  * Created by musaed on 2017-11-04.
  */
 
-public class HabitListController {
+public class HabitListController{
 
     
     /**
@@ -52,6 +57,12 @@ public class HabitListController {
         init();
     }
 
+
+    /**
+     * Accesses the instance of HabitListController singleton
+     *
+     * @return HabitListController the instance of singleton controller
+     */
     public static HabitListController getInstance() {
         if(INSTANCE == null){
             INSTANCE = new HabitListController();
@@ -59,14 +70,32 @@ public class HabitListController {
         return INSTANCE;
     }
 
-    public void addHabit(Habit habit) {
-        // Added by nmayne on 2017-11-07
-        OnlineController.StoreHabits storeHabitsOnline =
-                new OnlineController.StoreHabits();
-        storeHabitsOnline.execute(habit);
 
+    /**
+     * Adds a habit to the habit list
+     *
+     * @param habit a habit to be added to the habit list
+     */
+    public void addHabit(Habit habit) {
         habitList.addHabit(habit);
     }
+
+    /**
+     *  Stores a Habit online and offline and then adds it to the habit list
+     *
+     * @param habit a habit to be added offline, online, and to the habit list
+     */
+    public void addAndStore(Habit habit){
+        OnlineController.StoreHabits storeHabitsOnline =
+                new OnlineController.StoreHabits();
+        OfflineController.StoreHabitList storeHabitList =
+                new OfflineController.StoreHabitList();
+
+        storeHabitsOnline.execute(habit);
+        storeHabitList.execute(habitList);
+        addHabit(habit);
+    }
+
 
     public void deleteHabit(Habit habit){
         // Added by nmayne on 2017-11-07
@@ -147,5 +176,6 @@ public class HabitListController {
                 new OnlineController.StoreHabits();
         storeHabitsOnline.execute(h);
     }
+
 
 }

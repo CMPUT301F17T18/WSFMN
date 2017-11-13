@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -26,7 +24,6 @@ import java.util.Date;
 
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
-import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
@@ -87,13 +84,13 @@ public class HabitEventActivity extends AppCompatActivity {
         });
 
 
-        Button Location = (Button) findViewById(R.id.Location);
+        Button Location = (Button) findViewById(R.id.B_changeLocation);
         Location.setOnClickListener(new View.OnClickListener(){
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
                 Intent  intent = new Intent(HabitEventActivity.this,AddLocationActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
     }
