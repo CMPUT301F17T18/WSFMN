@@ -10,6 +10,12 @@ import java.util.ListIterator;
 
 /**
  * Created by musaed on 2017-10-22.
+ *
+ * This class is a list data structure of type boolean and size 7 used to store days of the week
+ * that the habit will occurr in. Each entry represents a day, and we use the defines constants
+ * as indexes to access the list's entries. An entry containing true means that the habit will
+ * occur in this day, and false if not.
+ *
  */
 
 public class WeekDays {
@@ -24,6 +30,9 @@ public class WeekDays {
 
     private boolean[] weekDays;
 
+    /**
+     *  Creates a WeekDays object and initializes all entries to false.
+     */
     public WeekDays(){
         weekDays = new boolean[7];
         for(boolean day: weekDays){
@@ -31,18 +40,39 @@ public class WeekDays {
         }
     }
 
+    /**
+     * Gets the value for an entry according to the index day, either true or false
+     *
+     * @param day an index that identifies a day in a week
+     * @return the value of the entry accessed by day, either true or false
+     */
     public boolean getDay(int day){
         return weekDays[day];
     }
 
+    /**
+     * Sets the value for an entry according to the index day to true
+     *
+     * @param day an index that identifies a day in a week
+     */
     public void setDay(int day){
         weekDays[day] = true;
     }
 
+    /**
+     * Sets the value for an entry according to the index day to false
+     *
+     * @param day an index that identifies a day in a week
+     */
     public void unsetDay(int day){
         weekDays[day] = false;
     }
 
+    /**
+     * Creates a different object with values copied from calling object.
+     *
+     * @return A different object with a copy of the values of the calling object.
+     */
     public WeekDays copy(){
         WeekDays copy = new WeekDays();
         for(int i = 0; i < 7; i++){

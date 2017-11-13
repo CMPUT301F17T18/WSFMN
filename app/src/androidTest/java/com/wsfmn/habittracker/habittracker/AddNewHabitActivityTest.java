@@ -3,9 +3,14 @@ package com.wsfmn.habittracker.habittracker;
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.habit.Habit;
+import com.wsfmn.habitcontroller.HabitListController;
 import com.wsfmn.habittracker.AddNewHabitActivity;
+import com.wsfmn.habittracker.HabitListViewActivity;
+import com.wsfmn.habittracker.R;
 
 /**
  * Created by musaed on 2017-11-06.
@@ -28,32 +33,18 @@ public class AddNewHabitActivityTest extends ActivityInstrumentationTestCase2<Ad
         solo = new Solo(getInstrumentation(),getActivity());
     }
 
-    /*
-        public void testClickTweetList(){
-            LonelyTwitterActivity activity = (LonelyTwitterActivity) solo.getCurrentActivity();
+    public void testConfirmButton(){
+        AddNewHabitActivity activity = (AddNewHabitActivity) solo.getCurrentActivity();
+        solo.assertCurrentActivity("Wrong Activity", AddNewHabitActivity.class);
 
-            solo.assertCurrentActivity("Wrong Activity", LonelyTwitterActivity.class);
-            solo.clickOnButton("Clear");
+        solo.enterText((EditText) solo.getView(R.id.habitTitleEditText), "Swimming");
+        solo.clickOnButton("Confirm");
 
-            solo.enterText((EditText) solo.getView(R.id.body), "Test Tweet!");
-            solo.clickOnButton("Save");
-            solo.waitForText("Test Tweet");
+        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
 
+        HabitListController c = HabitListController.getInstance();
 
-            final ListView oldTweetsList = activity.getOldTweetsList();
-            Tweet tweet =(Tweet) oldTweetsList.getItemAtPosition(0);
-            assertEquals("Test Tweet!", tweet.getMessage());
-
-
-            solo.clickInList(0);
-
-
-            solo.assertCurrentActivity("Wrong Activity", EditTweetActivity.class);
-
-            assertTrue(solo.waitForText("New Activity"));
-
-            solo.goBack();
-            solo.assertCurrentActivity("Wrong Activity", LonelyTwitterActivity.class);
-
-        }*/
+        Habit habit = c.getHabit(c.size() - 1);
+        assertEquals("Swimming", habit.getTitle());
+    }
 }

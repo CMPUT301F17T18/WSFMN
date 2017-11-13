@@ -127,9 +127,9 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         };
 
         HabitHistoryController c2 = HabitHistoryController.getInstance();
-        int occurred = c2.habitOccurrence(c.getHabit(position));
-        int occurrence = c.getHabit(position).getTotalOccurrence();
-        progressBar.setProgress((occurred / occurrence) * 100);
+        float occurred = c2.habitOccurrence(c.getHabit(position));
+        float occurrence = c.getHabit(position).getTotalOccurrence();
+        progressBar.setProgress((int) ((occurred / occurrence) * 100));
     }
 
 

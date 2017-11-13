@@ -2,6 +2,8 @@ package com.wsfmn.habit;
 
 /**
  * Created by musaed on 2017-10-31.
+ *
+ * Used to throw an exception if a Date object does not satisfy a certain constraint.
  */
 
 public class DateNotValidException extends Exception {
