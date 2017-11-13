@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitEventNameException;
@@ -46,6 +47,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     int position2;
     int i;
     Button B_changeLocation;
+    static final int CHANGE_LOCATION_CODE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,6 +205,18 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
                 HabitHistoryController control2 = HabitHistoryController.getInstance();
                 control2.get(position2).setHabit(control.getHabit(i));
             }
+        }
+
+        if(requestCode == CHANGE_LOCATION_CODE && requestCode == RESULT_OK)
+        {
+            Bundle b = data.getExtras();
+            Double latitude = b.getDouble("change_latitude");
+            Double longtitude = b. getDouble("change_longtitude");
+            String address = b.getString("change_address");
+
+            LatLng latLng = new LatLng(latitude,longtitude);
+
+
         }
     }
 }

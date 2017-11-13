@@ -175,6 +175,13 @@ public class HabitEventActivity extends AppCompatActivity {
         //Add new location
         if(requestCode == ADD_NEW_LOCATION_CODE && requestCode == RESULT_OK)
         {
+            Bundle b = data.getExtras();
+            Double latitude = b.getDouble("new_latitude");
+            Double longtitude = b. getDouble("new_longtitude");
+            String address = b.getString("new_address");
+
+            LatLng latLng = new LatLng(latitude,longtitude);
+
             //Long newCoordination = data.getLongExtra("new_coordination", 0);
             //String test=newCoordination.toString();
             //Toast.makeText(getApplicationContext(), "blalbalbal", Toast.LENGTH_LONG).show();

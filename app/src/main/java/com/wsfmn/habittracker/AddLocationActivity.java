@@ -41,6 +41,9 @@ public class AddLocationActivity extends AppCompatActivity {
     private EditText E_address;
     private  Geolocation geolocation;
     private LatLng latLng;
+    private String knownName;
+    private double latitude;
+    private double longtitude;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,13 +76,17 @@ public class AddLocationActivity extends AppCompatActivity {
 
                 T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
                 Geocoder geocoder = new Geocoder(AddLocationActivity.this);
+
+                latitude = location.getLatitude();
+                longtitude = location.getLongitude();
+
                 latLng = new LatLng(location.getLongitude(),location.getLatitude());
                 try {
                     List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address myAddress = addressList.get(0);
                     //set to Geolocation
 
-                    String knownName = addressList.get(0).getFeatureName();
+                    knownName = addressList.get(0).getFeatureName();
                     geolocation = new Geolocation(knownName,latLng);
                     T_address.append(knownName);
 
@@ -191,7 +198,11 @@ public class AddLocationActivity extends AppCompatActivity {
                 saveAddress();
 
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra("new_coordination",latLng);
+                //returnIntent.putExtra("new_coordination",latLng);
+                returnIntent.putExtra("new_address", knownName);
+                returnIntent.putExtra("new_latitude", latitude);
+                returnIntent.putExtra("new_longtitude", longtitude);
+
                 setResult(AddLocationActivity.RESULT_OK, returnIntent);
 
                 finish();
@@ -238,14 +249,19 @@ public class AddLocationActivity extends AppCompatActivity {
                 }
 
                 Address myAddress = addressList.get(0);
-                String knownName = addressList.get(0).getFeatureName();
+                knownName  = addressList.get(0).getFeatureName();
+
                 latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+
+                latitude = myAddress.getLatitude();
+                longtitude = myAddress.getLongitude();
+
                 T_coord.setText("");
                 T_address.setText("");
 
                 T_coord.append("\n"+myAddress.getLatitude()+" "+myAddress.getLongitude());
 
-                E_address.append(knownName);
+                T_address.append(knownName);
 
 
                 geolocation = new Geolocation(knownName,latLng);

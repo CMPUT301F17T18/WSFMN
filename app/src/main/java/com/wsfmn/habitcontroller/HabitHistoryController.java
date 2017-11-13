@@ -101,14 +101,15 @@ public class HabitHistoryController {
 
         try {
             storeHabitEvents.execute(he).get(); // .get() waits for this task to complete
+            add(he);
+            storeHabitHistory.execute(habitHistory).get(); // .get() waits for this task to complete
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        add(he);
-        storeHabitHistory.execute(habitHistory);
+
     }
 
     /**
@@ -134,7 +135,6 @@ public class HabitHistoryController {
         return habitHistory.remove(idx);
     }
 
-
     /**
      * Removes and returns a HabitEvent from HabitHistory.
      * To save this change and update online use, removeAndStore(HabitEvent he).
@@ -152,7 +152,6 @@ public class HabitHistoryController {
             return null;
         }
     }
-
 
     //TODO: Handle the case where removing a habit but the user is offline and we need
     // to remove it later online when they are connected again
@@ -198,8 +197,6 @@ public class HabitHistoryController {
             return null;
         }
     }
-
-
 
     /**
      * Check to see if a HabitEvent is in HabitHistory.
@@ -276,7 +273,6 @@ public class HabitHistoryController {
         storeHabitEventsOnline.execute(he);
     }
 
-
     /**
      * Store the changes to HabitHistory and update the HabitEvent online
      * @param he a HabitEvent to update online
@@ -291,6 +287,10 @@ public class HabitHistoryController {
         storeHabitEventsOnline.execute(he);
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
     }
