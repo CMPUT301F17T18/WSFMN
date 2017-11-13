@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
  */
 
 public class Geolocation {
-    private Address myAddress;
+    private String myAddress;
     private LatLng latLng;
 
     /**
@@ -29,7 +29,7 @@ public class Geolocation {
      * @param myAddress is the address that can be identified by google map
      * @param latLng is a coordination(latitude, longtitude)
      */
-    public Geolocation(Address myAddress, LatLng latLng){
+    public Geolocation(String myAddress, LatLng latLng){
         this.setMyAddress(myAddress);
         this.setLatLng(latLng);
 
@@ -37,7 +37,7 @@ public class Geolocation {
     /**
      * @Return return the address
      */
-    public Address getAddress(){
+    public String getAddress(){
         return this.myAddress;
 
     }
@@ -55,7 +55,7 @@ public class Geolocation {
      * @param myAddress the address of a location
      */
 
-    public void setMyAddress(Address myAddress){
+    public void setMyAddress(String myAddress){
         this.myAddress = myAddress;
 
     }
