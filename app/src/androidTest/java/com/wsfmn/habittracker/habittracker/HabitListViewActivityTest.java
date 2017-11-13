@@ -47,4 +47,32 @@ public class HabitListViewActivityTest extends ActivityInstrumentationTestCase2<
         solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
     }
 
+    public void testClickHabit(){
+        HabitListController c = HabitListController.getInstance();
+        Habit habit = null;
+
+        try{
+            habit = new Habit("title", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
+            //null
+        }
+
+
+        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+
+        solo.clickOnButton("Add Habit");
+        solo.sleep(5000);
+
+        solo.goBackToActivity("HabitListViewActivity");
+
+        solo.clickInList(0);
+        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+
+        solo.goBackToActivity("HabitListViewActivity");
+    }
+
 }
