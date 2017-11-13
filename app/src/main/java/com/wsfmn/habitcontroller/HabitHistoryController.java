@@ -246,12 +246,12 @@ public class HabitHistoryController {
 
         try {
             storeHabitEvents.execute(habitEvents).get();
+            storeHabitHistory.execute(habitHistory).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        storeHabitHistory.execute(habitHistory);
     }
 
     /**
@@ -260,7 +260,13 @@ public class HabitHistoryController {
     public static void store(){
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
                 new OfflineController.StoreHabitHistory();
-        storeHabitHistoryOffline.execute(habitHistory);
+        try {
+            storeHabitHistoryOffline.execute(habitHistory).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -270,7 +276,13 @@ public class HabitHistoryController {
     public static void updateOnline(HabitEvent he) {
         OnlineController.StoreHabitEvents storeHabitEventsOnline =
                 new OnlineController.StoreHabitEvents();
-        storeHabitEventsOnline.execute(he);
+        try {
+            storeHabitEventsOnline.execute(he).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -280,11 +292,17 @@ public class HabitHistoryController {
     public static void storeAndUpdate(HabitEvent he) {
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
                 new OfflineController.StoreHabitHistory();
-        storeHabitHistoryOffline.execute(habitHistory);
 
         OnlineController.StoreHabitEvents storeHabitEventsOnline =
                 new OnlineController.StoreHabitEvents();
-        storeHabitEventsOnline.execute(he);
+        try {
+            storeHabitHistoryOffline.execute(habitHistory).get();
+            storeHabitEventsOnline.execute(he).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
