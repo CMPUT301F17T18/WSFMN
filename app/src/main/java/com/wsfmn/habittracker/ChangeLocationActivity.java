@@ -43,6 +43,9 @@ public class ChangeLocationActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener listener;
     private EditText E_address;
+    private double longtitude;
+    private double latitude;
+    private String knownName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,11 +80,14 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
                 Geocoder geocoder = new Geocoder(ChangeLocationActivity.this);
                 LatLng latLng = new LatLng(location.getLongitude(),location.getLatitude());
+                latitude = location.getLatitude();
+                longtitude = location. getLongitude();
+
                 try {
                     List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address myAddress = addressList.get(0);
 
-                    String knownName = addressList.get(0).getFeatureName();
+                    knownName = addressList.get(0).getFeatureName();
                     //set to Geolocation
                     Geolocation geolocation = new Geolocation(knownName,latLng);
                     T_address.append(myAddress.toString());
@@ -227,7 +233,11 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 saveAddress();
 
                 Intent returnIntent = new Intent();
-                setResult(ChangeLocationActivity.RESULT_CANCELED, returnIntent);
+                setResult(ChangeLocationActivity.RESULT_OK, returnIntent);
+
+                returnIntent.putExtra("change_address", knownName);
+                returnIntent.putExtra("change_latitude", latitude);
+                returnIntent.putExtra("change_longtitude", longtitude);
                 finish();
                 //Intent  intent = new Intent(ChangeLocationActivity.this,habitHistoryDetailActivity.class);
                 //startActivity(intent);
@@ -266,12 +276,15 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 }
 
                 Address myAddress = addressList.get(0);
-                String knownName = addressList.get(0).getFeatureName();
+                knownName = addressList.get(0).getFeatureName();
                 LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
                 T_coord.setText("");
                 T_address.setText("");
 
                 T_coord.append("\n"+myAddress.getLatitude()+" "+myAddress.getLongitude());
+                latitude = myAddress.getLatitude();
+                longtitude = myAddress.getLongitude();
+
                 T_address.append(myAddress.toString());
 
 
