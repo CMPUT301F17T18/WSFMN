@@ -8,6 +8,7 @@ import java.util.concurrent.ExecutionException;
  * Created by Fredric on 2017-11-11.
  */
 
+// WILL BE RENAMED SOMETHING ELSE... PROFILEACTIVITY HAS ONLINECONTROLLER
 public class ProfileController {
     private static ProfileController INSTANCE = new ProfileController();
 
