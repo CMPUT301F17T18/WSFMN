@@ -58,6 +58,7 @@ public class ChangeLocationActivity extends AppCompatActivity {
         E_address = (EditText) findViewById(R.id.E_C_address);
 
         readLatlng();
+        readAddress();
 
 
 
