@@ -201,9 +201,12 @@ public class ProfileActivity extends Activity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 profileName = data.getStringExtra("uniqueName");
-                System.out.println(profileName);
-                //TODO save the name locally
                 saveInFile();
+            }
+            else if(resultCode == Activity.RESULT_CANCELED) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         }
     }
