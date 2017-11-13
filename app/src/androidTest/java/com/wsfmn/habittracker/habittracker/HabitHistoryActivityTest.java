@@ -38,7 +38,7 @@ public class HabitHistoryActivityTest extends ActivityInstrumentationTestCase2<H
         HabitHistoryController.add(event);
 
         solo.assertCurrentActivity("Could not open HabitEventActivity", HabitHistoryActivity.class);
-        solo.assertCurrentActivity("Could not open HabitEventActivity", HabitHistoryActivity.class);
+//        solo.assertCurrentActivity("Could not open HabitEventActivity", HabitHistoryActivity.class);
 //        solo.sleep(5000);
         solo.clickOnButton("Add Event");
         solo.sleep(5000);
