@@ -55,12 +55,13 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         HabitEvent habitE = control.get(0);
         assertEquals("Habit Event not Modified", "Swimming Competition", habitE.getHabitEventTitle());
 
-        int size = control.size();
+        final int size = control.size();
+        solo.clickInList(0);
         solo.clickOnButton("DELETE");
         int size2 = control.size();
-        size = size;
         assertEquals("Delete Habit Event did not occur", size-1, size2);
         c.deleteHabit(habit);
+        c.store();
     }
 }
 
