@@ -70,6 +70,14 @@ public class HabitListController{
         return INSTANCE;
     }
 
+    /**
+     *  checks if habit list is empty or not
+     *
+     * @return boolean true if empty, false otherwise
+     */
+    public boolean isEmpty(){
+        return habitList.size() == 0;
+    }
 
     /**
      * Adds a habit to the habit list
