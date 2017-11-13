@@ -90,7 +90,7 @@ public class HabitEventActivity extends AppCompatActivity {
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
                 Intent  intent = new Intent(HabitEventActivity.this,AddLocationActivity.class);
-                startActivityForResult(intent,1);
+                startActivityForResult(intent,3);
             }
         });
     }
