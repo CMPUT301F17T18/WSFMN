@@ -17,11 +17,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habitcontroller.HabitHistoryController;
@@ -48,8 +50,10 @@ public class HabitEventActivity extends AppCompatActivity {
     Uri photoURI;
     String datevalue;
     //int i;
+    LatLng new_coordinate;
     int i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int ADD_NEW_LOCATION_CODE = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +62,6 @@ public class HabitEventActivity extends AppCompatActivity {
         Comment = (EditText)findViewById(R.id.Comment);
         addPic = (Button)findViewById(R.id.Picture);
         nameHabitEvent = (EditText)findViewById(R.id.nameEvent);
-
-        //Location = (Button)findViewById(R.id.Location);
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
@@ -90,7 +92,7 @@ public class HabitEventActivity extends AppCompatActivity {
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
                 Intent  intent = new Intent(HabitEventActivity.this,AddLocationActivity.class);
-                startActivityForResult(intent,3);
+                startActivityForResult(intent,ADD_NEW_LOCATION_CODE);
             }
         });
     }
@@ -165,6 +167,15 @@ public class HabitEventActivity extends AppCompatActivity {
                 i = b.getInt("position");
                 changeName(i);
             }
+        }
+        //Add new location
+        if(requestCode == ADD_NEW_LOCATION_CODE && requestCode == RESULT_OK)
+        {
+            //Long newCoordination = data.getLongExtra("new_coordination", 0);
+            //String test=newCoordination.toString();
+            //Toast.makeText(getApplicationContext(), "blalbalbal", Toast.LENGTH_LONG).show();
+
+
         }
     }
     public void changeName(int i){

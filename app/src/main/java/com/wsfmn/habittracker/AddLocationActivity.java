@@ -39,6 +39,8 @@ public class AddLocationActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener listener;
     private EditText E_address;
+    private  Geolocation geolocation;
+    private LatLng latLng;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +62,10 @@ public class AddLocationActivity extends AppCompatActivity {
 
         listener = new LocationListener() {
             @Override
+            /**
+             *
+             * @param location
+             */
             public void onLocationChanged(Location location) {
 
                 T_coord.setText("");
@@ -67,12 +73,12 @@ public class AddLocationActivity extends AppCompatActivity {
 
                 T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
                 Geocoder geocoder = new Geocoder(AddLocationActivity.this);
-                LatLng latLng = new LatLng(location.getLongitude(),location.getLatitude());
+                latLng = new LatLng(location.getLongitude(),location.getLatitude());
                 try {
                     List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     Address myAddress = addressList.get(0);
                     //set to Geolocation
-                    Geolocation geolocation = new Geolocation(myAddress,latLng);
+                    geolocation = new Geolocation(myAddress,latLng);
                     T_address.append(myAddress.toString());
 
                     //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
@@ -106,6 +112,10 @@ public class AddLocationActivity extends AppCompatActivity {
         newplace_button();
         confirm_button();
     }
+    /**
+     *
+     * Button method it will save LatLng(coordination)
+     */
 
     public void saveLatlng()
     {
@@ -127,6 +137,11 @@ public class AddLocationActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     *
+     * Button method it will save Address
+     */
     public void saveAddress()
     {
         String addressSave = T_address.getText().toString();
@@ -159,6 +174,10 @@ public class AddLocationActivity extends AppCompatActivity {
                 break;
         }
     }
+    /**
+     *
+     * Button method it will go back to HabitEventActivity
+     */
 
     void confirm_button(){
         B_confirm.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +188,9 @@ public class AddLocationActivity extends AppCompatActivity {
                 saveAddress();
 
                 Intent returnIntent = new Intent();
-                setResult(AddLocationActivity.RESULT_CANCELED, returnIntent);
+                returnIntent.putExtra("new_coordination",latLng);
+                setResult(AddLocationActivity.RESULT_OK, returnIntent);
+
                 finish();
 
                 //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
@@ -179,6 +200,11 @@ public class AddLocationActivity extends AppCompatActivity {
 
         });
     }
+
+    /**
+     *
+     * Button method it will get the location which is entered by user
+     */
 
     void newplace_button(){
 
@@ -209,7 +235,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 }
 
                 Address myAddress = addressList.get(0);
-                LatLng latlng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
                 T_coord.setText("");
                 T_address.setText("");
 
@@ -217,7 +243,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 T_address.append(myAddress.toString());
 
 
-                Geolocation geolocation = new Geolocation(myAddress,latlng);
+                geolocation = new Geolocation(myAddress,latLng);
 
 
             }
@@ -225,6 +251,11 @@ public class AddLocationActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     *
+     * Button method it will check the permission and get the current location
+     */
 
     void configure_button() {
         // first check for permissions
