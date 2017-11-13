@@ -5,6 +5,8 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habittracker.HabitHistoryActivity;
 import com.wsfmn.habittracker.HabitListViewActivity;
 import com.wsfmn.habittracker.HabitsForTodayActivity;
 import com.wsfmn.habittracker.MainActivity;
@@ -47,5 +49,11 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
         solo.clickOnButton("Profile");
         solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
+    }
+
+    public void testViewHabitHistory(){
+        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+        solo.clickOnButton("View Habit History");
+        solo.assertCurrentActivity("Wrong Activity", HabitHistoryActivity.class);
     }
 }

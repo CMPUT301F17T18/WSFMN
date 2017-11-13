@@ -1,5 +1,6 @@
 package com.wsfmn.habittracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,5 @@ public class HabitListViewActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddNewHabitActivity.class);
         startActivity(intent);
     }
-
 
 }
