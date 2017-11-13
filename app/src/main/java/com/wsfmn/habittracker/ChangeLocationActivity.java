@@ -144,7 +144,7 @@ public class ChangeLocationActivity extends AppCompatActivity {
     {
         try {
             String addressRead;
-            FileInputStream fileInputStream = openFileInput("save_coordination");
+            FileInputStream fileInputStream = openFileInput("save_address");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             StringBuffer stringBuffer = new StringBuffer();
