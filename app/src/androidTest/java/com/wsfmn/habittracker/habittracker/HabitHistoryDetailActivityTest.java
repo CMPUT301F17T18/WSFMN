@@ -26,6 +26,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
     }
 
     public void testAddHabitEvent() throws HabitEventNameException {
+
         solo.assertCurrentActivity("Could not open HabitEventDetail", habitHistoryDetailActivity.class);
         solo.clearEditText((EditText) solo.getView(R.id.nameEvent2));
         solo.enterText((EditText) solo.getView(R.id.nameEvent2), "Swimming Competition");

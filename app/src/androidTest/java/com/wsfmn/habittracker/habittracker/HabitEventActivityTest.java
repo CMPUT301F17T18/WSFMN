@@ -4,11 +4,19 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
+import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitEventNameException;
+import com.wsfmn.habit.HabitReasonTooLongException;
+import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
+import com.wsfmn.habitcontroller.HabitListController;
+import com.wsfmn.habittracker.AddNewHabitActivity;
 import com.wsfmn.habittracker.HabitEventActivity;
 import com.wsfmn.habittracker.HabitHistoryActivity;
+import com.wsfmn.habittracker.HabitListViewActivity;
 import com.wsfmn.habittracker.R;
 
 /**
@@ -26,8 +34,12 @@ public class HabitEventActivityTest extends ActivityInstrumentationTestCase2<Hab
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
-    public void testAddHabitEvent() throws HabitEventNameException {
-        HabitEventActivity activity = (HabitEventActivity) solo.getCurrentActivity();
+    public void testAddHabitEvent() throws HabitEventNameException, DateNotValidException, HabitTitleTooLongException, HabitReasonTooLongException {
+
+        HabitListController c = HabitListController.getInstance();
+        Habit habit = new Habit("Swimming","lose Weight", new Date());
+        c.addHabit(habit);
+
         solo.assertCurrentActivity("Could not open HabitEventActivity", HabitEventActivity.class);
 
         solo.enterText((EditText) solo.getView(R.id.nameEvent), "Swimming Class");
@@ -44,5 +56,7 @@ public class HabitEventActivityTest extends ActivityInstrumentationTestCase2<Hab
         HabitEvent habitE = control.get(control.size()-1);
         assertNotNull(habitE);
         assertEquals("Swimming Class", habitE.getHabitEventTitle());
+        HabitHistoryController.removeAndStore(habitE);
+        c.deleteHabit(habit);
     }
 }
