@@ -205,8 +205,6 @@ public class AddLocationActivity extends AppCompatActivity {
                 returnIntent.putExtra("new_longtitude", longtitude);
 
                 setResult(RESULT_OK, returnIntent);
-                Toast.makeText(getApplicationContext(), "Pass the data", Toast.LENGTH_LONG).show();
-
                 finish();
 
                 //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
@@ -239,34 +237,66 @@ public class AddLocationActivity extends AppCompatActivity {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                String location = E_address.getText().toString();
+                //String location = E_address.getText().toString();
                 List<Address> addressList = null;
 
-                //use Geocoder class here
-                Geocoder geocoder = new Geocoder(AddLocationActivity.this);
-                try {
-                    addressList = geocoder.getFromLocationName(location, 1);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
-                Address myAddress = addressList.get(0);
-                knownName  = addressList.get(0).getFeatureName();
+                    //use Geocoder class here
+                    Geocoder geocoder = new Geocoder(AddLocationActivity.this);
+                    try {
+                        String location = E_address.getText().toString();
+                        addressList = geocoder.getFromLocationName(location, 1);
+                        //check if the input address can be found
+                        while (addressList.size() == 0){
+                            Toast.makeText(getApplicationContext(), "Please enter a validate address", Toast.LENGTH_LONG).show();
 
-                latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                            location = E_address.getText().toString();
+                            addressList = geocoder.getFromLocationName(location, 1);
 
-                latitude = myAddress.getLatitude();
-                longtitude = myAddress.getLongitude();
+                            Address myAddress = addressList.get(0);
+                            knownName = addressList.get(0).getFeatureName();
 
-                T_coord.setText("");
-                T_address.setText("");
+                            latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
 
-                T_coord.append("\n"+myAddress.getLatitude()+" "+myAddress.getLongitude());
+                            latitude = myAddress.getLatitude();
+                            longtitude = myAddress.getLongitude();
 
-                T_address.append(knownName);
+                            T_coord.setText("");
+                            T_address.setText("");
+
+                            T_coord.append("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
+
+                            T_address.append(knownName);
 
 
-                geolocation = new Geolocation(knownName,latLng);
+                            geolocation = new Geolocation(knownName, latLng);
+                        }
+
+                        Address myAddress = addressList.get(0);
+                        knownName = addressList.get(0).getFeatureName();
+
+                        latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+
+                        latitude = myAddress.getLatitude();
+                        longtitude = myAddress.getLongitude();
+
+                        T_coord.setText("");
+                        T_address.setText("");
+
+                        T_coord.append("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
+
+                        T_address.append(knownName);
+
+
+                        geolocation = new Geolocation(knownName, latLng);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), "Address is not validate", Toast.LENGTH_LONG).show();
+
+                    }
+
+
 
 
             }
