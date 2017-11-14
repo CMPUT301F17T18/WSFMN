@@ -41,16 +41,17 @@ public class HabitEventActivityTest extends ActivityInstrumentationTestCase2<Hab
         c.addHabit(habit);
 
         solo.assertCurrentActivity("Could not open HabitEventActivity", HabitEventActivity.class);
-
+        solo.sleep(5000);
         solo.enterText((EditText) solo.getView(R.id.nameEvent), "Swimming Class");
         solo.clickOnButton("Select Habit");
+        solo.sleep(5000);
         solo.clickInList(0);
         solo.enterText((EditText)solo.getView(R.id.Comment), "Butterfly");
 
         solo.clickOnButton("Add Habit Event");
-
+        solo.sleep(5000);
         solo.assertCurrentActivity("Could not view list of HabitEvents", HabitHistoryActivity.class);
-        solo.sleep(2000);
+        solo.sleep(5000);
 
         HabitHistoryController control = HabitHistoryController.getInstance();
         HabitEvent habitE = control.get(control.size()-1);
