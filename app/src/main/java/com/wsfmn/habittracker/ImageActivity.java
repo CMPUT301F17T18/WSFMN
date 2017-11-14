@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class imageActivity extends AppCompatActivity {
+public class ImageActivity extends AppCompatActivity {
 
     ImageView image;
     @Override

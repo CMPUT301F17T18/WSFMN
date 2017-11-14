@@ -29,6 +29,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventCommentTooLongException;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
 
@@ -36,6 +38,12 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+
+/**
+ * Represents when the user Adds a Habit Event for a habit
+ * @version 1.0
+ * @see Activity
+ */
 public class HabitEventActivity extends AppCompatActivity {
 
     Button addPic;
@@ -52,11 +60,17 @@ public class HabitEventActivity extends AppCompatActivity {
     ImageView img;
     Uri photoURI;
     String datevalue;
-    //int i;
+    //DIFFEREN -----
+    TextView T_showAddress;
+
+    //DIFFEREN -----
     LatLng new_coordinate;
-    int i;
+    Integer i = null;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    //DIFFEREN -----
     static final int ADD_NEW_LOCATION_CODE = 3;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,27 +82,35 @@ public class HabitEventActivity extends AppCompatActivity {
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
+        //DIFFEREN -----
+        T_showAddress = (TextView) findViewById(R.id.T_showAdress);
 
         date = (TextView)findViewById(R.id.eventDate);
 
+        //Creating date for the Habit Event created
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
         datevalue = df.format(Calendar.getInstance().getTime());
         date.setText(datevalue);
 
 
-        //Checking If have camera
+        //Checking If device has camera
         if(!checkCamera()){
             addPic.setEnabled(false);
         }
 
+        //To take the picture
         addPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
+                 */
                 dispatchTakePictureIntent();
             }
         });
 
 
+        //DIFFERENT -----------
         Button Location = (Button) findViewById(R.id.B_changeLocation);
         Location.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -100,12 +122,19 @@ public class HabitEventActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Checks if have the camera
+     * @return returns Boolean if has camera or not
+     */
     private boolean checkCamera(){
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
 
     static final int REQUEST_TAKE_PHOTO = 1;
 
+    /**
+     * Taking the image and putting it in the file
+     */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -113,6 +142,7 @@ public class HabitEventActivity extends AppCompatActivity {
             // Create the File where the photo should go
             File photoFile = null;
             try {
+                //Get the File name
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
@@ -133,7 +163,11 @@ public class HabitEventActivity extends AppCompatActivity {
 
     String CurrentPhotoPath;
 
+    //DIFFERENT -------
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
+    /**
+     * Creates the file where the image will be stored
+     */
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
@@ -152,7 +186,7 @@ public class HabitEventActivity extends AppCompatActivity {
     }
     //For selecting the habit
     public void selectHabit(View view){
-        Intent intent = new Intent(this, selectHabitActivity.class);
+        Intent intent = new Intent(this, SelectHabitActivity.class);
         startActivityForResult(intent, 2);
     }
 
@@ -164,6 +198,7 @@ public class HabitEventActivity extends AppCompatActivity {
 ////            img.setImageBitmap(imageBitmap);
 //
 //        }
+        // Getting the position of the habit from the list
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
@@ -173,31 +208,38 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         }
         //Add new location
-        if(requestCode == ADD_NEW_LOCATION_CODE && requestCode == RESULT_OK)
-        {
-            Bundle b = data.getExtras();
-            Double latitude = b.getDouble("new_latitude");
-            Double longtitude = b. getDouble("new_longtitude");
-            String address = b.getString("new_address");
+        if(requestCode == ADD_NEW_LOCATION_CODE){
+            if(resultCode == Activity.RESULT_OK)
 
-            LatLng latLng = new LatLng(latitude,longtitude);
+            {
+                //Bundle b = data.getExtras();
+                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
 
-            //Long newCoordination = data.getLongExtra("new_coordination", 0);
-            //String test=newCoordination.toString();
-            //Toast.makeText(getApplicationContext(), "blalbalbal", Toast.LENGTH_LONG).show();
+                Double latitude = data.getDoubleExtra("new_latitude",0);
+                Double longtitude = data. getDoubleExtra("new_longtitude",0);
+                String address = data.getStringExtra("new_address");
 
+                LatLng latLng = new LatLng(latitude,longtitude);
 
+                T_showAddress.setText(address);
+            }
         }
     }
+
+    /**
+     *  Displaying the name of the habit the user selected for the habit event
+     */
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
         nameHabit.setText(control.getHabit(i).getTitle().toString());
     }
 
-
-    //Adding the values we got into habitEvent
-    public void confirmHabitEvent(View view){
+    /**
+     * Adding the values/parameters we got into habitEvent hence creating a new habit event
+     * @param view
+     */
+    public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
             HabitListController control = HabitListController.getInstance();
@@ -207,16 +249,31 @@ public class HabitEventActivity extends AppCompatActivity {
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
+
+            hEvent.getComment();
+            hEvent.getHabitEventTitle();
+
             control2.addAndStore(hEvent);
             control2.storeAll();
             startActivity(intent);
-        } catch (HabitCommentTooLongException e) {
+
+        }catch(HabitCommentTooLongException e){
             e.printStackTrace();
+        }catch(HabitEventCommentTooLongException e){
+            Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }catch(HabitEventNameException e){
+            Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }catch(NullPointerException e){
+            Toast.makeText(HabitEventActivity.this, "Habit Event needs to contain Habit", Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * viewing image that the user took for the habit event
+     * @param view
+     */
     public void viewPic(View view){
-        Intent intent = new Intent(this, imageActivity.class);
+        Intent intent = new Intent(this, ImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
     }

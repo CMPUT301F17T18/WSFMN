@@ -239,7 +239,7 @@ public class ChangeLocationActivity extends AppCompatActivity {
                 returnIntent.putExtra("change_latitude", latitude);
                 returnIntent.putExtra("change_longtitude", longtitude);
                 finish();
-                //Intent  intent = new Intent(ChangeLocationActivity.this,habitHistoryDetailActivity.class);
+                //Intent  intent = new Intent(ChangeLocationActivity.this,HabitHistoryDetailActivity.class);
                 //startActivity(intent);
 
             }

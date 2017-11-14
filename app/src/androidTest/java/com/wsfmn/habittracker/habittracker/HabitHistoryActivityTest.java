@@ -34,21 +34,25 @@ public class HabitHistoryActivityTest extends ActivityInstrumentationTestCase2<H
 
         HabitEvent event = new HabitEvent(habit, "Gym Event", "Golds Gym",
                 "/storage/","2017/11/13,00:01");
-        HabitHistoryController c = HabitHistoryController.getInstance();
-        c.add(event);
+//        HabitHistoryController c = HabitHistoryController.getInstance();
+        HabitHistoryController.add(event);
+        HabitHistoryController.store();
 
         solo.assertCurrentActivity("Could not open HabitEventActivity", HabitHistoryActivity.class);
 
         solo.clickOnButton("Add Event");
         solo.sleep(5000);
         solo.goBackToActivity("HabitHistoryActivity");
+        solo.sleep(5000);
         solo.clickInList(0);
+        solo.sleep(5000);
         solo.goBackToActivity("HabitHistoryActivity");
-
+        solo.sleep(5000);
         HabitHistoryController control = HabitHistoryController.getInstance();
         HabitEvent habitE = control.get(control.size()-1);
         assertNotNull(habitE);
-        HabitHistoryController.removeAndStore(event);
+        HabitHistoryController.remove(event);
+        HabitHistoryController.store();
         HabitListController c2 = HabitListController.getInstance();
         c2.deleteHabit(habit);
     }

@@ -15,6 +15,11 @@ import com.wsfmn.habitcontroller.HabitHistoryController;
 
 import java.util.List;
 
+/**
+ * Displays all the Habit Events the user has
+ * @version 1.0
+ * @see AppCompatActivity
+ */
 public class HabitHistoryActivity extends AppCompatActivity {
 
     private ArrayAdapter<HabitEvent> adapter;
@@ -27,10 +32,11 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
         habitHistory = (ListView)findViewById(R.id.habitEventHist);
 
+        //When the user clicks on a HabitEvent item on the HabitEventList
         habitHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HabitHistoryActivity.this, habitHistoryDetailActivity.class);
+                Intent intent = new Intent(HabitHistoryActivity.this, HabitHistoryDetailActivity.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }
@@ -57,7 +63,10 @@ public class HabitHistoryActivity extends AppCompatActivity {
         habitHistory.setAdapter(adapter);
     }
 
-    /** Called when the user taps the Add New Habit Event button */
+    /**
+     * Called when the user taps the Add New Habit Event button
+     * @param view
+     */
     public void addHE(View view){
         Intent intent = new Intent(this, HabitEventActivity.class);
         startActivity(intent);

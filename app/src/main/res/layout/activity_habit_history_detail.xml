@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wsfmn.habittracker.habitHistoryDetailActivity">
+    tools:context="com.wsfmn.habittracker.HabitHistoryDetailActivity">
 
     <Button
         android:id="@+id/Picture2"
@@ -25,8 +25,8 @@
         android:id="@+id/B_changeLocation"
         android:layout_width="118dp"
         android:layout_height="52dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="100dp"
         android:text="Change Location"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addHabit2" />
@@ -49,10 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="60dp"
         android:onClick="viewImage2"
         android:text="View Image"
-        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintLeft_toRightOf="@+id/Comment2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/B_changeLocation" />
@@ -140,5 +140,20 @@
         app:layout_constraintHorizontal_bias="0.309"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/habitName2" />
+
+    <TextView
+        android:id="@+id/T_C_showAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Address"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/B_changeLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dateDetail"
+        app:layout_constraintTop_toBottomOf="@+id/addHabit2" />
 
 </android.support.constraint.ConstraintLayout>

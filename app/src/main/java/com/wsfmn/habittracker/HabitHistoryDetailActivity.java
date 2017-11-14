@@ -10,7 +10,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,14 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitEventNameException;
-import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
-
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +29,12 @@ import java.util.Date;
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
-public class habitHistoryDetailActivity extends AppCompatActivity {
+/**
+ * Called when the user wants to edit an existing Habit Event
+ * @version 1.0
+ * @see AppCompatActivity
+ */
+public class HabitHistoryDetailActivity extends AppCompatActivity {
 
     EditText nameEvent;
     Button addHabit;
@@ -44,6 +44,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     Button viewImage;
     Button confirm;
     TextView date;
+    TextView T_address;
     int position2;
     int i;
     Button B_changeLocation;
@@ -54,6 +55,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_history_detail);
 
+        //Declaring variables for the UI
         nameEvent = (EditText)findViewById(R.id.nameEvent2);
         addHabit = (Button)findViewById(R.id.addHabit2);
         habitName = (TextView) findViewById(R.id.habitName2);
@@ -63,14 +65,17 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         confirm = (Button)findViewById(R.id.confirmButton2);
         date = (TextView)findViewById(R.id.dateDetail);
         B_changeLocation = (Button)findViewById(R.id.B_changeLocation);
+        T_address = (TextView)findViewById(R.id.T_C_showAddress);
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
         try {
+            //Getting the position of Habit Event the user selected
             position2 = b.getInt("position");
         }catch (NullPointerException e){
 
         }
+
         HabitHistoryController control = HabitHistoryController.getInstance();
         try {
             nameEvent.setText(control.get(position2).getHabitEventTitle());
@@ -78,11 +83,13 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             comment.setText(control.get(position2).getComment());
             date.setText(control.get(position2).getDate());
         }catch (HabitEventNameException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
+        }catch(IndexOutOfBoundsException e){
+
         }
 
         Button B_ = (Button) findViewById(R.id.B_changeLocation);
@@ -90,16 +97,21 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(habitHistoryDetailActivity.this,ChangeLocationActivity.class);
+                Intent  intent = new Intent(HabitHistoryDetailActivity.this,ChangeLocationActivity.class);
                 startActivityForResult(intent,1);
             }
         });
 
     }
 
+    /**
+     * Confirm the changes fot the Habit Event
+     * @param view
+     */
     public void confirmHE(View view){
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
+            //Set the habitEvent parameters that the user gets
             HabitHistoryController control2 = HabitHistoryController.getInstance();
             control2.get(position2).setTitle(nameEvent.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
@@ -108,25 +120,34 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 //            control2.storeAll();
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch (HabitEventNameException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * Delete the Habit Event from the Habit Event History
+     * @param view
+     */
     public void deleteHE(View view){
-        Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
 //        control3.remove(position2);
 //        control3.store();
-        control3.removeAndStore(position2);
+        control3.remove(position2);
+        control3.store();
         startActivity(intent);
     }
 
+    /**
+     * Change the Habit for the Habit Event
+     * @param view
+     */
     public void changeHabit(View view){
-        Intent intent = new Intent(this, selectHabitActivity.class);
+        Intent intent = new Intent(this, SelectHabitActivity.class);
         startActivityForResult(intent, 2);
     }
 
@@ -134,10 +155,16 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     String CurrentPhotoPath;
     //Has the path already present
     String path;
+
+    /**
+     * View the image of the HabitEvent
+     * @param view
+     */
     public void viewImage2(View view){
-        Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, ImageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
         path = control4.get(position2).getCurrentPhotoPath();
+        //If no picture taken before then when it is null value we create new image
         if(path == null){
             path = CurrentPhotoPath;
         }
@@ -145,11 +172,19 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Changes the picture of the habit Event
+     * @param view
+     * @throws IOException
+     */
     public void changePicture2(View view) throws IOException {
         try {
             HabitHistoryController control4 = HabitHistoryController.getInstance();
             dispatchTakePictureIntent(control4.get(position2).getCurrentPhotoPath());
         }catch (NullPointerException e){
+            /*
+            Reuse Code: https://developer.android.com/training/camera/photobasics.html
+             */
             dispatchTakePictureIntent(createImageFile());
         }
 
@@ -157,6 +192,9 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
+    /**
+     * Image file created
+     */
     private String createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
@@ -175,6 +213,10 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * take picture and save it in a file
+     * @param CurrentPhotoPath
+     */
     private void dispatchTakePictureIntent(String CurrentPhotoPath) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -193,6 +235,12 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Getting the balue from the activities
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
@@ -207,13 +255,14 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             }
         }
 
-        if(requestCode == CHANGE_LOCATION_CODE && requestCode == RESULT_OK)
+        if(requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK)
         {
             Bundle b = data.getExtras();
             Double latitude = b.getDouble("change_latitude");
             Double longtitude = b. getDouble("change_longtitude");
             String address = b.getString("change_address");
 
+            T_address.setText(address);
             LatLng latLng = new LatLng(latitude,longtitude);
 
 

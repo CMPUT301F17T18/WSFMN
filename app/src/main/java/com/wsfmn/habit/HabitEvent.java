@@ -115,12 +115,19 @@ public class HabitEvent{
         this.id = id;
     }
 
-    /*Get the Habit for the HabitEvent*/
+    /**
+     * Get the Habit for the HabitEvent
+     * @return habit
+     */
     public Habit getHabit() {
         return habit;
     }
 
-    /*Get the Title of the Habit Event*/
+    /**
+     * Get the Title of the Habit Event
+     * @return title of the HabitEvent
+     * @throws HabitEventNameException
+     */
     public String getHabitEventTitle() throws HabitEventNameException{
         /*Checks the title length of the HabitEvent*/
         if(title.length() > 35 || title.length()<1){
@@ -130,17 +137,25 @@ public class HabitEvent{
         return title;
     }
 
-    /*Change Title of the HabitEvent*/
+    /**
+     * Change Title of the HabitEvent
+     * @param title
+     * @throws HabitEventNameException
+     */
     public String setTitle(String title)throws HabitEventNameException{
         /*Checks the length of the title*/
-        if(title.length() > 20 || title.length()<1){
+        if(title.length() > 35 || title.length()<1){
             /*Throws this exception*/
             throw new HabitEventNameException();
         }
         return this.title = title;
     }
 
-    /*Get the comment for HabitEvent that user created*/
+    /**
+     * Get the comment for HabitEvent that user created
+     * @return comment
+     * @throws HabitEventCommentTooLongException
+     */
     public String getComment() throws HabitEventCommentTooLongException {
         /*If comment larger than 20 characters return and Error*/
         if(comment.length() > 20){
@@ -150,7 +165,11 @@ public class HabitEvent{
         return comment;
     }
 
-    /*Changing the Comment of Habit Event*/
+    /**
+     * /*Changing the Comment of Habit Event
+     * @param comment
+     * @throws HabitEventCommentTooLongException
+     */
     public void setComment(String comment) throws HabitEventCommentTooLongException {
         /*Checking if comment size does not exceed 20 characters*/
         if(comment.length() > 20){
