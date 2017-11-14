@@ -85,6 +85,8 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         } catch (HabitEventCommentTooLongException e) {
             Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
+        }catch(IndexOutOfBoundsException e){
+
         }
 
         Button B_ = (Button) findViewById(R.id.B_changeLocation);
@@ -123,7 +125,8 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
         HabitHistoryController control3 = HabitHistoryController.getInstance();
 //        control3.remove(position2);
 //        control3.store();
-        control3.removeAndStore(position2);
+        control3.remove(position2);
+        control3.store();
         startActivity(intent);
     }
 
