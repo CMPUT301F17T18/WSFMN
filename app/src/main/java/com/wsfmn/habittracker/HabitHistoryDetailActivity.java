@@ -39,6 +39,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     Button viewImage;
     Button confirm;
     TextView date;
+    TextView T_address;
     int position2;
     int i;
     Button B_changeLocation;
@@ -58,6 +59,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         confirm = (Button)findViewById(R.id.confirmButton2);
         date = (TextView)findViewById(R.id.dateDetail);
         B_changeLocation = (Button)findViewById(R.id.B_changeLocation);
+        T_address = (TextView)findViewById(R.id.T_C_showAddress);
 
         Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
@@ -205,13 +207,14 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             }
         }
 
-        if(requestCode == CHANGE_LOCATION_CODE && requestCode == RESULT_OK)
+        if(requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK)
         {
             Bundle b = data.getExtras();
             Double latitude = b.getDouble("change_latitude");
             Double longtitude = b. getDouble("change_longtitude");
             String address = b.getString("change_address");
 
+            T_address.setText(address);
             LatLng latLng = new LatLng(latitude,longtitude);
 
 
