@@ -14,19 +14,18 @@ import com.wsfmn.habit.HabitReasonTooLongException;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
-import com.wsfmn.habittracker.HabitHistoryActivity;
+import com.wsfmn.habittracker.HabitHistoryDetailActivity;
 import com.wsfmn.habittracker.R;
-import com.wsfmn.habittracker.habitHistoryDetailActivity;
 
 /**
  * Created by siddhant on 2017-11-13.
  */
 
-public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestCase2<habitHistoryDetailActivity> {
+public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestCase2<HabitHistoryDetailActivity> {
     private Solo solo;
 
     public HabitHistoryDetailActivityTest(){
-        super(com.wsfmn.habittracker.habitHistoryDetailActivity.class);}
+        super(HabitHistoryDetailActivity.class);}
 
     protected void setUp() throws Exception{
         solo = new Solo(getInstrumentation(), getActivity());
@@ -44,7 +43,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         c2.add(event);
         c2.store();
 
-        solo.assertCurrentActivity("Could not open HabitEventDetail", habitHistoryDetailActivity.class);
+        solo.assertCurrentActivity("Could not open HabitEventDetail", HabitHistoryDetailActivity.class);
         solo.clearEditText((EditText) solo.getView(R.id.nameEvent2));
         solo.enterText((EditText) solo.getView(R.id.nameEvent2), "Swimming Competition");
         solo.clickOnButton("Change Habit");

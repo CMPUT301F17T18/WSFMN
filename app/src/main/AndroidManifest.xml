@@ -95,14 +95,14 @@
             android:name=".AddLocationActivity"
             android:parentActivityName=".HabitEventActivity"/>
 
-        <activity android:name=".selectHabitActivity" />
+        <activity android:name=".SelectHabitActivity" />
 
-        <activity android:name=".imageActivity" />
-        <activity android:name=".habitHistoryDetailActivity"
+        <activity android:name=".ImageActivity" />
+        <activity android:name=".HabitHistoryDetailActivity"
             android:parentActivityName=".HabitHistoryActivity"/>
 
         <activity android:name=".ChangeLocationActivity"
-            android:parentActivityName=".habitHistoryDetailActivity"/>
+            android:parentActivityName=".HabitHistoryDetailActivity"/>
 
     </application>
 

@@ -1,6 +1,5 @@
 package com.wsfmn.habittracker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +29,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
         habitHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HabitHistoryActivity.this, habitHistoryDetailActivity.class);
+                Intent intent = new Intent(HabitHistoryActivity.this, HabitHistoryDetailActivity.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }

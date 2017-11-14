@@ -10,7 +10,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,14 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
 import com.wsfmn.habit.HabitEventNameException;
-import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 import com.wsfmn.habitcontroller.HabitListController;
-
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +29,7 @@ import java.util.Date;
 
 import static com.wsfmn.habittracker.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
-public class habitHistoryDetailActivity extends AppCompatActivity {
+public class HabitHistoryDetailActivity extends AppCompatActivity {
 
     EditText nameEvent;
     Button addHabit;
@@ -78,10 +73,10 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             comment.setText(control.get(position2).getComment());
             date.setText(control.get(position2).getDate());
         }catch (HabitEventNameException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }catch(IndexOutOfBoundsException e){
 
@@ -92,7 +87,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(habitHistoryDetailActivity.this,ChangeLocationActivity.class);
+                Intent  intent = new Intent(HabitHistoryDetailActivity.this,ChangeLocationActivity.class);
                 startActivityForResult(intent,1);
             }
         });
@@ -110,16 +105,16 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
 //            control2.storeAll();
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch (HabitEventNameException e) {
-            Toast.makeText(habitHistoryDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
     }
 
     public void deleteHE(View view){
-        Intent intent = new Intent(habitHistoryDetailActivity.this, HabitHistoryActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
 //        control3.remove(position2);
 //        control3.store();
@@ -129,7 +124,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     }
 
     public void changeHabit(View view){
-        Intent intent = new Intent(this, selectHabitActivity.class);
+        Intent intent = new Intent(this, SelectHabitActivity.class);
         startActivityForResult(intent, 2);
     }
 
@@ -138,7 +133,7 @@ public class habitHistoryDetailActivity extends AppCompatActivity {
     //Has the path already present
     String path;
     public void viewImage2(View view){
-        Intent intent = new Intent(habitHistoryDetailActivity.this, imageActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, ImageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
         path = control4.get(position2).getCurrentPhotoPath();
         if(path == null){
