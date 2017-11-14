@@ -52,11 +52,17 @@ public class HabitEventActivity extends AppCompatActivity {
     ImageView img;
     Uri photoURI;
     String datevalue;
+    TextView T_showAddress;
+
+
+
     //int i;
     LatLng new_coordinate;
     int i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int ADD_NEW_LOCATION_CODE = 3;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +74,7 @@ public class HabitEventActivity extends AppCompatActivity {
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
+        T_showAddress = (TextView) findViewById(R.id.T_showAdress);
 
         date = (TextView)findViewById(R.id.eventDate);
 
@@ -173,19 +180,23 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         }
         //Add new location
-        if(requestCode == ADD_NEW_LOCATION_CODE && requestCode == RESULT_OK)
+        if(requestCode == ADD_NEW_LOCATION_CODE){
+            if(resultCode == Activity.RESULT_OK)
+
         {
-            Bundle b = data.getExtras();
-            Double latitude = b.getDouble("new_latitude");
-            Double longtitude = b. getDouble("new_longtitude");
-            String address = b.getString("new_address");
+            //Bundle b = data.getExtras();
+            Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
+
+            Double latitude = data.getDoubleExtra("new_latitude",0);
+            Double longtitude = data. getDoubleExtra("new_longtitude",0);
+            String address = data.getStringExtra("new_address");
 
             LatLng latLng = new LatLng(latitude,longtitude);
 
-            //Long newCoordination = data.getLongExtra("new_coordination", 0);
-            //String test=newCoordination.toString();
-            //Toast.makeText(getApplicationContext(), "blalbalbal", Toast.LENGTH_LONG).show();
+            T_showAddress.setText(address);
 
+
+        }
 
         }
     }
