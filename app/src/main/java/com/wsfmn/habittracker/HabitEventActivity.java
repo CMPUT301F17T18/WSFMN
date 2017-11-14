@@ -38,6 +38,12 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+
+/**
+ * Represents when the user Adds a Habit Event for a habit
+ * @version 1.0
+ * @see Activity
+ */
 public class HabitEventActivity extends AppCompatActivity {
 
     Button addPic;
@@ -81,19 +87,24 @@ public class HabitEventActivity extends AppCompatActivity {
 
         date = (TextView)findViewById(R.id.eventDate);
 
+        //Creating date for the Habit Event created
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
         datevalue = df.format(Calendar.getInstance().getTime());
         date.setText(datevalue);
 
 
-        //Checking If have camera
+        //Checking If device has camera
         if(!checkCamera()){
             addPic.setEnabled(false);
         }
 
+        //To take the picture
         addPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
+                Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
+                 */
                 dispatchTakePictureIntent();
             }
         });
@@ -111,12 +122,19 @@ public class HabitEventActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Checks if have the camera
+     * @return returns Boolean if has camera or not
+     */
     private boolean checkCamera(){
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
 
     static final int REQUEST_TAKE_PHOTO = 1;
 
+    /**
+     * Taking the image and putting it in the file
+     */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -124,6 +142,7 @@ public class HabitEventActivity extends AppCompatActivity {
             // Create the File where the photo should go
             File photoFile = null;
             try {
+                //Get the File name
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 // Error occurred while creating the File
@@ -146,6 +165,9 @@ public class HabitEventActivity extends AppCompatActivity {
 
     //DIFFERENT -------
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
+    /**
+     * Creates the file where the image will be stored
+     */
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
@@ -176,6 +198,7 @@ public class HabitEventActivity extends AppCompatActivity {
 ////            img.setImageBitmap(imageBitmap);
 //
 //        }
+        // Getting the position of the habit from the list
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
@@ -202,14 +225,20 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         }
     }
+
+    /**
+     *  Displaying the name of the habit the user selected for the habit event
+     */
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
         nameHabit.setText(control.getHabit(i).getTitle().toString());
     }
 
-
-    //Adding the values we got into habitEvent
+    /**
+     * Adding the values/parameters we got into habitEvent hence creating a new habit event
+     * @param view
+     */
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
@@ -239,6 +268,10 @@ public class HabitEventActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * viewing image that the user took for the habit event
+     * @param view
+     */
     public void viewPic(View view){
         Intent intent = new Intent(this, ImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
