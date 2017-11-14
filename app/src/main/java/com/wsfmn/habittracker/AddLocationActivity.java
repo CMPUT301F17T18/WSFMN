@@ -1,6 +1,7 @@
 package com.wsfmn.habittracker;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -203,7 +204,8 @@ public class AddLocationActivity extends AppCompatActivity {
                 returnIntent.putExtra("new_latitude", latitude);
                 returnIntent.putExtra("new_longtitude", longtitude);
 
-                setResult(AddLocationActivity.RESULT_OK, returnIntent);
+                setResult(RESULT_OK, returnIntent);
+                Toast.makeText(getApplicationContext(), "Pass the data", Toast.LENGTH_LONG).show();
 
                 finish();
 
