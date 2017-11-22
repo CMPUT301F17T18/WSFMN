@@ -31,6 +31,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
+
     public void testAddHabitEvent() throws HabitEventNameException, HabitCommentTooLongException, DateNotValidException, HabitTitleTooLongException, HabitReasonTooLongException {
 
         Habit habit =  new Habit("Gym", "lose Weight", new Date());
@@ -67,4 +68,3 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         c.store();
     }
 }
-
