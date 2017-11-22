@@ -8,7 +8,7 @@ package com.wsfmn.habit;
 import android.util.Log;
 
 /**
- *  This class imitates Habit, but with customized attributed to test
+ *  This class imitates Habit, but with customized attributes to test
  *  getTotalOccurrences. The particular purpose of this class is to see
  *  whether getTotalOccurrences counts total possible occurrences for a habit,
  *  even if the plan changes.
@@ -18,17 +18,19 @@ import android.util.Log;
 public class MockHabit extends Habit {
 
     //  as long as no changes happen to Habit plan, this would be considered today
-    private Date todayBeforeChange = new Date(2017, 11, 2);
+    //private Date todayBeforeChange = new Date(2017, 11, 2);
 
     //  once a change happens to Habit plan, we change today to a later date to test whether
     //  getTotalOccurrence takes into consideration the new changes in  the plan when it counts
     //  total possible occurrences for a habit.
-    private Date todayAfterChange = new Date(2017, 11, 12);
+    //private Date todayAfterChange = new Date(2017, 11, 12);
 
     //  this defines what today is when the getTotalOccurrence, or other methods are used to
     //  calculate total possible occurrences for a habit.
-    private Date today = todayBeforeChange;
+    //private Date today = todayBeforeChange;
+    private Date today = new Date();
 
+    public MockHabit(){};
 
     public MockHabit(Date date, WeekDays weekDays){
         this.date = date;
@@ -37,40 +39,48 @@ public class MockHabit extends Habit {
     }
 
     public void setDate(Date toStart) throws DateNotValidException {
+
         if(this.date == null) {
-            if (toStart.compareDate(new Date()) == -1)
+            if (toStart.compareDate(today) == -1)
                 throw new DateNotValidException();
         }
         else{
-            if(toStart.compareDate(this.date) == -1)
+            if(toStart.compareDate(this.date) != 0 && toStart.compareDate(today) == -1)
                 throw new DateNotValidException();
+
         }
 
         hasChanged = true;
         currDate = toStart;
         this.date = toStart;
-        today = todayAfterChange;
     }
 
+    public Date getToday() {
+        return today;
+    }
+
+    public void setToday(Date today) {
+        this.today = today;
+    }
 
     public void setWeekDays(WeekDays weekDays) {
         hasChanged = true;
         currDate = today;
-        today = todayAfterChange;
+        //today = todayAfterChange;
         this.weekDays = weekDays;
     }
 
     public void setDay(int day){
         hasChanged = true;
         currDate = today;
-        today = todayAfterChange;
+        //today = todayAfterChange;
         weekDays.setDay(day);
     }
 
     public void unsetDay(int day){
         hasChanged = true;
         currDate = today;
-        today = todayAfterChange;
+        //today = todayAfterChange;
         weekDays.unsetDay(day);
     }
 

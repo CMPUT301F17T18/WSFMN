@@ -110,7 +110,7 @@ public class HabitHistory {
     public int habitOccurrence(Habit h) {
         int num = 0;
         for (HabitEvent he : habitHistory) {
-            if (he.getHabit() == h) {
+            if (he.getHabit().equal(h)) {
                 num++;
             }
         }
