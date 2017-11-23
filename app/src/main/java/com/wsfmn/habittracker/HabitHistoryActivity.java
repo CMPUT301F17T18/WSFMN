@@ -33,18 +33,14 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
-
     private EditText search;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habits_history);
 
-
         search = findViewById(R.id.search);
-
         habitHistory = (ListView)findViewById(R.id.habitEventHist);
 
         //When the user clicks on a HabitEvent item on the HabitEventList
@@ -88,15 +84,13 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
     //  called when user wants to search by title
     public void filterByTitle(View view) {
-        HabitHistoryController c = HabitHistoryController.getInstance();
-        c.getFilteredInstance().filterByTitle(search.getText().toString());
+        HabitHistoryController.getFilteredInstance().filterByTitle(search.getText().toString());
         adapter.notifyDataSetChanged();
     }
 
     //  called when user wants to search by comment
     public void filterByComment(View view){
-        HabitHistoryController c = HabitHistoryController.getInstance();
-        c.getFilteredInstance().filterByComment(search.getText().toString());
+        HabitHistoryController.getFilteredInstance().filterByComment(search.getText().toString());
         adapter.notifyDataSetChanged();
     }
 
