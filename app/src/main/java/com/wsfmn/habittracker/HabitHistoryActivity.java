@@ -95,7 +95,6 @@ public class HabitHistoryActivity extends AppCompatActivity {
     //  called when user wants to search by title
     public void filterByTitle(View view) {
         HabitHistoryController c = HabitHistoryController.getInstance();
-        c.reloadFilter();
         c.getFilteredInstance().filterByTitle(search.getText().toString());
         adapter.notifyDataSetChanged();
     }
@@ -103,7 +102,6 @@ public class HabitHistoryActivity extends AppCompatActivity {
     //  called when user wants to search by comment
     public void filterByComment(View view){
         HabitHistoryController c = HabitHistoryController.getInstance();
-        c.reloadFilter();
         c.getFilteredInstance().filterByComment(search.getText().toString());
         adapter.notifyDataSetChanged();
     }
