@@ -77,12 +77,6 @@ public class HabitHistoryActivity extends AppCompatActivity {
         habitHistory.setAdapter(adapter);
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        HabitHistoryController.getInstance().init();
-    }
-
     /**
      * Called when the user taps the Add New Habit Event button
      * @param view
