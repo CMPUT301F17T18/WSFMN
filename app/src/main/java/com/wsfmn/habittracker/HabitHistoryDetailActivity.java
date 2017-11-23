@@ -85,10 +85,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         }catch (HabitEventNameException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
-        } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        }catch(IndexOutOfBoundsException e){
+        } catch(IndexOutOfBoundsException e){
 
         }
 

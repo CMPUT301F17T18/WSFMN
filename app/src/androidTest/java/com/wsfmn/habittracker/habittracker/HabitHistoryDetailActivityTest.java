@@ -32,7 +32,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
     }
 
 
-    public void testAddHabitEvent() throws HabitEventNameException, HabitCommentTooLongException, DateNotValidException, HabitTitleTooLongException, HabitReasonTooLongException {
+    public void testAddHabitEvent() throws Exception {
 
         Habit habit =  new Habit("Gym", "lose Weight", new Date());
         HabitListController c = HabitListController.getInstance();

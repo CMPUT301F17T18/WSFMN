@@ -118,6 +118,54 @@ public class HabitHistory {
     }
 
     /**
+     *  Filters habit history list based on title
+     *
+     * @param title a habit used to filter habit history list
+     */
+    public void filterByTitle(String title){
+
+        for(int i = 0; i < habitHistory.size(); i++) {
+            if (!habitHistory.get(i).getHabitTitle().equals(title))
+                habitHistory.remove(i--);
+        }
+    }
+
+    /**
+     *  Filters habit history list based on habit events containing comment
+     *
+     * @param comment a string that we use to filter habit history list
+     */
+    public void filterByComment(String comment) {
+
+        for(int i = 0; i < habitHistory.size(); i++){
+            if(!habitHistory.get(i).getComment().contains(comment))
+                habitHistory.remove(i--);
+        }
+    }
+
+    /**
+     * Sorts a habit history list based on Date, most recent coming first.
+     *
+     */
+    public void sortHabitHistory(){
+        HabitEvent he = null;
+        HabitEvent tempHe = null;
+
+        for(int i = 0; i < habitHistory.size(); i++){
+            for(int j = i; j < habitHistory.size(); j++){
+                if(habitHistory.get(i).compareDate(habitHistory.get(j).getDate()) == -1) {
+                    he = habitHistory.get(j);
+
+                    tempHe = habitHistory.get(i);
+                    habitHistory.set(i, he);
+                    habitHistory.set(j, tempHe);
+                }
+            }
+
+        }
+    }
+
+    /**
      * Get the Habit
      * @return
      */

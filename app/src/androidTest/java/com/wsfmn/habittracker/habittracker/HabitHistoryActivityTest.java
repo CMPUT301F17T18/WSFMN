@@ -29,7 +29,7 @@ public class HabitHistoryActivityTest extends ActivityInstrumentationTestCase2<H
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
-    public void testHabitHistory() throws DateNotValidException, HabitTitleTooLongException, HabitReasonTooLongException, HabitCommentTooLongException {
+    public void testHabitHistory() throws Exception {
         Habit habit =  new Habit("Gym", "lose Weight", new Date());
 
         HabitEvent event = new HabitEvent(habit, "Gym Event", "Golds Gym",

@@ -149,7 +149,7 @@ public class OnlineControllerTest extends ActivityInstrumentationTestCase2 {
     /**
      * Test that HabitEvents can be successfully stored via ElasticSearch
      */
-    public void testStoreHabitEvents() {
+    public void testStoreHabitEvents() throws Exception{
         HabitEvent habitEvent1 = null;
         HabitEvent habitEvent2 = null;
 

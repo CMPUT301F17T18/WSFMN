@@ -3,9 +3,14 @@ package com.wsfmn.habitcontroller;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.wsfmn.habit.Date;
+import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
+import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habit.HabitHistory;
+import com.wsfmn.habit.HabitTitleTooLongException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,24 +24,14 @@ public class HabitHistoryController {
     private static HabitHistoryController INSTANCE = null;
     private static HabitHistory habitHistory = null;
 
+
     /**
      * Instantiate the habitHistory attribute.
      * This pulls the data from the locally saved HabitHistory via OfflineController.
      */
     private HabitHistoryController() {
         habitHistory = new HabitHistory();
-        try {
-            OfflineController.GetHabitHistory getHabitHistoryOffline =
-                    new OfflineController.GetHabitHistory();
-            getHabitHistoryOffline.execute();
-            habitHistory = getHabitHistoryOffline.get();
-        } catch (InterruptedException e) {
-            Log.i("Error", e.getMessage());
-
-        } catch (ExecutionException e) {
-            Log.i("Error", e.getMessage());
-        }
-
+        init();
     }
 
     /**
@@ -48,6 +43,7 @@ public class HabitHistoryController {
         if(INSTANCE == null){
             INSTANCE = new HabitHistoryController();
         }
+
         return INSTANCE;
     }
 
@@ -86,6 +82,14 @@ public class HabitHistoryController {
      */
     public static void add(HabitEvent he) {
         habitHistory.add(he);
+    }
+
+    /**
+     *  Sorts habit history list based on Date, most recent coming first.
+     *
+     */
+    public void sortHabitHistory(){
+        habitHistory.sortHabitHistory();
     }
 
     /**
@@ -151,6 +155,28 @@ public class HabitHistoryController {
         } else {
             return null;
         }
+    }
+
+    /**
+     *  Returns a copy of habit history list with only habit events belonging to h
+     *
+     * @param title a habit used to filter habit history list
+     * @return HabitHistory a filtered copy of habit history list based on h
+     */
+    public void filterByTitle(String title){
+        habitHistory.filterByTitle(title);
+    }
+
+    /**
+     * Returns a copy of habit history list with only habit events containing
+     * comment in their comment String
+     *
+     * @param comment a string that we use to filter habit history list
+     * @return HabitHistory a filtered copy of habit history list based on comment
+     * @throws Exception
+     */
+    public static void filterByComment(String comment) {
+        habitHistory.filterByComment(comment);
     }
 
     //TODO: Handle the case where removing a habit but the user is offline and we need
@@ -226,6 +252,8 @@ public class HabitHistoryController {
     public static void addAllHabitEvents(List<HabitEvent> habitEvents) {
         habitHistory.addAllHabitEvents(habitEvents);
     }
+
+
 
     /**
      * Stores HabitHistory online, and offline.
@@ -311,5 +339,23 @@ public class HabitHistoryController {
      */
     public static ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
+    }
+
+    /**
+     *  Initializes the model with data from local storage
+     *
+     */
+    public static void init(){
+        try {
+            OfflineController.GetHabitHistory getHabitHistoryOffline =
+                    new OfflineController.GetHabitHistory();
+            getHabitHistoryOffline.execute();
+            habitHistory = getHabitHistoryOffline.get();
+        } catch (InterruptedException e) {
+            Log.i("Error", e.getMessage());
+
+        } catch (ExecutionException e) {
+            Log.i("Error", e.getMessage());
+        }
     }
 }
