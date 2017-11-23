@@ -24,6 +24,12 @@ public class HabitHistoryController {
     private static HabitHistoryController INSTANCE = null;
     private static HabitHistory habitHistory = null;
 
+    //  Added by alsobaie on 2017/11/22
+    //  Used for user to search habit history list.
+    //  Gets reloaded (by copying values from original habitHistory)
+    //  then filtered each time the user does a search
+    private static HabitHistory habitHistoryFilter = null;
+
 
     /**
      * Instantiate the habitHistory attribute.
@@ -45,6 +51,35 @@ public class HabitHistoryController {
         }
 
         return INSTANCE;
+    }
+
+    /**
+     *  Added by alsobaie on 2017/11/22
+     *  instantiates the filtered habit history list
+     *
+     * @return HabitHistory a filtered habit history list
+     */
+    public static HabitHistory getFilteredInstance(){
+        getInstance();
+
+        if(habitHistoryFilter == null)
+            habitHistoryFilter = new HabitHistory();
+
+        reloadFilter();
+        habitHistoryFilter.sortHabitHistory();
+        return habitHistoryFilter;
+    }
+
+    /**
+     *  Added by alsobaie on 2017/11/22
+     *  Copies values from habit history list to filtered habit history list.
+     *
+     */
+    public static void reloadFilter(){
+        habitHistoryFilter.getHabitEventList().clear();
+        for(int i = 0; i < habitHistory.size(); i++){
+            habitHistoryFilter.add(habitHistory.get(i));
+        }
     }
 
     /**
