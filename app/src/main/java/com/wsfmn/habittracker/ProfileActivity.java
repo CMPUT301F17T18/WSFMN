@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.wsfmn.habit.Request;
 import com.wsfmn.habit.RequestAdapter;
+import com.wsfmn.habit.RequestList;
 import com.wsfmn.habitcontroller.OfflineController;
 import com.wsfmn.habitcontroller.OnlineController;
 
@@ -48,7 +49,7 @@ public class ProfileActivity extends Activity {
     private TextView yourName;
     private TextView deleteName;
     private ListView requestsFromUser;
-    private ArrayList<Request> requestsList = new ArrayList<Request>();
+    private RequestList requestsList = new RequestList();
     RequestAdapter adapter = new RequestAdapter(requestsList, this);
     private OnlineController online = new OnlineController();
     private OfflineController offline = new OfflineController();
@@ -98,9 +99,17 @@ public class ProfileActivity extends Activity {
     public void shareOnClick(View view){
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "share");
+        flag = online.checkRequest(profileName, "share", text);
+        if (flag == false){
+            Toast.makeText(ProfileActivity.this, "Request Already Sent!",
+                    Toast.LENGTH_LONG).show();
+        }
         //requestsList.add(newRequest);
-        OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
-        sendRequest.execute(newRequest);
+        else {
+            OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
+            sendRequest.execute(newRequest);
+            adapter.notifyDataSetChanged();
+        }
         adapter.notifyDataSetChanged();
     }
 
@@ -111,24 +120,17 @@ public class ProfileActivity extends Activity {
     public void followOnClick(View view){
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "follow");
-
-        OnlineController.RequestExist check = new OnlineController.RequestExist();
-        check.execute(profileName, text);
-        try{
-            flag  = check.get();
-
-        } catch (Exception e) {
-            Log.i("Error", "Couldn't get flag from async object");
-        }
+        flag = online.checkRequest(profileName, "follow", text);
         if (flag == false){
             Toast.makeText(ProfileActivity.this, "Request Already Sent!",
                     Toast.LENGTH_LONG).show();
         }
-
         //requestsList.add(newRequest);
-        OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
-        sendRequest.execute(newRequest);
-        adapter.notifyDataSetChanged();
+        else {
+            OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
+            sendRequest.execute(newRequest);
+            adapter.notifyDataSetChanged();
+        }
     }
 
     /**

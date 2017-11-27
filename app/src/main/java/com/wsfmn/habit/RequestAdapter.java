@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.wsfmn.habitcontroller.OnlineController;
 import com.wsfmn.habittracker.R;
 
 import java.util.ArrayList;
@@ -19,12 +20,13 @@ import java.util.ArrayList;
  */
 
 public class RequestAdapter extends BaseAdapter implements ListAdapter {
-    private ArrayList<Request> list = new ArrayList<Request>();
+    private RequestList list = new RequestList();
     private Context context;
+    private OnlineController online = new OnlineController();
 
 
 
-    public RequestAdapter(ArrayList<Request> list, Context context) {
+    public RequestAdapter(RequestList list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -74,6 +76,7 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
+                online.deleteRequest( list.get(position).getId());
                 list.remove(position); //or some other task
                 notifyDataSetChanged();
             }
@@ -82,6 +85,7 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
+                online.deleteRequest(list.get(position).getId());
                 list.remove(position);
                 notifyDataSetChanged();
             }

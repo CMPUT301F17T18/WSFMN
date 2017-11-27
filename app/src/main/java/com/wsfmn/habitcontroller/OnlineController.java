@@ -17,6 +17,7 @@ import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.ProfileName;
 import com.wsfmn.habit.Request;
+import com.wsfmn.habit.RequestList;
 import com.wsfmn.habittracker.App;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class OnlineController {
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;
     private static final int ID_LENGTH = 20;
-    private static String USERNAME = "";    // need to get the username form the ProfileController
+    private static String USERNAME = "someone";    // need to get the username form the ProfileController
     private static JestDroidClient client;
 
     /**
@@ -344,17 +345,44 @@ public class OnlineController {
         }
     }
 
+    public static class DeleteRequest extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... search_parameters) {
+            if (isConnected()) {
+                verifySettings();
+                    Delete delete = new Delete.Builder(search_parameters[0])
+                            .index(INDEX_BASE + USERNAME)
+                            .type("request")
+                            .build();
+                    try {
+                        client.execute(delete);
+                    } catch (IOException e) {
+                        Log.i("Error", "Delete Habit Event failed");
+                    }
+
+            }
+            return null;
+        }
+    }
+
+    public void deleteRequest(String id){
+        //Check controller for name
+        OnlineController.DeleteRequest check =
+                new OnlineController.DeleteRequest();
+        check.execute(id);
+
+    }
 
     /**
      * Retrieve requests from ElasticSearch, Get back at most 10 Requests from Elastic Search with
      * given query search based on search_parameters.
      */
-    public static class GetRequest extends AsyncTask<String, Void, ArrayList<Request>> {
+    public static class GetRequest extends AsyncTask<String, Void, RequestList> {
         @Override
-        protected ArrayList<Request> doInBackground(String... search_parameters) {
+        protected RequestList doInBackground(String... search_parameters) {
             verifySettings();
 
-            ArrayList<Request> requests = new ArrayList<Request>();
+            RequestList requests = new RequestList();
 
             // TODO Build the query
             String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
@@ -366,14 +394,27 @@ public class OnlineController {
                     .build();
 
             try {
+
                 // TODO get the results of the query
                 SearchResult result = client.execute(search);
-                if (result.isSucceeded()){
-                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
 
-                    requests.addAll(foundRequests);
-
+                if (result.isSucceeded()) {
+                    int idx = 0;
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(Request.class)) {
+                        Request request = (Request) hit.source;
+                        idx = JsonString.indexOf(ID_TAG, idx) + ID_TAG_OFFSET;
+                        request.setId(JsonString.substring(idx, idx + ID_LENGTH));
+                        requests.addRequst(request);
+                        Log.d("GotRequest:", request.getId());
+                    }
                 }
+
+                /*if (result.isSucceeded()){
+                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
+                    requests.addAllRequests(foundRequests);
+
+                }*/
                 else {
                     Log.i("Error", "The search query failed to find any requests that matched");
                 }
@@ -385,35 +426,6 @@ public class OnlineController {
         }
     }
 
-    /**
-     * Delete a specific Request from ElasticSearch based on give search_parameters
-     */
-    public static class DeleteRequest extends AsyncTask<String, Void, ArrayList<Request>> {
-        @Override
-        protected ArrayList<Request> doInBackground(String... search_parameters) {
-            verifySettings();
-
-            ArrayList<Request> requests = new ArrayList<Request>();
-
-            // TODO Build the query
-            String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
-
-
-            DeleteByQuery delete = new DeleteByQuery.Builder(query)
-                    .addIndex(INDEX_BASE)
-                    .addType("request")
-                    .build();
-
-            try {
-                // TODO get the results of the query
-                JestResult result = client.execute(delete);
-            }
-            catch (Exception e) {
-                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
-            }
-            return requests;
-        }
-    }
 
     /**
      * Check for a certain Request matching name, searchName, and  requestType. Checks ElasticSearch if
@@ -425,12 +437,10 @@ public class OnlineController {
             verifySettings();
             Boolean flag = false;
             // TODO Build the query
-            String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ USERNAME + "\"} }\n" + "}";
             String query2 = "{\n" + " \"query\": { \"bool\": {\"must\":" +
-                    "[{\"match\":  {\"name\":\"someone\"}}, " +
-                    "{{\"match\":  {\"searchName\":\"someoneelse\"}} ] } } }";
-
-            System.out.println(search_parameters[1]);
+                    "[{\"match\":  {\"name\":\""+ search_parameters[0] + "\"}}, " +
+                    "{\"match\":  {\"requestType\":\""+ search_parameters[1] + "\"}}, " +
+                    "{\"match\":  {\"searchName\":\""+ search_parameters[2] + "\"}} ] } } }";
 
             Search search = new Search.Builder(query2)
                     .addIndex(INDEX_BASE )
@@ -441,8 +451,9 @@ public class OnlineController {
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()){
                     String JsonString = result.getJsonString();
+                    int idx = 0;
                     for (SearchResult.Hit hit : result.getHits(Request.class)) {
-                        Log.d("Name Exisits:", "Name already in database");
+                        Log.d("Request Exists:", "Requesting already");
                         return false;
                     }
                 }
@@ -454,6 +465,25 @@ public class OnlineController {
             return flag;
         }
     }
+
+    public boolean checkRequest(String name, String requestType, String searchName){
+        //Check controller for name
+        boolean flag = false;
+        OnlineController.RequestExist check =
+                new OnlineController.RequestExist();
+        check.execute(name, requestType, searchName);
+
+        try{
+            flag = check.get();
+
+        } catch (Exception e) {
+            Log.i("Error", "Couldn't get flag from async object");
+        }
+        return flag;
+
+    }
+
+
 
     /**
      * Checking ElasticSearch if a name exists in DB. Will return true if the name is unique and false

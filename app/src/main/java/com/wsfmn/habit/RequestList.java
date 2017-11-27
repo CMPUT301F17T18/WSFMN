@@ -33,6 +33,15 @@ public class RequestList {
         return requests.size();
     }
 
+    public Request get(int index) throws IndexOutOfBoundsException {
+        return requests.get(index);
+    }
+
+    public Request remove(int index) throws IndexOutOfBoundsException{
+        return requests.remove(index);
+    }
+
+
     public void addAllRequests(List<Request> requestsToAdd) {
         requests.addAll(requestsToAdd);
     }
