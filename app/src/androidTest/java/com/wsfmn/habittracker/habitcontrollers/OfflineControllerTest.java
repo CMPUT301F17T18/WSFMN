@@ -67,7 +67,7 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testHabitHistory() {
+    public void testHabitHistory() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
 
         try {

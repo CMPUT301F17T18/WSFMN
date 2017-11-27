@@ -43,12 +43,13 @@ public class HabitEvent{
      * @param comment
      * @param CurrentPhotoPath
      * @param date
-     * @throws HabitCommentTooLongException
+     *
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date) throws HabitCommentTooLongException {
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date) throws HabitCommentTooLongException,
+                                                        HabitEventCommentTooLongException{
         this.habit = habit;
         this.title = title;
-        this.comment =comment;
+        setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
         this.date = date;
@@ -154,14 +155,8 @@ public class HabitEvent{
     /**
      * Get the comment for HabitEvent that user created
      * @return comment
-     * @throws HabitEventCommentTooLongException
      */
-    public String getComment() throws HabitEventCommentTooLongException {
-        /*If comment larger than 20 characters return and Error*/
-        if(comment.length() > 20){
-            /*Throw HabitEventCommentTooLongException*/
-            throw new HabitEventCommentTooLongException();
-        }
+    public String getComment(){
         return comment;
     }
 
@@ -172,9 +167,11 @@ public class HabitEvent{
      */
     public void setComment(String comment) throws HabitEventCommentTooLongException {
         /*Checking if comment size does not exceed 20 characters*/
-        if(comment.length() > 20){
+        if(comment != null) {
+            if (comment.length() > 20) {
             /* Throw HabitEventCommentTooLongException*/
-            throw new HabitEventCommentTooLongException();
+                throw new HabitEventCommentTooLongException();
+            }
         }
         this.comment = comment;
     }
@@ -185,6 +182,54 @@ public class HabitEvent{
 
     public Geolocation getGeolocation(){return geolocation;}
 //
+
+    /**
+     *  Compares two String Dates
+     *
+     * @param otherDate the other date that compare with the calling objects' ate
+     * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
+     *  1 otherwise.
+     */
+    public int compareDate(String otherDate){
+        String[] list1 = this.date.split("/");
+        String[] list2 = otherDate.split("/");
+
+        String[] last1 = list1[2].substring(6).split(":");
+        list1[2] = list1[2].substring(0, 4);
+
+        int hour1 = Integer.parseInt(last1[0]);
+        int minute1 = Integer.parseInt(last1[1]);
+
+        String[] last2 = list2[2].substring(6).split(":");
+        list2[2] = list2[2].substring(0, 4);
+
+        int hour2 = Integer.parseInt(last2[0]);
+        int minute2 = Integer.parseInt(last2[1]);
+
+        if(Integer.parseInt(list1[2]) < Integer.parseInt(list2[2]))
+            return -1;
+        else if(Integer.parseInt(list1[2]) > Integer.parseInt(list2[2]))
+            return 1;
+        else if(Integer.parseInt(list1[1]) < Integer.parseInt(list2[1]))
+            return -1;
+        else if(Integer.parseInt(list1[1]) > Integer.parseInt(list2[1]))
+            return 1;
+        else if(Integer.parseInt(list1[0]) < Integer.parseInt(list2[0]))
+            return -1;
+        else if(Integer.parseInt(list1[0]) > Integer.parseInt(list2[0]))
+            return 1;
+        else if(hour1 < hour2)
+            return -1;
+        else if(hour1 > hour2)
+            return 1;
+        else if(minute1 < minute2)
+            return -1;
+        else if(minute1 > minute2)
+            return 1;
+        else
+            return 0;
+
+    }
 
     @Override
     public String toString(){

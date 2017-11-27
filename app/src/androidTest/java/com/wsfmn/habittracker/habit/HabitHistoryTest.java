@@ -8,8 +8,11 @@ import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitEventCommentTooLongException;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitTitleTooLongException;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -24,7 +27,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
     }
 
 
-    public void testIsEmpty() {
+    public void testIsEmpty() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
         assertTrue("Habit History should have been empty.", habitHistory.isEmpty());
 
@@ -43,7 +46,6 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null, null);
-
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -89,7 +91,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
      * For a given Habit, test that HabitOccurrence returns the correct number of HabitEvents in
      * the HabitHistory.
      */
-    public void testHabitOccurrence(){
+    public void testHabitOccurrence() throws Exception{
         HabitHistory hh = new HabitHistory();
         Habit h1 = null;
         Habit h2 = null;
@@ -181,7 +183,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
                 habitEvent.getComment(), removedHabitEvent.getComment());
     }
 
-    public void testContains() {
+    public void testContains() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
 
         Habit myHabit = null;
@@ -210,7 +212,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         assertTrue("Habit history does not contain my habit's event.", habitHistory.contains(habitEvent));
     }
 
-    public void testIndexOf() {
+    public void testIndexOf() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
 
         Habit myHabit = null;
@@ -236,5 +238,105 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         habitHistory.add(habitEvent);
 
         assertEquals("Habit history index is incorrect for habitEvent", habitHistory.indexOf(habitEvent), 0);
+    }
+
+    /**
+     *  Tests the method 'sortHabitHistory'
+     *
+     */
+    public void testSortHabitHistory() throws Exception{
+        HabitHistory habitHistory = new HabitHistory();
+
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+        HabitEvent habitEvent1 = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
+                    "13/11/2017,00:01");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
+                    "14/11/2017,00:01");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+        habitHistory.add(habitEvent);
+        habitHistory.add(habitEvent1);
+        habitHistory.sortHabitHistory();
+
+        String title1 = null;
+        String title2 = null;
+
+        try {
+            title1 = habitHistory.get(0).getHabitEventTitle();
+        }
+        catch(HabitEventNameException e){
+            //null
+        }
+
+        try{
+            title2 = habitHistory.get(1).getHabitEventTitle();
+        }
+        catch(HabitEventNameException e){
+            //null
+        }
+
+
+        assertEquals("Ate Pizza With Mike", title1);
+        assertEquals("Ate Pizza With Jack", title2);
+    }
+
+    /**
+     *  Tests filtering habit history list by title
+     *
+     */
+    public void testFilterByTitle() throws  Exception{
+        HabitHistory habitHistory = new HabitHistory();
+        HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
+                "Swimmed with Jack", null, null, null);
+        HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
+                "Swimmed with Jack", null, null, null);
+
+        habitHistory.add(he);
+        habitHistory.add(he2);
+        habitHistory.filterByTitle("Swimming");
+
+        assertEquals("Swimming", habitHistory.get(0).getHabitTitle());
+    }
+
+    /**
+     *  Tests filtering habit history list by habits containing a comment
+     *
+     */
+    public void testFilterByComment() throws Exception{
+        HabitHistory habitHistory = new HabitHistory();
+        HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
+                "Swimmed with Jack", "Fun", null, null);
+        HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
+                "Swimmed with Jack", "Not Happy", null, null);
+
+        habitHistory.add(he);
+        habitHistory.add(he2);
+        habitHistory.filterByComment("Fun");
+
+        assertEquals("Fun", habitHistory.get(0).getComment());
+        assertEquals(1, habitHistory.size());
     }
 }

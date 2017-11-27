@@ -8,12 +8,15 @@ import com.wsfmn.habit.DateNotValidException;
 import com.wsfmn.habit.Habit;
 import com.wsfmn.habit.HabitCommentTooLongException;
 import com.wsfmn.habit.HabitEvent;
+import com.wsfmn.habit.HabitEventNameException;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitTitleTooLongException;
 import com.wsfmn.habitcontroller.HabitHistoryController;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by nicholasmayne on 2017-11-08.
@@ -36,7 +39,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Test that HabitHistory is empty before adding a HabitEvent, and not empty after
      * adding a HabitEvent. This tests both add(HabitEvent h) and isEmpty()
      */
-    public void testAdd(){
+    public void testAdd() throws Exception{
         HabitHistoryController.getInstance();
         // Clear out the habit history.
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
@@ -65,7 +68,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
     /**
      * Test that you can get back the same HabitEvent that you add to the HabitHistory
      */
-    public void testGet(){
+    public void testGet() throws  Exception{
         HabitHistoryController.getInstance();
         // Clear out the habit history.
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
@@ -95,7 +98,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
     /**
      * Test that you can remove a HabitEvent from the HabitHistory
      */
-    public void testRemove() {
+    public void testRemove() throws Exception{
         HabitHistoryController.getInstance();
         // Clear out the habit history.
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
@@ -127,7 +130,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * Tests adding a list of HabitEvents to HabitHistory
      * Also tests remove(int idx) to ensure that HabitHistory isEmpty
      */
-    public void testAddAll(){
+    public void testAddAll() throws Exception{
         HabitHistoryController.getInstance();
         // Clear out the habit history.
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
@@ -167,7 +170,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
      * For a given Habit, test that HabitOccurrence returns the correct number of HabitEvents in
      * the HabitHistory.
      */
-    public void testHabitOccurrence(){
+    public void testHabitOccurrence() throws Exception{
         HabitHistoryController.getInstance();
         // Clear out the habit history.
         while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
@@ -231,6 +234,126 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         assertEquals("The sum of all Habit occurrences in the HabitHistory" +
                         "was not the same as the size of the HabitHistory",
                 c.size(), (c.habitOccurrence(h1) + c.habitOccurrence(h2)));
+    }
+
+    /**
+     *  Tests sorting habit history list based on Date, most recent coming first
+     *
+     */
+    public void testSortHabitHistory() throws Exception{
+        HabitHistoryController.getInstance();
+        // Clear out the habit history.
+        while (!HabitHistoryController.isEmpty()){HabitHistoryController.remove(0);}
+
+        HabitHistoryController c = HabitHistoryController.getInstance();
+
+        Habit myHabit = null;
+        HabitEvent habitEvent = null;
+        HabitEvent habitEvent1 = null;
+
+        try {
+            myHabit = new Habit("Eating Pizza", new Date());
+        }
+        catch(HabitTitleTooLongException e){
+            //null
+        }
+        catch(DateNotValidException e){
+            //null
+        }
+
+        try {
+            habitEvent = new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
+                    "13/11/2017,00:01");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+        try {
+            habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
+                    "14/11/2017,00:01");
+        }
+        catch(HabitCommentTooLongException e){
+            //null
+        }
+
+        c.add(habitEvent);
+        c.add(habitEvent1);
+        c.sortHabitHistory();
+
+        String title1 = null;
+        String title2 = null;
+
+        try {
+            title1 = c.get(0).getHabitEventTitle();
+        }
+        catch(HabitEventNameException e){
+            //null
+        }
+
+        try{
+            title2 = c.get(1).getHabitEventTitle();
+        }
+        catch(HabitEventNameException e){
+            //null
+        }
+
+
+        assertEquals("Ate Pizza With Mike", title1);
+        assertEquals("Ate Pizza With Jack", title2);
+    }
+
+    /**
+     *  Tests filtering habit history list by title
+     *
+     */
+    public void testFilterByTitle() throws Exception{
+        HabitHistoryController c = HabitHistoryController.getInstance();
+
+        // Clear out the habit history.
+        while (!c.isEmpty()){c.remove(0);}
+
+        HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
+                "Swimmed with Jack", null, null, null);
+        HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
+                "Swimmed with Jack", null, null, null);
+        HabitEvent he3 = new HabitEvent(new Habit("Playing With Jack", new Date()),
+                "Swimmed with Jack", null, null, null);
+
+
+        c.add(he);
+        c.add(he2);
+        c.add(he3);
+        c.filterByTitle("Swimming");
+
+        assertEquals("Swimming", c.get(0).getHabitTitle());
+        assertEquals(1, c.size());
+
+        c.filterByTitle("Playing With Jack");
+        assertEquals(0, c.size());
+    }
+
+    /**
+     *  Tests filtering habit history list by habits containing a comment
+     *
+     */
+    public void testFilterByComment() throws Exception{
+        HabitHistoryController c = HabitHistoryController.getInstance();
+
+        // Clear out the habit history.
+        while (!c.isEmpty()){c.remove(0);}
+
+        HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
+                "Swimmed with Jack", "Fun", null, null);
+        HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
+                "Swimmed with Jack", "Not Happy", null, null);
+
+        c.add(he);
+        c.add(he2);
+        c.filterByComment("Fun");
+
+        assertEquals("Fun", c.get(0).getComment());
+        assertEquals(1, c.size());
     }
 
 

@@ -39,7 +39,9 @@ public class Habit{
     protected Date currDate;  //  currDate is set to today when any change to the plan occurs
 
     //  default constructor: required for MockHabit
-    public Habit(){};
+    public Habit(){
+        date = null;
+    };
 
     /**
      *  Created a Habit object
@@ -191,8 +193,9 @@ public class Habit{
                 throw new DateNotValidException();
         }
         else{
-            if(toStart.compareDate(this.date) == -1)
-                throw new DateNotValidException();
+            if(toStart.compareDate(this.date) == -1 && toStart.compareDate(new Date()) == -1)
+                    throw new DateNotValidException();
+
         }
 
         hasChanged = true;
@@ -254,6 +257,14 @@ public class Habit{
         return title + "    " + date;
     }
 
+    /**
+     * Checks if habit is equal calling object
+     * @param habit a habit to check if it is equal to calling object
+     * @return boolean true if equal and false otherwise.
+     */
+    public boolean equal(Habit habit){
+        return this.getTitle().equals(habit.getTitle());
+    }
 
     /**
      *  calculates the total number of times that the habit could have

@@ -1,6 +1,7 @@
 package com.wsfmn.habittracker.habit;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 
 import com.wsfmn.habit.Date;
 import com.wsfmn.habit.DateNotValidException;
@@ -14,6 +15,10 @@ import com.wsfmn.habit.HabitTitleTooLongException;
 
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,7 +29,7 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public HabitEventTest(){super(HabitEvent.class);}
 
     @Test
-    public void testGetDate() throws DateNotValidException, HabitTitleTooLongException, HabitReasonTooLongException, HabitCommentTooLongException {
+    public void testGetDate() throws Exception {
         Habit habit = new Habit("Swimming",
                     "To spend time with friends", new Date());
         HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
@@ -152,6 +157,23 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
         assertNotNull(he);
         he.setComment("CommentTest");
         assertEquals("Comment not Changed", "CommentTest", he.getComment());
+    }
+
+    public void testCompareDate() throws Exception{
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+        String timeStamp = df.format(Calendar.getInstance().getTime());
+
+        Habit habit = new Habit("Swimming",
+                "To spend time with friends", new Date());
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
+                , timeStamp);
+
+
+        assertEquals(0, he.compareDate(timeStamp));
+        assertEquals(-1, he.compareDate("13/12/2018, 00:01"));
+        assertEquals(1, he.compareDate("13/11/2017,00:01"));
+
+
     }
 
 }

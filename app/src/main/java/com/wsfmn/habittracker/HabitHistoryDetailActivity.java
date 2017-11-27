@@ -85,10 +85,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         }catch (HabitEventNameException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
-        } catch (HabitEventCommentTooLongException e) {
-            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
-        }catch(IndexOutOfBoundsException e){
+        } catch(IndexOutOfBoundsException e){
 
         }
 
@@ -135,10 +132,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     public void deleteHE(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, HabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
-//        control3.remove(position2);
-//        control3.store();
-        control3.remove(position2);
-        control3.store();
+        control3.removeAndStore(position2);
         startActivity(intent);
     }
 
