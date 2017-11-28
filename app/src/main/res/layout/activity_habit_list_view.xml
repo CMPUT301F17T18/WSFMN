@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wsfmn.habittracker.HabitListViewActivity">
+    tools:context="com.wsfmn.view.HabitListViewActivity">
 
     <Button
         android:id="@+id/add_habit"

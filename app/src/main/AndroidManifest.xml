@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wsfmn.habittracker">
+    package="com.wsfmn.view">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -23,7 +23,7 @@
     <uses-permission android:name="com.google.android.provide.gsf.permission.READ_GSERVICES" />
 
     <application
-        android:name=".App"
+        android:name="com.wsfmn.view.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -40,7 +40,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.wsfmn.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,31 +48,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".HabitHistoryActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name="com.wsfmn.view.HabitHistoryActivity"
+            android:parentActivityName="com.wsfmn.view.MainActivity"/>
         <activity
-            android:name=".HabitListViewActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.wsfmn.view.HabitListViewActivity"
+            android:parentActivityName="com.wsfmn.view.MainActivity" />
         <activity
-            android:name=".HabitListViewDetailActivity"
-            android:parentActivityName=".HabitListViewActivity" />
+            android:name="com.wsfmn.view.HabitListViewDetailActivity"
+            android:parentActivityName="com.wsfmn.view.HabitListViewActivity" />
         <activity
-            android:name=".AddNewHabitActivity"
-            android:parentActivityName=".HabitListViewActivity" />
+            android:name="com.wsfmn.view.AddNewHabitActivity"
+            android:parentActivityName="com.wsfmn.view.HabitListViewActivity" />
         <activity
-            android:name=".HabitsForTodayActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name="com.wsfmn.view.HabitsForTodayActivity"
+            android:parentActivityName="com.wsfmn.view.MainActivity" />
         <activity
-            android:name=".ProfileActivity"
+            android:name="com.wsfmn.view.ProfileActivity"
             android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.wsfmn.view.MainActivity" />
         <activity
-            android:name=".UserName_Activity"
+            android:name="com.wsfmn.view.UserName_Activity"
             android:windowSoftInputMode="adjustPan"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName="com.wsfmn.view.ProfileActivity" />
         <activity
-            android:name=".FriendActivity"
-            android:parentActivityName=".ProfileActivity"/>
+            android:name="com.wsfmn.view.FriendActivity"
+            android:parentActivityName="com.wsfmn.view.ProfileActivity"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -87,24 +87,24 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.wsfmn.view.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".HabitEventActivity"
+            android:name="com.wsfmn.view.HabitEventActivity"
             android:label="@string/title_activity_habit_event"
-            android:parentActivityName=".HabitHistoryActivity" />
+            android:parentActivityName="com.wsfmn.view.HabitHistoryActivity" />
         <activity
-            android:name=".AddLocationActivity"
-            android:parentActivityName=".HabitEventActivity"/>
+            android:name="com.wsfmn.view.AddLocationActivity"
+            android:parentActivityName="com.wsfmn.view.HabitEventActivity"/>
 
-        <activity android:name=".SelectHabitActivity" />
+        <activity android:name="com.wsfmn.view.SelectHabitActivity" />
 
-        <activity android:name=".ImageActivity" />
-        <activity android:name=".HabitHistoryDetailActivity"
-            android:parentActivityName=".HabitHistoryActivity"/>
+        <activity android:name="com.wsfmn.view.ImageActivity" />
+        <activity android:name="com.wsfmn.view.HabitHistoryDetailActivity"
+            android:parentActivityName="com.wsfmn.view.HabitHistoryActivity"/>
 
-        <activity android:name=".ChangeLocationActivity"
-            android:parentActivityName=".HabitHistoryDetailActivity"/>
+        <activity android:name="com.wsfmn.view.ChangeLocationActivity"
+            android:parentActivityName="com.wsfmn.view.HabitHistoryDetailActivity"/>
 
     </application>
 
