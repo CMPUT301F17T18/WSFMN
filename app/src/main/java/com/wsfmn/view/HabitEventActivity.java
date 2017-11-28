@@ -63,6 +63,8 @@ public class HabitEventActivity extends AppCompatActivity {
     //DIFFEREN -----
     TextView T_showAddress;
 
+
+    Habit habitFromTodaysList;
     //DIFFEREN -----
     LatLng new_coordinate;
     Integer i = null;
@@ -92,9 +94,15 @@ public class HabitEventActivity extends AppCompatActivity {
         datevalue = df.format(Calendar.getInstance().getTime());
         date.setText(datevalue);
 
+//
+//        Intent intent = new Intent(this, HabitsForTodayActivity.class);
+//        startActivityForResult(intent, 2);
+        Bundle b = getIntent().getExtras();
+        i = b.getInt("position");
+        changeName(i);
 
-        Intent intent = new Intent(this, SelectHabitActivity.class);
-        startActivityForResult(intent, 2);
+
+
 
         //Checking If device has camera
         if(!checkCamera()){
@@ -208,6 +216,7 @@ public class HabitEventActivity extends AppCompatActivity {
                 Bundle b = data.getExtras();
                 i = b.getInt("position");
                 changeName(i);
+                habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
             }
         }
         //Add new location
@@ -235,8 +244,12 @@ public class HabitEventActivity extends AppCompatActivity {
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
-        nameHabit.setText(control.getHabit(i).getTitle().toString());
-        nameHabitEvent.setText(nameHabit.getText());
+
+        habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
+        nameHabitEvent.setText(habitFromTodaysList.getTitle());
+        nameHabit.setText(habitFromTodaysList.getTitle());
+
+
     }
 
     /**
