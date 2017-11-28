@@ -48,8 +48,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.SendRequest.html" title="class in com.wsfmn.habitcontroller"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.StoreHabits.html" title="class in com.wsfmn.habitcontroller"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.SendRequest.html" title="class in com.wsfmn.controller"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.StoreHabits.html" title="class in com.wsfmn.controller"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/wsfmn/habitcontroller/OnlineController.StoreHabitEvents.html" target="_top">Frames</a></li>
@@ -91,7 +91,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">com.wsfmn.habitcontroller</div>
+<div class="subTitle">com.wsfmn.controller</div>
 <h2 title="Class OnlineController.StoreHabitEvents" class="title">Class OnlineController.StoreHabitEvents</h2>
 </div>
 <div class="contentContainer">
@@ -99,10 +99,10 @@ var activeTableTab = "activeTableTab";
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.habit">HabitEvent</a>,java.lang.Void,java.lang.Void&gt;</li>
+<li>android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.model">HabitEvent</a>,java.lang.Void,java.lang.Void&gt;</li>
 <li>
 <ul class="inheritance">
-<li>com.wsfmn.habitcontroller.OnlineController.StoreHabitEvents</li>
+<li>com.wsfmn.controller.OnlineController.StoreHabitEvents</li>
 </ul>
 </li>
 </ul>
@@ -113,12 +113,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>Enclosing class:</dt>
-<dd><a href="../../../com/wsfmn/habitcontroller/OnlineController.html" title="class in com.wsfmn.habitcontroller">OnlineController</a></dd>
+<dd><a href="../../../com/wsfmn/habitcontroller/OnlineController.html" title="class in com.wsfmn.controller">OnlineController</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">OnlineController.StoreHabitEvents</span>
-extends android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.habit">HabitEvent</a>,java.lang.Void,java.lang.Void&gt;</pre>
+extends android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.model">HabitEvent</a>,java.lang.Void,java.lang.Void&gt;</pre>
 <div class="block">When StoreHabitEvents.execute(HabitEvent... habitEvents) is called on a StoreHabitEvents
  object, this method will proceed if the device is connected to the internet and will store
  the given habitEvents on an ElasticSearch DB.
@@ -196,7 +196,7 @@ extends android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.htm
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>protected java.lang.Void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/wsfmn/habitcontroller/OnlineController.StoreHabitEvents.html#doInBackground-com.wsfmn.habit.HabitEvent...-">doInBackground</a></span>(<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.habit">HabitEvent</a>...&nbsp;habitEvents)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../com/wsfmn/habitcontroller/OnlineController.StoreHabitEvents.html#doInBackground-com.wsfmn.habit.HabitEvent...-">doInBackground</a></span>(<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.model">HabitEvent</a>...&nbsp;habitEvents)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -244,16 +244,16 @@ extends android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.htm
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="doInBackground-com.wsfmn.habit.HabitEvent...-">
+<a name="doInBackground-com.wsfmn.model.HabitEvent...-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>doInBackground</h4>
-<pre>protected&nbsp;java.lang.Void&nbsp;doInBackground(<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.habit">HabitEvent</a>...&nbsp;habitEvents)</pre>
+<pre>protected&nbsp;java.lang.Void&nbsp;doInBackground(<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.model">HabitEvent</a>...&nbsp;habitEvents)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>doInBackground</code>&nbsp;in class&nbsp;<code>android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.habit">HabitEvent</a>,java.lang.Void,java.lang.Void&gt;</code></dd>
+<dd><code>doInBackground</code>&nbsp;in class&nbsp;<code>android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.html" title="class in com.wsfmn.model">HabitEvent</a>,java.lang.Void,java.lang.Void&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -284,8 +284,8 @@ extends android.os.AsyncTask&lt;<a href="../../../com/wsfmn/habit/HabitEvent.htm
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.SendRequest.html" title="class in com.wsfmn.habitcontroller"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.StoreHabits.html" title="class in com.wsfmn.habitcontroller"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.SendRequest.html" title="class in com.wsfmn.controller"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../com/wsfmn/habitcontroller/OnlineController.StoreHabits.html" title="class in com.wsfmn.controller"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?com/wsfmn/habitcontroller/OnlineController.StoreHabitEvents.html" target="_top">Frames</a></li>

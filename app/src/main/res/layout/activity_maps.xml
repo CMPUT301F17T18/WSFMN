@@ -8,7 +8,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="560dp"
-        tools:context="com.wsfmn.habittracker.MapsActivity" />
+        tools:context="com.wsfmn.view.MapsActivity" />
 
     <Button
         android:id="@+id/B_followed"
