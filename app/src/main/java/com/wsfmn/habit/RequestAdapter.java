@@ -86,6 +86,9 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
             public void onClick(View v) {
                 //do something
                 online.deleteRequest(list.get(position).getId());
+                online.addFriend(list.get(position).getName());
+
+
                 list.remove(position);
                 notifyDataSetChanged();
             }

@@ -16,6 +16,7 @@ import com.wsfmn.habit.HabitEvent;
 import com.wsfmn.habit.HabitHistory;
 import com.wsfmn.habit.HabitList;
 import com.wsfmn.habit.ProfileName;
+import com.wsfmn.habit.Friend;
 import com.wsfmn.habit.Request;
 import com.wsfmn.habit.RequestList;
 import com.wsfmn.habittracker.App;
@@ -45,7 +46,7 @@ public class OnlineController {
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;
     private static final int ID_LENGTH = 20;
-    private static String USERNAME = "someone";    // need to get the username form the ProfileController
+    private static String USERNAME = "sid3";    // need to get the username form the ProfileController
     private static JestDroidClient client;
 
     /**
@@ -311,6 +312,127 @@ public class OnlineController {
         }
     }
 
+
+    public static class AddFriend extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... search_parameters) {
+            verifySettings();
+
+            Friend newFriend = new Friend(search_parameters[0]);
+
+            Index index = new Index.Builder(newFriend)
+                    .index(INDEX_BASE + USERNAME)
+                    .type("friend")
+                    .build();
+            try {
+                DocumentResult execute = client.execute(index);
+
+                if (execute.isSucceeded()) {
+                    newFriend.setId(execute.getId());
+                } else {
+                    Log.i("Error", "Could not send request");
+                }
+            } catch (Exception e) {
+                Log.i("Error", "The application failed to build and send the requests");
+            }
+
+            return null;
+        }
+    }
+
+    public void addFriend(String id){
+        //Check controller for name
+        OnlineController.AddFriend check =
+                new OnlineController.AddFriend();
+        check.execute(id);
+
+    }
+
+    public static class GetFriendNames extends AsyncTask<String, Void, ArrayList<String>> {
+        @Override
+        protected ArrayList<String> doInBackground(String... search_parameters) {
+            verifySettings();
+
+
+            ArrayList<String> names = new ArrayList<String>();
+            // TODO Build the query
+            String query = "{ \"_source\" :  [\"name\"]," +
+                    "\"query\" : { \"match_all\" : { } } }";
+
+
+            Search search = new Search.Builder(query)
+                    .addIndex(INDEX_BASE + USERNAME)
+                    .addType("friend")
+                    .build();
+
+            try {
+
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+
+                if (result.isSucceeded()) {
+                    int idx = 0;
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(Friend.class)) {
+                        Friend fHabit = (Friend) hit.source;
+                        names.add(fHabit.getName());
+                    }
+                }
+
+                else {
+                    Log.i("Error", "The search query failed to find any requests that matched");
+                }
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            System.out.println("finished");
+            return names;
+        }
+    }
+
+    public static class GetHabitNames extends AsyncTask<String, Void, ArrayList<Habit>> {
+        @Override
+        protected ArrayList<Habit> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<Habit> habits = new ArrayList<Habit>();
+
+            // TODO Build the query
+            String query = "{\"query\" : { \"match_all\" : { } } }";
+
+            for(String name : search_parameters) {
+                Search search = new Search.Builder(query)
+                        .addIndex(INDEX_BASE + name)
+                        .addType("habit")
+                        .build();
+
+                try {
+
+                    // TODO get the results of the query
+                    SearchResult result = client.execute(search);
+
+                    if (result.isSucceeded()) {
+                        int idx = 0;
+                        String JsonString = result.getJsonString();
+                        for (SearchResult.Hit hit : result.getHits(Habit.class)) {
+                            Habit fHabit = (Habit) hit.source;
+                            habits.add(fHabit);
+                        }
+                    } else {
+                        Log.i("Error", "The search query failed to find any requests that matched");
+                    }
+                } catch (Exception e) {
+                    Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                }
+            }
+            return habits;
+        }
+    }
+
+
+
     /**
      * Send Requests to ElasticSearch  proceed if the device is connected to the internet and will store the
      * given Request on an ElasticSearch DB. Request will be given an id from ElasticSearch.
@@ -351,7 +473,7 @@ public class OnlineController {
             if (isConnected()) {
                 verifySettings();
                     Delete delete = new Delete.Builder(search_parameters[0])
-                            .index(INDEX_BASE + USERNAME)
+                            .index(INDEX_BASE)
                             .type("request")
                             .build();
                     try {
@@ -410,11 +532,6 @@ public class OnlineController {
                     }
                 }
 
-                /*if (result.isSucceeded()){
-                    List<Request> foundRequests = result.getSourceAsObjectList(Request.class);
-                    requests.addAllRequests(foundRequests);
-
-                }*/
                 else {
                     Log.i("Error", "The search query failed to find any requests that matched");
                 }
@@ -482,6 +599,8 @@ public class OnlineController {
         return flag;
 
     }
+
+
 
 
 

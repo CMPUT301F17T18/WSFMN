@@ -47,7 +47,6 @@ public class ProfileActivity extends Activity {
 
     private TextView userName;
     private TextView yourName;
-    private TextView deleteName;
     private ListView requestsFromUser;
     private RequestList requestsList = new RequestList();
     RequestAdapter adapter = new RequestAdapter(requestsList, this);
@@ -67,28 +66,6 @@ public class ProfileActivity extends Activity {
         userName = (EditText) findViewById(R.id.userName);
         requestsFromUser = (ListView) findViewById(R.id.requestStuff);
         yourName = (TextView) findViewById(R.id.showName);
-
-       /* deleteOK.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                setResult(RESULT_OK);
-                String text = deleteName.getText().toString();
-                requestsList.clear();
-                adapter.notifyDataSetChanged();
-
-             ProfileOnlineController.DeleteRequest deleteRequest = new ProfileOnlineController.DeleteRequest();
-                deleteRequest.execute(text);
-                try{
-                    requestsList = deleteRequest.get();
-                    adapter.notifyDataSetChanged();
-
-                } catch (Exception e) {
-                    Log.i("Error", "Failed to get the tweets from the async object");
-                }
-                adapter.notifyDataSetChanged();
-
-            }
-        });*/
 
     }
 
