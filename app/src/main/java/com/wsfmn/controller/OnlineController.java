@@ -47,7 +47,7 @@ public class OnlineController {
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;
     private static final int ID_LENGTH = 20;
-    private static String USERNAME = "sid3";    // need to get the username form the ProfileController
+    private static String USERNAME = "nmayne";    // need to get the username form the ProfileController
     private static JestDroidClient client;
 
     /**

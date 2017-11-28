@@ -93,6 +93,9 @@ public class HabitEventActivity extends AppCompatActivity {
         date.setText(datevalue);
 
 
+        Intent intent = new Intent(this, SelectHabitActivity.class);
+        startActivityForResult(intent, 2);
+
         //Checking If device has camera
         if(!checkCamera()){
             addPic.setEnabled(false);
@@ -233,6 +236,7 @@ public class HabitEventActivity extends AppCompatActivity {
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
         nameHabit.setText(control.getHabit(i).getTitle().toString());
+        nameHabitEvent.setText(nameHabit.getText());
     }
 
     /**
