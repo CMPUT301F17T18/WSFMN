@@ -65,7 +65,7 @@ public class HabitEventActivity extends AppCompatActivity {
     TextView T_showAddress;
     Geolocation geolocation;
 
-    Habit habitFromTodaysList;
+    Habit habitFromList;
     //DIFFEREN -----
     LatLng new_coordinate;
     Integer i = null;
@@ -221,7 +221,6 @@ public class HabitEventActivity extends AppCompatActivity {
                 Bundle b = data.getExtras();
                 i = b.getInt("position");
                 changeName(i);
-                habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
             }
         }
         //Add new location
@@ -234,13 +233,10 @@ public class HabitEventActivity extends AppCompatActivity {
 
                 Double latitude = data.getDoubleExtra("new_latitude",0);
                 Double longtitude = data. getDoubleExtra("new_longtitude",0);
+                LatLng latLng = new LatLng(latitude,longtitude);
                 String address = data.getStringExtra("new_address");
 
-                LatLng latLng = new LatLng(latitude,longtitude);
-
                 geolocation = new Geolocation(address, latLng);
-
-
 
                 T_showAddress.setText(address);
             }
@@ -248,16 +244,22 @@ public class HabitEventActivity extends AppCompatActivity {
     }
 
     /**
-     *  Displaying the name of the habit the user selected for the habit event
+     *  Display the habit the user selected for this habit event
      */
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
 
-        habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
-        nameHabitEvent.setText(habitFromTodaysList.getTitle());
-        nameHabit.setText(habitFromTodaysList.getTitle());
-
-
+        /// !!!WARNING: THIS IS A HACK!!!
+        /// TODO: we actually NEED to know if the index int i is being passed from HabitList OR from HabitsForToday!
+        if (HabitListController.getInstance().getHabitsForToday().isEmpty()) {
+            habitFromList = HabitListController.getInstance().getHabit(i);
+            nameHabitEvent.setText(habitFromList.getTitle());
+            nameHabit.setText(habitFromList.getTitle());
+        } else {
+            habitFromList = HabitListController.getInstance().getHabitsForToday().get(i);
+            nameHabitEvent.setText(habitFromList.getTitle());
+            nameHabit.setText(habitFromList.getTitle());
+        }
     }
 
     /**
