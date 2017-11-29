@@ -39,6 +39,7 @@ public class FriendHabitActivity extends AppCompatActivity {
         Intent intent = getIntent();
         fHabit = (Habit) intent.getSerializableExtra("friend");
 
+
         fhTitle = (EditText)findViewById(R.id.fhTitle);
         fhReason = (EditText)findViewById(R.id.fhReason);
         fhDate = (EditText) findViewById(R.id.fhDate);
@@ -49,6 +50,18 @@ public class FriendHabitActivity extends AppCompatActivity {
         friday = (CheckBox) findViewById(R.id.friday);
         saturday = (CheckBox) findViewById(R.id.saturday);
         sunday = (CheckBox) findViewById(R.id.sunday);
+
+        fhTitle.setClickable(true);
+        fhReason.setClickable(true);
+        fhDate.setClickable(true);
+        monday.setClickable(true);
+        tuesday.setClickable(true);
+        wednesday.setClickable(true);
+        thursday.setClickable(true);
+        friday.setClickable(true);
+        saturday.setClickable(true);
+        sunday.setClickable(true);
+
 
         setCheckBox(monday, WeekDays.MONDAY);
         setCheckBox(tuesday, WeekDays.TUESDAY);
