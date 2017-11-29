@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.wsfmn.controller.App;
+import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.controller.HabitListController;
+import com.wsfmn.controller.ProfileNameController;
+import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestAdapter;
 import com.wsfmn.model.RequestList;
@@ -124,20 +129,22 @@ public class ProfileActivity extends Activity {
      */
     @Override
     protected void onStart() {
-        // TODO Auto-generated method stub
         super.onStart();
 
         // Check if the user is connected to the internet. Otherwise send back to MainActivity.
-        if (online.isConnected() == true){}
-        else {
+        if (online.isConnected() == false) {
             Toast.makeText(ProfileActivity.this, "Not connected to internet!",
                     Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
+        // Update all habits and habit events under this username
+        HabitListController.getInstance().storeAll();
+        HabitHistoryController.getInstance().storeAll();
+
         //load the profilename if it exists
-        loadFromFile();
+        profileName = ProfileNameController.getInstance().getProfileName();
         //offline.GetUserProfile;
 
         //If User does not have a ProfileName yet then have them create one.
@@ -179,7 +186,13 @@ public class ProfileActivity extends Activity {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 profileName = data.getStringExtra("uniqueName");
-                saveInFile();
+
+                // Delete this commented code, it is now handled inside UserName_Activity
+//                saveInFile();
+
+                // Update all habits and habit events under this username
+                HabitListController.getInstance().storeAll();
+                HabitHistoryController.getInstance().storeAll();
             }
             else if(resultCode == Activity.RESULT_CANCELED) {
                 Intent intent = new Intent(this, MainActivity.class);
@@ -189,45 +202,54 @@ public class ProfileActivity extends Activity {
         }
     }
 
-    // Will remove later and replace with OfflineController's methods
-    private void loadFromFile() {
-        try {
-            FileInputStream fis = openFileInput(USER_FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
-            Gson gson = new Gson();
 
-            Type listType = new TypeToken<String>(){}.getType();
-            profileName = gson.fromJson(in, listType);
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            profileName = "";
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
-        }
-    }
+    //////////////
 
-    //Will remove later and replace with OfflineController's methods
-    private void saveInFile() {
-        try {
-            FileOutputStream fos = openFileOutput(USER_FILENAME,
-                    Context.MODE_PRIVATE);
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-            Gson gson = new Gson();
-            gson.toJson(profileName, out);
-            out.flush();
-            fos.close();
-            //something fails it will catch.
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
-        }
-    }
+    // Fredric, I commented these out, they are now handled using the ProfileNameController
+    // please delete them if everything is running okay for you!
+    //////////////
+//
+//    // Will remove later and replace with OfflineController's methods
+//    private void loadFromFile() {
+//        try {
+//            FileInputStream fis = openFileInput(USER_FILENAME);
+//            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+//
+//            Gson gson = new Gson();
+//
+//            Type listType = new TypeToken<String>(){}.getType();
+//            profileName = gson.fromJson(in, listType);
+//
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            profileName = "";
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            throw new RuntimeException();
+//        }
+//    }
+
+//    //Will remove later and replace with OfflineController's methods
+//    private void saveInFile() {
+//        try {
+//            FileOutputStream fos = openFileOutput(USER_FILENAME,
+//                    Context.MODE_PRIVATE);
+//            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+//            Gson gson = new Gson();
+//            gson.toJson(profileName, out);
+//            out.flush();
+//            fos.close();
+//            //something fails it will catch.
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            throw new RuntimeException();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            throw new RuntimeException();
+//        }
+//    }
 
 
 
