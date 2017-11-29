@@ -109,32 +109,22 @@
         android:id="@+id/fhDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="128dp"
         android:ems="10"
         android:inputType="date"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="113dp"
-        android:layout_height="27dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fhDate" />
-
-    <TextView
-        android:id="@+id/progressTextView"
+    <Button
+        android:id="@+id/friendREvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:layout_marginTop="48dp"
-        android:text="Your Progress "
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fhDate" />
+        android:layout_marginBottom="68dp"
+        android:layout_marginEnd="28dp"
+        android:text="Recent Event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 
