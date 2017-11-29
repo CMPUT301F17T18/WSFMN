@@ -1,6 +1,8 @@
 package com.wsfmn.model;
 
 
+import java.io.Serializable;
+
 /**
  * Created by musaed on 2017-10-16.
  *
@@ -14,7 +16,7 @@ package com.wsfmn.model;
  *
  */
 
-public class Habit{
+public class Habit implements Serializable{
 
 
     private String id;

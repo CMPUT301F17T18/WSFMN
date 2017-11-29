@@ -1,5 +1,6 @@
 package com.wsfmn.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Calendar;
  * information.
  */
 
-public class Date {
+public class Date implements Serializable{
 
     int year;
     int month;

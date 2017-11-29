@@ -93,8 +93,8 @@ public class HabitEventActivity extends AppCompatActivity {
         date.setText(datevalue);
 
 
-        Intent intent = new Intent(this, SelectHabitActivity.class);
-        startActivityForResult(intent, 2);
+        /*Intent intent = new Intent(this, SelectHabitActivity.class);
+        startActivityForResult(intent, 2);*/
 
         //Checking If device has camera
         if(!checkCamera()){

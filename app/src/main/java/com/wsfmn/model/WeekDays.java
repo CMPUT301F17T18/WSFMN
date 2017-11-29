@@ -1,5 +1,7 @@
 package com.wsfmn.model;
 
+import java.io.Serializable;
+
 /**
  * Created by musaed on 2017-10-22.
  *
@@ -10,7 +12,7 @@ package com.wsfmn.model;
  *
  */
 
-public class WeekDays {
+public class WeekDays implements Serializable {
 
     public static final int MONDAY = 0;
     public static final int TUESDAY = 1;

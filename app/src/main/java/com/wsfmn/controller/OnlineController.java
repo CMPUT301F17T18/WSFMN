@@ -18,7 +18,6 @@ import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.HabitHistory;
 import com.wsfmn.model.HabitList;
 import com.wsfmn.model.ProfileName;
-import com.wsfmn.model.Friend;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestList;
 import com.wsfmn.view.App;
@@ -47,7 +46,7 @@ public class OnlineController {
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;
     private static final int ID_LENGTH = 20;
-    private static String USERNAME = "nmayne";    // need to get the username form the ProfileController
+    private static String USERNAME = "sid3";    // need to get the username form the ProfileController
     private static JestDroidClient client;
 
     /**
@@ -320,7 +319,7 @@ public class OnlineController {
         protected Void doInBackground(String... search_parameters) {
             verifySettings();
 
-            Friend newFriend = new Friend(search_parameters[0]);
+            ProfileName newFriend = new ProfileName(search_parameters[0]);
 
             Index index = new Index.Builder(newFriend)
                     .index(INDEX_BASE + USERNAME)
@@ -375,8 +374,8 @@ public class OnlineController {
                 if (result.isSucceeded()) {
                     int idx = 0;
                     String JsonString = result.getJsonString();
-                    for (SearchResult.Hit hit : result.getHits(Friend.class)) {
-                        Friend fHabit = (Friend) hit.source;
+                    for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
+                        ProfileName fHabit = (ProfileName) hit.source;
                         names.add(fHabit.getName());
                     }
                 }

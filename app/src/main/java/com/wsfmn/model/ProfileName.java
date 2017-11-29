@@ -15,6 +15,8 @@ public class ProfileName {
     @JestId
     private String id;
 
+    private int score;
+
     /**
      * Empty construct if new ProfileName is called without parameters.
      */
@@ -63,13 +65,13 @@ public class ProfileName {
         this.id = id;
     }
 
-
-    /**
-     * Method to allow Profilename Name to be put into text.
-     * @return
-     */
-    @Override
-    public String toString() {
-        return name;
+    public int getScore() {
+        return score;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
 }

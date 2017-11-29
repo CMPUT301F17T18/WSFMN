@@ -13,6 +13,8 @@ public class Profile {
 
     private String Name = "";
 
+    private int score;
+
 
     public String getName() {
         return Name;
@@ -54,6 +56,22 @@ public class Profile {
 
     public boolean hasRequest(Request request){
         return requestList.contains(request);
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void addScore(int add){
+        this.score = this.score + add;
+    }
+
+    public void subScore(int sub){
+        this.score = this.score - sub;
     }
 
 

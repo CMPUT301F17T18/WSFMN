@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -20,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -36,6 +39,7 @@ public class FriendActivity extends Activity {
     private String profileName = "";
 
 
+    private Habit selected;
     private ArrayAdapter<Habit> adapter;
     ArrayList<String> namesFriends = new ArrayList<String>();
     String[] namesFriendsList;
@@ -53,9 +57,19 @@ public class FriendActivity extends Activity {
 
         fEventList = (ListView)findViewById(R.id.fEvent);
 
+        fEventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selected = (Habit) fEventList.getItemAtPosition(position);
+
+                Intent intent = new Intent(FriendActivity.this, FriendHabitActivity.class);
+                intent.putExtra("friend", (Serializable) selected);
+                startActivity(intent);
+            }
+        });
+
 
     }
-
 
     protected void onStart() {
         super.onStart();
@@ -68,13 +82,6 @@ public class FriendActivity extends Activity {
         }
         loadFromFile();
 
-
-       /* ArrayList<String> test = new ArrayList<String>();
-        test.add("Hello");
-        test.add("Trying");
-
-        String [] testlist = test.toArray(new String[test.size()]);
-*/
 
         OnlineController.GetFriendNames getFriendEvents = new OnlineController.GetFriendNames();
         getFriendEvents.execute();

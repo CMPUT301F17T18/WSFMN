@@ -30,8 +30,9 @@ public class HabitsForTodayActivity extends AppCompatActivity {
         habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 Intent intent = new Intent(context, HabitEventActivity.class);
-                intent.putExtra("position", position);
+                intent.putExtra("position", habitListView.getItemIdAtPosition(position));
                 startActivity(intent);
             }
         });
