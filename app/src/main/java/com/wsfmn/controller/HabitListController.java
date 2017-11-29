@@ -3,6 +3,7 @@ package com.wsfmn.controller;
 import android.util.Log;
 
 import com.wsfmn.model.Habit;
+import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.HabitList;
 
 import java.util.ArrayList;
@@ -178,6 +179,33 @@ public class HabitListController{
         OnlineController.StoreHabits storeHabitsOnline =
                 new OnlineController.StoreHabits();
         storeHabitsOnline.execute(h);
+    }
+
+    /**
+     * Stores HabitHistory online, and offline.
+     */
+    public void storeAll() {
+        OnlineController.StoreHabits storeHabits =
+                new OnlineController.StoreHabits();
+
+        OfflineController.StoreHabitList storeHabitList =
+                new OfflineController.StoreHabitList();
+
+        int size = habitList.size();
+        Habit[] habits = new Habit[size];
+
+        for (int i = 0; i < size; i++){
+            habits[i] = habitList.getHabit(i);
+        }
+
+        try {
+            storeHabits.execute(habits).get();
+            storeHabitList.execute(habitList).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
 

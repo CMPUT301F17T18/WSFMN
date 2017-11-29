@@ -1,7 +1,9 @@
-package com.wsfmn.view;
+package com.wsfmn.controller;
 
 import android.app.Application;
 import android.content.Context;
+
+import com.wsfmn.controller.ProfileNameController;
 
 /**
  * Created by nicholasmayne on 2017-10-25.
@@ -13,12 +15,18 @@ import android.content.Context;
 public class App extends Application {
 
     public static Context context;
+    public static String USERNAME = "";
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        ProfileNameController.getInstance();
+        USERNAME = ProfileNameController.getProfileName();
     }
 
-
+    public static void reinitialize() {
+        ProfileNameController.getInstance();
+        USERNAME = ProfileNameController.getProfileName();
+    }
 }

@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
 
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 import com.wsfmn.model.DateNotValidException;
 import com.wsfmn.model.Habit;
@@ -89,9 +90,6 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
 
             HabitHistory habitHistoryNew = getHabitHistoryOffline.get();
 
-//            assertTrue(habitHistoryNew.contains(myDoneHabitEvent));
-//            assertTrue(habitHistoryNew.contains(myNotDoneHabitEvent));
-
 
 
         } catch (HabitTitleTooLongException e) {
@@ -123,15 +121,14 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
         OfflineController.GetUserProfile getUserProfile =
                 new OfflineController.GetUserProfile();
 
-        ProfileName profile = new ProfileName();
-        profile.setName("USERNAME");
+        ProfileName profileName = new ProfileName("USERNAME");
 
-        storeUserProfile.execute(profile);
-
-        Profile retrievedProfile = new Profile();
+        ProfileName retrievedProfile = new ProfileName();
 
         assertEquals(retrievedProfile.getName(), "");
 
+
+        storeUserProfile.execute(profileName);
         try {
             getUserProfile.execute();
             retrievedProfile = getUserProfile.get();
@@ -141,9 +138,7 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-
-
-        assertEquals(retrievedProfile.getName(), profile.getName());
+        assertEquals(retrievedProfile.getName(), profileName.getName());
 
 
     }

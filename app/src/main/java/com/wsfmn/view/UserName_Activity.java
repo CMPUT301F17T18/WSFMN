@@ -10,7 +10,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.wsfmn.controller.App;
+import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.OfflineController;
+import com.wsfmn.controller.ProfileNameController;
+import com.wsfmn.model.HabitHistory;
+import com.wsfmn.model.HabitList;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.controller.OnlineController;
 
@@ -73,14 +79,25 @@ public class UserName_Activity extends AppCompatActivity {
                         Toast.makeText(UserName_Activity.this, "Name is taken! Type another!",
                                 Toast.LENGTH_LONG).show();
                     } else {
+
                         online.storeName(name);
-                        OfflineController.StoreUserProfile storeUserProfile =
-                                new OfflineController.StoreUserProfile();
-                        storeUserProfile.execute(name);
+
+                        // Store ProfileName offline
+                        ProfileNameController.storeProfileNameOffline(name);
+
+
+                        //TODO nmayne: this needs to work so that all existing habits are resaved when the profile is created
+//                        // Reinitialize newly stored username for all controllers
+//                        App.reinitialize();
+//
+//                        // Add all habits and habit events under this new username
+//                        HabitListController.getInstance().storeAll();
+//                        HabitHistoryController.getInstance();
+//                        HabitHistoryController.storeAll();
+
 
                       /*  storeName = new OnlineController.StoreNameInDataBase();
                         storeName.execute(name);*/
-
 
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("uniqueName", profileName);
