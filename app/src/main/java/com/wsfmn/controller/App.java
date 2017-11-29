@@ -21,12 +21,10 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        ProfileNameController.getInstance();
-        USERNAME = ProfileNameController.getProfileName();
+        USERNAME = ProfileNameController.getInstance().getProfileName();
     }
 
     public static void reinitialize() {
-        ProfileNameController.getInstance();
-        USERNAME = ProfileNameController.getProfileName();
+        USERNAME = ProfileNameController.getInstance().getProfileName();
     }
 }

@@ -27,10 +27,10 @@ import java.util.Date;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.model.Habit;
-import com.wsfmn.model.HabitCommentTooLongException;
+import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.model.HabitEvent;
-import com.wsfmn.model.HabitEventCommentTooLongException;
-import com.wsfmn.model.HabitEventNameException;
+import com.wsfmn.exceptions.HabitEventCommentTooLongException;
+import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 
@@ -97,9 +97,14 @@ public class HabitEventActivity extends AppCompatActivity {
 //
 //        Intent intent = new Intent(this, HabitsForTodayActivity.class);
 //        startActivityForResult(intent, 2);
+
+        // If statement handles the case where the activity is called from a listView
+        // //(e.g. HabitsForTodayActivity)
         Bundle b = getIntent().getExtras();
-        i = b.getInt("position");
-        changeName(i);
+        if (b != null) {
+            i = b.getInt("position");
+            changeName(i);
+        }
 
 
 

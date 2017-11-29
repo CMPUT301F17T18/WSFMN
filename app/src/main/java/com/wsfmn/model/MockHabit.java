@@ -5,6 +5,8 @@ package com.wsfmn.model;
  * Created by musaed on 2017-11-12.
  */
 
+import com.wsfmn.exceptions.DateNotValidException;
+
 /**
  *  This class imitates Habit, but with customized attributes to test
  *  getTotalOccurrences. The particular purpose of this class is to see

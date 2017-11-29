@@ -1,6 +1,10 @@
 package com.wsfmn.model;
 
 
+import com.wsfmn.exceptions.DateNotValidException;
+import com.wsfmn.exceptions.HabitReasonTooLongException;
+import com.wsfmn.exceptions.HabitTitleTooLongException;
+
 import java.io.Serializable;
 
 /**

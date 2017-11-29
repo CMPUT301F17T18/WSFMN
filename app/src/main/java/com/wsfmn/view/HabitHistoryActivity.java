@@ -60,7 +60,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
         super.onStart();
         adapter = new ArrayAdapter<HabitEvent>(this,
                 android.R.layout.simple_list_item_1,
-                HabitHistoryController.getFilteredInstance().getHabitEventList());
+                HabitHistoryController.getInstance().getFilteredInstance().getHabitEventList());
         habitHistory.setAdapter(adapter);
     }
 
@@ -75,13 +75,13 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
     //  called when user wants to search by title
     public void filterByTitle(View view) {
-        HabitHistoryController.getFilteredInstance().filterByTitle(search.getText().toString());
+        HabitHistoryController.getInstance().getFilteredInstance().filterByTitle(search.getText().toString());
         adapter.notifyDataSetChanged();
     }
 
     //  called when user wants to search by comment
     public void filterByComment(View view){
-        HabitHistoryController.getFilteredInstance().filterByComment(search.getText().toString());
+        HabitHistoryController.getInstance().getFilteredInstance().filterByComment(search.getText().toString());
         adapter.notifyDataSetChanged();
     }
 

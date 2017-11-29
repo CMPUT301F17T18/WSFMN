@@ -30,25 +30,25 @@ public class ProfileNameController {
         return INSTANCE;
     }
 
-    public static String getProfileName() {
+    public String getProfileName() {
         return profileName.getName();
     }
 
-    public static void setProfileName(String name) {
+    public void setProfileName(String name) {
         profileName.setName(name);
     }
 
-    public static String getProfileID() {
+    public String getProfileID() {
         return profileName.getId();
     }
 
-    public static void setProfileID(String id) {
+    public void setProfileID(String id) {
         profileName.setId(id);
     }
 
 
 
-    public static void storeProfileNameOffline(ProfileName profileName) {
+    public void storeProfileNameOffline(ProfileName profileName) {
         OfflineController.StoreUserProfile storeUserProfile=
                 new OfflineController.StoreUserProfile();
 
@@ -58,7 +58,7 @@ public class ProfileNameController {
 
     }
 
-    private static void init() {
+    private void init() {
         OfflineController.GetUserProfile getUserProfile =
                 new OfflineController.GetUserProfile();
 

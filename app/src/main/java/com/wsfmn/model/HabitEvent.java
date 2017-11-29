@@ -1,5 +1,9 @@
 package com.wsfmn.model;
 
+import com.wsfmn.exceptions.HabitCommentTooLongException;
+import com.wsfmn.exceptions.HabitEventCommentTooLongException;
+import com.wsfmn.exceptions.HabitEventNameException;
+
 /**
  * Created by skhanna1 on 10/16/17.
  */

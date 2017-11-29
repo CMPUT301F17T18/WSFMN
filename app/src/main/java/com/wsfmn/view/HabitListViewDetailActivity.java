@@ -18,11 +18,11 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.wsfmn.model.Date;
-import com.wsfmn.model.DateNotValidException;
+import com.wsfmn.exceptions.DateNotValidException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
-import com.wsfmn.model.HabitReasonTooLongException;
-import com.wsfmn.model.HabitTitleTooLongException;
+import com.wsfmn.exceptions.HabitReasonTooLongException;
+import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.model.WeekDays;
 
 import static com.wsfmn.view.R.id.fridayCheckBox;

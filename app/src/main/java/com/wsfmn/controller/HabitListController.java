@@ -148,7 +148,7 @@ public class HabitListController{
     /**
      *  Used to load local data into habitList once it is first created.
      */
-    public static void init() {
+    private void init() {
         try {
             OfflineController.GetHabitList getHabitListOffline =
                     new OfflineController.GetHabitList();
