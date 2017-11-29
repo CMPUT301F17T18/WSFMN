@@ -28,6 +28,10 @@ public class HabitEvent{
 
     //Need to Add Location
 
+    public HabitEvent(){
+        this.title = "";
+    }
+
     /**
      * Constructor for the Habit Event
      * @param habit
