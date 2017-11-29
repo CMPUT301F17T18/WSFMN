@@ -20,7 +20,6 @@ import com.wsfmn.model.HabitList;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestList;
-import com.wsfmn.view.App;
 
 
 import java.io.IOException;
@@ -46,7 +45,6 @@ public class OnlineController {
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;
     private static final int ID_LENGTH = 20;
-    private static String USERNAME = "sid3";    // need to get the username form the ProfileController
     private static JestDroidClient client;
 
     /**
@@ -76,13 +74,13 @@ public class OnlineController {
                     // the auto-generated ID which is then attributed to habit for future use.
                     if (habit.getId() != null) {
                         index = new Index.Builder(habit)
-                                .index(INDEX_BASE + USERNAME)
+                                .index(INDEX_BASE + App.USERNAME)
                                 .type("habit")
                                 .id(habit.getId())
                                 .build();
                     } else {
                         index = new Index.Builder(habit)
-                                .index(INDEX_BASE + USERNAME)
+                                .index(INDEX_BASE + App.USERNAME)
                                 .type("habit")
                                 .build();
                     }
@@ -122,7 +120,7 @@ public class OnlineController {
                 verifySettings();
                 for (Habit h : habits) {
                     Delete delete = new Delete.Builder(h.getId())
-                            .index(INDEX_BASE + USERNAME)
+                            .index(INDEX_BASE + App.USERNAME)
                             .type("habit")
                             .build();
                     try {
@@ -158,7 +156,7 @@ public class OnlineController {
                         + search_parameters[0] + "\" } } }\n";
 
                 Search search = new Search.Builder(query)
-                        .addIndex(INDEX_BASE + USERNAME)
+                        .addIndex(INDEX_BASE + App.USERNAME)
                         .addType("habit")
                         .build();
                 try {
@@ -208,13 +206,13 @@ public class OnlineController {
                     // the auto-generated ID which is then attributed to HabitEvent for future use.
                     if (he.getId() != null) {
                         index = new Index.Builder(he)
-                                .index(INDEX_BASE + USERNAME)
+                                .index(INDEX_BASE + App.USERNAME)
                                 .type("habitevent")
                                 .id(he.getId())
                                 .build();
                     } else {
                         index = new Index.Builder(he)
-                                .index(INDEX_BASE + USERNAME)
+                                .index(INDEX_BASE + App.USERNAME)
                                 .type("habitevent")
                                 .build();
                     }
@@ -250,7 +248,7 @@ public class OnlineController {
                 verifySettings();
                 for (HabitEvent he : habitEvents) {
                     Delete delete = new Delete.Builder(he.getId())
-                            .index(INDEX_BASE + USERNAME)
+                            .index(INDEX_BASE + App.USERNAME)
                             .type("habitevent")
                             .build();
                     try {
@@ -281,7 +279,7 @@ public class OnlineController {
                         + search_parameters[0] + "\" } } }\n";
 
                 Search search = new Search.Builder(query)
-                        .addIndex(INDEX_BASE + USERNAME)
+                        .addIndex(INDEX_BASE + App.USERNAME)
                         .addType("habitevent")
                         .build();
                 try {
@@ -322,7 +320,7 @@ public class OnlineController {
             ProfileName newFriend = new ProfileName(search_parameters[0]);
 
             Index index = new Index.Builder(newFriend)
-                    .index(INDEX_BASE + USERNAME)
+                    .index(INDEX_BASE + App.USERNAME)
                     .type("friend")
                     .build();
             try {
@@ -362,7 +360,7 @@ public class OnlineController {
 
 
             Search search = new Search.Builder(query)
-                    .addIndex(INDEX_BASE + USERNAME)
+                    .addIndex(INDEX_BASE + App.USERNAME)
                     .addType("friend")
                     .build();
 

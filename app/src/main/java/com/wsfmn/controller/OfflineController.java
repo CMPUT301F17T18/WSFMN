@@ -9,9 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wsfmn.model.HabitHistory;
 import com.wsfmn.model.HabitList;
-import com.wsfmn.model.Profile;
 import com.wsfmn.model.ProfileName;
-import com.wsfmn.view.App;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -158,20 +156,20 @@ public class OfflineController {
     /**
      * Getting the user's profilename from Profile.sav
      */
-    public static class GetUserProfile extends AsyncTask<Void, Void, Profile> {
+    public static class GetUserProfile extends AsyncTask<Void, Void, ProfileName> {
 
         @Override
-        protected Profile doInBackground(Void... params) {
+        protected ProfileName doInBackground(Void... params) {
             Context context = App.context;
-            Profile[] profile;
+            ProfileName[] profile;
             try {
-                FileInputStream fis = context.openFileInput(HABITHISTORY_FILENAME);
+                FileInputStream fis = context.openFileInput(PROFILE_FILENAME);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
                 Gson gson = new Gson();
-                profile = gson.fromJson(in, Profile[].class);
+                profile = gson.fromJson(in, ProfileName[].class);
             } catch (FileNotFoundException e) {
-                profile = new Profile[1];
-                profile[0] = new Profile();
+                profile = new ProfileName[1];
+                profile[0] = new ProfileName();
 
             }
             return profile[0];
