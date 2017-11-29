@@ -613,9 +613,9 @@ public class OnlineController {
             verifySettings();
             Boolean flag = false;
             // TODO Build the query
-            String query = "{\n" + " \"query\": { \"term\": {\"name\":\""+ search_parameters[0] + "\"} }\n" + "}";
+            String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
-                    .addIndex(INDEX_BASE )
+                    .addIndex(INDEX_BASE)
                     .addType("profilename")
                     .build();
             try {
@@ -624,6 +624,7 @@ public class OnlineController {
                 if (result.isSucceeded()){
                     String JsonString = result.getJsonString();
                     for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
+
                         Log.d("Name Exisits:", "Name already in database");
                         return false;
                     }
