@@ -81,6 +81,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             nameEvent.setText(control.get(position2).getHabitEventTitle());
             habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
             comment.setText(control.get(position2).getComment());
+            T_address.setText(control.get(position2).getGeolocation().getAddress());
             date.setText(control.get(position2).getDate());
         }catch (HabitEventNameException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),

@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Created by nicholasmayne on 2017-11-08.
- */
 
+/**
+ * Controller class for Habit History model class.
+ *
+ */
 public class HabitHistoryController {
     private static HabitHistoryController INSTANCE = null;
     private static HabitHistory habitHistory = null;
@@ -27,8 +28,8 @@ public class HabitHistoryController {
 
 
     /**
-     * Instantiate the habitHistory attribute.
-     * This pulls the data from the locally saved HabitHistory via OfflineController.
+     * Instantiates the habitHistory attribute.
+     * This pulls the data from the locally saved HabitHistory via OfflineController using init().
      */
     private HabitHistoryController() {
         habitHistory = new HabitHistory();
@@ -44,15 +45,14 @@ public class HabitHistoryController {
         if(INSTANCE == null){
             INSTANCE = new HabitHistoryController();
         }
-
         return INSTANCE;
     }
 
     /**
      *  Added by alsobaie on 2017/11/22
-     *  instantiates the filtered habit history list
+     *  Instantiates the filtered habit history list.
      *
-     * @return HabitHistory a filtered habit history list
+     * @return HabitHistory, a filtered habit history list
      */
     public HabitHistory getFilteredInstance(){
         getInstance();
@@ -78,28 +78,28 @@ public class HabitHistoryController {
     }
 
     /**
-     * Checks it the HabitHistory is empty.
+     * Checks if HabitHistory is empty.
      *
-     * @return Boolean true if HabitHistory is empty
+     * @return true if empty, false otherwise
      */
     public Boolean isEmpty() {
         return habitHistory.isEmpty();
     }
 
     /**
-     * Get the size of the habit history.
+     * Gets the size of the habit history.
      *
-     * @return int the number of entries in HabitHistory
+     * @return number of entries in HabitHistory
      */
     public int size() {
         return habitHistory.size();
     }
 
     /**
-     * For a given Habit, get its number of HabitEvents in habitHistory.
+     * For a given Habit, gets its number of HabitEvents in habitHistory.
      *
-     * @param h Habit: the Habit to get the number of occurrances of
-     * @return int the number of occurances of the given Habit
+     * @param h Habit to get the number of occurrences of
+     * @return the number of occurrences of the given Habit
      */
     public int habitOccurrence(Habit h) {
         return habitHistory.habitOccurrence(h);
@@ -108,7 +108,7 @@ public class HabitHistoryController {
     /**
      * Appends a HabitEvent to the end of HabitHistory.
      *
-     * @param he HabitEvent: HabitEvent to add to HabitHistory
+     * @param he HabitEvent to add to HabitHistory
      */
     public void add(HabitEvent he) {
         habitHistory.add(he);
@@ -125,14 +125,13 @@ public class HabitHistoryController {
     /**
      * Stores a HabitEvent online, locally (appended to HabitHistory), and offline.
      *
-     * @param he HabitEvent: HabitEvent to add to HabitHistory
+     * @param he HabitEvent to add to HabitHistory
      */
     public void addAndStore(HabitEvent he) {
         OnlineController.StoreHabitEvents storeHabitEvents =
                 new OnlineController.StoreHabitEvents();
         OfflineController.StoreHabitHistory storeHabitHistory =
                 new OfflineController.StoreHabitHistory();
-
         try {
             storeHabitEvents.execute(he).get(); // .get() waits for this task to complete
             add(he);
@@ -142,14 +141,12 @@ public class HabitHistoryController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-
     }
 
     /**
-     * Return the HabitEvent at a particular index.
+     * Returns the HabitEvent at a particular index.
      *
-     * @param idx int: the index of the HabitEvent to get
+     * @param idx index of the HabitEvent to get
      * @return HabitEvent at the specified index
      * @throws IndexOutOfBoundsException
      */
@@ -158,8 +155,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Removes and returns a HabitEvent at the specified index in HabitHistory
-     * To save this change and update online use, removeAndStore(int idx).
+     * Removes and returns a HabitEvent at the specified index in HabitHistory.
+     * NOTE: To save this change and update online instead use, removeAndStore(int idx).
      *
      * @param idx int: the index of the HabitEvent to remove
      * @return HabitEvent removed from the specified index
@@ -171,7 +168,7 @@ public class HabitHistoryController {
 
     /**
      * Removes and returns a HabitEvent from HabitHistory.
-     * To save this change and update online use, removeAndStore(HabitEvent he).
+     * NOTE: To save this change and update online instead use, removeAndStore(HabitEvent he).
      *
      * @param he HabitEvent: the HabitEvent to remove
      * @return HabitEvent removed from HabitHistory or null if in HabitHistory
@@ -282,8 +279,6 @@ public class HabitHistoryController {
     public void addAllHabitEvents(List<HabitEvent> habitEvents) {
         habitHistory.addAllHabitEvents(habitEvents);
     }
-
-
 
     /**
      * Stores HabitHistory online, and offline.

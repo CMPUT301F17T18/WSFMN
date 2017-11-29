@@ -26,6 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.wsfmn.model.Geolocation;
 import com.wsfmn.model.Habit;
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.model.HabitEvent;
@@ -62,7 +63,7 @@ public class HabitEventActivity extends AppCompatActivity {
     String datevalue;
     //DIFFEREN -----
     TextView T_showAddress;
-
+    Geolocation geolocation;
 
     Habit habitFromTodaysList;
     //DIFFEREN -----
@@ -131,8 +132,8 @@ public class HabitEventActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(HabitEventActivity.this,AddLocationActivity.class);
-                startActivityForResult(intent,ADD_NEW_LOCATION_CODE);
+                Intent  intent = new Intent(HabitEventActivity.this, AddLocationActivity.class);
+                startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
             }
         });
     }
@@ -228,7 +229,7 @@ public class HabitEventActivity extends AppCompatActivity {
             if(resultCode == Activity.RESULT_OK)
 
             {
-                //Bundle b = data.getExtras();
+//                Bundle b = data.getExtras();
                 Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
 
                 Double latitude = data.getDoubleExtra("new_latitude",0);
@@ -236,6 +237,10 @@ public class HabitEventActivity extends AppCompatActivity {
                 String address = data.getStringExtra("new_address");
 
                 LatLng latLng = new LatLng(latitude,longtitude);
+
+                geolocation = new Geolocation(address, latLng);
+
+
 
                 T_showAddress.setText(address);
             }
@@ -247,7 +252,6 @@ public class HabitEventActivity extends AppCompatActivity {
      */
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
-        HabitListController control = HabitListController.getInstance();
 
         habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
         nameHabitEvent.setText(habitFromTodaysList.getTitle());
@@ -265,8 +269,18 @@ public class HabitEventActivity extends AppCompatActivity {
         try {
             HabitListController control = HabitListController.getInstance();
             String test = nameHabitEvent.getText().toString();
-            HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabitEvent.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, date.getText().toString());
+
+            // Create the new HabitEvent
+            HabitEvent hEvent =
+                    new HabitEvent(
+                            control.getHabit(i),
+                            nameHabitEvent.getText().toString(),
+                            Comment.getText().toString(),
+                            CurrentPhotoPath,
+                            geolocation,
+                            date.getText().toString());
+
+
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
