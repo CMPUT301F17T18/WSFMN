@@ -34,6 +34,7 @@ import com.wsfmn.model.Geolocation;
 import com.wsfmn.model.HabitEvent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -49,6 +50,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker habitEventMarker;
     public static final int REQUEST_LOCATION_CODE= 99;
     private HabitEvent habitEvent;
+
+    private ArrayList<HabitEvent> eventList = new ArrayList<HabitEvent>();
 
 
     @Override
@@ -112,6 +115,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void onClick(View v){
         if(v.getId() == R.id.B_highlight){
+
+            habitEvent = eventList.get(0);
             Geolocation geolocation = habitEvent.getGeolocation();
             LatLng eventCoord = geolocation.getLatLng();
             MarkerOptions mo = new MarkerOptions();
