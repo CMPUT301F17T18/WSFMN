@@ -89,15 +89,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         }
 
-        Button B_ = (Button) findViewById(R.id.B_changeLocation);
-        B_changeLocation.setOnClickListener(new View.OnClickListener(){
-            @Override
-            //https://developer.android.com/training/basics/intents/result.html
-            public void onClick(View v){
-                Intent  intent = new Intent(HabitHistoryDetailActivity.this,ChangeLocationActivity.class);
-                startActivityForResult(intent,1);
-            }
-        });
+
 
     }
 
