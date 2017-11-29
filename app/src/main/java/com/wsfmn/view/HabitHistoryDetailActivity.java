@@ -74,7 +74,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             //Getting the position of Habit Event the user selected
             position2 = b.getInt("position");
         }catch (NullPointerException e){
-
+            //TODO Can we fix this instead fo catching a NullPointerException?
         }
 
         HabitHistoryController control = HabitHistoryController.getInstance();
@@ -90,11 +90,8 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch(IndexOutOfBoundsException e){
-
+            //TODO Can we fix this instead fo catching an IndexOutOfBoundsException?
         }
-
-
-
     }
 
     /**
@@ -155,7 +152,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         HabitHistoryController control4 = HabitHistoryController.getInstance();
         path = control4.get(position2).getCurrentPhotoPath();
         //If no picture taken before then when it is null value we create new image
-        if(path == null){
+        if(path == null) {
             path = CurrentPhotoPath;
         }
         intent.putExtra("CurrentPhotoPath",path);
@@ -177,7 +174,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
              */
             dispatchTakePictureIntent(createImageFile());
         }
-
     }
 
 
@@ -194,8 +190,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
+                storageDir);    /* directory */
 
         // Save a file: path for use with ACTION_VIEW intents
         CurrentPhotoPath = image.getAbsolutePath();
@@ -245,8 +240,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             }
         }
 
-        if(requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK)
-        {
+        if(requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
             Bundle b = data.getExtras();
             Double latitude = b.getDouble("change_latitude");
             Double longtitude = b. getDouble("change_longtitude");
@@ -254,8 +248,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
             T_address.setText(address);
             LatLng latLng = new LatLng(latitude,longtitude);
-
-
         }
     }
 }

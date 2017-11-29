@@ -40,17 +40,17 @@ public class HabitEvent{
      * @param date
      *
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date) throws HabitCommentTooLongException,
-                                                        HabitEventCommentTooLongException{
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date)
+            throws HabitCommentTooLongException, HabitEventCommentTooLongException {
+
         this.habit = habit;
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
+        this.geolocation = null;
         this.date = date;
-
     }
-
 
     /**
      *
@@ -74,8 +74,6 @@ public class HabitEvent{
         this.geolocation = geolocation;
     }
 
-
-
 ///// SID, Delete this unused constructor? From: nmayne
 //    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
 //        this.habit = habit;
@@ -83,9 +81,6 @@ public class HabitEvent{
 //        this.comment = "No Comment";
 //        this.title = "title";
 //    }
-
-
-
 
     /**
      * Get the date of when the HabitEvent was created
