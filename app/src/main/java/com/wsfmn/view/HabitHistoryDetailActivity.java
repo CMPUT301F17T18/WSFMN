@@ -24,6 +24,7 @@ import com.wsfmn.controller.HabitListController;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -81,7 +82,8 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             nameEvent.setText(control.get(position2).getHabitEventTitle());
             habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
             comment.setText(control.get(position2).getComment());
-            date.setText(control.get(position2).getDate());
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+            date.setText(df.format(control.get(position2).getDate()));
         }catch (HabitEventNameException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();

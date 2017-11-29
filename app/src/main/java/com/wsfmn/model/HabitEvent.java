@@ -3,6 +3,10 @@ package com.wsfmn.model;
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by skhanna1 on 10/16/17.
@@ -17,7 +21,7 @@ public class HabitEvent{
     private Habit habit;
     private String comment;
     String id;
-    String date;
+    Date date;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
 
@@ -38,10 +42,9 @@ public class HabitEvent{
      * @param title
      * @param comment
      * @param CurrentPhotoPath
-     * @param date
      *
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
                                                         HabitEventCommentTooLongException{
         this.habit = habit;
         this.title = title;
@@ -62,7 +65,12 @@ public class HabitEvent{
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
      */
-    public String getDate(){
+    public void setDate(){
+        //formatting the type of date
+        this.date = new Date();
+    }
+
+    public Date getDate(){
         return this.date;
     }
 
@@ -187,43 +195,45 @@ public class HabitEvent{
      *  1 otherwise.
      */
     public int compareDate(String otherDate){
-        String[] list1 = this.date.split("/");
-        String[] list2 = otherDate.split("/");
 
-        String[] last1 = list1[2].substring(6).split(":");
-        list1[2] = list1[2].substring(0, 4);
-
-        int hour1 = Integer.parseInt(last1[0]);
-        int minute1 = Integer.parseInt(last1[1]);
-
-        String[] last2 = list2[2].substring(6).split(":");
-        list2[2] = list2[2].substring(0, 4);
-
-        int hour2 = Integer.parseInt(last2[0]);
-        int minute2 = Integer.parseInt(last2[1]);
-
-        if(Integer.parseInt(list1[2]) < Integer.parseInt(list2[2]))
-            return -1;
-        else if(Integer.parseInt(list1[2]) > Integer.parseInt(list2[2]))
-            return 1;
-        else if(Integer.parseInt(list1[1]) < Integer.parseInt(list2[1]))
-            return -1;
-        else if(Integer.parseInt(list1[1]) > Integer.parseInt(list2[1]))
-            return 1;
-        else if(Integer.parseInt(list1[0]) < Integer.parseInt(list2[0]))
-            return -1;
-        else if(Integer.parseInt(list1[0]) > Integer.parseInt(list2[0]))
-            return 1;
-        else if(hour1 < hour2)
-            return -1;
-        else if(hour1 > hour2)
-            return 1;
-        else if(minute1 < minute2)
-            return -1;
-        else if(minute1 > minute2)
-            return 1;
-        else
-            return 0;
+        return 1;
+//        String[] list1 = this.date;
+//        String[] list2 = otherDate.split("/");
+//
+//        String[] last1 = list1[2].substring(6).split(":");
+//        list1[2] = list1[2].substring(0, 4);
+//
+//        int hour1 = Integer.parseInt(last1[0]);
+//        int minute1 = Integer.parseInt(last1[1]);
+//
+//        String[] last2 = list2[2].substring(6).split(":");
+//        list2[2] = list2[2].substring(0, 4);
+//
+//        int hour2 = Integer.parseInt(last2[0]);
+//        int minute2 = Integer.parseInt(last2[1]);
+//
+//        if(Integer.parseInt(list1[2]) < Integer.parseInt(list2[2]))
+//            return -1;
+//        else if(Integer.parseInt(list1[2]) > Integer.parseInt(list2[2]))
+//            return 1;
+//        else if(Integer.parseInt(list1[1]) < Integer.parseInt(list2[1]))
+//            return -1;
+//        else if(Integer.parseInt(list1[1]) > Integer.parseInt(list2[1]))
+//            return 1;
+//        else if(Integer.parseInt(list1[0]) < Integer.parseInt(list2[0]))
+//            return -1;
+//        else if(Integer.parseInt(list1[0]) > Integer.parseInt(list2[0]))
+//            return 1;
+//        else if(hour1 < hour2)
+//            return -1;
+//        else if(hour1 > hour2)
+//            return 1;
+//        else if(minute1 < minute2)
+//            return -1;
+//        else if(minute1 > minute2)
+//            return 1;
+//        else
+//            return 0;
 
     }
 

@@ -56,13 +56,13 @@ public class HabitEventActivity extends AppCompatActivity {
     Intent intent2;
     EditText nameHabitEvent;
     Bitmap imageBitmap;
-    TextView date;
+    TextView date2;
     ImageView img;
     Uri photoURI;
     String datevalue;
     //DIFFEREN -----
     TextView T_showAddress;
-
+    HabitEvent he2;
 
     Habit habitFromTodaysList;
     //DIFFEREN -----
@@ -84,15 +84,17 @@ public class HabitEventActivity extends AppCompatActivity {
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
-        //DIFFEREN -----
         T_showAddress = (TextView) findViewById(R.id.T_showAdress);
 
-        date = (TextView)findViewById(R.id.eventDate);
+        date2 = (TextView)findViewById(R.id.eventDate);
 
         //Creating date for the Habit Event created
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-        datevalue = df.format(Calendar.getInstance().getTime());
-        date.setText(datevalue);
+        he2 = new HabitEvent();
+        he2.setDate();
+        datevalue = df.format(he2.getDate());
+        date2.setText(datevalue);
+
 
 //
 //        Intent intent = new Intent(this, HabitsForTodayActivity.class);
@@ -266,7 +268,7 @@ public class HabitEventActivity extends AppCompatActivity {
             HabitListController control = HabitListController.getInstance();
             String test = nameHabitEvent.getText().toString();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabitEvent.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, date.getText().toString());
+                    nameHabitEvent.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, he2.getDate());
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
