@@ -173,8 +173,7 @@ public class HabitEvent{
     }
 
     //Geolocation
-    public void setGeolocation(Geolocation geolocation){
-        this.geolocation = geolocation;}
+    public void setGeolocation(Geolocation geolocation){this.geolocation = geolocation;}
 
     public Geolocation getGeolocation(){return geolocation;}
 //
