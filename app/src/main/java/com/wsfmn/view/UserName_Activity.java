@@ -68,24 +68,24 @@ public class UserName_Activity extends AppCompatActivity {
                 public void onClick(DialogInterface dialog, int which) {
                     // bring the profileName back
                     flag = online.checkName(profileName);
-                    //OnlineController.CheckUnique check = new OnlineController.CheckUnique();
-                    //check.execute(profileName);
-                    /*try{
-                    flag  = check.get();
 
-                    } catch (Exception e) {
-                        Log.i("Error", "Couldn't get flag from async object");
-                    }*/
+
+//                     SLATED FOR DELETION
+//                    //OnlineController.CheckUnique check = new OnlineController.CheckUnique();
+//                    //check.execute(profileName);
+//                    /*try{
+//                    flag  = check.get();
+//                    } catch (Exception e) {
+//                        Log.i("Error", "Couldn't get flag from async object");
+//                    }*/
+
+
                     if (flag == false) {
                         Toast.makeText(UserName_Activity.this, "Name is taken! Type another!",
                                 Toast.LENGTH_LONG).show();
                     } else {
-                        // Store ProfileName online
-                        online.storeName(name);
-
-                        // Store ProfileName offline
-                        ProfileNameController.getInstance().storeProfileNameOffline(name);
-
+                        online.storeName(name); // Store online
+                        ProfileNameController.getInstance().storeProfileNameOffline(name); // Store offline
 
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("uniqueName", profileName);

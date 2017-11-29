@@ -2,6 +2,8 @@ package com.wsfmn.view;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 
 import android.os.Build;
@@ -11,6 +13,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.location.LocationListener;
@@ -26,6 +30,12 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.wsfmn.model.Geolocation;
+import com.wsfmn.model.HabitEvent;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -37,7 +47,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest locationRequest;
     private Location lastLocation;
     private Marker currentLocationMarker;
+    private Marker habitEventMarker;
     public static final int REQUEST_LOCATION_CODE= 99;
+    private HabitEvent habitEvent;
+
+    private ArrayList<HabitEvent> eventList = new ArrayList<HabitEvent>();
 
 
     @Override
@@ -98,6 +112,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
     }
+
+    public void onClick(View v){
+        if(v.getId() == R.id.B_highlight){
+
+            habitEvent = eventList.get(0);
+            Geolocation geolocation = habitEvent.getGeolocation();
+            LatLng eventCoord = geolocation.getLatLng();
+            MarkerOptions mo = new MarkerOptions();
+            mo.position(eventCoord);
+            mo.title("Your Search result");
+
+            //add marker
+            mMap.addMarker(mo);
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+
+        }
+        //if(v.getId() == R.id.B_followed){}
+    }
+
 
 
 

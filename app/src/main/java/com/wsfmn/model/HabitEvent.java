@@ -26,7 +26,6 @@ public class HabitEvent{
     //change by wei, change location parts
     private Geolocation geolocation;
 
-    //Need to Add Location
 
     public HabitEvent(){
         this.title = "";
@@ -41,16 +40,41 @@ public class HabitEvent{
      * @param date
      *
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date) throws HabitCommentTooLongException,
-                                                        HabitEventCommentTooLongException{
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date)
+            throws HabitCommentTooLongException, HabitEventCommentTooLongException {
+
+        this.habit = habit;
+        this.title = title;
+        setComment(comment);
+        this.CurrentPhotoPath = CurrentPhotoPath;
+        this.id = null;
+        this.geolocation = null;
+        this.date = date;
+    }
+
+    /**
+     *
+     * @param habit
+     * @param title
+     * @param comment
+     * @param CurrentPhotoPath
+     * @param geolocation
+     * @param date
+     * @throws HabitCommentTooLongException
+     * @throws HabitEventCommentTooLongException
+     */
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Geolocation geolocation, String date)
+            throws HabitCommentTooLongException, HabitEventCommentTooLongException{
         this.habit = habit;
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
         this.date = date;
+        this.geolocation = geolocation;
     }
 
+///// SID, Delete this unused constructor? From: nmayne
 //    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
 //        this.habit = habit;
 //        this.image = image;
@@ -172,12 +196,21 @@ public class HabitEvent{
         this.comment = comment;
     }
 
-    //Geolocation
+    /**
+     *
+     * @param geolocation
+     */
     public void setGeolocation(Geolocation geolocation){
-        this.geolocation = geolocation;}
+        this.geolocation = geolocation;
+    }
 
-    public Geolocation getGeolocation(){return geolocation;}
-//
+    /**
+     *
+     * @return
+     */
+    public Geolocation getGeolocation(){
+        return geolocation;
+    }
 
     /**
      *  Compares two String Dates

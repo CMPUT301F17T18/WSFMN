@@ -47,12 +47,14 @@ public class HabitListController{
     private static HabitListController INSTANCE = null;
     private static HabitList habitList = null;
 
-
+    /**
+     * Instantiates the habitList attribute.
+     * This pulls the data from the locally saved HabitList via OfflineController using init().
+     */
     private HabitListController(){
         habitList = new HabitList();
         init();
     }
-
 
     /**
      * Accesses the instance of HabitListController singleton
@@ -67,9 +69,9 @@ public class HabitListController{
     }
 
     /**
-     *  checks if habit list is empty or not
+     * Checks if HabitList is empty.
      *
-     * @return boolean true if empty, false otherwise
+     * @return true if empty, false otherwise
      */
     public boolean isEmpty(){
         return habitList.size() == 0;
@@ -100,7 +102,10 @@ public class HabitListController{
         addHabit(habit);
     }
 
-
+    /**
+     *
+     * @param habit
+     */
     public void deleteHabit(Habit habit){
         // Added by nmayne on 2017-11-07
         OnlineController.DeleteHabits deleteHabitsOnline =
@@ -110,6 +115,10 @@ public class HabitListController{
         habitList.deleteHabit(habit);
     }
 
+    /**
+     *
+     * @param index
+     */
     public void deleteHabitAt(int index){
         // Added by nmayne on 2017-11-07
         OnlineController.DeleteHabits deleteHabitsOnline =
@@ -119,28 +128,54 @@ public class HabitListController{
         habitList.deleteHabitAt(index);
     }
 
+    /**
+     * Get the size of the habit history.
+     *
+     * @return number of entries in HabitList
+     */
     public int size() {
         return habitList.size();
     }
 
-
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Habit getHabit(int index){
         return habitList.getHabit(index);
     }
 
+    /**
+     *
+     * @param index
+     * @param habit
+     */
     public void setHabit(int index, Habit habit){
         habitList.setHabit(index, habit);
     }
 
-
+    /**
+     *
+     * @param habit
+     * @return
+     */
     public boolean hasHabit(Habit habit){
         return habitList.hasHabit(habit);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Habit> getHabitList(){
         return  habitList.getHabitList();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Habit> getHabitsForToday(){
         return habitList.getHabitsForToday();
     }
@@ -207,6 +242,4 @@ public class HabitListController{
             e.printStackTrace();
         }
     }
-
-
 }
