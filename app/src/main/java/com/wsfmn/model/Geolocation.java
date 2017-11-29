@@ -11,7 +11,7 @@ public class Geolocation {
     private LatLng latLng;
 
     /**
-     *  Created a Habit object
+     *  Created a Geolocation object
      *
 
      */
@@ -22,7 +22,7 @@ public class Geolocation {
 
     }
     /**
-     *  Created a Habit object
+     *  Created a Geolocation object
      *
      * @param myAddress is the address that can be identified by google map
      * @param latLng is a coordination(latitude, longtitude)

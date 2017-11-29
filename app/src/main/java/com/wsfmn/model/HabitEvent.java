@@ -28,7 +28,6 @@ public class HabitEvent{
     //change by wei, change location parts
     private Geolocation geolocation;
 
-    //Need to Add Location
 
     public HabitEvent(){
         this.title = "";
@@ -50,6 +49,7 @@ public class HabitEvent{
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
         this.date = date;
+        this.geolocation = geolocation;
     }
 
     /**
@@ -171,12 +171,21 @@ public class HabitEvent{
         this.comment = comment;
     }
 
-    //Geolocation
+    /**
+     *
+     * @param geolocation
+     */
     public void setGeolocation(Geolocation geolocation){
-        this.geolocation = geolocation;}
+        this.geolocation = geolocation;
+    }
 
-    public Geolocation getGeolocation(){return geolocation;}
-//
+    /**
+     *
+     * @return
+     */
+    public Geolocation getGeolocation(){
+        return geolocation;
+    }
 
     /**
      *  Compares two String Dates

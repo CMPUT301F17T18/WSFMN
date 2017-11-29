@@ -40,7 +40,7 @@ public class OfflineController {
 
         @Override
         protected Void doInBackground(HabitList... habitList) {
-            Context context = App.context;
+            Context context = App.CONTEXT;
             try {
                 FileOutputStream fos = context.openFileOutput(HABITLIST_FILENAME, 0);
                 OutputStreamWriter writer = new OutputStreamWriter(fos);
@@ -65,7 +65,7 @@ public class OfflineController {
 
         @Override
         protected HabitList doInBackground(Void... params) {
-            Context context = App.context;
+            Context context = App.CONTEXT;
             HabitList[] habitList;
             try {
                 FileInputStream fis = context.openFileInput(HABITLIST_FILENAME);
@@ -88,7 +88,7 @@ public class OfflineController {
 
         @Override
         protected Void doInBackground(HabitHistory... habitHistory) {
-            Context context = App.context;
+            Context context = App.CONTEXT;
             try {
                 FileOutputStream fos = context.openFileOutput(HABITHISTORY_FILENAME, 0);
                 OutputStreamWriter writer = new OutputStreamWriter(fos);
@@ -113,7 +113,7 @@ public class OfflineController {
 
         @Override
         protected HabitHistory doInBackground(Void... params) {
-            Context context = App.context;
+            Context context = App.CONTEXT;
             HabitHistory[] habitHistory;
             try {
                 FileInputStream fis = context.openFileInput(HABITHISTORY_FILENAME);
@@ -135,7 +135,7 @@ public class OfflineController {
     public static class StoreUserProfile extends AsyncTask<ProfileName, Void, Void> {
         @Override
         protected Void doInBackground(ProfileName... profilename) {
-            Context context = App.context;
+            Context context = App.CONTEXT;
             try {
                 FileOutputStream fos = context.openFileOutput(PROFILE_FILENAME, 0);
                 OutputStreamWriter writer = new OutputStreamWriter(fos);
@@ -160,7 +160,7 @@ public class OfflineController {
 
         @Override
         protected ProfileName doInBackground(Void... params) {
-            Context context = App.context;
+            Context context = App.CONTEXT;
             ProfileName[] profile;
             try {
                 FileInputStream fis = context.openFileInput(PROFILE_FILENAME);

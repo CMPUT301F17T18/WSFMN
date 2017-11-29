@@ -101,7 +101,8 @@
         <activity
             android:name=".HabitHistoryDetailActivity"
             android:parentActivityName=".HabitHistoryActivity" />
-        <activity android:name=".FriendHabitActivity"></activity>
+        <activity android:name=".FriendHabitActivity" />
+        <activity android:name=".FriendHabitEventActivity"></activity>
     </application>
 
 </manifest>

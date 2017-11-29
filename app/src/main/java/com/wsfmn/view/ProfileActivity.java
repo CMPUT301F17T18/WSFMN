@@ -45,7 +45,7 @@ import java.lang.reflect.Type;
  */
 public class ProfileActivity extends Activity {
 
-    private static final String USER_FILENAME = "username.sav";
+//    private static final String USER_FILENAME = "username.sav";  /// deprecated, delete
     private String profileName = "";
     private boolean flag = false;
 
@@ -55,7 +55,7 @@ public class ProfileActivity extends Activity {
     private RequestList requestsList = new RequestList();
     RequestAdapter adapter = new RequestAdapter(requestsList, this);
     private OnlineController online = new OnlineController();
-    private OfflineController offline = new OfflineController();
+//    private OfflineController offline = new OfflineController();      //// deprecated, delete
 
     /**
      * Creates variables and activities
