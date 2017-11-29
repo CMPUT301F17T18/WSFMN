@@ -48,7 +48,8 @@ public class ProfileNameController {
 
 
 
-    public void storeProfileNameOffline(ProfileName profileName) {
+    public void storeProfileNameOffline(ProfileName pn) {
+        profileName = pn;
         OfflineController.StoreUserProfile storeUserProfile=
                 new OfflineController.StoreUserProfile();
 

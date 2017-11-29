@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -79,24 +80,12 @@ public class UserName_Activity extends AppCompatActivity {
                         Toast.makeText(UserName_Activity.this, "Name is taken! Type another!",
                                 Toast.LENGTH_LONG).show();
                     } else {
-
+                        // Store ProfileName online
                         online.storeName(name);
 
                         // Store ProfileName offline
                         ProfileNameController.getInstance().storeProfileNameOffline(name);
 
-
-                        //TODO nmayne: this needs to work so that all existing habits are resaved when the profile is created
-                        // Reinitialize newly stored username for all controllers
-                        App.reinitialize();
-
-                        // Add all habits and habit events under this new username
-                        HabitListController.getInstance().storeAll();
-                        HabitHistoryController.getInstance().storeAll();
-
-
-                      /*  storeName = new OnlineController.StoreNameInDataBase();
-                        storeName.execute(name);*/
 
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("uniqueName", profileName);

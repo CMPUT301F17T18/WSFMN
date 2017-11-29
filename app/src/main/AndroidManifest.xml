@@ -101,9 +101,6 @@
         <activity
             android:name=".HabitHistoryDetailActivity"
             android:parentActivityName=".HabitHistoryActivity" />
-        <activity
-            android:name=".ChangeLocationActivity"
-            android:parentActivityName=".HabitHistoryDetailActivity" />
         <activity android:name=".FriendHabitActivity"></activity>
     </application>
 
