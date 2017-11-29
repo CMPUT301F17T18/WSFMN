@@ -21,6 +21,7 @@ import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
+import com.wsfmn.model.Geolocation;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,7 +82,9 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             nameEvent.setText(control.get(position2).getHabitEventTitle());
             habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
             comment.setText(control.get(position2).getComment());
-            T_address.setText(control.get(position2).getGeolocation().getAddress());
+            if (control.get(position2).getGeolocation() != null) {
+                T_address.setText(control.get(position2).getGeolocation().getAddress());
+            }
             date.setText(control.get(position2).getDate());
         }catch (HabitEventNameException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
