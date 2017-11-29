@@ -54,7 +54,7 @@ public class HabitHistoryController {
      *
      * @return HabitHistory a filtered habit history list
      */
-    public static HabitHistory getFilteredInstance(){
+    public HabitHistory getFilteredInstance(){
         getInstance();
 
         if(habitHistoryFilter == null)
@@ -70,7 +70,7 @@ public class HabitHistoryController {
      *  Copies values from habit history list to filtered habit history list.
      *
      */
-    public static void reloadFilter(){
+    public void reloadFilter(){
         habitHistoryFilter.getHabitEventList().clear();
         for(int i = 0; i < habitHistory.size(); i++){
             habitHistoryFilter.add(habitHistory.get(i));
@@ -82,7 +82,7 @@ public class HabitHistoryController {
      *
      * @return Boolean true if HabitHistory is empty
      */
-    public static Boolean isEmpty() {
+    public Boolean isEmpty() {
         return habitHistory.isEmpty();
     }
 
@@ -91,7 +91,7 @@ public class HabitHistoryController {
      *
      * @return int the number of entries in HabitHistory
      */
-    public static int size() {
+    public int size() {
         return habitHistory.size();
     }
 
@@ -110,7 +110,7 @@ public class HabitHistoryController {
      *
      * @param he HabitEvent: HabitEvent to add to HabitHistory
      */
-    public static void add(HabitEvent he) {
+    public void add(HabitEvent he) {
         habitHistory.add(he);
     }
 
@@ -127,7 +127,7 @@ public class HabitHistoryController {
      *
      * @param he HabitEvent: HabitEvent to add to HabitHistory
      */
-    public static void addAndStore(HabitEvent he) {
+    public void addAndStore(HabitEvent he) {
         OnlineController.StoreHabitEvents storeHabitEvents =
                 new OnlineController.StoreHabitEvents();
         OfflineController.StoreHabitHistory storeHabitHistory =
@@ -153,7 +153,7 @@ public class HabitHistoryController {
      * @return HabitEvent at the specified index
      * @throws IndexOutOfBoundsException
      */
-    public static HabitEvent get(int idx) throws IndexOutOfBoundsException {
+    public HabitEvent get(int idx) throws IndexOutOfBoundsException {
         return habitHistory.get(idx);
     }
 
@@ -165,7 +165,7 @@ public class HabitHistoryController {
      * @return HabitEvent removed from the specified index
      * @throws IndexOutOfBoundsException
      */
-    public static HabitEvent remove(int idx) throws IndexOutOfBoundsException{
+    public HabitEvent remove(int idx) throws IndexOutOfBoundsException{
         return habitHistory.remove(idx);
     }
 
@@ -178,7 +178,7 @@ public class HabitHistoryController {
      * @throws IndexOutOfBoundsException
      */
     @Nullable
-    public static HabitEvent remove(HabitEvent he) throws IndexOutOfBoundsException{
+    public HabitEvent remove(HabitEvent he) throws IndexOutOfBoundsException{
         int idx = habitHistory.indexOf(he);
         if (idx != -1) {
             return habitHistory.remove(idx);
@@ -205,7 +205,7 @@ public class HabitHistoryController {
      * @return HabitHistory a filtered copy of habit history list based on comment
      * @throws Exception
      */
-    public static void filterByComment(String comment) {
+    public void filterByComment(String comment) {
         habitHistory.filterByComment(comment);
     }
 
@@ -219,7 +219,7 @@ public class HabitHistoryController {
      * @return HabitEvent removed from HabitHistory
      * @throws IndexOutOfBoundsException
      */
-    public static HabitEvent removeAndStore(int idx) throws IndexOutOfBoundsException{
+    public HabitEvent removeAndStore(int idx) throws IndexOutOfBoundsException{
         HabitEvent removed = habitHistory.remove(idx);
 
         OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
@@ -241,7 +241,7 @@ public class HabitHistoryController {
      * @throws IndexOutOfBoundsException
      */
     @Nullable
-    public static HabitEvent removeAndStore(HabitEvent he) throws IndexOutOfBoundsException{
+    public HabitEvent removeAndStore(HabitEvent he) throws IndexOutOfBoundsException{
         int idx = habitHistory.indexOf(he);
         if (idx != -1) {
             OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
@@ -260,7 +260,7 @@ public class HabitHistoryController {
      * @param habitEvent HabitEvent: check HabitHistory for this HabitEvent
      * @return Boolean true if the HabitEvent is in HabitHistory
      */
-    public static Boolean contains(HabitEvent habitEvent) {
+    public Boolean contains(HabitEvent habitEvent) {
         return habitHistory.contains(habitEvent);
     }
 
@@ -270,7 +270,7 @@ public class HabitHistoryController {
      * @param habitEvent HabitEvent: return the first index of this HabitEvent
      * @return int first index of the specified HabitEvent
      */
-    public static int indexOf(HabitEvent habitEvent){
+    public int indexOf(HabitEvent habitEvent){
         return habitHistory.indexOf(habitEvent);
     }
 
@@ -279,7 +279,7 @@ public class HabitHistoryController {
      *
      * @param habitEvents List<HabitEvent>: a List of HabitEvents to add to HabitHistory
      */
-    public static void addAllHabitEvents(List<HabitEvent> habitEvents) {
+    public void addAllHabitEvents(List<HabitEvent> habitEvents) {
         habitHistory.addAllHabitEvents(habitEvents);
     }
 
@@ -288,7 +288,7 @@ public class HabitHistoryController {
     /**
      * Stores HabitHistory online, and offline.
      */
-    public static void storeAll() {
+    public void storeAll() {
         OnlineController.StoreHabitEvents storeHabitEvents =
                 new OnlineController.StoreHabitEvents();
 
@@ -315,7 +315,7 @@ public class HabitHistoryController {
     /**
      *  Stores HabitHistory data locally.
      */
-    public static void store(){
+    public void store(){
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
                 new OfflineController.StoreHabitHistory();
         try {
@@ -331,7 +331,7 @@ public class HabitHistoryController {
      * Updates a Habit online
      * @param he a HabitEvent to update online
      */
-    public static void updateOnline(HabitEvent he) {
+    public void updateOnline(HabitEvent he) {
         OnlineController.StoreHabitEvents storeHabitEventsOnline =
                 new OnlineController.StoreHabitEvents();
         try {
@@ -347,7 +347,7 @@ public class HabitHistoryController {
      * Store the changes to HabitHistory and update the HabitEvent online
      * @param he a HabitEvent to update online
      */
-    public static void storeAndUpdate(HabitEvent he) {
+    public void storeAndUpdate(HabitEvent he) {
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
                 new OfflineController.StoreHabitHistory();
 
@@ -367,7 +367,7 @@ public class HabitHistoryController {
      *
      * @return
      */
-    public static ArrayList<HabitEvent> getHabitEventList(){
+    public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
     }
 
@@ -375,7 +375,7 @@ public class HabitHistoryController {
      *  Initializes the model with data from local storage
      *
      */
-    public static void init(){
+    private void init(){
         try {
             OfflineController.GetHabitHistory getHabitHistoryOffline =
                     new OfflineController.GetHabitHistory();

@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
-import com.wsfmn.model.HabitEventCommentTooLongException;
-import com.wsfmn.model.HabitEventNameException;
+import com.wsfmn.exceptions.HabitEventCommentTooLongException;
+import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 

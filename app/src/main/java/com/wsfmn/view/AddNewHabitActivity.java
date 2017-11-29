@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 
 import com.wsfmn.model.Date;
-import com.wsfmn.model.DateNotValidException;
+import com.wsfmn.exceptions.DateNotValidException;
 import com.wsfmn.model.Habit;
-import com.wsfmn.model.HabitReasonTooLongException;
-import com.wsfmn.model.HabitTitleTooLongException;
+import com.wsfmn.exceptions.HabitReasonTooLongException;
+import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.model.WeekDays;
 import com.wsfmn.controller.HabitListController;
 

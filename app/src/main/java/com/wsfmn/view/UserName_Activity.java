@@ -83,17 +83,16 @@ public class UserName_Activity extends AppCompatActivity {
                         online.storeName(name);
 
                         // Store ProfileName offline
-                        ProfileNameController.storeProfileNameOffline(name);
+                        ProfileNameController.getInstance().storeProfileNameOffline(name);
 
 
                         //TODO nmayne: this needs to work so that all existing habits are resaved when the profile is created
-//                        // Reinitialize newly stored username for all controllers
-//                        App.reinitialize();
-//
-//                        // Add all habits and habit events under this new username
-//                        HabitListController.getInstance().storeAll();
-//                        HabitHistoryController.getInstance();
-//                        HabitHistoryController.storeAll();
+                        // Reinitialize newly stored username for all controllers
+                        App.reinitialize();
+
+                        // Add all habits and habit events under this new username
+                        HabitListController.getInstance().storeAll();
+                        HabitHistoryController.getInstance().storeAll();
 
 
                       /*  storeName = new OnlineController.StoreNameInDataBase();
