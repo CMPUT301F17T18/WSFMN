@@ -47,29 +47,24 @@ import java.text.SimpleDateFormat;
 public class HabitEventActivity extends AppCompatActivity {
 
     Button addPic;
-
+    TextView nameHabit;
     EditText Comment;
     Button viewImage;
     Button addHabitEvent;
     Button addHabit;
     Intent intent3;
     Intent intent2;
-    EditText nameHabitEvent;
-    Bitmap imageBitmap;
     TextView date2;
     ImageView img;
     Uri photoURI;
     String datevalue;
-    //DIFFEREN -----
     TextView T_showAddress;
     HabitEvent he2;
 
     Habit habitFromTodaysList;
-    //DIFFEREN -----
     LatLng new_coordinate;
     Integer i = null;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    //DIFFEREN -----
     static final int ADD_NEW_LOCATION_CODE = 3;
 
 
@@ -80,7 +75,6 @@ public class HabitEventActivity extends AppCompatActivity {
 
         Comment = (EditText)findViewById(R.id.Comment);
         addPic = (Button)findViewById(R.id.Picture);
-        nameHabitEvent = (EditText)findViewById(R.id.nameEvent);
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
@@ -95,11 +89,6 @@ public class HabitEventActivity extends AppCompatActivity {
         datevalue = df.format(he2.getDate());
         date2.setText(datevalue);
 
-
-//
-//        Intent intent = new Intent(this, HabitsForTodayActivity.class);
-//        startActivityForResult(intent, 2);
-
         // If statement handles the case where the activity is called from a listView
         // //(e.g. HabitsForTodayActivity)
         Bundle b = getIntent().getExtras();
@@ -107,8 +96,6 @@ public class HabitEventActivity extends AppCompatActivity {
             i = b.getInt("position");
             changeName(i);
         }
-
-
 
         //Checking If device has camera
         if(!checkCamera()){
@@ -126,8 +113,6 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         });
 
-
-        //DIFFERENT -----------
         Button Location = (Button) findViewById(R.id.B_changeLocation);
         Location.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -180,7 +165,6 @@ public class HabitEventActivity extends AppCompatActivity {
 
     String CurrentPhotoPath;
 
-    //DIFFERENT -------
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     /**
      * Creates the file where the image will be stored
@@ -209,13 +193,6 @@ public class HabitEventActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            imageBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
-////            img = (ImageView)findViewById(R.id.imageView3);
-////            img.setImageBitmap(imageBitmap);
-//
-//        }
-        // Getting the position of the habit from the list
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
@@ -248,14 +225,11 @@ public class HabitEventActivity extends AppCompatActivity {
      *  Displaying the name of the habit the user selected for the habit event
      */
     public void changeName(int i){
-        TextView nameHabit = (TextView)findViewById(R.id.habitName);
+        nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
 
         habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
-        nameHabitEvent.setText(habitFromTodaysList.getTitle());
         nameHabit.setText(habitFromTodaysList.getTitle());
-
-
     }
 
     /**
@@ -266,9 +240,8 @@ public class HabitEventActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
             HabitListController control = HabitListController.getInstance();
-            String test = nameHabitEvent.getText().toString();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabitEvent.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, he2.getDate());
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, he2.getDate());
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -300,10 +273,5 @@ public class HabitEventActivity extends AppCompatActivity {
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
     }
-
-//    public void location(){
-//        Intent intent = new Intent(HabitEventActivity.this, MapsActivity.class);
-//        startActivity(intent);
-//    }
 
 }

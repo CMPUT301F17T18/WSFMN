@@ -37,7 +37,6 @@ import static com.wsfmn.view.HabitEventActivity.REQUEST_TAKE_PHOTO;
  */
 public class HabitHistoryDetailActivity extends AppCompatActivity {
 
-    EditText nameEvent;
     Button addHabit;
     TextView habitName;
     Button addPicture;
@@ -57,7 +56,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_habit_history_detail);
 
         //Declaring variables for the UI
-        nameEvent = (EditText)findViewById(R.id.nameEvent2);
         addHabit = (Button)findViewById(R.id.addHabit2);
         habitName = (TextView) findViewById(R.id.habitName2);
         addPicture = (Button)findViewById(R.id.Picture2);
@@ -79,20 +77,13 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController control = HabitHistoryController.getInstance();
         try {
-            nameEvent.setText(control.get(position2).getHabitEventTitle());
+//            nameEvent.setText(control.get(position2).getHabitEventTitle());
             habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
             comment.setText(control.get(position2).getComment());
             DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
             date.setText(df.format(control.get(position2).getDate()));
-        }catch (HabitEventNameException e) {
-            Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
-                    Toast.LENGTH_LONG).show();
         } catch(IndexOutOfBoundsException e){
-
         }
-
-
-
     }
 
     /**
@@ -104,11 +95,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         try {
             //Set the habitEvent parameters that the user gets
             HabitHistoryController control2 = HabitHistoryController.getInstance();
-            control2.get(position2).setTitle(nameEvent.getText().toString());
+            control2.get(position2).setTitle(habitName.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
             control2.storeAndUpdate(control2.get(position2));
-//            control2.storeAll();
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
@@ -175,9 +165,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
              */
             dispatchTakePictureIntent(createImageFile());
         }
-
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     /**
@@ -199,7 +187,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         CurrentPhotoPath = image.getAbsolutePath();
         return CurrentPhotoPath;
     }
-
 
     /**
      * take picture and save it in a file
@@ -232,7 +219,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
-                //intent3 = data.getIntent();
                 Bundle b = data.getExtras();
                 i = b.getInt("position");
                 TextView nameHabit = (TextView)findViewById(R.id.habitName2);
@@ -252,8 +238,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
             T_address.setText(address);
             LatLng latLng = new LatLng(latitude,longtitude);
-
-
         }
     }
 }

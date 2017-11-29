@@ -25,8 +25,6 @@ public class HabitEvent{
     //Path of the file Where image is stored
     String CurrentPhotoPath;
 
-    //private Bitmap image;
-    //private Date date;
     //change by wei, change location parts
     private Geolocation geolocation;
 
@@ -53,13 +51,6 @@ public class HabitEvent{
         this.id = null;
         this.date = date;
     }
-
-//    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
-//        this.habit = habit;
-//        this.image = image;
-//        this.comment = "No Comment";
-//        this.title = "title";
-//    }
 
     /**
      * Get the date of when the HabitEvent was created
@@ -239,7 +230,8 @@ public class HabitEvent{
 
     @Override
     public String toString(){
-        return title + "    " + date;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+        return title + "    " + df.format(date);
     }
 
 }
