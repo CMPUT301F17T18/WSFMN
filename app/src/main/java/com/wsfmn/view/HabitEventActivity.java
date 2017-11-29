@@ -61,13 +61,13 @@ public class HabitEventActivity extends AppCompatActivity {
     String datevalue;
     TextView T_showAddress;
     HabitEvent he2;
-
+    Habit habitList;
     Habit habitFromTodaysList;
     Geolocation geolocation;
-
+    Bundle b;
     Habit habitFromList;
     LatLng new_coordinate;
-    Integer i = null;
+    Integer i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int ADD_NEW_LOCATION_CODE = 3;
 
@@ -76,6 +76,12 @@ public class HabitEventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_event);
+
+        Bundle b = getIntent().getExtras();
+        if(b!=null) {
+            i = b.getInt("positionToday");
+            changeName(i);
+        }
 
         Comment = (EditText)findViewById(R.id.Comment);
         addPic = (Button)findViewById(R.id.Picture);
@@ -95,11 +101,6 @@ public class HabitEventActivity extends AppCompatActivity {
 
         // If statement handles the case where the activity is called from a listView
         // //(e.g. HabitsForTodayActivity)
-        Bundle b = getIntent().getExtras();
-        if (b != null) {
-            i = b.getInt("position");
-            changeName(i);
-        }
 
         //Checking If device has camera
         if(!checkCamera()){
@@ -231,22 +232,10 @@ public class HabitEventActivity extends AppCompatActivity {
     public void changeName(int i){
         nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
-
-        habitFromTodaysList = HabitListController.getInstance().getHabitsForToday().get(i);
-        nameHabit.setText(habitFromTodaysList.getTitle());
-        TextView nameHabit = (TextView)findViewById(R.id.habitName);
-
-        /// !!!WARNING: THIS IS A HACK!!!
-        /// TODO: we actually NEED to know if the index int i is being passed from HabitList OR from HabitsForToday!
-        if (HabitListController.getInstance().getHabitsForToday().isEmpty()) {
-            habitFromList = HabitListController.getInstance().getHabit(i);
-//            nameHabitEvent.setText(habitFromList.getTitle());
-            nameHabit.setText(habitFromList.getTitle());
-        } else {
-            habitFromList = HabitListController.getInstance().getHabitsForToday().get(i);
-//            nameHabitEvent.setText(habitFromList.getTitle());
-            nameHabit.setText(habitFromList.getTitle());
-        }
+        nameHabit.setText(control.getHabit(i).getTitle().toString());
+//        habitList = HabitListController.getInstance().
+//        nameHabit.setText(habitFromTodaysList.getTitle());
+//        TextView nameHabit = (TextView)findViewById(R.id.habitName);
     }
 
     /**
