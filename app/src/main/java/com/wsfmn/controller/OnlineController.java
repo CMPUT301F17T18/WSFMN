@@ -439,10 +439,9 @@ public class OnlineController {
             // TODO Build the query
             String query = "{\"query\" : { \"match_all\" : { } } }";
 
-            for(String name : search_parameters) {
                 Search search = new Search.Builder(query)
-                        .addIndex(INDEX_BASE + name)
-                        .addType("habit")
+                        .addIndex(INDEX_BASE + search_parameters[0])
+                        .addType("habitevent")
                         .build();
 
                 try {
@@ -462,7 +461,6 @@ public class OnlineController {
                 } catch (Exception e) {
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
-            }
             return recent;
         }
     }
