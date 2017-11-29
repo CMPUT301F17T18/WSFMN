@@ -429,6 +429,45 @@ public class OnlineController {
         }
     }
 
+    public static class GetRecentEvent extends AsyncTask<String, Void, HabitEvent> {
+        @Override
+        protected HabitEvent doInBackground(String... search_parameters) {
+            verifySettings();
+
+            HabitEvent recent = new HabitEvent();
+
+            // TODO Build the query
+            String query = "{\"query\" : { \"match_all\" : { } } }";
+
+            for(String name : search_parameters) {
+                Search search = new Search.Builder(query)
+                        .addIndex(INDEX_BASE + name)
+                        .addType("habit")
+                        .build();
+
+                try {
+
+                    // TODO get the results of the query
+                    SearchResult result = client.execute(search);
+
+                    if (result.isSucceeded()) {
+                        int idx = 0;
+                        String JsonString = result.getJsonString();
+                        for (SearchResult.Hit hit : result.getHits(Habit.class)) {
+                            recent = (HabitEvent) hit.source;
+                        }
+                    } else {
+                        Log.i("Error", "The search query failed to find any requests that matched");
+                    }
+                } catch (Exception e) {
+                    Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                }
+            }
+            return recent;
+        }
+    }
+
+
 
 
     /**
