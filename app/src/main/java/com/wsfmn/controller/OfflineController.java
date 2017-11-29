@@ -165,7 +165,7 @@ public class OfflineController {
             Context context = App.context;
             Profile[] profile;
             try {
-                FileInputStream fis = context.openFileInput(HABITHISTORY_FILENAME);
+                FileInputStream fis = context.openFileInput(PROFILE_FILENAME);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
                 Gson gson = new Gson();
                 profile = gson.fromJson(in, Profile[].class);

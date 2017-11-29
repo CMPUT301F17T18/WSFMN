@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.wsfmn.controller.OfflineController;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.controller.OnlineController;
 
@@ -73,8 +74,14 @@ public class UserName_Activity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     } else {
                         online.storeName(name);
+                        OfflineController.StoreUserProfile storeUserProfile =
+                                new OfflineController.StoreUserProfile();
+                        storeUserProfile.execute(name);
+
                       /*  storeName = new OnlineController.StoreNameInDataBase();
                         storeName.execute(name);*/
+
+
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("uniqueName", profileName);
                         setResult(Activity.RESULT_OK, returnIntent);

@@ -141,10 +141,9 @@ public class OfflineControllerTest extends ActivityInstrumentationTestCase2 {
             e.printStackTrace();
         }
 
-        Log.d("PROFILE1:", ": " + retrievedProfile.getName());
 
 
-        assertEquals(retrievedProfile.getName(), "");
+        assertEquals(retrievedProfile.getName(), profile.getName());
 
 
     }

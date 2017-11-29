@@ -4,10 +4,12 @@ package com.wsfmn.controller;
  * Created by Fredric on 2017-11-11.
  */
 
-// WILL BE RENAMED SOMETHING ELSE... PROFILEACTIVITY HAS ONLINECONTROLLER
 public class ProfileController {
     private static ProfileController INSTANCE = new ProfileController();
 
+
+    public ProfileController() {
+    }
 
     /**
      * Instantiate the habitHistory attribute.
