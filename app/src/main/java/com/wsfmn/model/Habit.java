@@ -6,6 +6,7 @@ import com.wsfmn.exceptions.HabitReasonTooLongException;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by musaed on 2017-10-16.
@@ -20,7 +21,7 @@ import java.io.Serializable;
  *
  */
 
-public class Habit implements Serializable{
+public class Habit implements Serializable, Comparable<Habit>{
 
 
     private String id;
@@ -376,4 +377,15 @@ public class Habit implements Serializable{
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+    public int compareTo(Habit other)
+    {
+        int res =  this.getOwner().compareToIgnoreCase(other.getOwner());
+        if (res != 0)
+            return res;
+        return this.getTitle().compareToIgnoreCase(other.getTitle());
+    }
+
+
+
 }

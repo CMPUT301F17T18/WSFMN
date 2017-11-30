@@ -12,7 +12,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.wsfmn.model.FriendAdapter;
 import com.wsfmn.model.Habit;
+import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.RequestAdapter;
 import com.wsfmn.controller.OnlineController;
 
@@ -25,6 +27,8 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
@@ -40,7 +44,7 @@ public class FriendActivity extends Activity {
 
 
     private Habit selected;
-    private ArrayAdapter<Habit> adapter;
+    private FriendAdapter adapter;
     ArrayList<String> namesFriends = new ArrayList<String>();
     String[] namesFriendsList;
 
@@ -87,6 +91,7 @@ public class FriendActivity extends Activity {
         getFriendEvents.execute();
         try {
             namesFriends = getFriendEvents.get();
+            //Collections.sort(namesFriends); Could be used later in scoreboard possibly.
             namesFriendsList = namesFriends.toArray(new String[namesFriends.size()]);
 
 
@@ -99,12 +104,13 @@ public class FriendActivity extends Activity {
 
         try {
             names = getHabitNames.get();
+            Collections.sort(names);
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
-        adapter = new ArrayAdapter<Habit>(this, android.R.layout.simple_list_item_1, names);
+        adapter = new FriendAdapter(this, R.layout.listfriend_item, names);
         fEventList.setAdapter(adapter);
 
     }
