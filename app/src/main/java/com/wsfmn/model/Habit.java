@@ -6,6 +6,7 @@ import com.wsfmn.exceptions.HabitReasonTooLongException;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by musaed on 2017-10-16.
@@ -20,7 +21,7 @@ import java.io.Serializable;
  *
  */
 
-public class Habit implements Serializable{
+public class Habit implements Serializable, Comparable<Habit>{
 
 
     private String id;
@@ -29,6 +30,7 @@ public class Habit implements Serializable{
     protected Date date = null; //  date the habit starts
     protected WeekDays weekDays;    //  days of the week the habit will be done
     private String owner;
+    private int score = 0;
 
 
     //  attributes for calculating statistics about a habit
@@ -110,6 +112,7 @@ public class Habit implements Serializable{
         this.weekDays = weekDays;
     }
 
+
     /**
      *
      * @return the id of the habit
@@ -133,6 +136,14 @@ public class Habit implements Serializable{
      */
     public String getTitle() {
         return title;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     /**
@@ -200,10 +211,18 @@ public class Habit implements Serializable{
 
         }
 
-        hasChanged = true;
-        currDate = toStart;
-        this.date = toStart;
+        if(date == null){
+            hasChanged = true;
+            currDate = toStart;
+            this.date = toStart;
+        }
+        else if (this.date.compareDate(toStart) != 0) {
+            hasChanged = true;
+            currDate = toStart;
+            this.date = toStart;
+        }
     }
+
 
     /**
      *  Gets the days of the week the habit will occur in
@@ -231,8 +250,10 @@ public class Habit implements Serializable{
      * @param day the days that the habit will be done
      */
     public void setDay(int day){
-        hasChanged = true;
-        currDate = new Date();
+        if(!weekDays.getDay(day)) {
+            hasChanged = true;
+            currDate = new Date();
+        }
         weekDays.setDay(day);
     }
 
@@ -243,8 +264,10 @@ public class Habit implements Serializable{
      * @param day
      */
     public void unsetDay(int day){
-        hasChanged = true;
-        currDate = new Date();
+        if(weekDays.getDay(day)) {
+            hasChanged = true;
+            currDate = new Date();
+        }
         weekDays.unsetDay(day);
     }
 
@@ -256,7 +279,7 @@ public class Habit implements Serializable{
      */
     @Override
     public String toString(){
-        return title + "    " + date;
+        return title + "    " + date + "   Score: " + score;
     }
 
     /**
@@ -376,4 +399,15 @@ public class Habit implements Serializable{
     public void setOwner(String owner) {
         this.owner = owner;
     }
+
+    public int compareTo(Habit other)
+    {
+        int res =  this.getOwner().compareToIgnoreCase(other.getOwner());
+        if (res != 0)
+            return res;
+        return this.getTitle().compareToIgnoreCase(other.getTitle());
+    }
+
+
+
 }

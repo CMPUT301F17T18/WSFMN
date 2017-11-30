@@ -65,6 +65,8 @@ public class HabitListController{
         if(INSTANCE == null){
             INSTANCE = new HabitListController();
         }
+
+        INSTANCE.updateAllHabitsScore();
         return INSTANCE;
     }
 
@@ -178,6 +180,28 @@ public class HabitListController{
      */
     public ArrayList<Habit> getHabitsForToday(){
         return habitList.getHabitsForToday();
+    }
+
+    public void updateHabitScore(Habit habit){
+        int score = 0;
+        float occurred = HabitHistoryController.getInstance().habitOccurrence(habit);
+        float occurrence = habit.getTotalOccurrence();
+
+        score = (int)((occurred / occurrence) * 100);
+
+        if(occurrence == 0)
+            score = 0;
+
+        else if(score > 100)
+            score = 100;
+
+        habit.setScore(score);
+    }
+
+    public void updateAllHabitsScore(){
+        for(int i = 0; i < habitList.size(); i++){
+            updateHabitScore(habitList.getHabit(i));
+        }
     }
 
     /**
