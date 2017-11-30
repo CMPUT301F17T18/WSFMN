@@ -82,10 +82,27 @@ public class ProfileActivity extends Activity {
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "follow");
         flag = online.checkRequest(profileName, "follow", text);
-        if (flag == false){
+
+        if (!flag){
             Toast.makeText(ProfileActivity.this, "Request Already Sent!",
                     Toast.LENGTH_LONG).show();
         }
+
+       else if(online.checkName(text)){
+            Toast.makeText(ProfileActivity.this, "Name Doesn't Exist!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        else if(!online.checkFriends(text)){
+            Toast.makeText(ProfileActivity.this, "This Person Has Already Added You!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        else if(text.equals(profileName)){
+            Toast.makeText(ProfileActivity.this, "Sorry Can't Add Yourself!",
+                    Toast.LENGTH_LONG).show();
+        }
+
         //requestsList.add(newRequest);
         else {
             OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
