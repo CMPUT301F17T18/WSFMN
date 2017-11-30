@@ -183,9 +183,19 @@ public class HabitListController{
     }
 
     public void updateHabitScore(Habit habit){
+        int score = 0;
         float occurred = HabitHistoryController.getInstance().habitOccurrence(habit);
         float occurrence = habit.getTotalOccurrence();
-        habit.setScore((int) ((occurred / occurrence) * 100));
+
+        score = (int)((occurred / occurrence) * 100);
+
+        if(occurrence == 0)
+            score = 0;
+
+        else if(score > 100)
+            score = 100;
+
+        habit.setScore(score);
     }
 
     public void updateAllHabitsScore(){
