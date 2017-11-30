@@ -438,11 +438,11 @@ public class OnlineController {
             HabitEvent recent = new HabitEvent();
 
             // TODO Build the query
-            String query = "{\"query\" : { \"match_all\" : {} }, " +
+            String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
                     "\"size\" : 1, \"sort\" : [{\"date\" : { \"order\" : \"desc\"}}] }";
 
                 Search search = new Search.Builder(query)
-                        .addIndex(INDEX_BASE + search_parameters[0])
+                        .addIndex(INDEX_BASE + search_parameters[1])
                         .addType("habitevent")
                         .build();
 
@@ -454,7 +454,7 @@ public class OnlineController {
                     if (result.isSucceeded()) {
                         int idx = 0;
                         String JsonString = result.getJsonString();
-                        for (SearchResult.Hit hit : result.getHits(Habit.class)) {
+                        for (SearchResult.Hit hit : result.getHits(HabitEvent.class)) {
                             recent = (HabitEvent) hit.source;
                             return recent;
                         }

@@ -15,6 +15,7 @@ import com.wsfmn.model.Habit;
 import com.wsfmn.model.Date;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.WeekDays;
+import com.wsfmn.model.Geolocation;
 
 
 
@@ -72,6 +73,9 @@ public class FriendHabitActivity extends AppCompatActivity {
         friday.setClickable(false);
         saturday.setClickable(false);
         sunday.setClickable(false);
+        fEventComment.setClickable(false);
+        fEventDate.setClickable(false);
+        fEventAddress.setClickable(false);
 
 
         setCheckBox(monday, WeekDays.MONDAY);
@@ -96,9 +100,12 @@ public class FriendHabitActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         OnlineController.GetRecentEvent fRecentEvent = new OnlineController.GetRecentEvent();
-        fRecentEvent.execute(fHabit.getOwner());
+        fRecentEvent.execute(fHabit.getTitle().toLowerCase(),fHabit.getOwner());
         try{
             fEvent = fRecentEvent.get();
+            fEventComment.setText(fEvent.getComment());
+            fEventDate.setText(fEvent.getDate().toString());
+            fEventAddress.setText(fEvent.getGeolocation().getAddress());
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
