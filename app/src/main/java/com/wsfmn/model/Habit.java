@@ -28,6 +28,7 @@ public class Habit implements Serializable{
     private String reason;
     protected Date date = null; //  date the habit starts
     protected WeekDays weekDays;    //  days of the week the habit will be done
+    private String owner;
 
 
     //  attributes for calculating statistics about a habit
@@ -366,5 +367,13 @@ public class Habit implements Serializable{
         }
 
         return total;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

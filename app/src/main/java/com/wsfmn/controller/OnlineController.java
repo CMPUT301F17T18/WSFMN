@@ -416,6 +416,7 @@ public class OnlineController {
                         String JsonString = result.getJsonString();
                         for (SearchResult.Hit hit : result.getHits(Habit.class)) {
                             Habit fHabit = (Habit) hit.source;
+                            fHabit.setOwner(name);
                             habits.add(fHabit);
                         }
                     } else {
@@ -437,7 +438,8 @@ public class OnlineController {
             HabitEvent recent = new HabitEvent();
 
             // TODO Build the query
-            String query = "{\"query\" : { \"match_all\" : { } } }";
+            String query = "{\"query\" : { \"match_all\" : {} }, " +
+                    "\"size\" : 1, \"sort\" : [{\"date\" : { \"order\" : \"desc\"}}] }";
 
                 Search search = new Search.Builder(query)
                         .addIndex(INDEX_BASE + search_parameters[0])
