@@ -110,4 +110,14 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/B_changeLocation"
         app:layout_constraintStart_toEndOf="@+id/B_changeLocation" />
 
+    <Button
+        android:id="@+id/setNewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:onClick="DateSet"
+        android:text="Set Date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/eventDate"
+        app:layout_constraintStart_toEndOf="@+id/eventDate" />
+
 </android.support.constraint.ConstraintLayout>

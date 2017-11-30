@@ -78,13 +78,12 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController control = HabitHistoryController.getInstance();
         try {
-//            nameEvent.setText(control.get(position2).getHabitEventTitle());
             habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
             comment.setText(control.get(position2).getComment());
             if (control.get(position2).getGeolocation() != null) {
                 T_address.setText(control.get(position2).getGeolocation().getAddress());
             }
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
             date.setText(df.format(control.get(position2).getDate()));
         } catch(IndexOutOfBoundsException e){
             //TODO Can we fix this instead fo catching an IndexOutOfBoundsException?
