@@ -1,10 +1,15 @@
 package com.wsfmn.model;
 
+import android.graphics.Bitmap;
+
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by skhanna1 on 10/16/17.
@@ -20,8 +25,10 @@ public class HabitEvent{
     private String comment;
     String id;
     Date date = null;
+    private java.util.Date actualdate;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
+    Bitmap imageBitmap;
 
     //change by wei, change location parts
     private Geolocation geolocation;
@@ -40,14 +47,20 @@ public class HabitEvent{
      *
      */
     public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
-                                                        HabitEventCommentTooLongException{
+            HabitEventCommentTooLongException, ParseException {
         this.habit = habit;
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
         this.date = date;
+        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        java.util.Date adate = formatter.parse(this.date.toDateString());
+        this.actualdate = adate;
+
+
         this.geolocation = geolocation;
+        this.imageBitmap = null;
     }
 
     /**
@@ -60,6 +73,12 @@ public class HabitEvent{
 
     public Date getDate(){
         return this.date;
+    }
+
+    public java.util.Date getActualDate() throws ParseException {
+
+
+        return this.actualdate;
     }
 
     /**
@@ -200,4 +219,7 @@ public class HabitEvent{
         return title + "    " + this.date;
     }
 
+    public Bitmap getImageBitmap() {
+        return imageBitmap;
+    }
 }

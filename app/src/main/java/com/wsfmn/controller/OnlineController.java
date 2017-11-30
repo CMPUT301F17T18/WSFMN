@@ -443,7 +443,7 @@ public class OnlineController {
 
             // TODO Build the query
             String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
-                    "\"size\" : 1, \"sort\" : [{\"date\" : { \"order\" : \"desc\"}}] }";
+                    "\"size\" : 1, \"sort\" : [{\"actualdate\" : { \"order\" : \"desc\"}}] }";
 
                 Search search = new Search.Builder(query)
                         .addIndex(INDEX_BASE + search_parameters[1])
