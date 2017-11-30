@@ -24,10 +24,9 @@
         android:layout_width="118dp"
         android:layout_height="52dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
         android:text="Change Location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+        tools:layout_editor_absoluteY="226dp" />
 
     <EditText
         android:id="@+id/Comment2"
@@ -100,12 +99,16 @@
         android:id="@+id/dateDetail"
         android:layout_width="129dp"
         android:layout_height="43dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="Date"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/dateTextView"
-        app:layout_constraintStart_toEndOf="@+id/dateTextView" />
+        app:layout_constraintBottom_toTopOf="@+id/B_changeLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentTextView"
+        app:layout_constraintVertical_bias="0.517" />
 
     <TextView
         android:id="@+id/T_C_showAddress"
@@ -130,16 +133,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/habitName2" />
 
-    <TextView
-        android:id="@+id/dateTextView"
-        android:layout_width="131dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Date: "
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentTextView" />
+    <Button
+        android:id="@+id/changeDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Change Date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/dateDetail"
+        app:layout_constraintStart_toEndOf="@+id/dateDetail" />
 
 </android.support.constraint.ConstraintLayout>

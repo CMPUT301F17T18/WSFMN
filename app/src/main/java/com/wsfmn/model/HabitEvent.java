@@ -3,10 +3,8 @@ package com.wsfmn.model;
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+import java.io.Serializable;
 
 /**
  * Created by skhanna1 on 10/16/17.
@@ -21,7 +19,7 @@ public class HabitEvent{
     private Habit habit;
     private String comment;
     String id;
-    Date date;
+    Date date = null;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
 
@@ -56,9 +54,8 @@ public class HabitEvent{
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
      */
-    public void setDate(){
-        //formatting the type of date
-        this.date = new Date();
+    public void setDate(Date date){
+        this.date = date;
     }
 
     public Date getDate(){
@@ -239,8 +236,7 @@ public class HabitEvent{
 
     @Override
     public String toString(){
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-        return title + "    " + df.format(date);
+        return title + "    " + this.date;
     }
 
 }

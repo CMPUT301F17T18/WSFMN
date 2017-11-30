@@ -1,7 +1,11 @@
 package com.wsfmn.view;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -12,9 +16,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.wsfmn.model.Date;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
@@ -27,7 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static com.wsfmn.view.HabitEventActivity.REQUEST_TAKE_PHOTO;
 
@@ -50,6 +55,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     int i;
     Button B_changeLocation;
     static final int CHANGE_LOCATION_CODE = 3;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +84,40 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController control = HabitHistoryController.getInstance();
         try {
-//            nameEvent.setText(control.get(position2).getHabitEventTitle());
             habitName.setText(control.get(position2).getHabitFromEvent().getTitle());
             comment.setText(control.get(position2).getComment());
             if (control.get(position2).getGeolocation() != null) {
                 T_address.setText(control.get(position2).getGeolocation().getAddress());
             }
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-            date.setText(df.format(control.get(position2).getDate()));
+            date.setText(new com.wsfmn.model.Date().toString());
         } catch(IndexOutOfBoundsException e){
             //TODO Can we fix this instead fo catching an IndexOutOfBoundsException?
         }
+
+        Button setNewDate = (Button)findViewById(R.id.changeDate);
+        setNewDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @TargetApi(24)
+            public void onClick(View v) {
+                android.icu.util.Calendar calendar = android.icu.util.Calendar.getInstance();
+                int year = calendar.get(android.icu.util.Calendar.YEAR);
+                int month = calendar.get(android.icu.util.Calendar.MONTH);
+                int day = calendar.get(android.icu.util.Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(HabitHistoryDetailActivity.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener, year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        mDateSetListener = new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month += 1;
+                date.setText(year + " / " + month + " / " + dayOfMonth);
+                date.getText();
+            }
+        };
     }
 
     /**
@@ -103,6 +132,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             control2.get(position2).setTitle(habitName.getText().toString());
             control2.get(position2).setComment(comment.getText().toString());
             control2.get(position2).setHabit(control2.get(position2).getHabitFromEvent());
+            control2.get(position2).setDate(getDateUIHED());
             control2.storeAndUpdate(control2.get(position2));
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
@@ -242,5 +272,14 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             T_address.setText(address);
             LatLng latLng = new LatLng(latitude,longtitude);
         }
+    }
+
+    public com.wsfmn.model.Date getDateUIHED(){
+        String date3 = date.getText().toString();
+        String[] list = date3.split(" / ");
+        int year = Integer.parseInt(list[0]);
+        int month = Integer.parseInt(list[1]);
+        int day = Integer.parseInt(list[2]);
+        return new com.wsfmn.model.Date(year, month, day);
     }
 }
