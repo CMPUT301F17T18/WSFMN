@@ -456,6 +456,7 @@ public class OnlineController {
                         String JsonString = result.getJsonString();
                         for (SearchResult.Hit hit : result.getHits(Habit.class)) {
                             recent = (HabitEvent) hit.source;
+                            return recent;
                         }
                     } else {
                         Log.i("Error", "The search query failed to find any requests that matched");
