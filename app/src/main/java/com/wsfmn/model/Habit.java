@@ -112,6 +112,7 @@ public class Habit implements Serializable, Comparable<Habit>{
         this.weekDays = weekDays;
     }
 
+
     /**
      *
      * @return the id of the habit
@@ -252,8 +253,8 @@ public class Habit implements Serializable, Comparable<Habit>{
         if(!weekDays.getDay(day)) {
             hasChanged = true;
             currDate = new Date();
-            weekDays.setDay(day);
         }
+        weekDays.setDay(day);
     }
 
     /**
@@ -266,8 +267,8 @@ public class Habit implements Serializable, Comparable<Habit>{
         if(weekDays.getDay(day)) {
             hasChanged = true;
             currDate = new Date();
-            weekDays.unsetDay(day);
         }
+        weekDays.unsetDay(day);
     }
 
 
