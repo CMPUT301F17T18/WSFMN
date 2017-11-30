@@ -4,6 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wsfmn.view.FriendHabitEventActivity">
+    android:orientation="vertical">
+
+    <Button
+
+        android:id="@+id/Picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B_changeLocation"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <Button
+        android:id="@+id/B_changeLocation"
+        android:layout_width="118dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:onClick="location"
+        android:text="Add Location"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <EditText
+        android:id="@+id/Comment"
+        android:layout_width="133dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Add Comment"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameEvent" />
+
+    <Button
+        android:id="@+id/ViewImg"
+        android:layout_width="104dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="100dp"
+        android:onClick="viewPic"
+        android:text="View Image"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Picture"
+        app:layout_constraintStart_toEndOf="@+id/Picture" />
+
+    <EditText
+        android:id="@+id/nameEvent"
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Name Of Event"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/eventDate"
+        android:layout_width="159dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Date"
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Comment" />
+
+    <TextView
+        android:id="@+id/T_showAdress"
+        android:layout_width="81dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="100dp"
+        android:text="Address"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/B_changeLocation"
+        app:layout_constraintStart_toEndOf="@+id/B_changeLocation" />
 
 </android.support.constraint.ConstraintLayout>

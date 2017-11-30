@@ -1,5 +1,7 @@
 package com.wsfmn.model;
 
+import java.util.Comparator;
+
 import io.searchbox.annotations.JestId;
 
 /**
@@ -9,7 +11,7 @@ import io.searchbox.annotations.JestId;
 /**
  * a Class for the User's profilename
  */
-public class ProfileName {
+public class ProfileName{
     private String name;
 
     @JestId
@@ -75,3 +77,6 @@ public class ProfileName {
 
 
 }
+
+
+

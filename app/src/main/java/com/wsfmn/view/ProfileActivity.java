@@ -73,26 +73,6 @@ public class ProfileActivity extends Activity {
 
     }
 
-    /**
-     *  Button method to Share events with a user. Searching for user with textbox input
-     * @param view
-     */
-    public void shareOnClick(View view){
-        String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
-        Request newRequest = new Request(profileName, text, "share");
-        flag = online.checkRequest(profileName, "share", text);
-        if (flag == false){
-            Toast.makeText(ProfileActivity.this, "Request Already Sent!",
-                    Toast.LENGTH_LONG).show();
-        }
-        //requestsList.add(newRequest);
-        else {
-            OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
-            sendRequest.execute(newRequest);
-            adapter.notifyDataSetChanged();
-        }
-        adapter.notifyDataSetChanged();
-    }
 
     /**
      * Button method to Follow events from user. Searching for user with textbox input
@@ -102,10 +82,27 @@ public class ProfileActivity extends Activity {
         String text = userName.getText().toString().toLowerCase().replaceAll("\\s+","");
         Request newRequest = new Request(profileName, text, "follow");
         flag = online.checkRequest(profileName, "follow", text);
-        if (flag == false){
+
+        if (!flag){
             Toast.makeText(ProfileActivity.this, "Request Already Sent!",
                     Toast.LENGTH_LONG).show();
         }
+
+       else if(online.checkName(text)){
+            Toast.makeText(ProfileActivity.this, "Name Doesn't Exist!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        else if(!online.checkFriends(text)){
+            Toast.makeText(ProfileActivity.this, "This Person Has Already Added You!",
+                    Toast.LENGTH_LONG).show();
+        }
+
+        else if(text.equals(profileName)){
+            Toast.makeText(ProfileActivity.this, "Sorry Can't Add Yourself!",
+                    Toast.LENGTH_LONG).show();
+        }
+
         //requestsList.add(newRequest);
         else {
             OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
@@ -203,53 +200,6 @@ public class ProfileActivity extends Activity {
     }
 
 
-
-
-    //////////////
-
-    // Fredric, I commented these out, they are now handled using the ProfileNameController
-    // please delete them if everything is running okay for you!
-    //////////////
-//
-//    // Will remove later and replace with OfflineController's methods
-//    private void loadFromFile() {
-//        try {
-//            FileInputStream fis = openFileInput(USER_FILENAME);
-//            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-//
-//            Gson gson = new Gson();
-//
-//            Type listType = new TypeToken<String>(){}.getType();
-//            profileName = gson.fromJson(in, listType);
-//
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            profileName = "";
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            throw new RuntimeException();
-//        }
-//    }
-
-//    //Will remove later and replace with OfflineController's methods
-//    private void saveInFile() {
-//        try {
-//            FileOutputStream fos = openFileOutput(USER_FILENAME,
-//                    Context.MODE_PRIVATE);
-//            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-//            Gson gson = new Gson();
-//            gson.toJson(profileName, out);
-//            out.flush();
-//            fos.close();
-//            //something fails it will catch.
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            throw new RuntimeException();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            throw new RuntimeException();
-//        }
-//    }
 
 
 

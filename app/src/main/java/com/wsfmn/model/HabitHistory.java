@@ -148,21 +148,21 @@ public class HabitHistory {
      *
      */
     public void sortHabitHistory(){
-        HabitEvent he = null;
-        HabitEvent tempHe = null;
-
-        for(int i = 0; i < habitHistory.size(); i++){
-            for(int j = i; j < habitHistory.size(); j++){
-                if(habitHistory.get(i).compareDate(habitHistory.get(j).getDate()) == -1) {
-                    he = habitHistory.get(j);
-
-                    tempHe = habitHistory.get(i);
-                    habitHistory.set(i, he);
-                    habitHistory.set(j, tempHe);
-                }
-            }
-
-        }
+//        HabitEvent he = null;
+//        HabitEvent tempHe = null;
+//
+//        for(int i = 0; i < habitHistory.size(); i++){
+//            for(int j = i; j < habitHistory.size(); j++){
+//                if(habitHistory.get(i).compareDate(habitHistory.get(j).getDate()) == -1) {
+//                    he = habitHistory.get(j);
+//
+//                    tempHe = habitHistory.get(i);
+//                    habitHistory.set(i, he);
+//                    habitHistory.set(j, tempHe);
+//                }
+//            }
+//
+//        }
     }
 
     /**

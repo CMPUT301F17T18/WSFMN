@@ -263,7 +263,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
-                    "13/11/2017,00:01");
+                    null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -271,7 +271,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
-                    "14/11/2017,00:01");
+                    null);
         }
         catch(HabitCommentTooLongException e){
             //null
