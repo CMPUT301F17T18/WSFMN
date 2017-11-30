@@ -94,7 +94,7 @@ public class ProfileActivity extends Activity {
         }
 
         else if(!online.checkFriends(text)){
-            Toast.makeText(ProfileActivity.this, "This Person Has Already Added You!",
+            Toast.makeText(ProfileActivity.this, "This Person Is On Your FriendList Already!",
                     Toast.LENGTH_LONG).show();
         }
 
