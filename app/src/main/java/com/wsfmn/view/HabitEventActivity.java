@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -26,8 +25,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.util.Calendar;
 import com.wsfmn.model.Date;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -260,9 +257,6 @@ public class HabitEventActivity extends AppCompatActivity {
         nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
         nameHabit.setText(control.getHabit(i).getTitle().toString());
-//        habitList = HabitListController.getInstance().
-//        nameHabit.setText(habitFromTodaysList.getTitle());
-//        TextView nameHabit = (TextView)findViewById(R.id.habitName);
     }
 
     public void changeNameToday(int i){
