@@ -50,10 +50,12 @@
         <activity
             android:name=".HabitHistoryActivity"
             android:parentActivityName=".MainActivity"
+            android:label="Habit Event History"
             android:screenOrientation="portrait" />
         <activity
             android:name=".HabitListViewActivity"
             android:parentActivityName=".MainActivity"
+            android:label="View All Habits"
             android:screenOrientation="portrait" />
         <activity
             android:name=".HabitListViewDetailActivity"
@@ -66,11 +68,13 @@
         <activity
             android:name=".HabitsForTodayActivity"
             android:parentActivityName=".MainActivity"
+            android:label="Today\'s Habits"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustPan"
+            android:label="HabitTracker User Profile"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UserName_Activity"
@@ -100,7 +104,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".HabitEventActivity"
-            android:label="@string/title_activity_habit_event"
+            android:label="Add New Habit Event"
             android:parentActivityName=".HabitHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
