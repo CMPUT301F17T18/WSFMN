@@ -479,9 +479,9 @@ public class OnlineController {
             verifySettings();
             Boolean flag = false;
             // TODO Build the query
-            String query = "{" + " \"query\": { \"term\": {\"name\":\"" + App.USERNAME + "\"} }\n" + "}";
+            String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
-                    .addIndex(INDEX_BASE + search_parameters[0])
+                    .addIndex(INDEX_BASE + App.USERNAME)
                     .addType("friend")
                     .build();
             try {

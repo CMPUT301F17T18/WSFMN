@@ -63,7 +63,7 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
         TextView personWhoRequest = (TextView)view.findViewById(R.id.item_request);
         TextView typeOfRequest = (TextView)view.findViewById(R.id.request_type);
         personWhoRequest.setText(list.get(position).getName());
-        typeOfRequest.setText(list.get(position).getRequestType());
+        typeOfRequest.setText("wants to " +list.get(position).getRequestType() + " you!");
 
         //Handle buttons and add onClickListeners
         Button deleteBtn = (Button)view.findViewById(R.id.decline);

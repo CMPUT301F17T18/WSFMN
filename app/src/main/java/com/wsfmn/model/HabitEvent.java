@@ -3,10 +3,8 @@ package com.wsfmn.model;
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
+import java.io.Serializable;
 
 /**
  * Created by skhanna1 on 10/16/17.
@@ -21,7 +19,7 @@ public class HabitEvent{
     private Habit habit;
     private String comment;
     String id;
-    Date date;
+    Date date = null;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
 
@@ -56,9 +54,8 @@ public class HabitEvent{
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
      */
-    public void setDate(){
-        //formatting the type of date
-        this.date = new Date();
+    public void setDate(Date date){
+        this.date = date;
     }
 
     public Date getDate(){
@@ -194,53 +191,13 @@ public class HabitEvent{
      * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
      *  1 otherwise.
      */
-    public int compareDate(String otherDate){
-
-        return 1;
-//        String[] list1 = this.date;
-//        String[] list2 = otherDate.split("/");
-//
-//        String[] last1 = list1[2].substring(6).split(":");
-//        list1[2] = list1[2].substring(0, 4);
-//
-//        int hour1 = Integer.parseInt(last1[0]);
-//        int minute1 = Integer.parseInt(last1[1]);
-//
-//        String[] last2 = list2[2].substring(6).split(":");
-//        list2[2] = list2[2].substring(0, 4);
-//
-//        int hour2 = Integer.parseInt(last2[0]);
-//        int minute2 = Integer.parseInt(last2[1]);
-//
-//        if(Integer.parseInt(list1[2]) < Integer.parseInt(list2[2]))
-//            return -1;
-//        else if(Integer.parseInt(list1[2]) > Integer.parseInt(list2[2]))
-//            return 1;
-//        else if(Integer.parseInt(list1[1]) < Integer.parseInt(list2[1]))
-//            return -1;
-//        else if(Integer.parseInt(list1[1]) > Integer.parseInt(list2[1]))
-//            return 1;
-//        else if(Integer.parseInt(list1[0]) < Integer.parseInt(list2[0]))
-//            return -1;
-//        else if(Integer.parseInt(list1[0]) > Integer.parseInt(list2[0]))
-//            return 1;
-//        else if(hour1 < hour2)
-//            return -1;
-//        else if(hour1 > hour2)
-//            return 1;
-//        else if(minute1 < minute2)
-//            return -1;
-//        else if(minute1 > minute2)
-//            return 1;
-//        else
-//            return 0;
-
+    public int compareDate(Date otherDate){
+        return date.compareDate(otherDate);
     }
 
     @Override
     public String toString(){
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-        return title + "    " + df.format(date);
+        return title + "    " + this.date;
     }
 
 }

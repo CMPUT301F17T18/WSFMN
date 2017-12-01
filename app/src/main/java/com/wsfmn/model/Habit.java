@@ -279,7 +279,7 @@ public class Habit implements Serializable, Comparable<Habit>{
      */
     @Override
     public String toString(){
-        return title + "    " + date + "   Score: " + score;
+        return title + "    " + date + "   Score: %" + score;
     }
 
     /**
