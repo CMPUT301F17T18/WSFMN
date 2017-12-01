@@ -49,8 +49,27 @@ public class HabitEvent{
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
+
         this.date = date;
-        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        java.util.Date adate = formatter.parse(this.date.toDateString());
+        this.actualdate = adate;
+
+
+        this.geolocation = null;
+//        this.imageBitmap = imageBitmap;
+    }
+
+    public HabitEvent(Habit habit, String title, String comment, Date date) throws HabitCommentTooLongException,
+            HabitEventCommentTooLongException, ParseException {
+        this.habit = habit;
+        this.title = title;
+        setComment(comment);
+        this.CurrentPhotoPath = null;
+        this.id = null;
+
+        this.date = date;
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
 

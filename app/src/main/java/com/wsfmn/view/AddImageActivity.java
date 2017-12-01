@@ -16,6 +16,7 @@ public class AddImageActivity extends AppCompatActivity {
 
         image = (ImageView)findViewById(R.id.viewImageNew);
         Intent intent = getIntent();
+        String photoPath = intent.getStringExtra("CurrentPhotoPath");
 
         int targetW = 256;
         int targetH = 256;
@@ -23,25 +24,15 @@ public class AddImageActivity extends AppCompatActivity {
         int scaleFactor = Math.max(targetH, targetW);
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile("CurrentPhotoPath", bmOptions);
+        BitmapFactory.decodeFile(photoPath, bmOptions);
 
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
         bmOptions.inPurgeable = true;
 
-        Bitmap imageBitmap = BitmapFactory.decodeFile(intent.getStringExtra("CurrentPhotoPath"));
+        Bitmap imageBitmap = BitmapFactory.decodeFile(photoPath);
         image.setImageBitmap(imageBitmap);
 
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            // Respond to the action bar's Up/Home button
-//            case android.R.id.home:
-//                NavUtils.navigateUpFromSameTask(this);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 }
