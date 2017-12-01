@@ -46,7 +46,17 @@ public class ProfileNameController {
         profileName.setId(id);
     }
 
-
+    public void updateScore() {
+        double score_temp = 0;
+        HabitHistoryController c = HabitHistoryController.getInstance();
+        for (int i = 0; i < c.size(); i++) {
+            score_temp = score_temp + c.get(i).getHabit().getScore();
+        }
+        profileName.setScore((int) score_temp/c.size());
+        storeProfileNameOffline(profileName);
+        OnlineController.StoreNameInDataBase online = new OnlineController.StoreNameInDataBase();
+        online.execute(profileName);
+    }
 
     public void storeProfileNameOffline(ProfileName pn) {
         profileName = pn;
