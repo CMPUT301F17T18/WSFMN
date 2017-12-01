@@ -60,6 +60,7 @@
         <activity
             android:name=".HabitListViewDetailActivity"
             android:parentActivityName=".HabitListViewActivity"
+            android:label="Habit Details"
             android:screenOrientation="portrait" />
         <activity
             android:name=".AddNewHabitActivity"
