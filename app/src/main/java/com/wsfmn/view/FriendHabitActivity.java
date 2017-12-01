@@ -3,24 +3,32 @@ package com.wsfmn.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wsfmn.controller.HabitListController;
+import com.wsfmn.controller.OnlineController;
 import com.wsfmn.model.Habit;
 import com.wsfmn.model.Date;
+import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.WeekDays;
+import com.wsfmn.model.Geolocation;
 
 
 
 public class FriendHabitActivity extends AppCompatActivity {
 
     private Habit fHabit;
+    private HabitEvent fEvent;
     EditText fhTitle;
     EditText fhReason;
     EditText fhDate;
+    EditText fEventComment;
+    EditText fEventDate;
+    EditText fEventAddress;
 
     private CheckBox monday;
     private CheckBox tuesday;
@@ -51,16 +59,23 @@ public class FriendHabitActivity extends AppCompatActivity {
         saturday = (CheckBox) findViewById(R.id.saturday);
         sunday = (CheckBox) findViewById(R.id.sunday);
 
-        fhTitle.setClickable(true);
-        fhReason.setClickable(true);
-        fhDate.setClickable(true);
-        monday.setClickable(true);
-        tuesday.setClickable(true);
-        wednesday.setClickable(true);
-        thursday.setClickable(true);
-        friday.setClickable(true);
-        saturday.setClickable(true);
-        sunday.setClickable(true);
+        fEventComment = (EditText) findViewById(R.id.fEventComment);
+        fEventDate = (EditText) findViewById(R.id.fEventDate);
+        fEventAddress = (EditText) findViewById(R.id.fEventAddress);
+
+        fhTitle.setClickable(false);
+        fhReason.setClickable(false);
+        fhDate.setClickable(false);
+        monday.setClickable(false);
+        tuesday.setClickable(false);
+        wednesday.setClickable(false);
+        thursday.setClickable(false);
+        friday.setClickable(false);
+        saturday.setClickable(false);
+        sunday.setClickable(false);
+        fEventComment.setClickable(false);
+        fEventDate.setClickable(false);
+        fEventAddress.setClickable(false);
 
 
         setCheckBox(monday, WeekDays.MONDAY);
@@ -81,5 +96,20 @@ public class FriendHabitActivity extends AppCompatActivity {
         checkBox.setChecked(fHabit.getWeekDays().getDay(day));
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        OnlineController.GetRecentEvent fRecentEvent = new OnlineController.GetRecentEvent();
+        fRecentEvent.execute(fHabit.getTitle().toLowerCase(),fHabit.getOwner());
+        try{
+            fEvent = fRecentEvent.get();
+            fEventComment.setText(fEvent.getComment());
+            fEventDate.setText(fEvent.getDate().toString());
+            fEventAddress.setText(fEvent.getGeolocation().getAddress());
 
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
+        }
+
+    }
 }

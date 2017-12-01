@@ -4,6 +4,8 @@ import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
 
+import java.io.Serializable;
+
 /**
  * Created by skhanna1 on 10/16/17.
  */
@@ -17,12 +19,10 @@ public class HabitEvent{
     private Habit habit;
     private String comment;
     String id;
-    String date;
+    Date date = null;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
 
-    //private Bitmap image;
-    //private Date date;
     //change by wei, change location parts
     private Geolocation geolocation;
 
@@ -37,34 +37,10 @@ public class HabitEvent{
      * @param title
      * @param comment
      * @param CurrentPhotoPath
-     * @param date
      *
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String date)
-            throws HabitCommentTooLongException, HabitEventCommentTooLongException {
-
-        this.habit = habit;
-        this.title = title;
-        setComment(comment);
-        this.CurrentPhotoPath = CurrentPhotoPath;
-        this.id = null;
-        this.geolocation = null;
-        this.date = date;
-    }
-
-    /**
-     *
-     * @param habit
-     * @param title
-     * @param comment
-     * @param CurrentPhotoPath
-     * @param geolocation
-     * @param date
-     * @throws HabitCommentTooLongException
-     * @throws HabitEventCommentTooLongException
-     */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Geolocation geolocation, String date)
-            throws HabitCommentTooLongException, HabitEventCommentTooLongException{
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
+                                                        HabitEventCommentTooLongException{
         this.habit = habit;
         this.title = title;
         setComment(comment);
@@ -74,19 +50,15 @@ public class HabitEvent{
         this.geolocation = geolocation;
     }
 
-///// SID, Delete this unused constructor? From: nmayne
-//    public HabitEvent(Habit habit, EditText nameHabitEvent, EditText comment, Bitmap image){
-//        this.habit = habit;
-//        this.image = image;
-//        this.comment = "No Comment";
-//        this.title = "title";
-//    }
-
     /**
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
      */
-    public String getDate(){
+    public void setDate(Date date){
+        this.date = date;
+    }
+
+    public Date getDate(){
         return this.date;
     }
 
@@ -219,50 +191,13 @@ public class HabitEvent{
      * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
      *  1 otherwise.
      */
-    public int compareDate(String otherDate){
-        String[] list1 = this.date.split("/");
-        String[] list2 = otherDate.split("/");
-
-        String[] last1 = list1[2].substring(6).split(":");
-        list1[2] = list1[2].substring(0, 4);
-
-        int hour1 = Integer.parseInt(last1[0]);
-        int minute1 = Integer.parseInt(last1[1]);
-
-        String[] last2 = list2[2].substring(6).split(":");
-        list2[2] = list2[2].substring(0, 4);
-
-        int hour2 = Integer.parseInt(last2[0]);
-        int minute2 = Integer.parseInt(last2[1]);
-
-        if(Integer.parseInt(list1[2]) < Integer.parseInt(list2[2]))
-            return -1;
-        else if(Integer.parseInt(list1[2]) > Integer.parseInt(list2[2]))
-            return 1;
-        else if(Integer.parseInt(list1[1]) < Integer.parseInt(list2[1]))
-            return -1;
-        else if(Integer.parseInt(list1[1]) > Integer.parseInt(list2[1]))
-            return 1;
-        else if(Integer.parseInt(list1[0]) < Integer.parseInt(list2[0]))
-            return -1;
-        else if(Integer.parseInt(list1[0]) > Integer.parseInt(list2[0]))
-            return 1;
-        else if(hour1 < hour2)
-            return -1;
-        else if(hour1 > hour2)
-            return 1;
-        else if(minute1 < minute2)
-            return -1;
-        else if(minute1 > minute2)
-            return 1;
-        else
-            return 0;
-
+    public int compareDate(Date otherDate){
+        return date.compareDate(otherDate);
     }
 
     @Override
     public String toString(){
-        return title + "    " + date;
+        return title + "    " + this.date;
     }
 
 }

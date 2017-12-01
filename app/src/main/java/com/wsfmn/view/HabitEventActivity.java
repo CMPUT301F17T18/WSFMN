@@ -1,10 +1,13 @@
 
 package com.wsfmn.view;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -16,14 +19,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import com.wsfmn.model.Date;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.model.Geolocation;
@@ -48,30 +50,29 @@ import java.text.SimpleDateFormat;
 public class HabitEventActivity extends AppCompatActivity {
 
     Button addPic;
-
+    TextView nameHabit;
     EditText Comment;
     Button viewImage;
     Button addHabitEvent;
     Button addHabit;
     Intent intent3;
     Intent intent2;
-    EditText nameHabitEvent;
-    Bitmap imageBitmap;
-    TextView date;
+    TextView date2;
     ImageView img;
     Uri photoURI;
     String datevalue;
-    //DIFFEREN -----
     TextView T_showAddress;
+    HabitEvent he2;
+    Habit habitList;
+    Habit habitFromTodaysList;
     Geolocation geolocation;
-
+    Bundle b;
     Habit habitFromList;
-    //DIFFEREN -----
     LatLng new_coordinate;
-    Integer i = null;
+    Integer i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    //DIFFEREN -----
     static final int ADD_NEW_LOCATION_CODE = 3;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
 
     @Override
@@ -79,35 +80,26 @@ public class HabitEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_event);
 
+        Bundle b = getIntent().getExtras();
+        if(b!=null) {
+            i = b.getInt("positionToday");
+            changeNameToday(i);
+        }
+
         Comment = (EditText)findViewById(R.id.Comment);
         addPic = (Button)findViewById(R.id.Picture);
-        nameHabitEvent = (EditText)findViewById(R.id.nameEvent);
         viewImage = (Button)findViewById(R.id.ViewImg);
         addHabitEvent = (Button)findViewById(R.id.AddHabitEvent);
         addHabit = (Button)findViewById(R.id.addHabit);
-        //DIFFEREN -----
         T_showAddress = (TextView) findViewById(R.id.T_showAdress);
 
-        date = (TextView)findViewById(R.id.eventDate);
+        date2 = (TextView)findViewById(R.id.eventDate);
 
         //Creating date for the Habit Event created
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-        datevalue = df.format(Calendar.getInstance().getTime());
-        date.setText(datevalue);
-
-//
-//        Intent intent = new Intent(this, HabitsForTodayActivity.class);
-//        startActivityForResult(intent, 2);
+        date2.setText(new Date().toString());
 
         // If statement handles the case where the activity is called from a listView
         // //(e.g. HabitsForTodayActivity)
-        Bundle b = getIntent().getExtras();
-        if (b != null) {
-            i = b.getInt("position");
-            changeName(i);
-        }
-
-
 
         //Checking If device has camera
         if(!checkCamera()){
@@ -125,8 +117,6 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         });
 
-
-        //DIFFERENT -----------
         Button Location = (Button) findViewById(R.id.B_changeLocation);
         Location.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -136,6 +126,31 @@ public class HabitEventActivity extends AppCompatActivity {
                 startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
             }
         });
+
+        Button setNewDate = (Button)findViewById(R.id.setNewDate);
+        setNewDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            @TargetApi(24)
+            public void onClick(View v) {
+                android.icu.util.Calendar calendar = android.icu.util.Calendar.getInstance();
+                int year = calendar.get(android.icu.util.Calendar.YEAR);
+                int month = calendar.get(android.icu.util.Calendar.MONTH);
+                int day = calendar.get(android.icu.util.Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(HabitEventActivity.this,
+                        android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener, year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+        mDateSetListener = new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month += 1;
+                date2.setText(year + " / " + month + " / " + dayOfMonth);
+                date2.getText();
+            }
+        };
     }
 
     /**
@@ -179,7 +194,6 @@ public class HabitEventActivity extends AppCompatActivity {
 
     String CurrentPhotoPath;
 
-    //DIFFERENT -------
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     /**
      * Creates the file where the image will be stored
@@ -208,13 +222,6 @@ public class HabitEventActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            imageBitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
-////            img = (ImageView)findViewById(R.id.imageView3);
-////            img.setImageBitmap(imageBitmap);
-//
-//        }
-        // Getting the position of the habit from the list
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
@@ -247,22 +254,15 @@ public class HabitEventActivity extends AppCompatActivity {
      *  Display the habit the user selected for this habit event
      */
     public void changeName(int i){
-        TextView nameHabit = (TextView)findViewById(R.id.habitName);
+        nameHabit = (TextView)findViewById(R.id.habitName);
+        HabitListController control = HabitListController.getInstance();
+        nameHabit.setText(control.getHabit(i).getTitle().toString());
+    }
 
-
-
-
-        /// !!!WARNING: THIS IS A HACK!!!
-        /// TODO: we actually NEED to know if the index int i is being passed from HabitList OR from HabitsForToday!
-        if (HabitListController.getInstance().getHabitsForToday().isEmpty()) {
-            habitFromList = HabitListController.getInstance().getHabit(i);
-            nameHabitEvent.setText(habitFromList.getTitle());
-            nameHabit.setText(habitFromList.getTitle());
-        } else {
-            habitFromList = HabitListController.getInstance().getHabitsForToday().get(i);
-            nameHabitEvent.setText(habitFromList.getTitle());
-            nameHabit.setText(habitFromList.getTitle());
-        }
+    public void changeNameToday(int i){
+        nameHabit = (TextView)findViewById(R.id.habitName);
+        HabitListController control = HabitListController.getInstance();
+        nameHabit.setText(control.getHabitsForToday().get(i).getTitle().toString());
     }
 
     /**
@@ -273,19 +273,8 @@ public class HabitEventActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
             HabitListController control = HabitListController.getInstance();
-            String test = nameHabitEvent.getText().toString();
-
-            // Create the new HabitEvent
-            HabitEvent hEvent =
-                    new HabitEvent(
-                            control.getHabit(i),
-                            nameHabitEvent.getText().toString(),
-                            Comment.getText().toString(),
-                            CurrentPhotoPath,
-                            geolocation,
-                            date.getText().toString());
-
-
+            HabitEvent hEvent = new HabitEvent(control.getHabit(i),
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE());
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -318,9 +307,13 @@ public class HabitEventActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void location(){
-//        Intent intent = new Intent(HabitEventActivity.this, MapsActivity.class);
-//        startActivity(intent);
-//    }
+    public com.wsfmn.model.Date getDateUIHE(){
+        String date = date2.getText().toString();
+        String[] list = date.split(" / ");
+        int year = Integer.parseInt(list[0]);
+        int month = Integer.parseInt(list[1]);
+        int day = Integer.parseInt(list[2]);
+        return new com.wsfmn.model.Date(year, month, day);
+    }
 
 }

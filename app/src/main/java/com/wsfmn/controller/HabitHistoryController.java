@@ -6,6 +6,7 @@ import android.util.Log;
 import com.wsfmn.model.Habit;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.HabitHistory;
+import com.wsfmn.model.HabitList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,6 +142,9 @@ public class HabitHistoryController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        //  added by alsobaie on 2017/11/29
+        HabitListController.getInstance().updateHabitScore(he.getHabit());
     }
 
     /**
@@ -217,12 +221,18 @@ public class HabitHistoryController {
      * @throws IndexOutOfBoundsException
      */
     public HabitEvent removeAndStore(int idx) throws IndexOutOfBoundsException{
+        //  added by alsobaie on 2017/11/29
+        Habit habit = habitHistory.get(idx).getHabit();
+
         HabitEvent removed = habitHistory.remove(idx);
 
         OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
                 new OnlineController.DeleteHabitEvents();
         deleteHabitEventsOnline.execute(removed);
         store();
+
+        //  added by alsobaie on 2017/11/29
+        HabitListController.getInstance().updateHabitScore(habit);
 
         return removed;
     }

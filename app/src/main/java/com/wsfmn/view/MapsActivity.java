@@ -1,6 +1,7 @@
 package com.wsfmn.view;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -14,6 +15,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -30,12 +32,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.controller.OnlineController;
+import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.model.Geolocation;
 import com.wsfmn.model.HabitEvent;
+import com.wsfmn.model.HabitHistory;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -49,7 +56,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker currentLocationMarker;
     private Marker habitEventMarker;
     public static final int REQUEST_LOCATION_CODE= 99;
-    private HabitEvent habitEvent;
+    private LatLng currentLocation;
+    //private HabitEvent habitEvent;
+
 
     private ArrayList<HabitEvent> eventList = new ArrayList<HabitEvent>();
 
@@ -66,7 +75,54 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
+
+    public void buttonHighlight(View v){
+        if (currentLocation != null) {
+            Button Highlight = (Button) findViewById(R.id.B_highlight);
+            //Highlight.setText("clicked");
+            Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
+
+            for (int i = 0;  i<HabitHistoryController.getInstance().size(); i++) {
+                Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
+                Geolocation geolocation = habitEvent.getGeolocation();
+                LatLng eventCoord = geolocation.getLatLng();
+
+                float results[] = new float[10];
+                Location.distanceBetween(currentLocation.latitude,currentLocation.longitude, eventCoord.latitude,eventCoord.longitude, results);
+                if (results[0] <= 5000) {
+
+
+                    MarkerOptions mo = new MarkerOptions();
+                    mo.position(eventCoord);
+                    try {
+                        mo.title(habitEvent.getHabitEventTitle());
+                    } catch (HabitEventNameException e) {
+                        e.printStackTrace();
+                    }
+                    mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                    habitEventMarker = mMap.addMarker(mo);
+                    //add marker
+                    mMap.addMarker(mo);
+                    mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                }
+                else{
+                    mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                }
+
+            }
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Cannot find current location! ", Toast.LENGTH_LONG).show();
+
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -113,25 +169,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    public void onClick(View v){
-        if(v.getId() == R.id.B_highlight){
-
-            habitEvent = eventList.get(0);
-            Geolocation geolocation = habitEvent.getGeolocation();
-            LatLng eventCoord = geolocation.getLatLng();
-            MarkerOptions mo = new MarkerOptions();
-            mo.position(eventCoord);
-            mo.title("Your Search result");
-
-            //add marker
-            mMap.addMarker(mo);
-            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
-
-
-
-        }
-        //if(v.getId() == R.id.B_followed){}
-    }
+//    public void onClick(View v){
+//        if(v.getId() == R.id.B_highlight) {
+//
+//            int len = eventList.size();
+//            for (int i = 0; i < len; i++) {
+//
+//                habitEvent = eventList.get(i);
+//                Geolocation geolocation = habitEvent.getGeolocation();
+//                LatLng eventCoord = geolocation.getLatLng();
+//                MarkerOptions mo = new MarkerOptions();
+//                mo.position(eventCoord);
+//                mo.title("Your Search result");
+//
+//                habitEventMarker=mMap.addMarker(mo);
+//
+//                //add marker
+//                mMap.addMarker(mo);
+//                mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+//                Toast.makeText(getApplicationContext(), "Genji", Toast.LENGTH_LONG).show();
+//
+//
+//            }
+//        }
+//        if(v.getId() == R.id.B_followed){
+//            Toast.makeText(getApplicationContext(), "Rua!", Toast.LENGTH_LONG).show();
+//        }
+//    }
 
 
 
@@ -170,6 +234,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //move camera to the current position
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
+
+        currentLocation = latLng;
 
         if (client != null){
             LocationServices.FusedLocationApi.removeLocationUpdates(client,this);

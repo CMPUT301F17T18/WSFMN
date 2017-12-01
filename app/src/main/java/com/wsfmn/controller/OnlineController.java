@@ -317,10 +317,10 @@ public class OnlineController {
         protected Void doInBackground(String... search_parameters) {
             verifySettings();
 
-            ProfileName newFriend = new ProfileName(search_parameters[0]);
+            ProfileName newFriend = new ProfileName(App.USERNAME);
 
             Index index = new Index.Builder(newFriend)
-                    .index(INDEX_BASE + App.USERNAME)
+                    .index(INDEX_BASE + search_parameters[0])
                     .type("friend")
                     .build();
             try {
@@ -390,6 +390,10 @@ public class OnlineController {
         }
     }
 
+
+
+
+
     public static class GetHabitNames extends AsyncTask<String, Void, ArrayList<Habit>> {
         @Override
         protected ArrayList<Habit> doInBackground(String... search_parameters) {
@@ -416,6 +420,7 @@ public class OnlineController {
                         String JsonString = result.getJsonString();
                         for (SearchResult.Hit hit : result.getHits(Habit.class)) {
                             Habit fHabit = (Habit) hit.source;
+                            fHabit.setOwner(name);
                             habits.add(fHabit);
                         }
                     } else {
@@ -437,10 +442,11 @@ public class OnlineController {
             HabitEvent recent = new HabitEvent();
 
             // TODO Build the query
-            String query = "{\"query\" : { \"match_all\" : { } } }";
+            String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
+                    "\"size\" : 1, \"sort\" : [{\"date\" : { \"order\" : \"desc\"}}] }";
 
                 Search search = new Search.Builder(query)
-                        .addIndex(INDEX_BASE + search_parameters[0])
+                        .addIndex(INDEX_BASE + search_parameters[1])
                         .addType("habitevent")
                         .build();
 
@@ -452,8 +458,9 @@ public class OnlineController {
                     if (result.isSucceeded()) {
                         int idx = 0;
                         String JsonString = result.getJsonString();
-                        for (SearchResult.Hit hit : result.getHits(Habit.class)) {
+                        for (SearchResult.Hit hit : result.getHits(HabitEvent.class)) {
                             recent = (HabitEvent) hit.source;
+                            return recent;
                         }
                     } else {
                         Log.i("Error", "The search query failed to find any requests that matched");
@@ -466,7 +473,53 @@ public class OnlineController {
     }
 
 
+    public static class CheckFriends extends AsyncTask<String, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(String... search_parameters) {
+            verifySettings();
+            Boolean flag = false;
+            // TODO Build the query
+            String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
+            Search search = new Search.Builder(query)
+                    .addIndex(INDEX_BASE + App.USERNAME)
+                    .addType("friend")
+                    .build();
+            try {
+                // TODO get the results of the query
+                SearchResult result = client.execute(search);
+                if (result.isSucceeded()){
+                    String JsonString = result.getJsonString();
+                    for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
 
+                        Log.d("Name Exisits:", "Name already in friendlist");
+                        return false;
+                    }
+                }
+                return true;
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return flag;
+        }
+    }
+
+    public boolean checkFriends(String name){
+        //Check controller for name
+        boolean flag = false;
+        OnlineController.CheckFriends check =
+                new OnlineController.CheckFriends();
+        check.execute(name);
+
+        try{
+            flag = check.get();
+
+        } catch (Exception e) {
+            Log.i("Error", "Couldn't get flag from async object");
+        }
+        return flag;
+
+    }
 
     /**
      * Send Requests to ElasticSearch  proceed if the device is connected to the internet and will store the
