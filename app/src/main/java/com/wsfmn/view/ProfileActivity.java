@@ -214,6 +214,17 @@ public class ProfileActivity extends Activity {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
+        //sorting list
+        for(int i = 0; i < leaderList.size(); i++){
+            for(int j = i; j < leaderList.size(); j++){
+                if(leaderList.get(i).getScore() < leaderList.get(j).getScore()){
+                    ProfileName temp = leaderList.get(i);
+                    leaderList.set(i, leaderList.get(j));
+                    leaderList.set(j, temp);
+                }
+            }
+        }
+
         ladapter = new LeaderBoardAdapter(this, R.layout.listleader_item, leaderList);
         leaderBoard.setAdapter(ladapter);
 
