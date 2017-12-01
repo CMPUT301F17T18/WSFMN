@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.ImageView;
 
 public class AddImageActivity extends AppCompatActivity {
@@ -29,8 +30,15 @@ public class AddImageActivity extends AppCompatActivity {
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
         bmOptions.inPurgeable = true;
+        Bitmap imageBitmap;
 
-        Bitmap imageBitmap = BitmapFactory.decodeFile(photoPath);
+        if (!photoPath.startsWith("/storage")) {
+            byte[] decodedString = Base64.decode(photoPath, Base64.DEFAULT);
+            imageBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        } else {
+            imageBitmap = BitmapFactory.decodeFile(photoPath);
+        }
+
         image.setImageBitmap(imageBitmap);
 
     }
