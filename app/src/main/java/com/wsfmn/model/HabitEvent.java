@@ -1,6 +1,8 @@
 package com.wsfmn.model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
@@ -60,9 +62,8 @@ public class HabitEvent{
 
 
         this.geolocation = geolocation;
-        this.imageBitmap = null;
+//        this.imageBitmap = imageBitmap;
     }
-
     /**
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
@@ -220,6 +221,8 @@ public class HabitEvent{
     }
 
     public Bitmap getImageBitmap() {
-        return imageBitmap;
+        byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
     }
 }

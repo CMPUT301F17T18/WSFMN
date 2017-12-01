@@ -11,7 +11,7 @@ import io.searchbox.annotations.JestId;
 /**
  * a Class for the User's profilename
  */
-public class ProfileName{
+public class ProfileName {
     private String name;
 
     @JestId
@@ -74,6 +74,9 @@ public class ProfileName{
     public void setScore(int score) {
         this.score = score;
     }
+
+
+
 
 
 }

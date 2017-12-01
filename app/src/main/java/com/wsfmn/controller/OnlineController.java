@@ -391,6 +391,45 @@ public class OnlineController {
     }
 
 
+    public static class GetFriendScore extends AsyncTask<String, Void, ArrayList<ProfileName>> {
+        @Override
+        protected ArrayList<ProfileName> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<ProfileName> ProfileNameScore = new ArrayList<ProfileName>();
+
+
+
+
+            for(String name : search_parameters) {
+                String query = "{\"query\" : { \"term\" : {\"name\" : \" "+ name+ "\"} } }";
+                Search search = new Search.Builder(query)
+                        .addIndex(INDEX_BASE)
+                        .addType("profilename")
+                        .build();
+
+                try {
+
+                    // TODO get the results of the query
+                    SearchResult result = client.execute(search);
+
+                    if (result.isSucceeded()) {
+                        int idx = 0;
+                        String JsonString = result.getJsonString();
+                        for (SearchResult.Hit hit : result.getHits(Habit.class)) {
+                            ProfileName score = (ProfileName) hit.source;
+                            ProfileNameScore.add(score);
+                        }
+                    } else {
+                        Log.i("Error", "The search query failed to find any requests that matched");
+                    }
+                } catch (Exception e) {
+                    Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                }
+            }
+            return ProfileNameScore;
+        }
+    }
 
 
 

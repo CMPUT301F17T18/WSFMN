@@ -186,6 +186,9 @@ public class Date implements Serializable{
         String syear = Integer.toString(year);
         String smonth = Integer.toString(month);
         String sday = Integer.toString(day);
+
+
+
         return syear  + smonth  + sday;
     }
 

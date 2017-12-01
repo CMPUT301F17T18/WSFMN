@@ -3,7 +3,9 @@ package com.wsfmn.view;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +19,8 @@ import com.wsfmn.controller.App;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.ProfileNameController;
+import com.wsfmn.model.FriendAdapter;
+import com.wsfmn.model.LeaderBoardAdapter;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestAdapter;
@@ -34,6 +38,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 /**
@@ -52,9 +59,18 @@ public class ProfileActivity extends Activity {
     private TextView userName;
     private TextView yourName;
     private ListView requestsFromUser;
+    private ListView leaderBoard;
     private RequestList requestsList = new RequestList();
+    ArrayList<ProfileName> leaderList;
+    ArrayList<String> namesFriends = new ArrayList<String>();
+    String[] namesFriendsList;
+    LeaderBoardAdapter ladapter;
     RequestAdapter adapter = new RequestAdapter(requestsList, this);
     private OnlineController online = new OnlineController();
+
+
+
+
 //    private OfflineController offline = new OfflineController();      //// deprecated, delete
 
     /**
@@ -69,6 +85,7 @@ public class ProfileActivity extends Activity {
 
         userName = (EditText) findViewById(R.id.userName);
         requestsFromUser = (ListView) findViewById(R.id.requestStuff);
+        leaderBoard = (ListView) findViewById(R.id.leaderBoard);
         yourName = (TextView) findViewById(R.id.showName);
 
     }
@@ -124,6 +141,7 @@ public class ProfileActivity extends Activity {
      * Starts the Activity with certain conditions.
      * Checks if user is connected to internet, and if user has a profilename.
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onStart() {
         super.onStart();
@@ -165,11 +183,55 @@ public class ProfileActivity extends Activity {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
+        OnlineController.GetFriendNames getFriendEvents = new OnlineController.GetFriendNames();
+        getFriendEvents.execute();
+        try {
+            namesFriends = getFriendEvents.get();
+            //Collections.sort(namesFriends); Could be used later in scoreboard possibly.
+            namesFriendsList = namesFriends.toArray(new String[namesFriends.size()]);
+
+
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
+        }
+
+        OnlineController.GetFriendScore getFriendScore = new OnlineController.GetFriendScore();
+        getFriendScore.execute(namesFriendsList);
+        try {
+            leaderList = getFriendScore.get();
+
+           /* Collections.sort(leaderList,
+                    Comparator.comparingInt(ProfileName::getScore));*/
+
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
+        }
+
+        OnlineController.GetFriendScore getYourScore = new OnlineController.GetFriendScore();
+        getFriendScore.execute(App.USERNAME);
+        try {
+            leaderList.addAll(getYourScore.get());
+
+           Collections.sort(leaderList,
+                    Comparator.comparingInt(ProfileName::getScore));
+
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
+        }
+
+
+        ladapter = new LeaderBoardAdapter(this, R.layout.listfriend_item, leaderList);
+        leaderBoard.setAdapter(ladapter);
+
+
         //Update List with Requests
         RequestAdapter adapter = new RequestAdapter(requestsList, this);
         requestsFromUser.setAdapter(adapter);
 
     }
+
+
+
 
     /**
      * Method to retrieve results from another activity. Used for getting profilename from
