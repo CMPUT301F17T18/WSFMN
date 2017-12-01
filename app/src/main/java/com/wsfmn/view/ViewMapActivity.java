@@ -76,6 +76,8 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     public void buttonMyEvent(View v){
+
+        mMap.clear();
         Bundle bundle = getIntent().getExtras();
         //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
@@ -198,6 +200,8 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
     public void buttonHighlight(View v){
+
+        mMap.clear();
         Bundle bundle = getIntent().getExtras();
         //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
