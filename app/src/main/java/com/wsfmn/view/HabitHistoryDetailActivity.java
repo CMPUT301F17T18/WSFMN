@@ -27,14 +27,12 @@ import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
-import com.wsfmn.model.Geolocation;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import static com.wsfmn.view.HabitEventActivity.REQUEST_TAKE_PHOTO;
+import static com.wsfmn.view.AddNewHabitEventActivity.REQUEST_TAKE_PHOTO;
 
 /**
  * Called when the user wants to edit an existing Habit Event

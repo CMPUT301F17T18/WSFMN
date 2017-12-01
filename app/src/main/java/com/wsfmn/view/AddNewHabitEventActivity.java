@@ -53,7 +53,7 @@ import java.text.SimpleDateFormat;
  * @version 1.0
  * @see Activity
  */
-public class HabitEventActivity extends AppCompatActivity {
+public class AddNewHabitEventActivity extends AppCompatActivity {
 
     private java.util.Date actualTimeStamp;
 
@@ -86,7 +86,7 @@ public class HabitEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_event);
+        setContentView(R.layout.activity_add_new_habit_event);
 
         Bundle b = getIntent().getExtras();
         if(b!=null) {
@@ -132,7 +132,7 @@ public class HabitEventActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(HabitEventActivity.this, AddLocationActivity.class);
+                Intent  intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
                 startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
             }
         });
@@ -147,7 +147,7 @@ public class HabitEventActivity extends AppCompatActivity {
                 int month = calendar.get(android.icu.util.Calendar.MONTH);
                 int day = calendar.get(android.icu.util.Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(HabitEventActivity.this,
+                DatePickerDialog dialog = new DatePickerDialog(AddNewHabitEventActivity.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -307,11 +307,11 @@ public class HabitEventActivity extends AppCompatActivity {
         }catch(HabitCommentTooLongException e){
             e.printStackTrace();
         }catch(HabitEventCommentTooLongException e){
-            Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(AddNewHabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }catch(HabitEventNameException e){
-            Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(AddNewHabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }catch(NullPointerException e){
-            Toast.makeText(HabitEventActivity.this, "Habit Event needs to contain Habit", Toast.LENGTH_LONG).show();
+            Toast.makeText(AddNewHabitEventActivity.this, "Habit Event needs to contain Habit", Toast.LENGTH_LONG).show();
         } catch (ParseException e) {
             e.printStackTrace();
         }

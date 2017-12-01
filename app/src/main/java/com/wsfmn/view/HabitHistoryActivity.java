@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.controller.HabitHistoryController;
-import com.wsfmn.model.HabitHistory;
 
 import static java.lang.Thread.sleep;
 
@@ -35,7 +34,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habits_history);
+        setContentView(R.layout.activity_habit_history);
 
         search = findViewById(R.id.search);
         habitHistory = (ListView)findViewById(R.id.habitEventHist);
@@ -75,7 +74,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
     /**
      * Called when the user taps the Add New Habit Event button
-     * Goes to add a new habit if they haven't added one yet
+     * Goes to add a new habit if the user currently has no habits
      * @param view
      */
     public void addHE(View view){
@@ -83,7 +82,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddNewHabitActivity.class);
             startActivity(intent);
         } else {
-            Intent intent = new Intent(this, HabitEventActivity.class);
+            Intent intent = new Intent(this, AddNewHabitEventActivity.class);
             startActivity(intent);
         }
     }
@@ -94,7 +93,6 @@ public class HabitHistoryActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         highlightMode = FILTER_BY_TITLE_CODE;
-
     }
 
     //  called when user wants to search by comment
@@ -104,6 +102,4 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
         highlightMode = FILTER_BY_COMMENT_CODE;
     }
-
-
 }

@@ -39,7 +39,7 @@ public class AddLocationActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener listener;
     private EditText E_address;
-    private  Geolocation geolocation;
+    private Geolocation geolocation;
     private LatLng latLng;
     private String knownName;
     private double latitude;
@@ -51,12 +51,12 @@ public class AddLocationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_location);
 
-        T_coord = (TextView) findViewById(R.id.T_coordination);
-        T_address = (TextView) findViewById(R.id.T_address);
-        button = (Button) findViewById(R.id.B_Current);
-        B_new = (Button) findViewById(R.id.B_New);
-        B_confirm = (Button) findViewById(R.id.B_confirm);
-        E_address = (EditText) findViewById(R.id.E_address);
+        T_coord = (TextView) findViewById(R.id.t_coordination);
+        T_address = (TextView) findViewById(R.id.t_address);
+        button = (Button) findViewById(R.id.b_Current);
+        B_new = (Button) findViewById(R.id.b_New);
+        B_confirm = (Button) findViewById(R.id.b_confirm);
+        E_address = (EditText) findViewById(R.id.e_address);
 
 
 
@@ -91,11 +91,12 @@ public class AddLocationActivity extends AppCompatActivity {
                     T_address.append(knownName);
 
 
-                    //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                    //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
                     //startActivity(intent);
 
 
                 } catch (IOException e) {
+                    geolocation = null;
                     e.printStackTrace();
                 }
             }
@@ -135,7 +136,7 @@ public class AddLocationActivity extends AppCompatActivity {
             FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
             fileOutputStream.write(latLngSave.getBytes());
             fileOutputStream.close();
-            Toast.makeText(getApplicationContext(), "Coordination saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Coordinates Saved", Toast.LENGTH_LONG).show();
 
 
 
@@ -160,7 +161,7 @@ public class AddLocationActivity extends AppCompatActivity {
             FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
             fileOutputStream.write(addressSave.getBytes());
             fileOutputStream.close();
-            Toast.makeText(getApplicationContext(), "Address saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Address Saved", Toast.LENGTH_LONG).show();
 
 
 
@@ -186,7 +187,7 @@ public class AddLocationActivity extends AppCompatActivity {
     }
     /**
      *
-     * Button method it will go back to HabitEventActivity
+     * Button method it will go back to AddNewHabitEventActivity
      */
 
     void confirm_button(){
@@ -206,7 +207,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 setResult(RESULT_OK, returnIntent);
                 finish();
 
-                //Intent  intent = new Intent(AddLocationActivity.this,HabitEventActivity.class);
+                //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
                 //startActivity(intent);
 
             }
@@ -254,7 +255,12 @@ public class AddLocationActivity extends AppCompatActivity {
                             addressList = geocoder.getFromLocationName(location, 1);
 
                             Address myAddress = addressList.get(0);
-                            knownName = addressList.get(0).getFeatureName();
+
+                            knownName = myAddress.getAddressLine(0) + "\n" +
+                                        myAddress.getAddressLine(1) + "\n";
+                            if (myAddress.getAddressLine(2) != null) {
+                                knownName = knownName + myAddress.getAddressLine(2);
+                            }
 
                             latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
 
@@ -273,7 +279,7 @@ public class AddLocationActivity extends AppCompatActivity {
                         }
 
                         else{
-                            Toast.makeText(getApplicationContext(), "Address is not validate", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
 
                         }
 //                        Address myAddress = addressList.get(0);
@@ -296,13 +302,9 @@ public class AddLocationActivity extends AppCompatActivity {
 
                     } catch (IOException e) {
                         e.printStackTrace();
-                        Toast.makeText(getApplicationContext(), "Address is not validate", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
 
                     }
-
-
-
-
             }
         });
 

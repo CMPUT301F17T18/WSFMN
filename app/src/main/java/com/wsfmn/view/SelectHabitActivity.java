@@ -33,7 +33,7 @@ public class SelectHabitActivity extends AppCompatActivity {
                 intent4.putExtra("position", position);
                 setResult(RESULT_OK, intent4);
                 finish();
-//                Intent intent2 = new Intent(CONTEXT, HabitEventActivity.class);
+//                Intent intent2 = new Intent(CONTEXT, AddNewHabitEventActivity.class);
 //                startActivity(intent2);
             }
         });

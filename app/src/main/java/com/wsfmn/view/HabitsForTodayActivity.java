@@ -31,7 +31,7 @@ public class HabitsForTodayActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(context, HabitEventActivity.class);
+                Intent intent = new Intent(context, AddNewHabitEventActivity.class);
                 intent.putExtra("positionToday", position);
                 startActivity(intent);
             }

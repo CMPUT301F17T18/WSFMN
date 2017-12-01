@@ -13,7 +13,7 @@ import com.wsfmn.exceptions.HabitReasonTooLongException;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
-import com.wsfmn.view.HabitEventActivity;
+import com.wsfmn.view.AddNewHabitEventActivity;
 import com.wsfmn.view.HabitHistoryActivity;
 import com.wsfmn.view.R;
 
@@ -21,12 +21,12 @@ import com.wsfmn.view.R;
  * Created by siddhant on 2017-11-13.
  */
 
-public class HabitEventActivityTest extends ActivityInstrumentationTestCase2<HabitEventActivity> {
+public class AddNewHabitEventActivityTest extends ActivityInstrumentationTestCase2<AddNewHabitEventActivity> {
 
     private Solo solo;
 
-    public HabitEventActivityTest(){
-        super(com.wsfmn.view.HabitEventActivity.class);}
+    public AddNewHabitEventActivityTest(){
+        super(AddNewHabitEventActivity.class);}
 
     protected void setUp() throws Exception{
         solo = new Solo(getInstrumentation(), getActivity());
@@ -38,7 +38,7 @@ public class HabitEventActivityTest extends ActivityInstrumentationTestCase2<Hab
         Habit habit = new Habit("Swimming","lose Weight", new Date());
         c.addHabit(habit);
 
-        solo.assertCurrentActivity("Could not open HabitEventActivity", HabitEventActivity.class);
+        solo.assertCurrentActivity("Could not open AddNewHabitEventActivity", AddNewHabitEventActivity.class);
         solo.sleep(5000);
         solo.enterText((EditText) solo.getView(R.id.nameEvent), "Swimming Class");
         solo.clickOnButton("Select Habit");
