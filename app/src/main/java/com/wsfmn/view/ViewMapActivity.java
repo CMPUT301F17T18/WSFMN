@@ -84,12 +84,12 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
         if (currentLocation != null) {
             Button Highlight = (Button) findViewById(R.id.B_highlight);
             //Highlight.setText("clicked");
-            Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
 
             if (highlightMode == 7) {
 
                 for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
                     if (habitEvent.getGeolocation() != null) {
@@ -125,7 +125,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                         }
                     }
                     else{
-                        return;
+
                     }
 
                 }
@@ -133,7 +133,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             else if(highlightMode == 5){
 
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     if (habitEvent.getGeolocation() != null) {
@@ -170,7 +170,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                         }
                     }
                     else{
-                        return;
+
                     }
 
                 }
@@ -178,7 +178,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
             else if(highlightMode == 6){
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     if (habitEvent.getGeolocation() != null) {
@@ -213,7 +213,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                         }
                     }
                     else{
-                        return;
+
                     }
 
                 }
@@ -271,33 +271,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-//    public void onClick(View v){
-//        if(v.getId() == R.id.B_highlight) {
-//
-//            int len = eventList.size();
-//            for (int i = 0; i < len; i++) {
-//
-//                habitEvent = eventList.get(i);
-//                Geolocation geolocation = habitEvent.getGeolocation();
-//                LatLng eventCoord = geolocation.getLatLng();
-//                MarkerOptions mo = new MarkerOptions();
-//                mo.position(eventCoord);
-//                mo.title("Your Search result");
-//
-//                habitEventMarker=mMap.addMarker(mo);
-//
-//                //add marker
-//                mMap.addMarker(mo);
-//                mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
-//                Toast.makeText(getApplicationContext(), "Genji", Toast.LENGTH_LONG).show();
-//
-//
-//            }
-//        }
-//        if(v.getId() == R.id.B_followed){
-//            Toast.makeText(getApplicationContext(), "Rua!", Toast.LENGTH_LONG).show();
-//        }
-//    }
+
 
 
 
