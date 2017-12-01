@@ -31,15 +31,19 @@ public class HabitEvent{
         this.title = "";
     }
 
+
     /**
-     * Constructor for the Habit Event
+     * Constructor for the Habit Event.
      * @param habit
      * @param title
      * @param comment
      * @param CurrentPhotoPath
-     *
+     * @param date
+     * @param geolocation
+     * @throws HabitCommentTooLongException
+     * @throws HabitEventCommentTooLongException
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
                                                         HabitEventCommentTooLongException{
         this.habit = habit;
         this.title = title;
