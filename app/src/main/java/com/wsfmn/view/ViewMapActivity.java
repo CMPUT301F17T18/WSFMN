@@ -75,6 +75,128 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    public void buttonMyEvent(View v){
+        Bundle bundle = getIntent().getExtras();
+        //String filterString = bundle.getString("filterString");
+        int highlightMode = bundle.getInt("highlightMode", 7);
+
+
+
+            Button Highlight = (Button) findViewById(R.id.B_highlight);
+            //Highlight.setText("clicked");
+            //Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
+
+            if (highlightMode == 7) {
+
+                for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        //float results[] = new float[10];
+                        //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+                    }
+                    else{
+
+                    }
+
+                }
+            }
+            else if(highlightMode == 5){
+
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+
+
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        //float results[] = new float[10];
+                        //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+                    }
+                    else{
+
+                    }
+
+                }
+
+            }
+            else if(highlightMode == 6){
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        //float results[] = new float[10];
+                        //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+                    }
+                    else{
+
+                    }
+
+                }
+            }
+
+
+    }
+
     public void buttonHighlight(View v){
         Bundle bundle = getIntent().getExtras();
         //String filterString = bundle.getString("filterString");
@@ -220,7 +342,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
         }
         else{
-            Toast.makeText(getApplicationContext(), "Cannot find current location! ", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Current location required. Please enable GPS!", Toast.LENGTH_LONG).show();
 
         }
     }
