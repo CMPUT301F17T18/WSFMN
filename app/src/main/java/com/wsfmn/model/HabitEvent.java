@@ -60,23 +60,23 @@ public class HabitEvent{
 //        this.imageBitmap = imageBitmap;
     }
 
-    public HabitEvent(Habit habit, String title, String comment, Date date) throws HabitCommentTooLongException,
-            HabitEventCommentTooLongException, ParseException {
-        this.habit = habit;
-        this.title = title;
-        setComment(comment);
-        this.CurrentPhotoPath = null;
-        this.id = null;
-
-        this.date = date;
-        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-        java.util.Date adate = formatter.parse(this.date.toDateString());
-        this.actualdate = adate;
-
-
-        this.geolocation = null;
-//        this.imageBitmap = imageBitmap;
-    }
+//    public HabitEvent(Habit habit, String title, String comment, Date date) throws HabitCommentTooLongException,
+//            HabitEventCommentTooLongException, ParseException {
+//        this.habit = habit;
+//        this.title = title;
+//        setComment(comment);
+//        this.CurrentPhotoPath = null;
+//        this.id = null;
+//
+//        this.date = date;
+//        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+//        java.util.Date adate = formatter.parse(this.date.toDateString());
+//        this.actualdate = adate;
+//
+//
+//        this.geolocation = null;
+////        this.imageBitmap = imageBitmap;
+//    }
 
     /**
      * Constructor for the Habit Event.
@@ -268,6 +268,7 @@ public class HabitEvent{
      * @return
      */
     public Bitmap getImageBitmap() {
+<<<<<<< HEAD
 
         if (CurrentPhotoPath != null) {
             byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
@@ -277,5 +278,13 @@ public class HabitEvent{
             return null;
         }
 
+=======
+        if(CurrentPhotoPath!=null) {
+            byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            return decodedByte;
+        }
+        return null;
+>>>>>>> 8006b8eb014bd61fe9494c55db58b88cbeb34517
     }
 }
