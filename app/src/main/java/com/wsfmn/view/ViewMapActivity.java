@@ -125,7 +125,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                         }
                     }
                     else{
-                        return;
+
                     }
 
                 }
@@ -170,7 +170,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                         }
                     }
                     else{
-                        return;
+
                     }
 
                 }
@@ -213,7 +213,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                         }
                     }
                     else{
-                        return;
+
                     }
 
                 }
