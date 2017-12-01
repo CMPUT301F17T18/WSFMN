@@ -10,8 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.wsfmn.controller.HabitListController;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.model.HabitHistory;
 
 import static java.lang.Thread.sleep;
 
@@ -73,11 +75,17 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
     /**
      * Called when the user taps the Add New Habit Event button
+     * Goes to add a new habit if they haven't added one yet
      * @param view
      */
     public void addHE(View view){
-        Intent intent = new Intent(this, HabitEventActivity.class);
-        startActivity(intent);
+        if (HabitListController.getInstance().isEmpty()) {
+            Intent intent = new Intent(this, AddNewHabitActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, HabitEventActivity.class);
+            startActivity(intent);
+        }
     }
 
     //  called when user wants to search by title
