@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.wsfmn.controller.App;
 import com.wsfmn.model.FriendAdapter;
 import com.wsfmn.model.Habit;
 import com.wsfmn.model.ProfileName;
@@ -39,8 +40,9 @@ import java.util.Comparator;
  */
 public class FriendActivity extends Activity {
 
-    private static final String USER_FILENAME = "username.sav";
-    private String profileName = "";
+    // DELETE NOT USED
+//    private static final String USER_FILENAME = "username.sav";
+//    private String profileName = App.USERNAME;
 
 
     private Habit selected;
@@ -71,8 +73,6 @@ public class FriendActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     protected void onStart() {
@@ -84,7 +84,7 @@ public class FriendActivity extends Activity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-        loadFromFile();
+//        loadFromFile();  // DELETE NOT USED
 
 
         OnlineController.GetFriendNames getFriendEvents = new OnlineController.GetFriendNames();
@@ -115,24 +115,25 @@ public class FriendActivity extends Activity {
 
     }
 
-
-    private void loadFromFile() {
-        try {
-            FileInputStream fis = openFileInput(USER_FILENAME);
-            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-
-            Gson gson = new Gson();
-
-            Type listType = new TypeToken<String>() {
-            }.getType();
-            profileName = gson.fromJson(in, listType);
-
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            profileName = "";
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            throw new RuntimeException();
-        }
-    }
+//  DELETE NOT USED
+    ///////////////////
+//    private void loadFromFile() {
+//        try {
+//            FileInputStream fis = openFileInput(USER_FILENAME);
+//            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+//
+//            Gson gson = new Gson();
+//
+//            Type listType = new TypeToken<String>() {
+//            }.getType();
+//            profileName = gson.fromJson(in, listType);
+//
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            profileName = "";
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            throw new RuntimeException();
+//        }
+//    }
 }

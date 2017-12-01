@@ -65,6 +65,7 @@
         <activity
             android:name=".AddNewHabitActivity"
             android:parentActivityName=".HabitListViewActivity"
+            android:label="Add New Habit"
             android:screenOrientation="portrait" />
         <activity
             android:name=".HabitsForTodayActivity"
@@ -78,8 +79,8 @@
             android:label="HabitTracker User Profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UserName_Activity"
-            android:parentActivityName=".ProfileActivity"
+            android:name=".UserNameActivity"
+            android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity

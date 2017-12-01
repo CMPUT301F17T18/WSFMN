@@ -9,17 +9,17 @@ import com.robotium.solo.Solo;
 import com.wsfmn.controller.OnlineController;
 import com.wsfmn.view.ProfileActivity;
 import com.wsfmn.view.R;
-import com.wsfmn.view.UserName_Activity;
+import com.wsfmn.view.UserNameActivity;
 
 /**
  * Created by Fredric on 2017-11-12.
  */
 
-public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<UserName_Activity> {
+public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<UserNameActivity> {
     private Solo solo;
 
     public UserName_ActivityTest() {
-        super(com.wsfmn.view.UserName_Activity.class);
+        super(UserNameActivity.class);
     }
 
     public void setUp() throws Exception{
@@ -35,11 +35,11 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
     // Test a name already on ElasticSearch, Then test a name not on ElasticSearch.
     // yourUserName is sometimes not found. Clean Project if resource name: 'yourUserName' is not found!.
     public void testUniqueName() {
-        solo.assertCurrentActivity("Wrong Activity", UserName_Activity.class);
+        solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
-        solo.assertCurrentActivity("Wrong Activity", UserName_Activity.class);
+        solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "DifferentTest");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");

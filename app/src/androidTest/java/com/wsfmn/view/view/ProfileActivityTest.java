@@ -35,7 +35,7 @@ public class ProfileActivityTest extends ActivityInstrumentationTestCase2<Profil
     }
 
     // Must wipe memory first, There needs to be no username in local files.
-    // Test if we can get to UserName_Activity from ProfileActivity if there is no profilename.
+    // Test if we can get to UserNameActivity from ProfileActivity if there is no profilename.
     public void testProfileName(){
         solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");

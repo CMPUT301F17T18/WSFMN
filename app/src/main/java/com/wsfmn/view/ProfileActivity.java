@@ -1,7 +1,6 @@
 package com.wsfmn.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,34 +12,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.wsfmn.controller.App;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.ProfileNameController;
-import com.wsfmn.model.FriendAdapter;
 import com.wsfmn.model.LeaderBoardAdapter;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestAdapter;
 import com.wsfmn.model.RequestList;
-import com.wsfmn.controller.OfflineController;
 import com.wsfmn.controller.OnlineController;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 
 /**
@@ -165,7 +149,7 @@ public class ProfileActivity extends Activity {
 
         //If User does not have a ProfileName yet then have them create one.
         if (profileName == "" & flag == false){
-            Intent intent = new Intent(this,UserName_Activity.class);
+            Intent intent = new Intent(this,UserNameActivity.class);
             flag = true;
             startActivityForResult(intent, 1);
             onActivityResult(1, 1, intent);
@@ -240,7 +224,7 @@ public class ProfileActivity extends Activity {
 
     /**
      * Method to retrieve results from another activity. Used for getting profilename from
-     * UserName_Activity.
+     * UserNameActivity.
      * @param requestCode
      * @param resultCode
      * @param data
@@ -251,7 +235,7 @@ public class ProfileActivity extends Activity {
             if (resultCode == Activity.RESULT_OK) {
                 profileName = data.getStringExtra("uniqueName");
 
-                // Delete this commented code, it is now handled inside UserName_Activity
+                // Delete this commented code, it is now handled inside UserNameActivity
 //                saveInFile();
 
                 // Update all habits and habit events under this username

@@ -53,7 +53,7 @@
         android:onClick="confirm"
         android:text="@string/confirm"
         app:layout_constraintStart_toEndOf="@+id/checkEveryDay"
-        app:layout_constraintTop_toBottomOf="@+id/setDateButton" />
+        app:layout_constraintTop_toBottomOf="@+id/dateText" />
 
     <CheckBox
         android:id="@+id/mondayCheckBox"

@@ -19,7 +19,6 @@ import com.wsfmn.model.WeekDays;
 import com.wsfmn.model.Geolocation;
 
 
-
 public class FriendHabitActivity extends AppCompatActivity {
 
     private Habit fHabit;
@@ -81,7 +80,6 @@ public class FriendHabitActivity extends AppCompatActivity {
         fEventDate.setClickable(false);
         fEventAddress.setClickable(false);
 
-
         setCheckBox(monday, WeekDays.MONDAY);
         setCheckBox(tuesday, WeekDays.TUESDAY);
         setCheckBox(wednesday, WeekDays.WEDNESDAY);
@@ -93,8 +91,6 @@ public class FriendHabitActivity extends AppCompatActivity {
         fhTitle.setText(fHabit.getTitle());
         fhReason.setText(fHabit.getReason());
         fhDate.setText(fHabit.getDate().toString());
-
-
     }
 
     public void setCheckBox(CheckBox checkBox, int day){
