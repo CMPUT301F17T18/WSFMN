@@ -107,6 +107,8 @@ public class ProfileActivity extends Activity {
         }
 
         //requestsList.add(newRequest);
+        // Hide Keybord code reuse:
+        // https://stackoverflow.com/questions/4841228/after-type-in-edittext-how-to-make-keyboard-disappear
         else {
             InputMethodManager mgr = (InputMethodManager) getSystemService(ProfileActivity.this.INPUT_METHOD_SERVICE);
             mgr.hideSoftInputFromWindow(userName.getWindowToken(), 0);
