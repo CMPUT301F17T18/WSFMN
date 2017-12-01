@@ -92,10 +92,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if (highlightMode == 7) {
 
-                for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredInstance().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredInstance().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
@@ -125,11 +125,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
             else if(highlightMode == 5){
-                HabitHistoryController.getInstance().filterByTitle(filterString);
+                HabitHistoryController.getInstance().getFilteredInstance().filterByTitle(filterString);
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredInstance().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredInstance().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
