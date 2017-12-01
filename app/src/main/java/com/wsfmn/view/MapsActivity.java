@@ -79,6 +79,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    public void buttonFollows(View v){
+
+    }
+
     public void buttonHighlight(View v){
         Bundle bundle = getIntent().getExtras();
         //String filterString = bundle.getString("filterString");
