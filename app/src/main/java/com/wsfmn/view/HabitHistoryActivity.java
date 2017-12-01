@@ -25,6 +25,10 @@ public class HabitHistoryActivity extends AppCompatActivity {
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
     private EditText search;
+    int highlightMode = 7;
+    public static final int FILTER_BY_TITLE_CODE=5;
+    public static final int FILTER_BY_COMMENT_CODE= 6;
+    String filterString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
         search = findViewById(R.id.search);
         habitHistory = (ListView)findViewById(R.id.habitEventHist);
+        filterString=search.getText().toString();
 
         //When the user clicks on a HabitEvent item on the HabitEventList
         habitHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -50,6 +55,8 @@ public class HabitHistoryActivity extends AppCompatActivity {
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
                 Intent  intent = new Intent(HabitHistoryActivity.this,MapsActivity.class);
+                intent.putExtra("filterString", filterString);
+                intent.putExtra("highlightMode",highlightMode);
                 startActivity(intent);
             }
         });
@@ -77,12 +84,17 @@ public class HabitHistoryActivity extends AppCompatActivity {
     public void filterByTitle(View view) {
         HabitHistoryController.getInstance().getFilteredInstance().filterByTitle(search.getText().toString());
         adapter.notifyDataSetChanged();
+
+        highlightMode = FILTER_BY_TITLE_CODE;
+
     }
 
     //  called when user wants to search by comment
     public void filterByComment(View view){
         HabitHistoryController.getInstance().getFilteredInstance().filterByComment(search.getText().toString());
         adapter.notifyDataSetChanged();
+
+        highlightMode = FILTER_BY_COMMENT_CODE;
     }
 
 
