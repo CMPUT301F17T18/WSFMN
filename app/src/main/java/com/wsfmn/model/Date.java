@@ -15,6 +15,9 @@ public class Date implements Serializable{
     int year;
     int month;
     int day;
+    int h = -1;
+    int m = -1;
+    int s = -1;
 
     /**
      *  Creates a Date object with year, month, and day corresponding to the date the
@@ -26,6 +29,20 @@ public class Date implements Serializable{
         year = cal.get(Calendar.YEAR);
         month = cal.get(Calendar.MONTH) + 1;
         day = cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    public Date(int t){
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH) + 1;
+        day = cal.get(Calendar.DAY_OF_MONTH);
+        h = cal.get(Calendar.HOUR_OF_DAY);
+        m = cal.get(Calendar.MINUTE);
+        s = cal.get(Calendar.SECOND);
+    }
+
+    public Date getDate(){
+        return new Date(0);
     }
 
     /**
@@ -93,6 +110,30 @@ public class Date implements Serializable{
      */
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public int getM() {
+        return m;
+    }
+
+    public void setM(int m) {
+        this.m = m;
+    }
+
+    public int getS() {
+        return s;
+    }
+
+    public void setS(int s) {
+        this.s = s;
     }
 
     /**
@@ -168,6 +209,28 @@ public class Date implements Serializable{
         else if(this.getDay() > date.getDay())
             return 1;
 
+        if((this.getH() == -1 || this.getM() == -1 || this.getS() == -1)
+                || (date.getH() == -1 || date.getM() == -1 || date.getS() == -1))
+            return 0;
+
+        if(this.getH() < date.getH())
+            return -1;
+
+        else if(this.getH() > date.getH())
+            return 1;
+
+        else if(this.getM() < date.getM())
+            return -1;
+
+        else if(this.getM() > date.getM())
+            return 1;
+
+        else if(this.getS() < date.getS())
+            return -1;
+
+        else if(this.getS() > date.getS())
+            return 1;
+
         else
             return 0;
     }
@@ -180,7 +243,13 @@ public class Date implements Serializable{
      * month, and day of the Date object.
      */
     public String toString(){
-        return year + " / " + month + " / " + day;
+        String toString = "";
+        toString = year + " / " + month + " / " + day;
+
+        if(h != -1 && m != -1 && s != -1)
+            toString += ", " + h + ":" + m + ":" + s;
+
+        return toString;
     }
     public String toDateString(){
         String syear = Integer.toString(year);
