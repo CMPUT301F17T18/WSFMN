@@ -92,10 +92,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if (highlightMode == 7) {
 
-                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredInstance().size(); i++) {
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredInstance().get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
@@ -125,11 +125,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
             else if(highlightMode == 5){
-                HabitHistoryController.getInstance().getFilteredInstance().filterByTitle(filterString);
-                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredInstance().size(); i++) {
+
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredInstance().get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
@@ -160,12 +160,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
             else if(highlightMode == 6){
-                HabitHistory hh = HabitHistoryController.getInstance().getFilteredInstance();
-                hh.filterByTitle(filterString);
-                for (int i = 0; i < hh.size(); i++) {
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = hh.get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
