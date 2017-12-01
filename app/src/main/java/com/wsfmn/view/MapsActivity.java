@@ -33,6 +33,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.OnlineController;
 import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.model.Geolocation;
@@ -79,42 +80,117 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void buttonHighlight(View v){
+        Bundle bundle = getIntent().getExtras();
+        String filterString = bundle.getString("filterString");
+        int highlightMode = bundle.getInt("highlightMode", 7);
+
+
         if (currentLocation != null) {
             Button Highlight = (Button) findViewById(R.id.B_highlight);
             //Highlight.setText("clicked");
             Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
 
-            for (int i = 0;  i<HabitHistoryController.getInstance().size(); i++) {
-                Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+            if (highlightMode == 7) {
 
-                HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
-                Geolocation geolocation = habitEvent.getGeolocation();
-                LatLng eventCoord = geolocation.getLatLng();
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                float results[] = new float[10];
-                Location.distanceBetween(currentLocation.latitude,currentLocation.longitude, eventCoord.latitude,eventCoord.longitude, results);
-                if (results[0] <= 5000) {
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    Geolocation geolocation = habitEvent.getGeolocation();
+                    LatLng eventCoord = geolocation.getLatLng();
+
+                    float results[] = new float[10];
+                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+                    if (results[0] <= 5000) {
 
 
-                    MarkerOptions mo = new MarkerOptions();
-                    mo.position(eventCoord);
-                    try {
-                        mo.title(habitEvent.getHabitEventTitle());
-                    } catch (HabitEventNameException e) {
-                        e.printStackTrace();
+                        MarkerOptions mo = new MarkerOptions();
+                        mo.position(eventCoord);
+                        try {
+                            mo.title(habitEvent.getHabitEventTitle());
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
+                        mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                        habitEventMarker = mMap.addMarker(mo);
+                        //add marker
+                        mMap.addMarker(mo);
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                    } else {
+                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
                     }
-                    mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-                    habitEventMarker = mMap.addMarker(mo);
-                    //add marker
-                    mMap.addMarker(mo);
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
-
 
                 }
-                else{
-                    mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+            }
+            else if(highlightMode == 5){
+
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    Geolocation geolocation = habitEvent.getGeolocation();
+                    LatLng eventCoord = geolocation.getLatLng();
+
+                    float results[] = new float[10];
+                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+                    if (results[0] <= 5000) {
+
+
+                        MarkerOptions mo = new MarkerOptions();
+                        mo.position(eventCoord);
+                        try {
+                            mo.title(habitEvent.getHabitEventTitle());
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
+                        mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                        habitEventMarker = mMap.addMarker(mo);
+                        //add marker
+                        mMap.addMarker(mo);
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                    } else {
+                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                    }
+
                 }
 
+            }
+            else if(highlightMode == 6){
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    Geolocation geolocation = habitEvent.getGeolocation();
+                    LatLng eventCoord = geolocation.getLatLng();
+
+                    float results[] = new float[10];
+                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+                    if (results[0] <= 5000) {
+
+
+                        MarkerOptions mo = new MarkerOptions();
+                        mo.position(eventCoord);
+                        try {
+                            mo.title(habitEvent.getHabitEventTitle());
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
+                        mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                        habitEventMarker = mMap.addMarker(mo);
+                        //add marker
+                        mMap.addMarker(mo);
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                    } else {
+                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                    }
+
+                }
             }
         }
         else{
