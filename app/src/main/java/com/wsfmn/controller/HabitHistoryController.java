@@ -79,6 +79,13 @@ public class HabitHistoryController {
     }
 
     /**
+     *
+     */
+    public HabitHistory getFilteredHabitHistory(){
+        return habitHistoryFilter;
+    }
+
+    /**
      * Checks if HabitHistory is empty.
      *
      * @return true if empty, false otherwise
