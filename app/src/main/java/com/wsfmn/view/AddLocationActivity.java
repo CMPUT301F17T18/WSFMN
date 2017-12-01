@@ -39,7 +39,7 @@ public class AddLocationActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener listener;
     private EditText E_address;
-    private  Geolocation geolocation;
+    private Geolocation geolocation;
     private LatLng latLng;
     private String knownName;
     private double latitude;
