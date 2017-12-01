@@ -60,6 +60,7 @@ public class ProfileActivity extends Activity {
     private TextView yourName;
     private ListView requestsFromUser;
     private ListView leaderBoard;
+
     private RequestList requestsList = new RequestList();
     ArrayList<ProfileName> leaderList;
     ArrayList<String> namesFriends = new ArrayList<String>();
@@ -187,7 +188,6 @@ public class ProfileActivity extends Activity {
         getFriendEvents.execute();
         try {
             namesFriends = getFriendEvents.get();
-            //Collections.sort(namesFriends); Could be used later in scoreboard possibly.
             namesFriendsList = namesFriends.toArray(new String[namesFriends.size()]);
 
 
@@ -195,32 +195,26 @@ public class ProfileActivity extends Activity {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
-        OnlineController.GetFriendScore getFriendScore = new OnlineController.GetFriendScore();
-        getFriendScore.execute(namesFriendsList);
+        OnlineController.GetFriendScore getFriendScrore = new OnlineController.GetFriendScore();
+        getFriendScrore.execute(namesFriendsList);
         try {
-            leaderList = getFriendScore.get();
-
-           /* Collections.sort(leaderList,
-                    Comparator.comparingInt(ProfileName::getScore));*/
+            leaderList = getFriendScrore.get();
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
         OnlineController.GetFriendScore getYourScore = new OnlineController.GetFriendScore();
-        getFriendScore.execute(App.USERNAME);
+        getYourScore.execute(App.USERNAME);
         try {
             leaderList.addAll(getYourScore.get());
 
-           Collections.sort(leaderList,
-                    Comparator.comparingInt(ProfileName::getScore));
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
-
-        ladapter = new LeaderBoardAdapter(this, R.layout.listfriend_item, leaderList);
+        ladapter = new LeaderBoardAdapter(this, R.layout.listleader_item, leaderList);
         leaderBoard.setAdapter(ladapter);
 
 

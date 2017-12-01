@@ -33,23 +33,23 @@ public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
         // if view is null, then show view with inflate.
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.listfriend_item, null);
+            v = inflater.inflate(R.layout.listleader_item, null);
         }
 
         ProfileName i = objects.get(position); // custom item object and get it's position in list
 
         if (i != null) {
             // obtain a reference to the TextViews.
-            TextView owner = (TextView) v.findViewById(R.id.owner);
-            TextView ownerHabit = (TextView) v.findViewById(R.id.ownerHabit);
+            TextView nameScore = (TextView) v.findViewById(R.id.nameScore);
+            TextView scoreScore = (TextView) v.findViewById(R.id.scoreScore);
 
             // check to see if each individual textview is null.
             // if not, assign some text
-            if (owner != null) {
-                owner.setText(i.getName() + "      ");
+            if (nameScore != null) {
+                nameScore.setText(i.getName() + "      ");
             }
-            if (ownerHabit != null) {
-                ownerHabit.setText(i.getScore()); // set the name
+            if (scoreScore != null) {
+                scoreScore.setText(String.valueOf(i.getScore())); // set the name
             }
 
             // view is returned to activity

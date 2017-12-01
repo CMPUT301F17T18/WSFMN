@@ -402,7 +402,8 @@ public class OnlineController {
 
 
             for(String name : search_parameters) {
-                String query = "{\"query\" : { \"term\" : {\"name\" : \" "+ name+ "\"} } }";
+                String query =  "{ \"query\": { \"term\": { \"name\": \""
+                        + name + "\" } } }\n";
                 Search search = new Search.Builder(query)
                         .addIndex(INDEX_BASE)
                         .addType("profilename")
@@ -416,8 +417,9 @@ public class OnlineController {
                     if (result.isSucceeded()) {
                         int idx = 0;
                         String JsonString = result.getJsonString();
-                        for (SearchResult.Hit hit : result.getHits(Habit.class)) {
+                        for (SearchResult.Hit hit : result.getHits(ProfileName.class)) {
                             ProfileName score = (ProfileName) hit.source;
+                            System.out.println(score.getName());
                             ProfileNameScore.add(score);
                         }
                     } else {
