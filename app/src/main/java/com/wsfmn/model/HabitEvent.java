@@ -268,8 +268,6 @@ public class HabitEvent{
      * @return
      */
     public Bitmap getImageBitmap() {
-<<<<<<< HEAD
-
         if (CurrentPhotoPath != null) {
             byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
             Bitmap decodedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -278,13 +276,5 @@ public class HabitEvent{
             return null;
         }
 
-=======
-        if(CurrentPhotoPath!=null) {
-            byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            return decodedByte;
-        }
-        return null;
->>>>>>> 8006b8eb014bd61fe9494c55db58b88cbeb34517
     }
 }
