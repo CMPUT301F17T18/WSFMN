@@ -32,6 +32,7 @@ public class AddImageActivity extends AppCompatActivity {
         bmOptions.inPurgeable = true;
         Bitmap imageBitmap;
 
+        // TODO: This is brittle, it relies on the device using the directory. Fix by appending a tag to the beginning of the encoded string
         if (!photoPath.startsWith("/storage")) {
             byte[] decodedString = Base64.decode(photoPath, Base64.DEFAULT);
             imageBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
