@@ -48,7 +48,7 @@ public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
             // if not, assign some text
             if (nameScore != null) {
                 if (i.getName().equals(App.USERNAME)) {
-                    nameScore.setText("Me:  " + App.USERNAME + "      ");
+                    nameScore.setText("Me:       " + App.USERNAME + "      ");
                 } else {
                     nameScore.setText("Friend:  " + i.getName() + "      ");
                 }
