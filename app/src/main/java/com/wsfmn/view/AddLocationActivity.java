@@ -248,7 +248,7 @@ public class AddLocationActivity extends AppCompatActivity {
                         addressList = geocoder.getFromLocationName(location, 1);
                         //check if the input address can be found
                         if (addressList.size() != 0){
-                            Toast.makeText(getApplicationContext(), "Please enter a validate address", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Please enter a validate address", Toast.LENGTH_LONG).show();
 
                             location = E_address.getText().toString();
                             addressList = geocoder.getFromLocationName(location, 1);
@@ -270,6 +270,11 @@ public class AddLocationActivity extends AppCompatActivity {
 
 
                             geolocation = new Geolocation(knownName, latLng);
+                        }
+
+                        else{
+                            Toast.makeText(getApplicationContext(), "Address is not validate", Toast.LENGTH_LONG).show();
+
                         }
 //                        Address myAddress = addressList.get(0);
 //                        knownName = addressList.get(0).getFeatureName();
