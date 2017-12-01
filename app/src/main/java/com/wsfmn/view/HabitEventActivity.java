@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -198,7 +199,6 @@ public class HabitEventActivity extends AppCompatActivity {
     }
 
 
-
     String CurrentPhotoPath;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
@@ -246,12 +246,11 @@ public class HabitEventActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
 
                 Double latitude = data.getDoubleExtra("new_latitude",0);
-                Double longtitude = data. getDoubleExtra("new_longtitude",0);
+                Double longtitude = data.getDoubleExtra("new_longtitude",0);
                 LatLng latLng = new LatLng(latitude,longtitude);
                 String address = data.getStringExtra("new_address");
 
                 geolocation = new Geolocation(address, latLng);
-
                 T_showAddress.setText(address);
             }
         }
@@ -289,7 +288,8 @@ public class HabitEventActivity extends AppCompatActivity {
 
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath,  getDateUIHE());
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
+
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -299,6 +299,7 @@ public class HabitEventActivity extends AppCompatActivity {
 
             control2.addAndStore(hEvent);
             control2.storeAll();
+            ProfileNameController.getInstance().updateScore();
             startActivity(intent);
 
         }catch(HabitCommentTooLongException e){
