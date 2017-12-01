@@ -251,4 +251,11 @@ public class Date implements Serializable{
 
         return toString;
     }
+
+    public void dateToString(){
+        String y = String.valueOf(year);
+        String m = String.valueOf(month);
+        String d = String.valueOf(day);
+
+    }
 }
