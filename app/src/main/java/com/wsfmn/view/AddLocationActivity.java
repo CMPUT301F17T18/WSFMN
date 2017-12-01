@@ -272,23 +272,7 @@ public class AddLocationActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
 
                         }
-//                        Address myAddress = addressList.get(0);
-//                        knownName = addressList.get(0).getFeatureName();
-//
-//                        latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
-//
-//                        latitude = myAddress.getLatitude();
-//                        longtitude = myAddress.getLongitude();
-//
-//                        T_coord.setText("");
-//                        T_address.setText("");
-//
-//                        T_coord.append("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
-//
-//                        T_address.append(knownName);
-//
-//
-//                        geolocation = new Geolocation(knownName, latLng);
+
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -298,19 +282,8 @@ public class AddLocationActivity extends AppCompatActivity {
             }
         });
     }
-// code for get readable address
-//    Geocoder geocoder;
-//    List<Address> addresses;
-//    geocoder = new Geocoder(this, Locale.getDefault());
-//
-//    addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-//
-//    String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//    String city = addresses.get(0).getLocality();
-//    String state = addresses.get(0).getAdminArea();
-//    String country = addresses.get(0).getCountryName();
-//    String postalCode = addresses.get(0).getPostalCode();
-//    String knownName = addresses.get(0).getFeatureName(); // Only if available else return NULL
+
+
 
     /**
      *
