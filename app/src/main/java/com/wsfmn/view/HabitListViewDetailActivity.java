@@ -142,7 +142,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
         try {
             HabitListController c = HabitListController.getInstance();
 
-            c.getHabit(position).setTitle(habitTitle.getText().toString());
+            c.getHabit(position).setTitle(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""));
             c.getHabit(position).setReason(habitReason.getText().toString());
 
             setUnset(monday, WeekDays.MONDAY);

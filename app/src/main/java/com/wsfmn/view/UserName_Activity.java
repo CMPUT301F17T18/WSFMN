@@ -6,18 +6,11 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.wsfmn.controller.App;
-import com.wsfmn.controller.HabitHistoryController;
-import com.wsfmn.controller.HabitListController;
-import com.wsfmn.controller.OfflineController;
 import com.wsfmn.controller.ProfileNameController;
-import com.wsfmn.model.HabitHistory;
-import com.wsfmn.model.HabitList;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.controller.OnlineController;
 
@@ -85,7 +78,7 @@ public class UserName_Activity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     } else {
                         online.storeName(name); // Store online
-                        ProfileNameController.getInstance().storeProfileNameOffline(name); // Store offline
+                        ProfileNameController.getInstance().storeNewProfileNameOffline(name); // Store offline
 
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("uniqueName", profileName);

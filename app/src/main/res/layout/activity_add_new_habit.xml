@@ -48,13 +48,12 @@
         android:id="@+id/confirmButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:onClick="confirm"
         android:text="@string/confirm"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setDateButton"
-        android:layout_marginStart="280dp" />
+        app:layout_constraintStart_toEndOf="@+id/checkEveryDay"
+        app:layout_constraintTop_toBottomOf="@+id/setDateButton" />
 
     <CheckBox
         android:id="@+id/mondayCheckBox"
@@ -143,5 +142,16 @@
         android:inputType="date"
         app:layout_constraintLeft_toRightOf="@+id/setDateButton"
         app:layout_constraintTop_toBottomOf="@+id/habitReasonEditText" />
+
+    <Button
+        android:id="@+id/checkEveryDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:onClick="everyDay"
+        android:text="@string/every_day"
+        app:layout_constraintStart_toEndOf="@+id/mondayCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/dateText" />
 
 </android.support.constraint.ConstraintLayout>

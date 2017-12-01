@@ -1,6 +1,8 @@
 package com.wsfmn.model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
@@ -38,16 +40,39 @@ public class HabitEvent{
         this.title = "";
     }
 
+
+
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
+            HabitEventCommentTooLongException, ParseException {
+        this.habit = habit;
+        this.title = title;
+        setComment(comment);
+        this.CurrentPhotoPath = CurrentPhotoPath;
+        this.id = null;
+        this.date = date;
+        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        java.util.Date adate = formatter.parse(this.date.toDateString());
+        this.actualdate = adate;
+
+
+        this.geolocation = null;
+//        this.imageBitmap = imageBitmap;
+    }
+
     /**
-     * Constructor for the Habit Event
+     * Constructor for the Habit Event.
      * @param habit
      * @param title
      * @param comment
      * @param CurrentPhotoPath
-     *
+     * @param date
+     * @param geolocation
+     * @throws HabitCommentTooLongException
+     * @throws HabitEventCommentTooLongException
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
+
         this.habit = habit;
         this.title = title;
         setComment(comment);
@@ -60,9 +85,8 @@ public class HabitEvent{
 
 
         this.geolocation = geolocation;
-        this.imageBitmap = null;
+//        this.imageBitmap = imageBitmap;
     }
-
     /**
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
@@ -220,6 +244,8 @@ public class HabitEvent{
     }
 
     public Bitmap getImageBitmap() {
-        return imageBitmap;
+        byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
     }
 }

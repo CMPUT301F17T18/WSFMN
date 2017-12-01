@@ -46,15 +46,32 @@ public class ProfileNameController {
         profileName.setId(id);
     }
 
+    public void updateScore() {
+        double score_temp = 0;
+        HabitListController c = HabitListController.getInstance();
+        for (int i = 0; i < c.size(); i++) {
+            score_temp = score_temp + c.getHabit(i).getScore();
+        }
+        if (c.size() > 0) {
+            profileName.setScore((int) score_temp/c.size());
+        } else {
+            profileName.setScore(0);
+        }
+        storeNewProfileNameOffline(profileName);
+        OnlineController.StoreNameInDataBase online = new OnlineController.StoreNameInDataBase();
+        online.execute(profileName);
+    }
 
+    public int getScore() {
+        return profileName.getScore();
+    }
 
-    public void storeProfileNameOffline(ProfileName pn) {
+    public void storeNewProfileNameOffline(ProfileName pn) {
         profileName = pn;
         OfflineController.StoreUserProfile storeUserProfile=
                 new OfflineController.StoreUserProfile();
 
         storeUserProfile.execute(profileName);
-
         App.reinitialize();
 
     }

@@ -18,6 +18,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -39,6 +41,7 @@ import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -198,7 +201,6 @@ public class HabitEventActivity extends AppCompatActivity {
     }
 
 
-
     String CurrentPhotoPath;
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
@@ -246,12 +248,11 @@ public class HabitEventActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
 
                 Double latitude = data.getDoubleExtra("new_latitude",0);
-                Double longtitude = data. getDoubleExtra("new_longtitude",0);
+                Double longtitude = data.getDoubleExtra("new_longtitude",0);
                 LatLng latLng = new LatLng(latitude,longtitude);
                 String address = data.getStringExtra("new_address");
 
                 geolocation = new Geolocation(address, latLng);
-
                 T_showAddress.setText(address);
             }
         }
@@ -279,10 +280,18 @@ public class HabitEventActivity extends AppCompatActivity {
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
-            //Bitmap imageBitmap = BitmapFactory.decodeFile(intent.getStringExtra("CurrentPhotoPath"));
+
+            Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
+            System.out.println(CurrentPhotoPath);
+
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath,  getDateUIHE());
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
+
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -292,6 +301,7 @@ public class HabitEventActivity extends AppCompatActivity {
 
             control2.addAndStore(hEvent);
             control2.storeAll();
+            ProfileNameController.getInstance().updateScore();
             startActivity(intent);
 
         }catch(HabitCommentTooLongException e){

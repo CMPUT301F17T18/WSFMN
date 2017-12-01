@@ -257,6 +257,13 @@ public class Date implements Serializable{
         toString = year + " / " + month + " / " + day;
         return toString;
     }
+
+    public void dateToString(){
+        String y = String.valueOf(year);
+        String m = String.valueOf(month);
+        String d = String.valueOf(day);
+
+    }
     public String toDateString(){
         String syear = Integer.toString(year);
         String smonth = Integer.toString(month);

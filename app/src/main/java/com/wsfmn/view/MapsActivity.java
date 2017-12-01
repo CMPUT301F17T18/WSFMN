@@ -81,7 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void buttonHighlight(View v){
         Bundle bundle = getIntent().getExtras();
-        String filterString = bundle.getString("filterString");
+        //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
 
 
@@ -119,17 +119,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } else {
-                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                        try {
+                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
             }
             else if(highlightMode == 5){
-                HabitHistoryController.getInstance().filterByTitle(filterString);
-                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredInstance().size(); i++) {
+
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
@@ -153,19 +157,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } else {
-                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                        try {
+                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
 
             }
             else if(highlightMode == 6){
-                HabitHistory hh = HabitHistoryController.getInstance().getFilteredInstance();
-                hh.filterByTitle(filterString);
-                for (int i = 0; i < hh.size(); i++) {
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = hh.get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
@@ -189,7 +195,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } else {
-                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                        try {
+                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
