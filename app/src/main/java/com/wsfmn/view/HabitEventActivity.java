@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -282,6 +283,7 @@ public class HabitEventActivity extends AppCompatActivity {
 
             control2.addAndStore(hEvent);
             control2.storeAll();
+            ProfileNameController.getInstance().updateScore();
             startActivity(intent);
 
         }catch(HabitCommentTooLongException e){

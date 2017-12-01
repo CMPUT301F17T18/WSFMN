@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 import com.wsfmn.exceptions.DateNotValidException;
 import com.wsfmn.model.Habit;
@@ -128,6 +129,8 @@ public class AddNewHabitActivity extends AppCompatActivity {
             HabitListController c = HabitListController.getInstance();
 
             c.addAndStore(habit);
+
+            ProfileNameController.getInstance().updateScore();
 
             startActivity(intent);
         }
