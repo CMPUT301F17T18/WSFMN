@@ -1,8 +1,11 @@
 package com.wsfmn.view.model;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.util.Log;
 
 import com.wsfmn.model.Date;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -61,6 +64,18 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
         assertFalse(date1.equalDate(date3));
         assertFalse(date1.equalDate(date4));
         assertFalse(date1.equalDate(date5));
+    }
+
+    public void testHDate() throws InterruptedException{
+        Date date = new Date(0);
+
+        sleep(3);
+
+        Date date2 = new Date(0);
+
+        Log.i("musaed", "date1: " + date.getS() + " date2: " + date2.getS());
+
+        assertEquals(-1, date.compareDate(date2));
     }
 
 }
