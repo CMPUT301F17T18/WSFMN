@@ -249,6 +249,9 @@ public class HabitEventActivity extends AppCompatActivity {
     public void changeName(int i){
         TextView nameHabit = (TextView)findViewById(R.id.habitName);
 
+
+
+
         /// !!!WARNING: THIS IS A HACK!!!
         /// TODO: we actually NEED to know if the index int i is being passed from HabitList OR from HabitsForToday!
         if (HabitListController.getInstance().getHabitsForToday().isEmpty()) {
