@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.wsfmn.controller.App;
 import com.wsfmn.view.R;
 
 import java.util.ArrayList;
@@ -46,8 +47,13 @@ public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
             // check to see if each individual textview is null.
             // if not, assign some text
             if (nameScore != null) {
-                nameScore.setText("Friend:  " + i.getName() + "      ");
+                if (i.getName().equals(App.USERNAME)) {
+                    nameScore.setText("Me:  " + App.USERNAME + "      ");
+                } else {
+                    nameScore.setText("Friend:  " + i.getName() + "      ");
+                }
             }
+
             if (scoreScore != null) {
                 scoreScore.setText("Score: " + String.valueOf(i.getScore()) + "%"); // set the score
             }
