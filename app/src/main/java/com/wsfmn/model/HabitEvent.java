@@ -30,6 +30,7 @@ public class HabitEvent{
     private java.util.Date actualdate;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
+    String CurrentPhotoPath2;
     Bitmap imageBitmap;
 
     //change by wei, change location parts
@@ -42,12 +43,13 @@ public class HabitEvent{
 
 
 
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, String CurrentPhotoPath2) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
         this.habit = habit;
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
+        this.CurrentPhotoPath2 = CurrentPhotoPath2;
         this.id = null;
 
         this.date = date;
@@ -89,7 +91,7 @@ public class HabitEvent{
      * @throws HabitCommentTooLongException
      * @throws HabitEventCommentTooLongException
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation, String CurrentPhotoPath2) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
 
         this.habit = habit;
@@ -128,8 +130,7 @@ public class HabitEvent{
      * Get the path of the file where image is stored for the habit Event
      * @return mCurrentPhotoPath: filename of the image
      */
-    public String getCurrentPhotoPath(){
-        return CurrentPhotoPath;
+    public String getCurrentPhotoPath(){return CurrentPhotoPath2;
     }
 
     /**
@@ -264,7 +265,7 @@ public class HabitEvent{
 
     public Bitmap getImageBitmap() {
         if(CurrentPhotoPath!=null) {
-            byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(this.CurrentPhotoPath2, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             return decodedByte;
         }
