@@ -240,13 +240,10 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             }
         }
         //Add new location
-        if(requestCode == ADD_NEW_LOCATION_CODE){
-            if(resultCode == Activity.RESULT_OK)
-
-            {
+        if(requestCode == ADD_NEW_LOCATION_CODE) {
+            if(resultCode == Activity.RESULT_OK) {
 //                Bundle b = data.getExtras();
-                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
-
+//                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
                 Double latitude = data.getDoubleExtra("new_latitude",0);
                 Double longtitude = data.getDoubleExtra("new_longtitude",0);
                 LatLng latLng = new LatLng(latitude,longtitude);
@@ -278,7 +275,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      * @param view
      */
     public void confirmHabitEvent(View view) {
-        Intent intent = new Intent(this, HabitHistoryActivity.class);
+        Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
 
             Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
@@ -322,7 +319,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      * @param view
      */
     public void viewPic(View view){
-        Intent intent = new Intent(this, ImageActivity.class);
+        Intent intent = new Intent(this, AddImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
 //        Comment.setText(getDateUIHE().toDateString());

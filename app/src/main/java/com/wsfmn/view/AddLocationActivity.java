@@ -58,10 +58,7 @@ public class AddLocationActivity extends AppCompatActivity {
         B_confirm = (Button) findViewById(R.id.b_confirm);
         E_address = (EditText) findViewById(R.id.e_address);
 
-
-
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
 
         listener = new LocationListener() {
             @Override
@@ -136,7 +133,7 @@ public class AddLocationActivity extends AppCompatActivity {
             FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
             fileOutputStream.write(latLngSave.getBytes());
             fileOutputStream.close();
-            Toast.makeText(getApplicationContext(), "Coordinates Saved", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "Coordinates Saved", Toast.LENGTH_LONG).show();
 
 
 
@@ -161,17 +158,13 @@ public class AddLocationActivity extends AppCompatActivity {
             FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
             fileOutputStream.write(addressSave.getBytes());
             fileOutputStream.close();
-            Toast.makeText(getApplicationContext(), "Address Saved", Toast.LENGTH_LONG).show();
-
-
+//            Toast.makeText(getApplicationContext(), "Address Saved", Toast.LENGTH_LONG).show();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -209,7 +202,6 @@ public class AddLocationActivity extends AppCompatActivity {
 
                 //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
                 //startActivity(intent);
-
             }
 
         });
@@ -221,8 +213,6 @@ public class AddLocationActivity extends AppCompatActivity {
      */
 
     void newplace_button(){
-
-
         B_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -307,8 +297,6 @@ public class AddLocationActivity extends AppCompatActivity {
                     }
             }
         });
-
-
     }
 // code for get readable address
 //    Geocoder geocoder;

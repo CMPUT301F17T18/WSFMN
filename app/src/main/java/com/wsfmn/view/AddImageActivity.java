@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-public class ImageActivity extends AppCompatActivity {
+public class AddImageActivity extends AppCompatActivity {
 
     ImageView image;
     @Override

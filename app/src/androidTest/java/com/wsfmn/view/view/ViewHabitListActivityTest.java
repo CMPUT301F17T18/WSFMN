@@ -10,18 +10,18 @@ import com.wsfmn.model.Habit;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.view.AddNewHabitActivity;
-import com.wsfmn.view.HabitListViewActivity;
+import com.wsfmn.view.ViewHabitListActivity;
 
 /**
  * Created by musaed on 2017-11-06.
  */
 
-public class HabitListViewActivityTest extends ActivityInstrumentationTestCase2<HabitListViewActivity> {
+public class ViewHabitListActivityTest extends ActivityInstrumentationTestCase2<ViewHabitListActivity> {
 
     private Solo solo;
 
-    public HabitListViewActivityTest() {
-        super(com.wsfmn.view.HabitListViewActivity.class);
+    public ViewHabitListActivityTest() {
+        super(ViewHabitListActivity.class);
 
     }
 
@@ -31,14 +31,14 @@ public class HabitListViewActivityTest extends ActivityInstrumentationTestCase2<
     }
 
     public void testAddHabitButton(){
-        HabitListViewActivity activity = (HabitListViewActivity) solo.getCurrentActivity();
-        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+        ViewHabitListActivity activity = (ViewHabitListActivity) solo.getCurrentActivity();
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
 
         solo.clickOnButton("Add Habit");
         solo.assertCurrentActivity("Wrong Activity", AddNewHabitActivity.class);
 
         solo.goBack();
-        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
     }
 
     public void testClickHabit(){
@@ -56,17 +56,17 @@ public class HabitListViewActivityTest extends ActivityInstrumentationTestCase2<
         }
 
 
-        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
 
         solo.clickOnButton("Add Habit");
         solo.sleep(5000);
 
-        solo.goBackToActivity("HabitListViewActivity");
+        solo.goBackToActivity("ViewHabitListActivity");
 
         solo.clickInList(0);
-        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
 
-        solo.goBackToActivity("HabitListViewActivity");
+        solo.goBackToActivity("ViewHabitListActivity");
     }
 
 }

@@ -12,7 +12,7 @@ import android.widget.ListView;
 import com.wsfmn.model.Habit;
 import com.wsfmn.controller.HabitListController;
 
-public class HabitListViewActivity extends AppCompatActivity {
+public class ViewHabitListActivity extends AppCompatActivity {
 
     private Context context;
     private ListView habitListView;

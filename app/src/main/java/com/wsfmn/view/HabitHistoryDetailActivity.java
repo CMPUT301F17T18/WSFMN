@@ -123,7 +123,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void confirmHE(View view){
-        Intent intent = new Intent(this, HabitHistoryActivity.class);
+        Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
             //Set the habitEvent parameters that the user gets
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -147,7 +147,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void deleteHE(View view){
-        Intent intent = new Intent(HabitHistoryDetailActivity.this, HabitHistoryActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, ViewHabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
         control3.removeAndStore(position2);
         startActivity(intent);
@@ -172,7 +172,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void viewImage2(View view){
-        Intent intent = new Intent(HabitHistoryDetailActivity.this, ImageActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
         path = control4.get(position2).getCurrentPhotoPath();
         //If no picture taken before then when it is null value we create new image

@@ -21,7 +21,7 @@ import static java.lang.Thread.sleep;
  * @version 1.0
  * @see AppCompatActivity
  */
-public class HabitHistoryActivity extends AppCompatActivity {
+public class ViewHabitHistoryActivity extends AppCompatActivity {
 
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
@@ -44,7 +44,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
         habitHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HabitHistoryActivity.this, HabitHistoryDetailActivity.class);
+                Intent intent = new Intent(ViewHabitHistoryActivity.this, HabitHistoryDetailActivity.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }
@@ -55,7 +55,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(HabitHistoryActivity.this,MapsActivity.class);
+                Intent  intent = new Intent(ViewHabitHistoryActivity.this,ViewMapActivity.class);
                 intent.putExtra("filterString", filterString);
                 intent.putExtra("highlightMode",highlightMode);
                 startActivity(intent);

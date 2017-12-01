@@ -82,7 +82,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="Habit"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,13 +106,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:text="Address"
+        android:text="No Location"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/B_changeLocation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/B_changeLocation" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/setNewDate"
