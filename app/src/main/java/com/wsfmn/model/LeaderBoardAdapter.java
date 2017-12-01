@@ -46,10 +46,10 @@ public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
             // check to see if each individual textview is null.
             // if not, assign some text
             if (nameScore != null) {
-                nameScore.setText(i.getName() + "      ");
+                nameScore.setText("Friend:  " + i.getName() + "      ");
             }
             if (scoreScore != null) {
-                scoreScore.setText(String.valueOf(i.getScore())); // set the name
+                scoreScore.setText("Score: " + String.valueOf(i.getScore()) + "%"); // set the score
             }
 
             // view is returned to activity
