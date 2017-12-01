@@ -104,7 +104,9 @@ public class HabitEventActivity extends AppCompatActivity {
         date2 = (TextView)findViewById(R.id.eventDate);
 
         //Creating date for the Habit Event created
-        date2.setText(new Date().toString());
+        String dateAndTime = new Date(0).toString();
+        date2.setText(dateAndTime);
+
 
         // If statement handles the case where the activity is called from a listView
         // //(e.g. HabitsForTodayActivity)
@@ -323,6 +325,7 @@ public class HabitEventActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
+//        Comment.setText(getDateUIHE().toDateString());
     }
 
     public com.wsfmn.model.Date getDateUIHE(){
@@ -331,7 +334,12 @@ public class HabitEventActivity extends AppCompatActivity {
         int year = Integer.parseInt(list[0]);
         int month = Integer.parseInt(list[1]);
         int day = Integer.parseInt(list[2]);
-        return new com.wsfmn.model.Date(year, month, day);
+        //return new com.wsfmn.model.Date(year, month, day);
+        Date date3 = new Date(0, year, month, day);
+        date3.getH();
+        date3.getM();
+        date3.getS();
+        return date3;
     }
 
 }

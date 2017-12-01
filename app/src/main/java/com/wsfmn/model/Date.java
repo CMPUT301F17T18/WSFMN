@@ -41,6 +41,16 @@ public class Date implements Serializable{
         s = cal.get(Calendar.SECOND);
     }
 
+    public Date(int t, int year, int month, int day){
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        Calendar cal = Calendar.getInstance();
+        h = cal.get(Calendar.HOUR_OF_DAY);
+        m = cal.get(Calendar.MINUTE);
+        s = cal.get(Calendar.SECOND);
+    }
+
     public Date getDate(){
         return new Date(0);
     }
@@ -245,10 +255,6 @@ public class Date implements Serializable{
     public String toString(){
         String toString = "";
         toString = year + " / " + month + " / " + day;
-
-        if(h != -1 && m != -1 && s != -1)
-            toString += ", " + h + ":" + m + ":" + s;
-
         return toString;
     }
 
@@ -262,10 +268,10 @@ public class Date implements Serializable{
         String syear = Integer.toString(year);
         String smonth = Integer.toString(month);
         String sday = Integer.toString(day);
+        String hour = Integer.toString(h);
+        String minute = Integer.toString(m);
+        String second = Integer.toString(s);
 
-
-
-        return syear  + smonth  + sday;
+        return syear  + smonth  + sday + hour + minute + second;
     }
-
 }
