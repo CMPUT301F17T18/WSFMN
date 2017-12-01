@@ -261,6 +261,10 @@ public class Date implements Serializable{
         String syear = Integer.toString(year);
         String smonth = Integer.toString(month);
         String sday = Integer.toString(day);
-        return syear  + smonth  + sday;
+        String hour = Integer.toString(h);
+        String minute = Integer.toString(m);
+        String second = Integer.toString(s);
+
+        return syear  + smonth  + sday + hour + minute + second;
     }
 }
