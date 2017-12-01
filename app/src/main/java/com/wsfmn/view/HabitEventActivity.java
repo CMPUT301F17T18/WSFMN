@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -16,6 +18,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,8 +41,10 @@ import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
@@ -49,6 +54,8 @@ import java.text.SimpleDateFormat;
  * @see Activity
  */
 public class HabitEventActivity extends AppCompatActivity {
+
+    private java.util.Date actualTimeStamp;
 
     Button addPic;
     TextView nameHabit;
@@ -201,7 +208,7 @@ public class HabitEventActivity extends AppCompatActivity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
-        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -271,9 +278,18 @@ public class HabitEventActivity extends AppCompatActivity {
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, HabitHistoryActivity.class);
         try {
+
+            Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
+            System.out.println(CurrentPhotoPath);
+
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
                     nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
+
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -294,6 +310,8 @@ public class HabitEventActivity extends AppCompatActivity {
             Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }catch(NullPointerException e){
             Toast.makeText(HabitEventActivity.this, "Habit Event needs to contain Habit", Toast.LENGTH_LONG).show();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
     }
 

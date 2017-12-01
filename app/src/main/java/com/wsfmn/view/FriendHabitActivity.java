@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wsfmn.controller.HabitListController;
@@ -29,6 +30,7 @@ public class FriendHabitActivity extends AppCompatActivity {
     EditText fEventComment;
     EditText fEventDate;
     EditText fEventAddress;
+    ImageView friendImage;
 
     private CheckBox monday;
     private CheckBox tuesday;
@@ -63,6 +65,8 @@ public class FriendHabitActivity extends AppCompatActivity {
         fEventDate = (EditText) findViewById(R.id.fEventDate);
         fEventAddress = (EditText) findViewById(R.id.fEventAddress);
 
+        friendImage = (ImageView) findViewById(R.id.friendImage);
+
         fhTitle.setClickable(false);
         fhReason.setClickable(false);
         fhDate.setClickable(false);
@@ -90,6 +94,7 @@ public class FriendHabitActivity extends AppCompatActivity {
         fhReason.setText(fHabit.getReason());
         fhDate.setText(fHabit.getDate().toString());
 
+
     }
 
     public void setCheckBox(CheckBox checkBox, int day){
@@ -106,6 +111,7 @@ public class FriendHabitActivity extends AppCompatActivity {
             fEventComment.setText(fEvent.getComment());
             fEventDate.setText(fEvent.getDate().toString());
             fEventAddress.setText(fEvent.getGeolocation().getAddress());
+            friendImage.setImageBitmap(fEvent.getImageBitmap());
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
