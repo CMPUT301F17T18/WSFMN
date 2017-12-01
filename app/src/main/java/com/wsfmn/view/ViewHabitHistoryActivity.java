@@ -45,7 +45,8 @@ public class ViewHabitHistoryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ViewHabitHistoryActivity.this, HabitHistoryDetailActivity.class);
-                intent.putExtra("position", position);
+                HabitEvent temp = (HabitEvent) habitHistory.getItemAtPosition(position);
+                intent.putExtra("id", temp.getId());
                 startActivity(intent);
             }
         });

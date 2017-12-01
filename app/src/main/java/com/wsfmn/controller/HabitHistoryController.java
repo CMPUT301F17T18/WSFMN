@@ -165,6 +165,21 @@ public class HabitHistoryController {
         return habitHistory.get(idx);
     }
 
+
+    /**
+     * Get habit by it's id
+     * @param id
+     * @return
+     */
+    public HabitEvent get(String id)  {
+        for (int i = 0; i<habitHistory.size(); i++){
+            if (habitHistory.get(i).getId().equals(id)){
+                return habitHistory.get(i);
+            }
+        }
+        return null;
+    }
+
     /**
      * Removes and returns a HabitEvent at the specified index in HabitHistory.
      * NOTE: To save this change and update online instead use, removeAndStore(int idx).

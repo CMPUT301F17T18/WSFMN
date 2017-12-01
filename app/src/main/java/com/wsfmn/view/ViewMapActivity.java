@@ -148,7 +148,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                             } catch (HabitEventNameException e) {
                                 e.printStackTrace();
                             }
-                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                             habitEventMarker = mMap.addMarker(mo);
                             //add marker
                             mMap.addMarker(mo);
@@ -183,7 +183,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                             } catch (HabitEventNameException e) {
                                 e.printStackTrace();
                             }
-                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                             habitEventMarker = mMap.addMarker(mo);
                             //add marker
                             mMap.addMarker(mo);
@@ -235,7 +235,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                             } catch (HabitEventNameException e) {
                                 e.printStackTrace();
                             }
-                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                             habitEventMarker = mMap.addMarker(mo);
                             //add marker
                             mMap.addMarker(mo);
@@ -280,7 +280,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                             } catch (HabitEventNameException e) {
                                 e.printStackTrace();
                             }
-                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                             habitEventMarker = mMap.addMarker(mo);
                             //add marker
                             mMap.addMarker(mo);
@@ -323,7 +323,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                             } catch (HabitEventNameException e) {
                                 e.printStackTrace();
                             }
-                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                             habitEventMarker = mMap.addMarker(mo);
                             //add marker
                             mMap.addMarker(mo);
