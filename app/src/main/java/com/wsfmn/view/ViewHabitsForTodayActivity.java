@@ -12,7 +12,7 @@ import android.widget.ListView;
 import com.wsfmn.model.Habit;
 import com.wsfmn.controller.HabitListController;
 
-public class HabitsForTodayActivity extends AppCompatActivity {
+public class ViewHabitsForTodayActivity extends AppCompatActivity {
 
     private Context context;
     private ListView habitListView;
@@ -22,7 +22,7 @@ public class HabitsForTodayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habits_for_today);
+        setContentView(R.layout.activity_view_habits_for_today);
 
         context = this;
         habitListView = (ListView) findViewById(R.id.habit_list_view);

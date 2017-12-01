@@ -12,7 +12,7 @@ public class AddImageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image);
+        setContentView(R.layout.activity_add_image);
 
         image = (ImageView)findViewById(R.id.viewImageNew);
         Intent intent = getIntent();

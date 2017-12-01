@@ -22,7 +22,7 @@ public class ViewHabitListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_list_view);
+        setContentView(R.layout.activity_view_habit_list);
 
         context = this;
         habitListView = (ListView) findViewById(R.id.habit_list_view);
@@ -30,7 +30,7 @@ public class ViewHabitListActivity extends AppCompatActivity {
         habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, HabitListViewDetailActivity.class);
+                Intent intent = new Intent(context, HabitListDetailActivity.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }

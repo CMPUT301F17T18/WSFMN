@@ -58,7 +58,7 @@
             android:label="View All Habits"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitListViewDetailActivity"
+            android:name=".HabitListDetailActivity"
             android:parentActivityName=".ViewHabitListActivity"
             android:label="Habit Details"
             android:screenOrientation="portrait" />
@@ -68,7 +68,7 @@
             android:label="Add New Habit"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitsForTodayActivity"
+            android:name=".ViewHabitsForTodayActivity"
             android:parentActivityName=".MainActivity"
             android:label="Today\'s Habits"
             android:screenOrientation="portrait" />

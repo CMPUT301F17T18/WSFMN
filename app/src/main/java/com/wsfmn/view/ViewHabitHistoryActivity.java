@@ -34,7 +34,7 @@ public class ViewHabitHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_history);
+        setContentView(R.layout.activity_view_habit_history);
 
         search = findViewById(R.id.search);
         habitHistory = (ListView)findViewById(R.id.habitEventHist);

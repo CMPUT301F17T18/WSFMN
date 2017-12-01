@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void habitsForToday(View view){
-        Intent intent = new Intent(this, HabitsForTodayActivity.class);
+        Intent intent = new Intent(this, ViewHabitsForTodayActivity.class);
         startActivity(intent);
     }
 

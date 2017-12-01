@@ -7,7 +7,7 @@ import android.util.Log;
 import com.robotium.solo.Solo;
 import com.wsfmn.view.ViewHabitHistoryActivity;
 import com.wsfmn.view.ViewHabitListActivity;
-import com.wsfmn.view.HabitsForTodayActivity;
+import com.wsfmn.view.ViewHabitsForTodayActivity;
 import com.wsfmn.view.MainActivity;
 import com.wsfmn.view.ProfileActivity;
 
@@ -41,7 +41,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testHabitsForTodayButton() {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
         solo.clickOnButton("Habits For Today");
-        solo.assertCurrentActivity("Wrong Activity", HabitsForTodayActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitsForTodayActivity.class);
     }
 
     public void testProfileButton() {

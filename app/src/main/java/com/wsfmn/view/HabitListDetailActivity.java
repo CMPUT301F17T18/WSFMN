@@ -31,7 +31,7 @@ import static com.wsfmn.view.R.id.thursdayCheckBox;
 import static com.wsfmn.view.R.id.tuesdayCheckBox;
 import static com.wsfmn.view.R.id.wednesdayCheckBox;
 
-public class HabitListViewDetailActivity extends AppCompatActivity {
+public class HabitListDetailActivity extends AppCompatActivity {
 
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -108,7 +108,7 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        HabitListViewDetailActivity.this,
+                        HabitListDetailActivity.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -160,13 +160,13 @@ public class HabitListViewDetailActivity extends AppCompatActivity {
             startActivity(intent);
 
         } catch (HabitTitleTooLongException e) {
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitListDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch (HabitReasonTooLongException e) {
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitListDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         } catch(DateNotValidException e){
-            Toast.makeText(HabitListViewDetailActivity.this, e.getMessage(),
+            Toast.makeText(HabitListDetailActivity.this, e.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
     }

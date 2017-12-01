@@ -109,7 +109,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
 
         // If statement handles the case where the activity is called from a listView
-        // //(e.g. HabitsForTodayActivity)
+        // //(e.g. ViewHabitsForTodayActivity)
 
         //Checking If device has camera
         if(!checkCamera()){
