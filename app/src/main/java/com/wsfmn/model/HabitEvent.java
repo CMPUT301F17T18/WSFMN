@@ -262,12 +262,19 @@ public class HabitEvent{
         return title + "    " + this.date;
     }
 
+
+    /**
+     * Code Reuse: https://stackoverflow.com/questions/7620401/how-to-convert-byte-array-to-bitmap
+     * @return
+     */
     public Bitmap getImageBitmap() {
-        if(CurrentPhotoPath!=null) {
+        if (CurrentPhotoPath != null) {
             byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            return decodedByte;
+            Bitmap decodedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            return decodedImage;
+        } else {
+            return null;
         }
-        return null;
+
     }
 }
