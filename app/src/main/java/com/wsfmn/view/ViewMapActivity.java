@@ -71,6 +71,8 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     public void buttonFollows(View v){
 
+        mMap.clear();
+
     }
 
     public void buttonHighlight(View v){
