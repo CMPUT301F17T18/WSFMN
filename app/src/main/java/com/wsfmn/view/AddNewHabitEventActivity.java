@@ -53,7 +53,7 @@ import java.text.SimpleDateFormat;
  * @version 1.0
  * @see Activity
  */
-public class HabitEventActivity extends AppCompatActivity {
+public class AddNewHabitEventActivity extends AppCompatActivity {
 
     private java.util.Date actualTimeStamp;
 
@@ -86,7 +86,7 @@ public class HabitEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_event);
+        setContentView(R.layout.activity_add_new_habit_event);
 
         Bundle b = getIntent().getExtras();
         if(b!=null) {
@@ -104,10 +104,12 @@ public class HabitEventActivity extends AppCompatActivity {
         date2 = (TextView)findViewById(R.id.eventDate);
 
         //Creating date for the Habit Event created
-        date2.setText(new Date().toString());
+        String dateAndTime = new Date(0).toString();
+        date2.setText(dateAndTime);
+
 
         // If statement handles the case where the activity is called from a listView
-        // //(e.g. HabitsForTodayActivity)
+        // //(e.g. ViewHabitsForTodayActivity)
 
         //Checking If device has camera
         if(!checkCamera()){
@@ -130,7 +132,7 @@ public class HabitEventActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(HabitEventActivity.this, AddLocationActivity.class);
+                Intent  intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
                 startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
             }
         });
@@ -145,7 +147,7 @@ public class HabitEventActivity extends AppCompatActivity {
                 int month = calendar.get(android.icu.util.Calendar.MONTH);
                 int day = calendar.get(android.icu.util.Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(HabitEventActivity.this,
+                DatePickerDialog dialog = new DatePickerDialog(AddNewHabitEventActivity.this,
                         android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -238,13 +240,10 @@ public class HabitEventActivity extends AppCompatActivity {
             }
         }
         //Add new location
-        if(requestCode == ADD_NEW_LOCATION_CODE){
-            if(resultCode == Activity.RESULT_OK)
-
-            {
+        if(requestCode == ADD_NEW_LOCATION_CODE) {
+            if(resultCode == Activity.RESULT_OK) {
 //                Bundle b = data.getExtras();
-                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
-
+//                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
                 Double latitude = data.getDoubleExtra("new_latitude",0);
                 Double longtitude = data.getDoubleExtra("new_longtitude",0);
                 LatLng latLng = new LatLng(latitude,longtitude);
@@ -276,7 +275,7 @@ public class HabitEventActivity extends AppCompatActivity {
      * @param view
      */
     public void confirmHabitEvent(View view) {
-        Intent intent = new Intent(this, HabitHistoryActivity.class);
+        Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
 
             Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
@@ -305,11 +304,11 @@ public class HabitEventActivity extends AppCompatActivity {
         }catch(HabitCommentTooLongException e){
             e.printStackTrace();
         }catch(HabitEventCommentTooLongException e){
-            Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(AddNewHabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }catch(HabitEventNameException e){
-            Toast.makeText(HabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(AddNewHabitEventActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
         }catch(NullPointerException e){
-            Toast.makeText(HabitEventActivity.this, "Habit Event needs to contain Habit", Toast.LENGTH_LONG).show();
+            Toast.makeText(AddNewHabitEventActivity.this, "Habit Event needs to contain Habit", Toast.LENGTH_LONG).show();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -320,9 +319,10 @@ public class HabitEventActivity extends AppCompatActivity {
      * @param view
      */
     public void viewPic(View view){
-        Intent intent = new Intent(this, ImageActivity.class);
+        Intent intent = new Intent(this, AddImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
+//        Comment.setText(getDateUIHE().toDateString());
     }
 
     public com.wsfmn.model.Date getDateUIHE(){
@@ -331,7 +331,12 @@ public class HabitEventActivity extends AppCompatActivity {
         int year = Integer.parseInt(list[0]);
         int month = Integer.parseInt(list[1]);
         int day = Integer.parseInt(list[2]);
-        return new com.wsfmn.model.Date(year, month, day);
+        //return new com.wsfmn.model.Date(year, month, day);
+        Date date3 = new Date(0, year, month, day);
+        date3.getH();
+        date3.getM();
+        date3.getS();
+        return date3;
     }
 
 }

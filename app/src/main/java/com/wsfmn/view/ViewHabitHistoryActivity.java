@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.wsfmn.controller.HabitListController;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.controller.HabitHistoryController;
 
@@ -20,7 +21,7 @@ import static java.lang.Thread.sleep;
  * @version 1.0
  * @see AppCompatActivity
  */
-public class HabitHistoryActivity extends AppCompatActivity {
+public class ViewHabitHistoryActivity extends AppCompatActivity {
 
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
@@ -33,7 +34,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habits_history);
+        setContentView(R.layout.activity_view_habit_history);
 
         search = findViewById(R.id.search);
         habitHistory = (ListView)findViewById(R.id.habitEventHist);
@@ -43,7 +44,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
         habitHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HabitHistoryActivity.this, HabitHistoryDetailActivity.class);
+                Intent intent = new Intent(ViewHabitHistoryActivity.this, HabitHistoryDetailActivity.class);
                 intent.putExtra("position", position);
                 startActivity(intent);
             }
@@ -54,7 +55,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(HabitHistoryActivity.this,MapsActivity.class);
+                Intent  intent = new Intent(ViewHabitHistoryActivity.this,ViewMapActivity.class);
                 intent.putExtra("filterString", filterString);
                 intent.putExtra("highlightMode",highlightMode);
                 startActivity(intent);
@@ -73,11 +74,17 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
     /**
      * Called when the user taps the Add New Habit Event button
+     * Goes to add a new habit if the user currently has no habits
      * @param view
      */
     public void addHE(View view){
-        Intent intent = new Intent(this, HabitEventActivity.class);
-        startActivity(intent);
+        if (HabitListController.getInstance().isEmpty()) {
+            Intent intent = new Intent(this, AddNewHabitActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, AddNewHabitEventActivity.class);
+            startActivity(intent);
+        }
     }
 
     //  called when user wants to search by title
@@ -86,7 +93,6 @@ public class HabitHistoryActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         highlightMode = FILTER_BY_TITLE_CODE;
-
     }
 
     //  called when user wants to search by comment
@@ -96,6 +102,4 @@ public class HabitHistoryActivity extends AppCompatActivity {
 
         highlightMode = FILTER_BY_COMMENT_CODE;
     }
-
-
 }

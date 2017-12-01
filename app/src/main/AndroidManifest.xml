@@ -48,25 +48,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HabitHistoryActivity"
+            android:name=".ViewHabitHistoryActivity"
             android:parentActivityName=".MainActivity"
             android:label="Habit Event History"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitListViewActivity"
+            android:name=".ViewHabitListActivity"
             android:parentActivityName=".MainActivity"
             android:label="View All Habits"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitListViewDetailActivity"
-            android:parentActivityName=".HabitListViewActivity"
+            android:name=".HabitListDetailActivity"
+            android:parentActivityName=".ViewHabitListActivity"
+            android:label="Habit Details"
             android:screenOrientation="portrait" />
         <activity
             android:name=".AddNewHabitActivity"
-            android:parentActivityName=".HabitListViewActivity"
+            android:parentActivityName=".ViewHabitListActivity"
+            android:label="Add New Habit"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitsForTodayActivity"
+            android:name=".ViewHabitsForTodayActivity"
             android:parentActivityName=".MainActivity"
             android:label="Today\'s Habits"
             android:screenOrientation="portrait" />
@@ -77,8 +79,8 @@
             android:label="HabitTracker User Profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".UserName_Activity"
-            android:parentActivityName=".ProfileActivity"
+            android:name=".UserNameActivity"
+            android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
         <activity
@@ -99,23 +101,23 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ViewMapActivity"
             android:label="@string/title_activity_maps"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitEventActivity"
+            android:name=".AddNewHabitEventActivity"
             android:label="Add New Habit Event"
-            android:parentActivityName=".HabitHistoryActivity"
+            android:parentActivityName=".ViewHabitHistoryActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".AddLocationActivity"
-            android:parentActivityName=".HabitEventActivity"
+            android:parentActivityName=".AddNewHabitEventActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".SelectHabitActivity" />
-        <activity android:name=".ImageActivity" />
+        <activity android:name=".AddImageActivity" />
         <activity
             android:name=".HabitHistoryDetailActivity"
-            android:parentActivityName=".HabitHistoryActivity"
+            android:parentActivityName=".ViewHabitHistoryActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".FriendHabitActivity" />
         <activity android:name=".FriendHabitEventActivity"></activity>

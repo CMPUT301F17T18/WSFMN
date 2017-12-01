@@ -5,9 +5,9 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.util.Log;
 
 import com.robotium.solo.Solo;
-import com.wsfmn.view.HabitHistoryActivity;
-import com.wsfmn.view.HabitListViewActivity;
-import com.wsfmn.view.HabitsForTodayActivity;
+import com.wsfmn.view.ViewHabitHistoryActivity;
+import com.wsfmn.view.ViewHabitListActivity;
+import com.wsfmn.view.ViewHabitsForTodayActivity;
 import com.wsfmn.view.MainActivity;
 import com.wsfmn.view.ProfileActivity;
 
@@ -35,13 +35,13 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testViewHabitsButton() {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
         solo.clickOnButton("View Habits");
-        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
     }
 
     public void testHabitsForTodayButton() {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
         solo.clickOnButton("Habits For Today");
-        solo.assertCurrentActivity("Wrong Activity", HabitsForTodayActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitsForTodayActivity.class);
     }
 
     public void testProfileButton() {
@@ -53,6 +53,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     public void testViewHabitHistory(){
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
         solo.clickOnButton("View Habit History");
-        solo.assertCurrentActivity("Wrong Activity", HabitHistoryActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitHistoryActivity.class);
     }
 }

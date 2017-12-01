@@ -1,46 +1,31 @@
 package com.wsfmn.view;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.wsfmn.controller.App;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.ProfileNameController;
-import com.wsfmn.model.FriendAdapter;
 import com.wsfmn.model.LeaderBoardAdapter;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestAdapter;
 import com.wsfmn.model.RequestList;
-import com.wsfmn.controller.OfflineController;
 import com.wsfmn.controller.OnlineController;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 
 /**
@@ -107,7 +92,7 @@ public class ProfileActivity extends Activity {
         }
 
        else if(online.checkName(text)){
-            Toast.makeText(ProfileActivity.this, "Name Doesn't Exist!",
+            Toast.makeText(ProfileActivity.this, "User Doesn\'t Exist!",
                     Toast.LENGTH_LONG).show();
         }
 
@@ -117,15 +102,19 @@ public class ProfileActivity extends Activity {
         }
 
         else if(text.equals(profileName)){
-            Toast.makeText(ProfileActivity.this, "Sorry Can't Add Yourself!",
+            Toast.makeText(ProfileActivity.this, "Sorry, Can\'t Add Yourself!",
                     Toast.LENGTH_LONG).show();
         }
 
         //requestsList.add(newRequest);
         else {
+            InputMethodManager mgr = (InputMethodManager) getSystemService(ProfileActivity.this.INPUT_METHOD_SERVICE);
+            mgr.hideSoftInputFromWindow(userName.getWindowToken(), 0);
             OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
             sendRequest.execute(newRequest);
             adapter.notifyDataSetChanged();
+            Toast.makeText(ProfileActivity.this, "REQUEST SENT",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -134,8 +123,14 @@ public class ProfileActivity extends Activity {
      * @param view
      */
     public void viewFriendEventOnClick(View view){
-        Intent intent = new Intent(this, FriendActivity.class);
-        startActivity(intent);
+
+        if(leaderList.size() > 1) {
+            Intent intent = new Intent(this, FriendActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getApplicationContext(), "Follow A Friend!", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     /**
@@ -165,7 +160,7 @@ public class ProfileActivity extends Activity {
 
         //If User does not have a ProfileName yet then have them create one.
         if (profileName == "" & flag == false){
-            Intent intent = new Intent(this,UserName_Activity.class);
+            Intent intent = new Intent(this,UserNameActivity.class);
             flag = true;
             startActivityForResult(intent, 1);
             onActivityResult(1, 1, intent);
@@ -240,7 +235,7 @@ public class ProfileActivity extends Activity {
 
     /**
      * Method to retrieve results from another activity. Used for getting profilename from
-     * UserName_Activity.
+     * UserNameActivity.
      * @param requestCode
      * @param resultCode
      * @param data
@@ -251,7 +246,7 @@ public class ProfileActivity extends Activity {
             if (resultCode == Activity.RESULT_OK) {
                 profileName = data.getStringExtra("uniqueName");
 
-                // Delete this commented code, it is now handled inside UserName_Activity
+                // Delete this commented code, it is now handled inside UserNameActivity
 //                saveInFile();
 
                 // Update all habits and habit events under this username

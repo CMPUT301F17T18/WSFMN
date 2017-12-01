@@ -3,7 +3,7 @@
     <string name="add_habit">Add New Habit</string>
     <string name="new_habit_title">Habit Title</string>
     <string name="reason_to_start_habit">Reason to start habit</string>
-    <string name="confirm">Add Habit</string>
+    <string name="confirm">Save Habit</string>
     <string name="set_date">Start Date</string>
     <string name="every_day">Every Day</string>
     <string name="set_weekly_schedule">Set Weekly Schedule</string>

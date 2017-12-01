@@ -27,14 +27,12 @@ import com.wsfmn.exceptions.HabitEventCommentTooLongException;
 import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
-import com.wsfmn.model.Geolocation;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-import static com.wsfmn.view.HabitEventActivity.REQUEST_TAKE_PHOTO;
+import static com.wsfmn.view.AddNewHabitEventActivity.REQUEST_TAKE_PHOTO;
 
 /**
  * Called when the user wants to edit an existing Habit Event
@@ -125,7 +123,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void confirmHE(View view){
-        Intent intent = new Intent(this, HabitHistoryActivity.class);
+        Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
             //Set the habitEvent parameters that the user gets
             HabitHistoryController control2 = HabitHistoryController.getInstance();
@@ -149,7 +147,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void deleteHE(View view){
-        Intent intent = new Intent(HabitHistoryDetailActivity.this, HabitHistoryActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, ViewHabitHistoryActivity.class);
         HabitHistoryController control3 = HabitHistoryController.getInstance();
         control3.removeAndStore(position2);
         startActivity(intent);
@@ -174,7 +172,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void viewImage2(View view){
-        Intent intent = new Intent(HabitHistoryDetailActivity.this, ImageActivity.class);
+        Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
         path = control4.get(position2).getCurrentPhotoPath();
         //If no picture taken before then when it is null value we create new image
@@ -275,11 +273,16 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     }
 
     public com.wsfmn.model.Date getDateUIHED(){
-        String date3 = date.getText().toString();
-        String[] list = date3.split(" / ");
+        String dateD = date.getText().toString();
+        String[] list = dateD.split(" / ");
         int year = Integer.parseInt(list[0]);
         int month = Integer.parseInt(list[1]);
         int day = Integer.parseInt(list[2]);
-        return new com.wsfmn.model.Date(year, month, day);
+        //return new com.wsfmn.model.Date(year, month, day);
+        Date date3 = new Date(0, year, month, day);
+        date3.getH();
+        date3.getM();
+        date3.getS();
+        return date3;
     }
 }

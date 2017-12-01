@@ -9,7 +9,7 @@ import com.robotium.solo.Solo;
 import com.wsfmn.model.Habit;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.view.AddNewHabitActivity;
-import com.wsfmn.view.HabitListViewActivity;
+import com.wsfmn.view.ViewHabitListActivity;
 import com.wsfmn.view.R;
 
 /**
@@ -40,7 +40,7 @@ public class AddNewHabitActivityTest extends ActivityInstrumentationTestCase2<Ad
         solo.enterText((EditText) solo.getView(R.id.habitTitleEditText), "Swimming");
         solo.clickOnButton("Confirm");
 
-        solo.assertCurrentActivity("Wrong Activity", HabitListViewActivity.class);
+        solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
 
         HabitListController c = HabitListController.getInstance();
 

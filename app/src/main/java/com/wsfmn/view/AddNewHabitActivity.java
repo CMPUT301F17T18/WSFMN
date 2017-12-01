@@ -114,7 +114,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
      * the user, and adds is to the list of habits.
      */
     public void confirm(View view) {
-        Intent intent = new Intent(this, HabitListViewActivity.class);
+        Intent intent = new Intent(this, ViewHabitListActivity.class);
 
         try {
 

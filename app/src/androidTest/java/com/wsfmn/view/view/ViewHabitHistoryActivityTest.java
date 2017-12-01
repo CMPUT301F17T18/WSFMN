@@ -8,17 +8,17 @@ import com.wsfmn.model.Habit;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
-import com.wsfmn.view.HabitHistoryActivity;
+import com.wsfmn.view.ViewHabitHistoryActivity;
 
 /**
  * Created by siddhant on 2017-11-13.
  */
 
-public class HabitHistoryActivityTest extends ActivityInstrumentationTestCase2<HabitHistoryActivity> {
+public class ViewHabitHistoryActivityTest extends ActivityInstrumentationTestCase2<ViewHabitHistoryActivity> {
     private Solo solo;
 
-    public HabitHistoryActivityTest() {
-        super(com.wsfmn.view.HabitHistoryActivity.class);
+    public ViewHabitHistoryActivityTest() {
+        super(ViewHabitHistoryActivity.class);
     }
 
     protected void setUp() throws Exception {
@@ -34,15 +34,15 @@ public class HabitHistoryActivityTest extends ActivityInstrumentationTestCase2<H
         HabitHistoryController.getInstance().add(event);
         HabitHistoryController.getInstance().store();
 
-        solo.assertCurrentActivity("Could not open HabitEventActivity", HabitHistoryActivity.class);
+        solo.assertCurrentActivity("Could not open AddNewHabitEventActivity", ViewHabitHistoryActivity.class);
 
         solo.clickOnButton("Add Event");
         solo.sleep(5000);
-        solo.goBackToActivity("HabitHistoryActivity");
+        solo.goBackToActivity("ViewHabitHistoryActivity");
         solo.sleep(5000);
         solo.clickInList(0);
         solo.sleep(5000);
-        solo.goBackToActivity("HabitHistoryActivity");
+        solo.goBackToActivity("ViewHabitHistoryActivity");
         solo.sleep(5000);
         HabitHistoryController control = HabitHistoryController.getInstance();
         HabitEvent habitE = control.get(control.size()-1);

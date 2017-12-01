@@ -21,7 +21,7 @@ import com.wsfmn.controller.OnlineController;
  * @version 1.0
  * @see Activity
  */
-public class UserName_Activity extends AppCompatActivity {
+public class UserNameActivity extends AppCompatActivity {
 
     private String profileName;
     private EditText yourName;
@@ -50,7 +50,7 @@ public class UserName_Activity extends AppCompatActivity {
     public void confirmClick(View view) {
         profileName = yourName.getText().toString().toLowerCase().replaceAll("\\s+", "");
         if (profileName.length() == 0) {
-            Toast.makeText(UserName_Activity.this, "Type in a name!",
+            Toast.makeText(UserNameActivity.this, "Type in a name!",
                     Toast.LENGTH_LONG).show();
         } else {
             final ProfileName name = new ProfileName(profileName);
@@ -63,7 +63,7 @@ public class UserName_Activity extends AppCompatActivity {
                     flag = online.checkName(profileName);
 
 
-//                     SLATED FOR DELETION
+//                     DELETE NOT USED
 //                    //OnlineController.CheckUnique check = new OnlineController.CheckUnique();
 //                    //check.execute(profileName);
 //                    /*try{
@@ -74,7 +74,7 @@ public class UserName_Activity extends AppCompatActivity {
 
 
                     if (flag == false) {
-                        Toast.makeText(UserName_Activity.this, "Name is taken! Type another!",
+                        Toast.makeText(UserNameActivity.this, "Name is taken! Type another!",
                                 Toast.LENGTH_LONG).show();
                     } else {
                         online.storeName(name); // Store online
@@ -98,12 +98,6 @@ public class UserName_Activity extends AppCompatActivity {
         }
     }
 
-    public void backOnClick(View view){
-        Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_CANCELED, returnIntent);
-        finish();
-    }
-
     /**
      * Starts and checks if user is connected to internet.
      */
@@ -112,7 +106,7 @@ public class UserName_Activity extends AppCompatActivity {
         super.onStart();
         if (online.isConnected() == true){}
         else {
-            Toast.makeText(UserName_Activity.this, "Not connected to internet!",
+            Toast.makeText(UserNameActivity.this, "Not connected to internet!",
                     Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
