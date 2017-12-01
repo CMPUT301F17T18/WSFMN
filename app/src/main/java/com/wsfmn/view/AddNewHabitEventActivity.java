@@ -277,14 +277,15 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
+            if(CurrentPhotoPath!=null) {
+                Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
 
-            Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] b = baos.toByteArray();
-            CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
-            System.out.println(CurrentPhotoPath);
-
+                CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
+                System.out.println(CurrentPhotoPath);
+            }
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
                     nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
