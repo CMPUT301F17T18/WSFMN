@@ -54,7 +54,7 @@ public class HabitEvent{
         this.CurrentPhotoPath = CurrentPhotoPath;
         this.id = null;
         this.date = date;
-        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmSS");
+        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
 

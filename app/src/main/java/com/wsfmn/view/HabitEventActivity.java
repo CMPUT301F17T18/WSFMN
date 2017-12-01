@@ -315,7 +315,7 @@ public class HabitEventActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
-        Comment.setText(getDateUIHE().toDateString());
+//        Comment.setText(getDateUIHE().toDateString());
     }
 
     public com.wsfmn.model.Date getDateUIHE(){

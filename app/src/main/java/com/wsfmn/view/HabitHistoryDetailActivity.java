@@ -275,11 +275,16 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     }
 
     public com.wsfmn.model.Date getDateUIHED(){
-        String date3 = date.getText().toString();
-        String[] list = date3.split(" / ");
+        String dateD = date.getText().toString();
+        String[] list = dateD.split(" / ");
         int year = Integer.parseInt(list[0]);
         int month = Integer.parseInt(list[1]);
         int day = Integer.parseInt(list[2]);
-        return new com.wsfmn.model.Date(year, month, day);
+        //return new com.wsfmn.model.Date(year, month, day);
+        Date date3 = new Date(0, year, month, day);
+        date3.getH();
+        date3.getM();
+        date3.getS();
+        return date3;
     }
 }
