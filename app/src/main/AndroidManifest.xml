@@ -40,7 +40,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,30 +49,38 @@
         </activity>
         <activity
             android:name=".HabitHistoryActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HabitListViewActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HabitListViewDetailActivity"
-            android:parentActivityName=".HabitListViewActivity" />
+            android:parentActivityName=".HabitListViewActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddNewHabitActivity"
-            android:parentActivityName=".HabitListViewActivity" />
+            android:parentActivityName=".HabitListViewActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HabitsForTodayActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UserName_Activity"
             android:parentActivityName=".ProfileActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FriendActivity"
-            android:parentActivityName=".ProfileActivity" />
+            android:parentActivityName=".ProfileActivity"
+            android:screenOrientation="portrait" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -88,19 +96,23 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HabitEventActivity"
             android:label="@string/title_activity_habit_event"
-            android:parentActivityName=".HabitHistoryActivity" />
+            android:parentActivityName=".HabitHistoryActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddLocationActivity"
-            android:parentActivityName=".HabitEventActivity" />
+            android:parentActivityName=".HabitEventActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SelectHabitActivity" />
         <activity android:name=".ImageActivity" />
         <activity
             android:name=".HabitHistoryDetailActivity"
-            android:parentActivityName=".HabitHistoryActivity" />
+            android:parentActivityName=".HabitHistoryActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".FriendHabitActivity" />
         <activity android:name=".FriendHabitEventActivity"></activity>
     </application>

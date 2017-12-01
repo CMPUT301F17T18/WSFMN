@@ -244,10 +244,11 @@ public class AddLocationActivity extends AppCompatActivity {
                     Geocoder geocoder = new Geocoder(AddLocationActivity.this);
                     try {
                         String location = E_address.getText().toString();
+
                         addressList = geocoder.getFromLocationName(location, 1);
                         //check if the input address can be found
-                        while (addressList.size() == 0){
-                            Toast.makeText(getApplicationContext(), "Please enter a validate address", Toast.LENGTH_LONG).show();
+                        if (addressList.size() != 0){
+                            //Toast.makeText(getApplicationContext(), "Please enter a validate address", Toast.LENGTH_LONG).show();
 
                             location = E_address.getText().toString();
                             addressList = geocoder.getFromLocationName(location, 1);
@@ -271,23 +272,27 @@ public class AddLocationActivity extends AppCompatActivity {
                             geolocation = new Geolocation(knownName, latLng);
                         }
 
-                        Address myAddress = addressList.get(0);
-                        knownName = addressList.get(0).getFeatureName();
+                        else{
+                            Toast.makeText(getApplicationContext(), "Address is not validate", Toast.LENGTH_LONG).show();
 
-                        latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
-
-                        latitude = myAddress.getLatitude();
-                        longtitude = myAddress.getLongitude();
-
-                        T_coord.setText("");
-                        T_address.setText("");
-
-                        T_coord.append("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
-
-                        T_address.append(knownName);
-
-
-                        geolocation = new Geolocation(knownName, latLng);
+                        }
+//                        Address myAddress = addressList.get(0);
+//                        knownName = addressList.get(0).getFeatureName();
+//
+//                        latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+//
+//                        latitude = myAddress.getLatitude();
+//                        longtitude = myAddress.getLongitude();
+//
+//                        T_coord.setText("");
+//                        T_address.setText("");
+//
+//                        T_coord.append("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
+//
+//                        T_address.append(knownName);
+//
+//
+//                        geolocation = new Geolocation(knownName, latLng);
 
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -35,12 +35,12 @@ import static com.wsfmn.view.R.id.wednesdayCheckBox;
 
 public class AddNewHabitActivity extends AppCompatActivity {
 
-
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private EditText habitTitle;
     private EditText habitReason;
     private EditText dateText;
+    private Button everyDayButton;
     private Button setDateButton;
     private Button confirmButton;
 
@@ -52,6 +52,8 @@ public class AddNewHabitActivity extends AppCompatActivity {
     private CheckBox saturday;
     private CheckBox sunday;
 
+    private Boolean checkedAll;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
+        everyDayButton = (Button) findViewById(R.id.checkEveryDay);
         setDateButton = (Button) findViewById(R.id.setDateButton);
         confirmButton = (Button) findViewById(R.id.confirmButton2);
         dateText = (EditText) findViewById(R.id.dateText);
@@ -71,6 +74,8 @@ public class AddNewHabitActivity extends AppCompatActivity {
         friday = (CheckBox) findViewById(fridayCheckBox);
         saturday = (CheckBox) findViewById(saturdayCheckBox);
         sunday = (CheckBox) findViewById(sundayCheckBox);
+
+        checkedAll = false;
 
         dateText.setText(new Date().toString());
 
@@ -153,6 +158,32 @@ public class AddNewHabitActivity extends AppCompatActivity {
             weekDays.setDay(day);
         else
             weekDays.unsetDay(day);
+    }
+
+    /**
+     * Check or unchceck every date box.
+     * @param view
+     */
+    public void everyDay(View view){
+        if (!checkedAll) {
+            checkedAll = true;
+            monday.setChecked(true);
+            tuesday.setChecked(true);
+            wednesday.setChecked(true);
+            thursday.setChecked(true);
+            friday.setChecked(true);
+            saturday.setChecked(true);
+            sunday.setChecked(true);
+        } else {
+            checkedAll = false;
+            monday.setChecked(false);
+            tuesday.setChecked(false);
+            wednesday.setChecked(false);
+            thursday.setChecked(false);
+            friday.setChecked(false);
+            saturday.setChecked(false);
+            sunday.setChecked(false);
+        }
     }
 
     public Date getDateUI(){

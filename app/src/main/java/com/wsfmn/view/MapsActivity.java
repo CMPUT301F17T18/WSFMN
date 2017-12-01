@@ -81,7 +81,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void buttonHighlight(View v){
         Bundle bundle = getIntent().getExtras();
-        String filterString = bundle.getString("filterString");
+        //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
 
 
@@ -92,10 +92,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if (highlightMode == 7) {
 
-                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
                     Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
-                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
                     LatLng eventCoord = geolocation.getLatLng();
 
@@ -119,7 +119,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } else {
-                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                        try {
+                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
@@ -153,7 +157,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } else {
-                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                        try {
+                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
@@ -187,7 +195,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     } else {
-                        mMap.addMarker(new MarkerOptions().position(eventCoord).title("others"));
+                        try {
+                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                        } catch (HabitEventNameException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                 }
