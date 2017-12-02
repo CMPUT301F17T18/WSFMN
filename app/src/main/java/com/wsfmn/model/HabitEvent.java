@@ -23,6 +23,7 @@ public class HabitEvent{
      * when a user creates a new Habit Event
      */
     private String title;
+    private String owner;
     private Habit habit;
     private String comment;
     String id;
@@ -30,7 +31,6 @@ public class HabitEvent{
     private java.util.Date actualdate;
     //Path of the file Where image is stored
     String CurrentPhotoPath;
-    String CurrentPhotoPath2;
     Bitmap imageBitmap;
 
     //change by wei, change location parts
@@ -43,13 +43,12 @@ public class HabitEvent{
 
 
 
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, String CurrentPhotoPath2) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
         this.habit = habit;
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
-        this.CurrentPhotoPath2 = CurrentPhotoPath2;
         this.id = null;
 
         this.date = date;
@@ -91,7 +90,7 @@ public class HabitEvent{
      * @throws HabitCommentTooLongException
      * @throws HabitEventCommentTooLongException
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation, String CurrentPhotoPath2) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
 
         this.habit = habit;
@@ -130,7 +129,8 @@ public class HabitEvent{
      * Get the path of the file where image is stored for the habit Event
      * @return mCurrentPhotoPath: filename of the image
      */
-    public String getCurrentPhotoPath(){return CurrentPhotoPath2;
+    public String getCurrentPhotoPath(){
+        return CurrentPhotoPath;
     }
 
     /**
@@ -247,6 +247,14 @@ public class HabitEvent{
         return geolocation;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
     /**
      *  Compares two String Dates
      *
@@ -254,6 +262,9 @@ public class HabitEvent{
      * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
      *  1 otherwise.
      */
+
+
+
     public int compareDate(Date otherDate){
         return date.compareDate(otherDate);
     }

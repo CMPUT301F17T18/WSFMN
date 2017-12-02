@@ -81,7 +81,6 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int ADD_NEW_LOCATION_CODE = 3;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    String CurrentPhotoPath2;
 
 
     @Override
@@ -284,12 +283,12 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
                 imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] b = baos.toByteArray();
 
-                CurrentPhotoPath2 = Base64.encodeToString(b, Base64.DEFAULT);
+                CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
                 System.out.println(CurrentPhotoPath);
             }
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation, CurrentPhotoPath2);
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
 
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list
