@@ -189,15 +189,15 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @throws IOException
      */
     public void changePicture2(View view) throws IOException {
-        try {
-            HabitHistoryController control4 = HabitHistoryController.getInstance();
-            dispatchTakePictureIntent(control4.get(id2).getCurrentPhotoPath());
-        }catch (NullPointerException e){
+//        try {
+//            HabitHistoryController control4 = HabitHistoryController.getInstance();
+//            dispatchTakePictureIntent(control4.get(id2).getCurrentPhotoPath());
+//        }catch (NullPointerException e){
             /*
             Reuse Code: https://developer.android.com/training/camera/photobasics.html
              */
             dispatchTakePictureIntent(createImageFile());
-        }
+//        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
