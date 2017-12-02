@@ -27,9 +27,6 @@ public class ViewHabitListActivity extends AppCompatActivity {
     private ArrayAdapter<Habit> adapter;
     private Boolean flag_forceAddHabit = true;
 
-    static final int FORCED_ADD_NEW_HABIT = 4;
-
-
     /**
      * Instantiate the Habit ListView and listener for taps on the list.
      *
@@ -73,22 +70,7 @@ public class ViewHabitListActivity extends AppCompatActivity {
         if (HabitListController.getInstance().isEmpty() && flag_forceAddHabit) {
             flag_forceAddHabit = false;
             Intent intent = new Intent(this, AddNewHabitActivity.class);
-            startActivityForResult(intent, FORCED_ADD_NEW_HABIT);
-        }
-    }
-
-    /**
-     * Trigger flag_forceAddHabit if we've returned from AddNewHabitActivity.
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == FORCED_ADD_NEW_HABIT) {
-            if (requestCode == FORCED_ADD_NEW_HABIT)
-                flag_forceAddHabit = false;
+            startActivity(intent);
         }
     }
 

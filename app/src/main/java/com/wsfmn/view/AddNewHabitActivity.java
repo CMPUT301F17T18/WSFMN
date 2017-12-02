@@ -53,19 +53,14 @@ public class AddNewHabitActivity extends AppCompatActivity {
     private CheckBox friday;
     private CheckBox saturday;
     private CheckBox sunday;
-
     private Boolean checkedAll;
 
-    static final int FORCED_ADD_NEW_HABIT = 4;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit);
-
-        // Tell ViewHabitListActivity that we forced a single AddNewHabit so it doesn't loop
-        setResult(FORCED_ADD_NEW_HABIT);
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
@@ -217,5 +212,14 @@ public class AddNewHabitActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (HabitListController.getInstance().isEmpty()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        super.onBackPressed();
     }
 }
