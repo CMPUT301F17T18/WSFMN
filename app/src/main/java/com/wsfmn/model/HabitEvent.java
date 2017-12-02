@@ -32,6 +32,7 @@ public class HabitEvent{
     //Path of the file Where image is stored
     String CurrentPhotoPath;
     Bitmap imageBitmap;
+    String ActualCurrentPhotoPath;
 
     //change by wei, change location parts
     private Geolocation geolocation;
@@ -45,7 +46,8 @@ public class HabitEvent{
 
 
 
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath,
+                      String actualCurrentPhotoPath, Date date) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
         this.habit = habit;
         this.title = title;
@@ -57,6 +59,7 @@ public class HabitEvent{
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
         this.geolocation = null;
+        this.ActualCurrentPhotoPath = actualCurrentPhotoPath;
     }
 
 
@@ -72,7 +75,7 @@ public class HabitEvent{
      * @throws HabitCommentTooLongException
      * @throws HabitEventCommentTooLongException
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
+    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String actualCurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
 
         this.habit = habit;
@@ -85,6 +88,7 @@ public class HabitEvent{
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
         this.geolocation = geolocation;
+        this.ActualCurrentPhotoPath = actualCurrentPhotoPath;
     }
     /**
      * Get the date of when the HabitEvent was created
@@ -111,6 +115,10 @@ public class HabitEvent{
     public String getCurrentPhotoPath(){
         return CurrentPhotoPath;
     }
+
+    public String getActualCurrentPhotoPath(){return ActualCurrentPhotoPath;}
+
+    public void setActualCurrentPhotoPath(String CurrentPhotoPath){this.CurrentPhotoPath = CurrentPhotoPath;}
 
     /**
      * Get the Habit the user selects for the HabitEvent
