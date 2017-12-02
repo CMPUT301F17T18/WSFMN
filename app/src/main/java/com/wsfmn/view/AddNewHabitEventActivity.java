@@ -276,6 +276,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      */
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
+        String actualCurrentPhotoPath = CurrentPhotoPath;
         try {
             if(CurrentPhotoPath!=null) {
                 Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
@@ -288,7 +289,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             }
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, actualCurrentPhotoPath, getDateUIHE(), geolocation);
 
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list

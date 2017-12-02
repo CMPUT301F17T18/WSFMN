@@ -131,6 +131,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             control2.get(id2).setComment(comment.getText().toString());
             control2.get(id2).setHabit(control2.get(id2).getHabitFromEvent());
             control2.get(id2).setDate(getDateUIHED());
+            control2.get(id2).setActualCurrentPhotoPath(path);
             control2.storeAndUpdate(control2.get(id2));
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
@@ -174,7 +175,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
         HabitHistoryController control4 = HabitHistoryController.getInstance();
-        path = control4.get(id2).getCurrentPhotoPath();
+        path = control4.get(id2).getActualCurrentPhotoPath();
         //If no picture taken before then when it is null value we create new image
         if(path == null) {
             path = CurrentPhotoPath;
@@ -189,15 +190,16 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @throws IOException
      */
     public void changePicture2(View view) throws IOException {
-//        try {
-//            HabitHistoryController control4 = HabitHistoryController.getInstance();
-//            dispatchTakePictureIntent(control4.get(id2).getCurrentPhotoPath());
-//        }catch (NullPointerException e){
+
+        try {
+            HabitHistoryController control4 = HabitHistoryController.getInstance();
+            dispatchTakePictureIntent(control4.get(id2).getActualCurrentPhotoPath());
+        }catch (NullPointerException e){
             /*
             Reuse Code: https://developer.android.com/training/camera/photobasics.html
              */
             dispatchTakePictureIntent(createImageFile());
-//        }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
