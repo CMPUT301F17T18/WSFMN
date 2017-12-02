@@ -266,12 +266,56 @@ public class Date implements Serializable{
     }
     public String toDateString(){
         String syear = Integer.toString(year);
-        String smonth = Integer.toString(month);
-        String sday = Integer.toString(day);
-        String hour = Integer.toString(h);
-        String minute = Integer.toString(m);
-        String second = Integer.toString(s);
+        String smonth;
+        String sday;
+        String hour;
+        String minute;
+        String second;
 
+        if(  (!(month / 10 == 0 && month / 100 == 0))){
+            smonth = Integer.toString(month);
+        }
+        else {
+            smonth = Integer.toString(month);
+            smonth= "0" + smonth;
+        }
+
+        if(  (!(day / 10 == 0 && day / 100 == 0))){
+            sday = Integer.toString(day);
+        }
+        else {
+            sday = Integer.toString(day);
+            sday = "0" + sday;
+        }
+
+        if(  (!(h / 10 == 0 && h / 100 == 0))){
+            hour = Integer.toString(h);
+        }
+        else {
+            hour = Integer.toString(h);
+            hour= "0" + hour;
+        }
+
+        if(  (!(m / 10 == 0 && m / 100 == 0))){
+            minute = Integer.toString(m);
+        }
+        else {
+            minute = Integer.toString(m);
+            minute = "0" + minute;
+        }
+
+        if(  (!(s / 10 == 0 && s / 100 == 0))){
+           second = Integer.toString(s);
+        }
+        else {
+            second = Integer.toString(s);
+            second = "0" + second;
+        }
+
+
+
+
+        System.out.println("year"+syear  + "month"+smonth  + "day"+sday + "hour"+hour + "minute"+minute + "second"+second);
         return syear  + smonth  + sday + hour + minute + second;
     }
 }

@@ -39,6 +39,8 @@ public class HabitEvent{
 
     public HabitEvent(){
         this.title = "";
+        this.date = new Date();
+        this.id = title + new Date(1).toDateString();   // initial offline temp id
     }
 
 
@@ -49,35 +51,15 @@ public class HabitEvent{
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
-        this.id = null;
-
+        this.id = title + new Date(1).toDateString();   // initial offline temp id
         this.date = date;
         DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
-
-
         this.geolocation = null;
-//        this.imageBitmap = imageBitmap;
     }
 
-//    public HabitEvent(Habit habit, String title, String comment, Date date) throws HabitCommentTooLongException,
-//            HabitEventCommentTooLongException, ParseException {
-//        this.habit = habit;
-//        this.title = title;
-//        setComment(comment);
-//        this.CurrentPhotoPath = null;
-//        this.id = null;
-//
-//        this.date = date;
-//        DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-//        java.util.Date adate = formatter.parse(this.date.toDateString());
-//        this.actualdate = adate;
-//
-//
-//        this.geolocation = null;
-////        this.imageBitmap = imageBitmap;
-//    }
+
 
     /**
      * Constructor for the Habit Event.
@@ -97,15 +79,12 @@ public class HabitEvent{
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
-        this.id = null;
+        this.id = title + new Date(1).toDateString();   // initial offline temp id
         this.date = date;
         DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
-
-
         this.geolocation = geolocation;
-//        this.imageBitmap = imageBitmap;
     }
     /**
      * Get the date of when the HabitEvent was created

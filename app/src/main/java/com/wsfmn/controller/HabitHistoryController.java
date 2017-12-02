@@ -250,7 +250,7 @@ public class HabitHistoryController {
 
         OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
                 new OnlineController.DeleteHabitEvents();
-        deleteHabitEventsOnline.execute(removed);
+        deleteHabitEventsOnline.execute(removed.getId());
         store();
 
         //  added by alsobaie on 2017/11/29
@@ -275,7 +275,7 @@ public class HabitHistoryController {
         if (idx != -1) {
             OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
                     new OnlineController.DeleteHabitEvents();
-            deleteHabitEventsOnline.execute(he);
+            deleteHabitEventsOnline.execute(he.getId());
             store();
             return habitHistory.remove(idx);
         } else {
@@ -325,17 +325,19 @@ public class HabitHistoryController {
         int size = habitHistory.size();
         HabitEvent[] habitEvents = new HabitEvent[size];
 
-        for (int i = 0; i < size; i++){
-            habitEvents[i] = habitHistory.get(i);
-        }
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                habitEvents[i] = habitHistory.get(i);
+            }
 
-        try {
-            storeHabitEvents.execute(habitEvents).get();
-            storeHabitHistory.execute(habitHistory).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+            try {
+                storeHabitEvents.execute(habitEvents).get();
+                storeHabitHistory.execute(habitHistory).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
     }
 

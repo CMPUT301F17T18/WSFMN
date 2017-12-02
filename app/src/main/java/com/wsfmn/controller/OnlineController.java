@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
@@ -20,11 +21,13 @@ import com.wsfmn.model.HabitList;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestList;
+import com.wsfmn.view.AddNewHabitEventActivity;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import io.searchbox.client.JestResult;
 import io.searchbox.core.Delete;
@@ -61,7 +64,6 @@ public class OnlineController {
      * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class StoreHabits extends AsyncTask<Habit, Void, Void> {
-
         @Override
         protected Void doInBackground(Habit... habits) {
             if (isConnected()) {
@@ -72,7 +74,7 @@ public class OnlineController {
                     // in this case the Index command will update the existing habit at ID
                     // otherwise Index will store a new habit and ElasticSearch will return
                     // the auto-generated ID which is then attributed to habit for future use.
-                    if (habit.getId() != null) {
+                    if (habit.getId().startsWith(habit.getTitle())) {
                         index = new Index.Builder(habit)
                                 .index(INDEX_BASE + App.USERNAME)
                                 .type("habit")
@@ -90,7 +92,7 @@ public class OnlineController {
                         if (result.isSucceeded())
                             habit.setId(result.getId().toString());
                         else
-                            Log.i("Error", "Elasticsearch was not able to add the habit");
+                        Log.i("Error", "Elasticsearch was not able to add the habit");
                     } catch (Exception e) {
                         Log.i("Error", "Habit Tracker failed to build and send the habits");
                     }
@@ -113,13 +115,13 @@ public class OnlineController {
      *
      * Created by nmayne 11/07/17.
      */
-    public static class DeleteHabits extends AsyncTask<Habit, Void, Void> {
+    public static class DeleteHabits extends AsyncTask<String, Void, Void> {
         @Override
-        protected Void doInBackground(Habit... habits) {
+        protected Void doInBackground(String... habit_ids) {
             if (isConnected()) {
                 verifySettings();
-                for (Habit h : habits) {
-                    Delete delete = new Delete.Builder(h.getId())
+                for (String h_id : habit_ids) {
+                    Delete delete = new Delete.Builder(h_id)
                             .index(INDEX_BASE + App.USERNAME)
                             .type("habit")
                             .build();
@@ -129,7 +131,16 @@ public class OnlineController {
                         Log.i("Error", "Delete Habit failed");
                     }
                 }
+            } else {
+                // Store these Habits' IDs for online deletion upon next connection
+                String[] toDelete = new String[habit_ids.length];
+                for (int i = 0; i< habit_ids.length; i++) {
+                    toDelete[i] = "HAB" + habit_ids[i];
+                }
+                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
+                storeDeleted.execute(toDelete);
             }
+
             return null;
         }
     }
@@ -174,6 +185,7 @@ public class OnlineController {
                         Log.i("Error", "The search query failed");
                     }
                 } catch (Exception e) {
+
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
             }
@@ -204,7 +216,7 @@ public class OnlineController {
                     // in this case the Index command will update the existing HabitEvent at ID
                     // otherwise Index will store a new HabitEvent and ElasticSearch will return
                     // the auto-generated ID which is then attributed to HabitEvent for future use.
-                    if (he.getId() != null) {
+                    if (he.getId().startsWith(he.getHabitTitle())) {
                         index = new Index.Builder(he)
                                 .index(INDEX_BASE + App.USERNAME)
                                 .type("habitevent")
@@ -224,6 +236,8 @@ public class OnlineController {
                         else
                             Log.i("Error", "Elasticsearch was not able to add the habit events");
                     } catch (Exception e) {
+
+
                         Log.i("Error", "Habit Tracker failed to build and send the habit events");
                     }
                 }
@@ -241,22 +255,32 @@ public class OnlineController {
      *
      * Created by nmayne 11/07/17.
      */
-    public static class DeleteHabitEvents extends AsyncTask<HabitEvent, Void, Void> {
+    public static class DeleteHabitEvents extends AsyncTask<String, Void, Void> {
         @Override
-        protected Void doInBackground(HabitEvent... habitEvents) {
+        protected Void doInBackground(String... habitEvent_ids) {
             if (isConnected()) {
                 verifySettings();
-                for (HabitEvent he : habitEvents) {
-                    Delete delete = new Delete.Builder(he.getId())
+                for (String he_ids : habitEvent_ids) {
+                    Delete delete = new Delete.Builder(he_ids)
                             .index(INDEX_BASE + App.USERNAME)
                             .type("habitevent")
                             .build();
                     try {
                         client.execute(delete);
                     } catch (IOException e) {
+
+
                         Log.i("Error", "Delete Habit Event failed");
                     }
                 }
+            } else {
+                // Store these HabitEvents' IDs for online deletion upon next connection
+                String[] toDelete = new String[habitEvent_ids.length];
+                for (int i = 0; i < habitEvent_ids.length; i++) {
+                    toDelete[i] = "HEV" + habitEvent_ids[i];
+                }
+                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
+                storeDeleted.execute(toDelete);
             }
             return null;
         }
@@ -303,6 +327,8 @@ public class OnlineController {
                         Log.i("Error", "The search query failed");
                     }
                 } catch (Exception e) {
+
+
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
             }
@@ -332,6 +358,8 @@ public class OnlineController {
                     Log.i("Error", "Could not send request");
                 }
             } catch (Exception e) {
+
+
                 Log.i("Error", "The application failed to build and send the requests");
             }
 
@@ -383,6 +411,8 @@ public class OnlineController {
                 }
             }
             catch (Exception e) {
+
+
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             System.out.println("finished");
@@ -426,6 +456,8 @@ public class OnlineController {
                         Log.i("Error", "The search query failed to find any requests that matched");
                     }
                 } catch (Exception e) {
+
+
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
             }
@@ -468,6 +500,8 @@ public class OnlineController {
                         Log.i("Error", "The search query failed to find any requests that matched");
                     }
                 } catch (Exception e) {
+
+
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
             }
@@ -480,7 +514,7 @@ public class OnlineController {
         protected HabitEvent doInBackground(String... search_parameters) {
             verifySettings();
 
-            HabitEvent recent = new HabitEvent();
+            HabitEvent recent = null;
 
             // TODO Build the query
             String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
@@ -501,12 +535,15 @@ public class OnlineController {
                         String JsonString = result.getJsonString();
                         for (SearchResult.Hit hit : result.getHits(HabitEvent.class)) {
                             recent = (HabitEvent) hit.source;
+                            recent.setOwner(search_parameters[1]);
                             return recent;
                         }
                     } else {
                         Log.i("Error", "The search query failed to find any requests that matched");
                     }
                 } catch (Exception e) {
+
+
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
             return recent;
@@ -539,6 +576,8 @@ public class OnlineController {
                 return true;
             }
             catch (Exception e) {
+
+
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return flag;
@@ -589,6 +628,8 @@ public class OnlineController {
                     }
                 }
                 catch (Exception e) {
+
+
                     Log.i("Error", "The application failed to build and send the requests");
                 }
             }
@@ -611,6 +652,14 @@ public class OnlineController {
                         Log.i("Error", "Delete Habit Event failed");
                     }
 
+            } else {
+                // Store these Requests for online deletion upon next connection
+                String[] toDelete = new String[search_parameters.length];
+                for (int i = 0; i < search_parameters.length; i++) {
+                    toDelete[i] = "REQ" + search_parameters[i];
+                }
+                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
+                storeDeleted.execute(toDelete);
             }
             return null;
         }
@@ -666,6 +715,8 @@ public class OnlineController {
                 }
             }
             catch (Exception e) {
+
+
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return requests;
@@ -706,6 +757,8 @@ public class OnlineController {
                 return true;
             }
             catch (Exception e) {
+
+
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return flag;
@@ -763,6 +816,8 @@ public class OnlineController {
                 return true;
             }
             catch (Exception e) {
+
+
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return flag;
@@ -798,28 +853,25 @@ public class OnlineController {
 
         @Override
         protected Void doInBackground(ProfileName... names) {
-            verifySettings();
+            if (isConnected()) {
+                verifySettings();
 
-            for (ProfileName profileName : names) {
-                Index index = new Index.Builder(profileName)
-                        .index(INDEX_BASE )
-                        .type("profilename")
-                        .build();
-                try {
-                    DocumentResult result = client.execute(index);
-                    if(result.isSucceeded()) {
-                        profileName.setId(result.getId());
-                    }
-                    else
-                    {
-                        Log.i("Error", "Could not send name to elasticsearch");
-
+                for (ProfileName profileName : names) {
+                    Index index = new Index.Builder(profileName)
+                            .index(INDEX_BASE)
+                            .type("profilename")
+                            .build();
+                    try {
+                        DocumentResult result = client.execute(index);
+                        if (result.isSucceeded()) {
+                            profileName.setId(result.getId());
+                        } else {
+                            Log.i("Error", "Could not send profileName to elasticsearch");
+                        }
+                    } catch (Exception e) {
+                        Log.i("Error", "The application failed to build and send the profileName");
                     }
                 }
-                catch (Exception e) {
-                    Log.i("Error", "The application failed to build and send the tweets");
-                }
-
             }
             return null;
         }
@@ -841,27 +893,39 @@ public class OnlineController {
     public static class DeleteProfileName extends AsyncTask<String, Void, ArrayList<ProfileName>> {
         @Override
         protected ArrayList<ProfileName> doInBackground(String... search_parameters) {
-            verifySettings();
+            if(isConnected()) {
+                verifySettings();
 
-            ArrayList<ProfileName> requests = new ArrayList<ProfileName>();
+                ArrayList<ProfileName> requests = new ArrayList<ProfileName>();
 
-            // TODO Build the query
-            String query = "{\n" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
+                // TODO Build the query
+                String query = "{\n" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
 
 
-            DeleteByQuery delete = new DeleteByQuery.Builder(query)
-                    .addIndex(INDEX_BASE)
-                    .addType("profilename")
-                    .build();
+                DeleteByQuery delete = new DeleteByQuery.Builder(query)
+                        .addIndex(INDEX_BASE)
+                        .addType("profilename")
+                        .build();
 
-            try {
-                // TODO get the results of the query
-                JestResult result = client.execute(delete);
+                try {
+                    // TODO get the results of the query
+                    JestResult result = client.execute(delete);
+                } catch (Exception e) {
+
+
+                    Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+                }
+                return requests;
+            } else {
+                // Store these HabitEvents for online deletion upon next connection
+                String[] toDelete = new String[search_parameters.length];
+                for (int i = 0; i < search_parameters.length; i++) {
+                    toDelete[i] = "PRO" + search_parameters[i];
+                }
+                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
+                storeDeleted.execute(toDelete);
             }
-            catch (Exception e) {
-                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
-            }
-            return requests;
+            return null;
         }
     }
 
@@ -879,20 +943,58 @@ public class OnlineController {
         }
     }
 
+
+    /**
+     * Delete all the objects online that were deleted while offline and then save the cleared list
+     */
+    public static void syncDeleted() {
+        String[] deleted = new String[0];
+        try {
+            OfflineController.GetDeleted getDeleted = new OfflineController.GetDeleted();
+            getDeleted.execute();
+            deleted = getDeleted.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        if (deleted != null && deleted.length > 0) {
+            for (int i = 0; i < deleted.length; i++) {
+                if (deleted[i].startsWith("PRO")) {
+                    DeleteProfileName delete_pro = new DeleteProfileName();
+                    delete_pro.execute(deleted[i].substring(3));
+
+                } else if (deleted[i].startsWith("HAB")) {
+                    DeleteHabits delete_hab = new DeleteHabits();
+                    delete_hab.execute(deleted[i].substring(3));
+
+                } else if (deleted[i].startsWith("HEV")) {
+                    DeleteHabitEvents delete_hev = new DeleteHabitEvents();
+                    delete_hev.execute(deleted[i].substring(3));
+
+                } else if (deleted[i].startsWith("REQ")) {
+                    DeleteRequest delete_req = new DeleteRequest();
+                    delete_req.execute(deleted[i].substring(3));
+                }
+            }
+        }
+        OfflineController.ResetDeleted resetDeleted = new OfflineController.ResetDeleted();
+        resetDeleted.execute();
+    }
     /**
      * Check if the device is connected to the internet via wifi or mobile.
      * https://stackoverflow.com/questions/5474089/how-to-check-currently-internet-connection-is-available-or-not-in-android
      * @return Boolean: true is connection is alive, otherwise false
      */
     @NonNull
-    public static Boolean isConnected(){
+    public static Boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) App.CONTEXT.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
                 connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
             //we are connected to a network
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 }
