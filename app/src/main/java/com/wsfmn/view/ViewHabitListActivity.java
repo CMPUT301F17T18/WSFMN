@@ -46,6 +46,15 @@ public class ViewHabitListActivity extends AppCompatActivity {
         habitListView.setAdapter(adapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (HabitListController.getInstance().isEmpty()) {
+            Intent intent = new Intent(this, AddNewHabitActivity.class);
+            startActivity(intent);
+        }
+    }
+
     /** Called when the user taps the Add New Habit button */
     public void addNewHabit(View view){
         Intent intent = new Intent(this, AddNewHabitActivity.class);
