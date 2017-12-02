@@ -23,12 +23,12 @@ public class FriendHabitActivity extends AppCompatActivity {
 
     private Habit fHabit;
     private HabitEvent fEvent;
-    EditText fhTitle;
-    EditText fhReason;
-    EditText fhDate;
-    EditText fEventComment;
-    EditText fEventDate;
-    EditText fEventAddress;
+    TextView fhTitle;
+    TextView fhReason;
+    TextView fhDate;
+    TextView fEventComment;
+    TextView fEventDate;
+    TextView fEventAddress;
     ImageView friendImage;
 
     private CheckBox monday;
@@ -49,9 +49,9 @@ public class FriendHabitActivity extends AppCompatActivity {
         fHabit = (Habit) intent.getSerializableExtra("friend");
 
 
-        fhTitle = (EditText)findViewById(R.id.fhTitle);
-        fhReason = (EditText)findViewById(R.id.fhReason);
-        fhDate = (EditText) findViewById(R.id.fhDate);
+        fhTitle = (TextView) findViewById(R.id.fhTitle);
+        fhReason = (TextView) findViewById(R.id.fhReason);
+        fhDate = (TextView) findViewById(R.id.fhDate);
         monday = (CheckBox) findViewById(R.id.monday);
         tuesday = (CheckBox) findViewById(R.id.tuesday);
         wednesday = (CheckBox) findViewById(R.id.wednesday);
@@ -60,15 +60,15 @@ public class FriendHabitActivity extends AppCompatActivity {
         saturday = (CheckBox) findViewById(R.id.saturday);
         sunday = (CheckBox) findViewById(R.id.sunday);
 
-        fEventComment = (EditText) findViewById(R.id.fEventComment);
-        fEventDate = (EditText) findViewById(R.id.fEventDate);
-        fEventAddress = (EditText) findViewById(R.id.fEventAddress);
+        fEventComment = (TextView) findViewById(R.id.fEventComment);
+        fEventDate = (TextView) findViewById(R.id.fEventDate);
+        fEventAddress = (TextView) findViewById(R.id.fEventAddress);
 
         friendImage = (ImageView) findViewById(R.id.friendImage);
 
-        fhTitle.setClickable(false);
-        fhReason.setClickable(false);
-        fhDate.setClickable(false);
+
+
+
         monday.setClickable(false);
         tuesday.setClickable(false);
         wednesday.setClickable(false);
@@ -76,9 +76,7 @@ public class FriendHabitActivity extends AppCompatActivity {
         friday.setClickable(false);
         saturday.setClickable(false);
         sunday.setClickable(false);
-        fEventComment.setClickable(false);
-        fEventDate.setClickable(false);
-        fEventAddress.setClickable(false);
+
 
         setCheckBox(monday, WeekDays.MONDAY);
         setCheckBox(tuesday, WeekDays.TUESDAY);
