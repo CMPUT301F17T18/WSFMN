@@ -7,7 +7,7 @@
     <string name="set_date">Start Date</string>
     <string name="every_day">Every Day</string>
     <string name="set_weekly_schedule">Set Weekly Schedule</string>
-    <string name="view_habits">View All Habits</string>
+    <string name="view_habits">Manage Habits</string>
     <string name="habits_for_today">Today\'s Habits</string>
     <string name="habit_history">Habit History</string>
     <string name="delete">Delete</string>
