@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -29,8 +30,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.controller.OnlineController;
 import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.model.Geolocation;
+import com.wsfmn.model.Habit;
 import com.wsfmn.model.HabitEvent;
 
 import java.util.ArrayList;
@@ -51,6 +54,10 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
     //private HabitEvent habitEvent;
 
 
+
+    ArrayList<String> namesFriends = new ArrayList<String>();
+    String[] namesFriendsList;
+    private ArrayList<Habit> hNames;
     private ArrayList<HabitEvent> eventList = new ArrayList<HabitEvent>();
 
 
@@ -486,5 +493,50 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        OnlineController.GetFriendNames getFriendEvents = new OnlineController.GetFriendNames();
+        getFriendEvents.execute();
+        try {
+            namesFriends = getFriendEvents.get();
+            namesFriendsList = namesFriends.toArray(new String[namesFriends.size()]);
+
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
+        }
+
+        OnlineController.GetHabitNames getHabitNames = new OnlineController.GetHabitNames();
+        getHabitNames.execute(namesFriendsList);
+
+        try {
+            hNames = getHabitNames.get();
+
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
+        }
+
+
+        for(Habit getEvent : hNames){
+            OnlineController.GetRecentEvent fRecentEvent = new OnlineController.GetRecentEvent();
+            fRecentEvent.execute(getEvent.getTitle().toLowerCase(),getEvent.getOwner());
+            try {
+               if(fRecentEvent.get() != null) {
+                   eventList.add(fRecentEvent.get());
+               }
+
+            } catch (Exception e) {
+                Log.i("Error", "Failed to get the requests from the async object");
+            }
+        }
+
+        System.out.println(eventList.size());
+        System.out.println(eventList);
+
+
+
+    }
+
 }
 

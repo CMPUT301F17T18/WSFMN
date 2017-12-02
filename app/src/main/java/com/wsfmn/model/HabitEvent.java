@@ -23,6 +23,7 @@ public class HabitEvent{
      * when a user creates a new Habit Event
      */
     private String title;
+    private String owner;
     private Habit habit;
     private String comment;
     String id;
@@ -246,6 +247,14 @@ public class HabitEvent{
         return geolocation;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
     /**
      *  Compares two String Dates
      *
@@ -253,6 +262,9 @@ public class HabitEvent{
      * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
      *  1 otherwise.
      */
+
+
+
     public int compareDate(Date otherDate){
         return date.compareDate(otherDate);
     }

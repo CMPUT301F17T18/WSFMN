@@ -480,7 +480,7 @@ public class OnlineController {
         protected HabitEvent doInBackground(String... search_parameters) {
             verifySettings();
 
-            HabitEvent recent = new HabitEvent();
+            HabitEvent recent = null;
 
             // TODO Build the query
             String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
@@ -501,6 +501,7 @@ public class OnlineController {
                         String JsonString = result.getJsonString();
                         for (SearchResult.Hit hit : result.getHits(HabitEvent.class)) {
                             recent = (HabitEvent) hit.source;
+                            recent.setOwner(search_parameters[1]);
                             return recent;
                         }
                     } else {
