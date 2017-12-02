@@ -43,6 +43,7 @@ import com.wsfmn.controller.HabitListController;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -124,6 +125,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
                 Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
                  */
                 dispatchTakePictureIntent();
+                CurrentPhotoPath = scaleImage(CurrentPhotoPath);
             }
         });
 
@@ -339,6 +341,35 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         date3.getM();
         date3.getS();
         return date3;
+    }
+
+    public String scaleImage(String CurrentPhotoPath){
+        int targetW = 256;
+        int targetH = 256;
+        int scaleFactor = Math.max(targetH, targetW);
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+
+        File file = new File(CurrentPhotoPath);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return file.getAbsolutePath();
     }
 
 }
