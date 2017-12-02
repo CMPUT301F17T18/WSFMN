@@ -148,6 +148,21 @@ public class HabitListController{
         return habitList.getHabit(index);
     }
 
+
+    /**
+     * Get habit by it's id
+     * @param id
+     * @return
+     */
+    public Habit getHabit(String id)  {
+        for (int i = 0; i<habitList.size(); i++){
+            if (getHabit(i).getId().equals(id)){
+                return getHabit(i);
+            }
+        }
+        return null;
+    }
+
     /**
      *
      * @param index

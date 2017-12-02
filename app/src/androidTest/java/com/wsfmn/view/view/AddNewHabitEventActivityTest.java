@@ -14,7 +14,7 @@ import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.view.AddNewHabitEventActivity;
-import com.wsfmn.view.HabitHistoryActivity;
+import com.wsfmn.view.ViewHabitHistoryActivity;
 import com.wsfmn.view.R;
 
 /**
@@ -48,7 +48,7 @@ public class AddNewHabitEventActivityTest extends ActivityInstrumentationTestCas
 
         solo.clickOnButton("Add Habit Event");
         solo.sleep(5000);
-        solo.assertCurrentActivity("Could not view list of HabitEvents", HabitHistoryActivity.class);
+        solo.assertCurrentActivity("Could not view list of HabitEvents", ViewHabitHistoryActivity.class);
         solo.sleep(5000);
 
         HabitHistoryController control = HabitHistoryController.getInstance();

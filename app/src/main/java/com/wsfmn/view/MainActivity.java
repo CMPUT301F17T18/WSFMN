@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void habitList(View view){
-        Intent intent = new Intent(this, HabitListViewActivity.class);
+        Intent intent = new Intent(this, ViewHabitListActivity.class);
         startActivity(intent);
     }
 
     public void habitsForToday(View view){
-        Intent intent = new Intent(this, HabitsForTodayActivity.class);
+        Intent intent = new Intent(this, ViewHabitsForTodayActivity.class);
         startActivity(intent);
     }
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void habitHistory(View view){
-        Intent intent = new Intent( this, HabitHistoryActivity.class);
+        Intent intent = new Intent( this, ViewHabitHistoryActivity.class);
         startActivity(intent);
     }
 

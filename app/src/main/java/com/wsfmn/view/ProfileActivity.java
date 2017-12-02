@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -91,7 +92,7 @@ public class ProfileActivity extends Activity {
         }
 
        else if(online.checkName(text)){
-            Toast.makeText(ProfileActivity.this, "Name Doesn't Exist!",
+            Toast.makeText(ProfileActivity.this, "User Doesn\'t Exist!",
                     Toast.LENGTH_LONG).show();
         }
 
@@ -101,15 +102,21 @@ public class ProfileActivity extends Activity {
         }
 
         else if(text.equals(profileName)){
-            Toast.makeText(ProfileActivity.this, "Sorry Can't Add Yourself!",
+            Toast.makeText(ProfileActivity.this, "Sorry, Can\'t Add Yourself!",
                     Toast.LENGTH_LONG).show();
         }
 
         //requestsList.add(newRequest);
+        // Hide Keybord code reuse:
+        // https://stackoverflow.com/questions/4841228/after-type-in-edittext-how-to-make-keyboard-disappear
         else {
+            InputMethodManager mgr = (InputMethodManager) getSystemService(ProfileActivity.this.INPUT_METHOD_SERVICE);
+            mgr.hideSoftInputFromWindow(userName.getWindowToken(), 0);
             OnlineController.SendRequest sendRequest = new OnlineController.SendRequest();
             sendRequest.execute(newRequest);
             adapter.notifyDataSetChanged();
+            Toast.makeText(ProfileActivity.this, "REQUEST SENT",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -118,8 +125,14 @@ public class ProfileActivity extends Activity {
      * @param view
      */
     public void viewFriendEventOnClick(View view){
-        Intent intent = new Intent(this, FriendActivity.class);
-        startActivity(intent);
+
+        if(leaderList.size() > 1) {
+            Intent intent = new Intent(this, FriendActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(getApplicationContext(), "Follow A Friend!", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     /**

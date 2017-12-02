@@ -21,7 +21,7 @@ import static java.lang.Thread.sleep;
  * @version 1.0
  * @see AppCompatActivity
  */
-public class HabitHistoryActivity extends AppCompatActivity {
+public class ViewHabitHistoryActivity extends AppCompatActivity {
 
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
@@ -34,7 +34,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_history);
+        setContentView(R.layout.activity_view_habit_history);
 
         search = findViewById(R.id.search);
         habitHistory = (ListView)findViewById(R.id.habitEventHist);
@@ -44,8 +44,9 @@ public class HabitHistoryActivity extends AppCompatActivity {
         habitHistory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HabitHistoryActivity.this, HabitHistoryDetailActivity.class);
-                intent.putExtra("position", position);
+                Intent intent = new Intent(ViewHabitHistoryActivity.this, HabitHistoryDetailActivity.class);
+                HabitEvent temp = (HabitEvent) habitHistory.getItemAtPosition(position);
+                intent.putExtra("id", temp.getId());
                 startActivity(intent);
             }
         });
@@ -55,7 +56,7 @@ public class HabitHistoryActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(HabitHistoryActivity.this,MapsActivity.class);
+                Intent  intent = new Intent(ViewHabitHistoryActivity.this,ViewMapActivity.class);
                 intent.putExtra("filterString", filterString);
                 intent.putExtra("highlightMode",highlightMode);
                 startActivity(intent);

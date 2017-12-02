@@ -12,7 +12,7 @@ import android.widget.ListView;
 import com.wsfmn.model.Habit;
 import com.wsfmn.controller.HabitListController;
 
-public class HabitListViewActivity extends AppCompatActivity {
+public class ViewHabitsForTodayActivity extends AppCompatActivity {
 
     private Context context;
     private ListView habitListView;
@@ -22,7 +22,7 @@ public class HabitListViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_list_view);
+        setContentView(R.layout.activity_view_habits_for_today);
 
         context = this;
         habitListView = (ListView) findViewById(R.id.habit_list_view);
@@ -30,8 +30,9 @@ public class HabitListViewActivity extends AppCompatActivity {
         habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, HabitListViewDetailActivity.class);
-                intent.putExtra("position", position);
+
+                Intent intent = new Intent(context, AddNewHabitEventActivity.class);
+                intent.putExtra("positionToday", position);
                 startActivity(intent);
             }
         });
@@ -42,14 +43,8 @@ public class HabitListViewActivity extends AppCompatActivity {
         super.onStart();
         adapter = new ArrayAdapter<Habit>(this,
                 android.R.layout.simple_list_item_1,
-                HabitListController.getInstance().getHabitList());
+                HabitListController.getInstance().getHabitsForToday());
         habitListView.setAdapter(adapter);
-    }
-
-    /** Called when the user taps the Add New Habit button */
-    public void addNewHabit(View view){
-        Intent intent = new Intent(this, AddNewHabitActivity.class);
-        startActivity(intent);
     }
 
 }

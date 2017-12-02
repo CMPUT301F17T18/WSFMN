@@ -109,7 +109,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
 
         // If statement handles the case where the activity is called from a listView
-        // //(e.g. HabitsForTodayActivity)
+        // //(e.g. ViewHabitsForTodayActivity)
 
         //Checking If device has camera
         if(!checkCamera()){
@@ -240,13 +240,10 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             }
         }
         //Add new location
-        if(requestCode == ADD_NEW_LOCATION_CODE){
-            if(resultCode == Activity.RESULT_OK)
-
-            {
+        if(requestCode == ADD_NEW_LOCATION_CODE) {
+            if(resultCode == Activity.RESULT_OK) {
 //                Bundle b = data.getExtras();
-                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
-
+//                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
                 Double latitude = data.getDoubleExtra("new_latitude",0);
                 Double longtitude = data.getDoubleExtra("new_longtitude",0);
                 LatLng latLng = new LatLng(latitude,longtitude);
@@ -278,16 +275,17 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      * @param view
      */
     public void confirmHabitEvent(View view) {
-        Intent intent = new Intent(this, HabitHistoryActivity.class);
+        Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
+            if(CurrentPhotoPath!=null) {
+                Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
 
-            Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] b = baos.toByteArray();
-            CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
-            System.out.println(CurrentPhotoPath);
-
+                CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
+                System.out.println(CurrentPhotoPath);
+            }
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
                     nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
@@ -322,7 +320,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      * @param view
      */
     public void viewPic(View view){
-        Intent intent = new Intent(this, ImageActivity.class);
+        Intent intent = new Intent(this, AddImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
 //        Comment.setText(getDateUIHE().toDateString());
