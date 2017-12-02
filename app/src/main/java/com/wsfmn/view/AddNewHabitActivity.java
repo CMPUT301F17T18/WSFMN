@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -54,11 +56,16 @@ public class AddNewHabitActivity extends AppCompatActivity {
 
     private Boolean checkedAll;
 
+    static final int FORCED_ADD_NEW_HABIT = 4;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit);
 
+        // Tell ViewHabitListActivity that we forced a single AddNewHabit so it doesn't loop
+        setResult(FORCED_ADD_NEW_HABIT);
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
@@ -107,7 +114,6 @@ public class AddNewHabitActivity extends AppCompatActivity {
         };
 
     }
-
 
     /**
      * this creates a new Habit object with values it receives from
@@ -196,4 +202,20 @@ public class AddNewHabitActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Handle Action Bar up button click as a normal back button click
+     *
+     * https://stackoverflow.com/questions/11079718/action-bars-onclick-listener-for-the-home-button
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

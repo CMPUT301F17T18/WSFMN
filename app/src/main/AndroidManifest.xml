@@ -109,6 +109,7 @@
             android:label="Add New Habit Event"
             android:parentActivityName=".ViewHabitHistoryActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".AddLocationActivity"
             android:parentActivityName=".AddNewHabitEventActivity"
