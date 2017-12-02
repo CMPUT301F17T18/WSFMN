@@ -150,11 +150,12 @@ public class ProfileActivity extends Activity {
                     Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        } else {
+            // Update all habits and habit events under this username
+            HabitListController.getInstance().storeAll();
+            HabitHistoryController.getInstance().storeAll();
+            OnlineController.syncDeleted();  // delete all the objects that were deleted while offline.
         }
-
-        // Update all habits and habit events under this username
-        HabitListController.getInstance().storeAll();
-        HabitHistoryController.getInstance().storeAll();
 
         //load the profilename if it exists
         profileName = ProfileNameController.getInstance().getProfileName();

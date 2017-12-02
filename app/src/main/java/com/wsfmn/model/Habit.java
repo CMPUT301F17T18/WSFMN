@@ -45,7 +45,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     //  default constructor: required for MockHabit
     public Habit(){
         date = null;
-    };
+    }
 
     /**
      *  Created a Habit object
@@ -70,7 +70,7 @@ public class Habit implements Serializable, Comparable<Habit>{
      */
     public Habit(String title, Date date) throws HabitTitleTooLongException,
                                                 DateNotValidException {
-        this.id = null;
+        this.id = title + new Date(1).toDateString();   // initial offline temp id
         this.setDate(date);
         this.setTitle(title);
         this.weekDays = new WeekDays();

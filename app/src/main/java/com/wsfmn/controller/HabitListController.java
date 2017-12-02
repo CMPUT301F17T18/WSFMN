@@ -112,7 +112,7 @@ public class HabitListController{
         // Added by nmayne on 2017-11-07
         OnlineController.DeleteHabits deleteHabitsOnline =
                 new OnlineController.DeleteHabits();
-        deleteHabitsOnline.execute(habit);
+        deleteHabitsOnline.execute(habit.getId());
 
         habitList.deleteHabit(habit);
     }
@@ -125,7 +125,7 @@ public class HabitListController{
         // Added by nmayne on 2017-11-07
         OnlineController.DeleteHabits deleteHabitsOnline =
                 new OnlineController.DeleteHabits();
-        deleteHabitsOnline.execute(habitList.getHabit(index));
+        deleteHabitsOnline.execute(habitList.getHabit(index).getId());
 
         habitList.deleteHabitAt(index);
     }
@@ -256,7 +256,7 @@ public class HabitListController{
     }
 
     /**
-     * Stores HabitHistory online, and offline.
+     * Stores HabitList online, and offline.
      */
     public void storeAll() {
         OnlineController.StoreHabits storeHabits =
@@ -268,17 +268,20 @@ public class HabitListController{
         int size = habitList.size();
         Habit[] habits = new Habit[size];
 
-        for (int i = 0; i < size; i++){
-            habits[i] = habitList.getHabit(i);
+        if (size > 0) {
+            for (int i = 0; i < size; i++) {
+                habits[i] = habitList.getHabit(i);
+            }
+
+            try {
+                storeHabits.execute(habits).get();
+                storeHabitList.execute(habitList).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
 
-        try {
-            storeHabits.execute(habits).get();
-            storeHabitList.execute(habitList).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
 }
