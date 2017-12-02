@@ -22,9 +22,9 @@ public class AddImageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String photoPath = intent.getStringExtra("CurrentPhotoPath");
 
-//        int targetW = 256;
-//        int targetH = 256;
-
+//        int targetW = 4;
+//        int targetH = 4;
+//
 //        int scaleFactor = Math.max(targetH, targetW);
 //        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
 //        bmOptions.inJustDecodeBounds = true;

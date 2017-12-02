@@ -125,7 +125,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
                 Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
                  */
                 dispatchTakePictureIntent();
-                CurrentPhotoPath = scaleImage(CurrentPhotoPath);
+
+//                CurrentPhotoPath = scaleImage(CurrentPhotoPath);
+
             }
         });
 
@@ -233,6 +235,13 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==REQUEST_IMAGE_CAPTURE){
+            if(resultCode==Activity.RESULT_OK){
+//                CurrentPhotoPath = compressImage(CurrentPhotoPath);
+                CurrentPhotoPath = scaleImage(CurrentPhotoPath);
+
+            }
+        }
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
@@ -326,7 +335,6 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
-//        Comment.setText(getDateUIHE().toDateString());
     }
 
     public com.wsfmn.model.Date getDateUIHE(){
@@ -344,8 +352,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     }
 
     public String scaleImage(String CurrentPhotoPath){
-        int targetW = 256;
-        int targetH = 256;
+        int targetW = 15;
+        int targetH = 15;
         int scaleFactor = Math.max(targetH, targetW);
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
@@ -371,5 +379,43 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
         return file.getAbsolutePath();
     }
+
+    public String compressImage(String CurrentPhotoPath){
+        Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+        File f = new File(CurrentPhotoPath);
+
+        int MAX_IMAGE_SIZE = 2;
+        int streamLength = MAX_IMAGE_SIZE;
+        int compressQuality = 105;
+
+        ByteArrayOutputStream bmpStream = new ByteArrayOutputStream();
+
+        while (streamLength >= MAX_IMAGE_SIZE && compressQuality > 5) {
+            try {
+                bmpStream.flush();//to avoid out of memory error
+                bmpStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            compressQuality -= 5;
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream);
+            byte[] bmpPicByteArray = bmpStream.toByteArray();
+            streamLength = bmpPicByteArray.length;
+        }
+
+        FileOutputStream fo;
+
+        try {
+            fo = new FileOutputStream(f);
+            fo.write(bmpStream.toByteArray());
+            fo.flush();
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return f.getAbsolutePath();
+    }
+
 
 }
