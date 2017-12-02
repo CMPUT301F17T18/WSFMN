@@ -77,6 +77,13 @@ public class ViewHabitListActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Trigger flag_forceAddHabit if we've returned from AddNewHabitActivity.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == FORCED_ADD_NEW_HABIT) {
