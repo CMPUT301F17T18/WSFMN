@@ -71,9 +71,137 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     public void buttonFollows(View v){
 
+        mMap.clear();
+
+    }
+
+    public void buttonMyEvent(View v){
+
+        mMap.clear();
+        Bundle bundle = getIntent().getExtras();
+        //String filterString = bundle.getString("filterString");
+        int highlightMode = bundle.getInt("highlightMode", 7);
+
+
+
+            Button Highlight = (Button) findViewById(R.id.B_highlight);
+            //Highlight.setText("clicked");
+            //Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
+
+            if (highlightMode == 7) {
+
+                for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        //float results[] = new float[10];
+                        //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+                    }
+                    else{
+
+                    }
+
+                }
+            }
+            else if(highlightMode == 5){
+
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+
+
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        //float results[] = new float[10];
+                        //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+                    }
+                    else{
+
+                    }
+
+                }
+
+            }
+            else if(highlightMode == 6){
+                for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+
+                    HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        //float results[] = new float[10];
+                        //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+                    }
+                    else{
+
+                    }
+
+                }
+            }
+
+
     }
 
     public void buttonHighlight(View v){
+
+        mMap.clear();
         Bundle bundle = getIntent().getExtras();
         //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
@@ -82,42 +210,48 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
         if (currentLocation != null) {
             Button Highlight = (Button) findViewById(R.id.B_highlight);
             //Highlight.setText("clicked");
-            Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
 
             if (highlightMode == 7) {
 
                 for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
-                    Geolocation geolocation = habitEvent.getGeolocation();
-                    LatLng eventCoord = geolocation.getLatLng();
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
 
-                    float results[] = new float[10];
-                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
-                    if (results[0] <= 5000) {
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        float results[] = new float[10];
+                        Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+                        if (results[0] <= 5000) {
 
 
-                        MarkerOptions mo = new MarkerOptions();
-                        mo.position(eventCoord);
-                        try {
-                            mo.title(habitEvent.getHabitEventTitle());
-                        } catch (HabitEventNameException e) {
-                            e.printStackTrace();
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                        } else {
+                            try {
+                                mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
                         }
-                        mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-                        habitEventMarker = mMap.addMarker(mo);
-                        //add marker
-                        mMap.addMarker(mo);
-                        mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+                    }
+                    else{
 
-
-                    } else {
-                        try {
-                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
-                        } catch (HabitEventNameException e) {
-                            e.printStackTrace();
-                        }
                     }
 
                 }
@@ -125,37 +259,44 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             else if(highlightMode == 5){
 
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
-                    Geolocation geolocation = habitEvent.getGeolocation();
-                    LatLng eventCoord = geolocation.getLatLng();
-
-                    float results[] = new float[10];
-                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
-                    if (results[0] <= 5000) {
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
 
 
-                        MarkerOptions mo = new MarkerOptions();
-                        mo.position(eventCoord);
-                        try {
-                            mo.title(habitEvent.getHabitEventTitle());
-                        } catch (HabitEventNameException e) {
-                            e.printStackTrace();
+                        LatLng eventCoord = geolocation.getLatLng();
+
+                        float results[] = new float[10];
+                        Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+                        if (results[0] <= 5000) {
+
+
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                        } else {
+                            try {
+                                mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
                         }
-                        mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-                        habitEventMarker = mMap.addMarker(mo);
-                        //add marker
-                        mMap.addMarker(mo);
-                        mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+                    }
+                    else{
 
-
-                    } else {
-                        try {
-                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
-                        } catch (HabitEventNameException e) {
-                            e.printStackTrace();
-                        }
                     }
 
                 }
@@ -163,44 +304,49 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
             else if(highlightMode == 6){
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
-                    Geolocation geolocation = habitEvent.getGeolocation();
-                    LatLng eventCoord = geolocation.getLatLng();
+                    if (habitEvent.getGeolocation() != null) {
+                        Geolocation geolocation = habitEvent.getGeolocation();
+                        LatLng eventCoord = geolocation.getLatLng();
 
-                    float results[] = new float[10];
-                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
-                    if (results[0] <= 5000) {
+                        float results[] = new float[10];
+                        Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
+                        if (results[0] <= 5000) {
 
 
-                        MarkerOptions mo = new MarkerOptions();
-                        mo.position(eventCoord);
-                        try {
-                            mo.title(habitEvent.getHabitEventTitle());
-                        } catch (HabitEventNameException e) {
-                            e.printStackTrace();
+                            MarkerOptions mo = new MarkerOptions();
+                            mo.position(eventCoord);
+                            try {
+                                mo.title(habitEvent.getHabitEventTitle());
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
+                            mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                            habitEventMarker = mMap.addMarker(mo);
+                            //add marker
+                            mMap.addMarker(mo);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+
+
+                        } else {
+                            try {
+                                mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
+                            } catch (HabitEventNameException e) {
+                                e.printStackTrace();
+                            }
                         }
-                        mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-                        habitEventMarker = mMap.addMarker(mo);
-                        //add marker
-                        mMap.addMarker(mo);
-                        mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
+                    }
+                    else{
 
-
-                    } else {
-                        try {
-                            mMap.addMarker(new MarkerOptions().position(eventCoord).title(habitEvent.getHabitEventTitle()));
-                        } catch (HabitEventNameException e) {
-                            e.printStackTrace();
-                        }
                     }
 
                 }
             }
         }
         else{
-            Toast.makeText(getApplicationContext(), "Cannot find current location! ", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Current location required. Please enable GPS!", Toast.LENGTH_LONG).show();
 
         }
     }
@@ -251,33 +397,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
     }
 
-//    public void onClick(View v){
-//        if(v.getId() == R.id.B_highlight) {
-//
-//            int len = eventList.size();
-//            for (int i = 0; i < len; i++) {
-//
-//                habitEvent = eventList.get(i);
-//                Geolocation geolocation = habitEvent.getGeolocation();
-//                LatLng eventCoord = geolocation.getLatLng();
-//                MarkerOptions mo = new MarkerOptions();
-//                mo.position(eventCoord);
-//                mo.title("Your Search result");
-//
-//                habitEventMarker=mMap.addMarker(mo);
-//
-//                //add marker
-//                mMap.addMarker(mo);
-//                mMap.animateCamera(CameraUpdateFactory.newLatLng(eventCoord));
-//                Toast.makeText(getApplicationContext(), "Genji", Toast.LENGTH_LONG).show();
-//
-//
-//            }
-//        }
-//        if(v.getId() == R.id.B_followed){
-//            Toast.makeText(getApplicationContext(), "Rua!", Toast.LENGTH_LONG).show();
-//        }
-//    }
+
 
 
 

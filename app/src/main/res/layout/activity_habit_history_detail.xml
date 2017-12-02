@@ -10,12 +10,12 @@
         android:id="@+id/Picture2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:onClick="changePicture2"
         android:text="Change Picture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/B_changeLocation"
+        app:layout_constraintTop_toBottomOf="@+id/dateDetail"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
@@ -23,44 +23,42 @@
         android:id="@+id/B_changeLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:text="Change Location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDetail" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Picture2" />
 
     <EditText
         android:id="@+id/Comment2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="Add Comment"
         android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/commentTextView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/commentTextView" />
 
     <Button
         android:id="@+id/ViewImg2"
-        android:layout_width="wrap_content"
+        android:layout_width="104dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginEnd="16dp"
         android:onClick="viewImage2"
         android:text="View Image"
         app:layout_constraintBaseline_toBaselineOf="@+id/Picture2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Picture2" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/addHabit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="16dp"
         android:onClick="changeHabit"
         android:text="Change Habit"
         app:layout_constraintBaseline_toBaselineOf="@+id/habitName2"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/confirmButton2"
@@ -69,7 +67,7 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:onClick="confirmHE"
-        android:text="Save Habit Event"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -77,8 +75,8 @@
         android:id="@+id/habitName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Habit Event Name"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -100,7 +98,7 @@
         android:id="@+id/dateDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="Date"
         android:textSize="18sp"
@@ -112,20 +110,21 @@
         android:id="@+id/T_C_showAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
         android:text="Address"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/B_changeLocation"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/B_changeLocation" />
 
     <TextView
         android:id="@+id/commentTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="Comment: "
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Comment:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +134,7 @@
         android:id="@+id/changeDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Change Date"
         app:layout_constraintBaseline_toBaselineOf="@+id/dateDetail"
         app:layout_constraintEnd_toEndOf="parent" />
