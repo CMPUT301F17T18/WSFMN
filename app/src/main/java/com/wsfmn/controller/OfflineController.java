@@ -176,12 +176,13 @@ public class OfflineController {
         @Override
         protected Void doInBackground(String... delete) {
             try {
+                String[] d = delete;
                 FileOutputStream fos = App.CONTEXT.openFileOutput(DELETED_FILENAME, Context.MODE_APPEND);
                 OutputStreamWriter writer = new OutputStreamWriter(fos);
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
                 builder.serializeNulls();
-                gson.toJson(delete, writer);
+                gson.toJson(d, writer);
                 writer.flush();
             } catch (FileNotFoundException e) {
                 throw new RuntimeException();

@@ -70,23 +70,11 @@ public class OnlineController {
                 verifySettings();
                 for (Habit habit : habits) {
                     Index index;
-                    // If the habit has been stored already it will have a non-null ID,
-                    // in this case the Index command will update the existing habit at ID
-                    // otherwise Index will store a new habit and ElasticSearch will return
-                    // the auto-generated ID which is then attributed to habit for future use.
-                    if (habit.getId().startsWith(habit.getTitle())) {
-                        index = new Index.Builder(habit)
-                                .index(INDEX_BASE + App.USERNAME)
-                                .type("habit")
-                                .id(habit.getId())
-                                .build();
-                    } else {
-                        index = new Index.Builder(habit)
-                                .index(INDEX_BASE + App.USERNAME)
-                                .type("habit")
-                                .build();
-                    }
-
+                    index = new Index.Builder(habit)
+                            .index(INDEX_BASE + App.USERNAME)
+                            .type("habit")
+                            .id(habit.getId())
+                            .build();
                     try {
                         DocumentResult result = client.execute(index);
                         if (result.isSucceeded())
@@ -212,22 +200,11 @@ public class OnlineController {
                 verifySettings();
                 for (HabitEvent he : habitEvents) {
                     Index index;
-                    // If the HabitEvent has been stored already it will have a non-null ID,
-                    // in this case the Index command will update the existing HabitEvent at ID
-                    // otherwise Index will store a new HabitEvent and ElasticSearch will return
-                    // the auto-generated ID which is then attributed to HabitEvent for future use.
-                    if (he.getId().startsWith(he.getHabitTitle())) {
                         index = new Index.Builder(he)
                                 .index(INDEX_BASE + App.USERNAME)
                                 .type("habitevent")
                                 .id(he.getId())
                                 .build();
-                    } else {
-                        index = new Index.Builder(he)
-                                .index(INDEX_BASE + App.USERNAME)
-                                .type("habitevent")
-                                .build();
-                    }
                     try {
                         // where is the client?
                         DocumentResult result = client.execute(index);
@@ -236,8 +213,6 @@ public class OnlineController {
                         else
                             Log.i("Error", "Elasticsearch was not able to add the habit events");
                     } catch (Exception e) {
-
-
                         Log.i("Error", "Habit Tracker failed to build and send the habit events");
                     }
                 }

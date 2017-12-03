@@ -232,41 +232,12 @@ public class HabitHistoryController {
         habitHistory.filterByComment(comment);
     }
 
-    //TODO: Handle the case where removing a habit but the user is offline and we need
-    // to remove it later online when they are connected again
-    /**
-     * Removes and returns a HabitEvent at the specified index in HabitHistory, and online,
-     * and decrements the HabitHistory indices that follow it, saving all changes.
-     *
-     * @param idx int: the index of the HabitEvent to remove
-     * @return HabitEvent removed from HabitHistory
-     * @throws IndexOutOfBoundsException
-     */
-    public HabitEvent removeAndStore(int idx) throws IndexOutOfBoundsException{
-        //  added by alsobaie on 2017/11/29
-        Habit habit = habitHistory.get(idx).getHabit();
-
-        HabitEvent removed = habitHistory.remove(idx);
-
-        OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
-                new OnlineController.DeleteHabitEvents();
-        deleteHabitEventsOnline.execute(removed.getId());
-        store();
-
-        //  added by alsobaie on 2017/11/29
-        HabitListController.getInstance().updateHabitScore(habit);
-
-        return removed;
-    }
-
-    //TODO: Handle the case where removing a habit but the user is offline and we need
-    // to remove it later online when they are connected again
     /**
      * Removes and returns a HabitEvent from HabitHistory, and online,
      * and decrements the HabitHistory indices that follow it, saving all changes.
      *
      * @param he HabitEvent: the HabitEvent to remove
-     * @return HabitEvent removed from HabitHistory or null if in HabitHistory
+     * @return HabitEvent removed from HabitHistory or null if not in HabitHistory
      * @throws IndexOutOfBoundsException
      */
     @Nullable
@@ -276,8 +247,13 @@ public class HabitHistoryController {
             OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
                     new OnlineController.DeleteHabitEvents();
             deleteHabitEventsOnline.execute(he.getId());
+            HabitEvent removed = habitHistory.remove(idx);
             store();
-            return habitHistory.remove(idx);
+
+            //  added by alsobaie on 2017/11/29
+            HabitListController.getInstance().updateHabitScore(removed.getHabit());
+
+            return removed;
         } else {
             return null;
         }
