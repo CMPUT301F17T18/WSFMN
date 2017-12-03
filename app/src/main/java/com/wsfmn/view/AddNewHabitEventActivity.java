@@ -98,21 +98,17 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         }
 
         Comment = (EditText) findViewById(R.id.Comment);
+        date2 = (TextView) findViewById(R.id.eventDate);
+        T_showAddress = (TextView) findViewById(R.id.T_showAdress);
         addPic = (Button) findViewById(R.id.Picture);
         viewImage = (Button) findViewById(R.id.ViewImg);
         addHabitEvent = (Button) findViewById(R.id.AddHabitEvent);
         addHabit = (Button) findViewById(R.id.addHabit);
-        T_showAddress = (TextView) findViewById(R.id.T_showAdress);
-
-        date2 = (TextView) findViewById(R.id.eventDate);
 
         //Creating date for the Habit Event created
         String dateAndTime = new Date(0).toString();
         date2.setText(dateAndTime);
 
-
-        // If statement handles the case where the activity is called from a listView
-        // //(e.g. ViewHabitsForTodayActivity)
 
         //Checking If device has camera
         if (!checkCamera()) {
@@ -176,7 +172,6 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     private boolean checkCamera() {
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
-
 
     /**
      * Take a picture and save it.
@@ -475,6 +470,4 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
         return file.getAbsolutePath();
     }
-
-
 }
