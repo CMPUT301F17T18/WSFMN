@@ -23,8 +23,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetDate() throws Exception {
         Habit habit = new Habit("Swimming",
                     "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                    , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
 
         assertEquals("Correct Date Not Received ", "13/11/2017,00:01", he.getDate());
     }
@@ -33,8 +33,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetCurrentPhotoPath() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         assertEquals("Incorrect Path of Image File", "/Storage/Space", he.getCurrentPhotoPath());
 
     }
@@ -43,8 +43,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetHabitFromEvent() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         Habit habitOfEvent = he.getHabitFromEvent();
         assertNotNull(habitOfEvent);
         assertEquals("Getting the Habit", habit, habitOfEvent);
@@ -55,8 +55,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetHabitTitle() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         Habit habitOfEvent = he.getHabitFromEvent();
         assertNotNull(habitOfEvent);
         assertEquals("Title are not equal", "Swimming", he.getHabitTitle());
@@ -66,8 +66,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testSetHabit() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         Habit habitOfEvent = he.getHabitFromEvent();
         assertNotNull(habitOfEvent);
         Habit habit2 = new Habit("Running",
@@ -82,8 +82,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetId() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         assertNull(he.getId());
     }
 
@@ -91,8 +91,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void setId() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         assertNull(he.getId());
         he.setId("Unique ID");
         assertEquals("ID not set","Unique ID", he.getId());
@@ -102,8 +102,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetHabit() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         Habit habitOfEvent = he.getHabit();
         assertNotNull(habitOfEvent);
         assertEquals("Getting the Habit", habit, habitOfEvent);
@@ -113,8 +113,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetHabitEventTitle() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         assertEquals("Habit Title not correct", "HabitEvent", he.getHabitEventTitle());
     }
 
@@ -122,8 +122,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testSetTitle() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         he.setTitle("HabitEventTest");
         assertNotNull(he);
         assertEquals("Habit Event title not changed", "HabitEventTest", he.getHabitEventTitle());
@@ -133,8 +133,8 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testGetComment() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         assertNotNull(he);
         assertEquals("Did not get title of Habit Event","Comment", he.getComment());
     }
@@ -143,26 +143,22 @@ public class HabitEventTest extends ActivityInstrumentationTestCase2{
     public void testSetComment() throws Exception {
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , "13/11/2017,00:01");
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
         assertNotNull(he);
         he.setComment("CommentTest");
         assertEquals("Comment not Changed", "CommentTest", he.getComment());
     }
 
     public void testCompareDate() throws Exception{
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy, HH:mm");
-        String timeStamp = df.format(Calendar.getInstance().getTime());
-
         Habit habit = new Habit("Swimming",
                 "To spend time with friends", new Date());
-        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space"
-                , timeStamp);
+        HabitEvent he = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,new Date(0));
 
 
-        assertEquals(0, he.compareDate(timeStamp));
-        assertEquals(-1, he.compareDate("13/12/2018, 00:01"));
-        assertEquals(1, he.compareDate("13/11/2017,00:01"));
+        assertEquals(-1, he.compareDate(new Date(0)));
+
 
 
     }

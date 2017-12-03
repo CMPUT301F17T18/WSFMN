@@ -22,17 +22,17 @@ public class AddImageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String photoPath = intent.getStringExtra("CurrentPhotoPath");
 
-        int targetW = 256;
-        int targetH = 256;
-
-        int scaleFactor = Math.max(targetH, targetW);
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(photoPath, bmOptions);
-
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
+//        int targetW = 4;
+//        int targetH = 4;
+//
+//        int scaleFactor = Math.max(targetH, targetW);
+//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//        bmOptions.inJustDecodeBounds = true;
+//        BitmapFactory.decodeFile(photoPath, bmOptions);
+//
+//        bmOptions.inJustDecodeBounds = false;
+//        bmOptions.inSampleSize = scaleFactor;
+//        bmOptions.inPurgeable = true;
         Bitmap imageBitmap;
 
         // TODO: This is brittle, it relies on the device using the directory. Fix by appending a tag to the beginning of the encoded string

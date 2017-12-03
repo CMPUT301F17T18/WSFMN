@@ -110,9 +110,14 @@ public class HabitListController{
      */
     public void deleteHabit(Habit habit){
         // Added by nmayne on 2017-11-07
-        OnlineController.DeleteHabits deleteHabitsOnline =
-                new OnlineController.DeleteHabits();
-        deleteHabitsOnline.execute(habit.getId());
+        if (OnlineController.isConnected()) {
+            OnlineController.DeleteHabits deleteHabitsOnline =
+                    new OnlineController.DeleteHabits();
+            deleteHabitsOnline.execute(habit.getId());
+        } else {
+            // Store this Habit ID for online deletion upon next connection
+            OfflineController.addToOfflineDelete("HAB", habit.getId());
+        }
 
         habitList.deleteHabit(habit);
     }
@@ -123,9 +128,14 @@ public class HabitListController{
      */
     public void deleteHabitAt(int index){
         // Added by nmayne on 2017-11-07
-        OnlineController.DeleteHabits deleteHabitsOnline =
-                new OnlineController.DeleteHabits();
-        deleteHabitsOnline.execute(habitList.getHabit(index).getId());
+        if (OnlineController.isConnected()) {
+            OnlineController.DeleteHabits deleteHabitsOnline =
+                    new OnlineController.DeleteHabits();
+            deleteHabitsOnline.execute(habitList.getHabit(index).getId());
+        } else {
+            // Store this Habit ID for online deletion upon next connection
+            OfflineController.addToOfflineDelete("HAB", habitList.getHabit(index).getId());
+        }
 
         habitList.deleteHabitAt(index);
     }

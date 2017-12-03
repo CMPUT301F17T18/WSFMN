@@ -26,7 +26,15 @@
     <string name="sunday">Sunday</string>
 
     <string name="progress">Progress</string>
-
+    <string name="habit_event_image">Habit Event Image</string>
+    <string name="add_picture">Add Picture</string>
+    <string name="add_location">Add Location</string>
+    <string name="no_location">No Location</string>
+    <string name="select_habit">Select Habit</string>
+    <string name="save_habit_event">Save Habit Event</string>
+    <string name="date">Date</string>
+    <string name="view_image">View Image</string>
+    <string name="add_comment">Add Comment</string>
 
 
 </resources>

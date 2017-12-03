@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wsfmn.controller.ProfileNameController;
+import com.wsfmn.model.HabitHistory;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.controller.OnlineController;
 
@@ -59,33 +60,26 @@ public class UserNameActivity extends AppCompatActivity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    // bring the profileName back
-                    flag = online.checkName(profileName);
+                // bring the profileName back
+                flag = online.checkName(profileName);
 
-
-//                     DELETE NOT USED
-//                    //OnlineController.CheckUnique check = new OnlineController.CheckUnique();
-//                    //check.execute(profileName);
-//                    /*try{
-//                    flag  = check.get();
-//                    } catch (Exception e) {
-//                        Log.i("Error", "Couldn't get flag from async object");
-//                    }*/
-
-
-                    if (flag == false) {
-                        Toast.makeText(UserNameActivity.this, "Name is taken! Type another!",
-                                Toast.LENGTH_LONG).show();
-                    } else {
-                        online.storeName(name); // Store online
-                        ProfileNameController.getInstance().storeNewProfileNameOffline(name); // Store offline
-
-                        Intent returnIntent = new Intent();
-                        returnIntent.putExtra("uniqueName", profileName);
-                        setResult(Activity.RESULT_OK, returnIntent);
-                        finish();
+                if (flag == false) {
+                    Toast.makeText(UserNameActivity.this, "Name is taken! Type another!",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    if(OnlineController.isConnected()) {
+                        online.deleteAllHabitsAndEvents(); // remove old data at base index
+                        online.storeName(name); // Store user profile online
                     }
 
+                    // Store offline and reinitialize App.USERNAME
+                    ProfileNameController.getInstance().storeNewProfileNameOffline(name);
+
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("uniqueName", profileName);
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
+                }
                 }
             });
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
