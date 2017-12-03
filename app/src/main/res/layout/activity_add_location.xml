@@ -20,7 +20,7 @@
         tools:layout_editor_absoluteY="0dp" />
 
     <Button
-        android:id="@+id/b_Current"
+        android:id="@+id/use_GPS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -50,13 +50,14 @@
         app:layout_constraintTop_toBottomOf="@+id/t_coordination" />
 
     <Button
-        android:id="@+id/b_New"
+        android:id="@+id/search_for_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/B_Current"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:layout_marginTop="24dp"
+        android:onClick="searchForLocation"
         android:text="Search For Address"
         app:layout_constraintBottom_toTopOf="@+id/b_confirm"
         app:layout_constraintTop_toBottomOf="@+id/t_address"
@@ -81,8 +82,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="24dp"
+        android:onClick="confirmLocation"
         android:text="confirm"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/b_Current" />
+        app:layout_constraintTop_toBottomOf="@+id/use_GPS" />
 </android.support.constraint.ConstraintLayout>

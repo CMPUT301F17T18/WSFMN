@@ -40,12 +40,10 @@ import static com.wsfmn.view.R.id.wednesdayCheckBox;
 public class AddNewHabitActivity extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
     private EditText habitTitle;
     private EditText habitReason;
     private TextView dateText;
     private Button setDateButton;
-
     private CheckBox monday;
     private CheckBox tuesday;
     private CheckBox wednesday;
