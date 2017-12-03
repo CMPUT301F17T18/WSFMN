@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -28,7 +30,9 @@ import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
@@ -249,6 +253,11 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==REQUEST_TAKE_PHOTO){
+            if(resultCode == Activity.RESULT_OK){
+                CurrentPhotoPath = compressImage(CurrentPhotoPath);
+            }
+        }
         if(requestCode==2){
             if(resultCode == Activity.RESULT_OK) {
                 Bundle b = data.getExtras();
@@ -285,5 +294,98 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         date3.getM();
         date3.getS();
         return date3;
+    }
+
+    public String compressImage(String CurrentPhotoPath){
+        Bitmap imageBitmapCheck = BitmapFactory.decodeFile(CurrentPhotoPath);
+        int i = imageBitmapCheck.getByteCount();
+
+        CurrentPhotoPath = scaleImage(CurrentPhotoPath);
+
+        Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+        int i4 = imageBitmap.getByteCount();
+        File f = new File(CurrentPhotoPath);
+
+        int MAX_IMAGE_SIZE = 65532;
+        int streamLength = MAX_IMAGE_SIZE;
+        int compressQuality = 105;
+
+        ByteArrayOutputStream bmpStream = new ByteArrayOutputStream();
+
+        while (streamLength >= MAX_IMAGE_SIZE && compressQuality > 5) {
+            try {
+                bmpStream.flush();//to avoid out of memory error
+                bmpStream.reset();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            compressQuality -= 5;
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream);
+            byte[] bmpPicByteArray = bmpStream.toByteArray();
+            streamLength = bmpPicByteArray.length;
+        }
+
+        byte[] bmpPicByteArray = bmpStream.toByteArray();
+        streamLength = bmpPicByteArray.length;
+
+        FileOutputStream fo;
+
+        try {
+            fo = new FileOutputStream(f);
+            fo.write(bmpStream.toByteArray());
+            fo.flush();
+            fo.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return f.getAbsolutePath();
+    }
+
+    public String scaleImage(String CurrentPhotoPath) {
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
+
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        float maxHeight = 816.0f;
+        float maxWidth = 612.0f;
+
+        int scaleFactor = (int) Math.min(photoW/maxWidth,photoH/maxHeight);
+
+        File img = new File(CurrentPhotoPath);
+        long length = img.length();
+
+        bmOptions.inSampleSize = scaleFactor;
+
+        bmOptions.inJustDecodeBounds = false;
+
+        Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+
+        if (length > 65532) {
+            imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
+        }
+
+
+        int i = imageBitmap.getByteCount();
+
+
+        File file = new File(CurrentPhotoPath);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return file.getAbsolutePath();
     }
 }
