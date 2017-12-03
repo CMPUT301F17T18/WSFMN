@@ -62,6 +62,8 @@ public class HabitList {
 
     public ArrayList<Habit> getHabitsForToday(){
         ArrayList<Habit> habitsForToday = new ArrayList<Habit>();
+        ArrayList<Habit> hl = new ArrayList<Habit>();
+        boolean flag = true;
 
         Date today = new Date();
         int dayOfWeek = today.getDayOfWeek();
@@ -71,19 +73,23 @@ public class HabitList {
 
             if(com == -1 || com == 0){
                 if(habits.get(i).getWeekDays().getDay(dayOfWeek-1))
-                    habitsForToday.add(habits.get(i));
+                    hl.add(habits.get(i));
             }
         }
 
         HabitHistoryController c = HabitHistoryController.getInstance();
-        for(int i = 0; i < habitsForToday.size(); i++){
-            for(int j = 0; j < c.size(); j++){
-                if(c.get(j).getHabit().equal(habitsForToday.get(i))
-                        && c.get(j).getDate().compareDate(today) == 0)
-                    habitsForToday.remove(i);
+        for (int i = 0; i < hl.size(); i++) {
+            flag = true;
+            for (int j = 0; j < c.size(); j++) {
+                if (c.get(j).getHabit().equal(hl.get(i))
+                        && c.get(j).getDate().compareDate(new Date()) == 0)
+                    flag = false;
             }
+
+            if(flag)
+                habitsForToday.add(hl.get(i));
         }
-        
+
         return habitsForToday;
     }
 

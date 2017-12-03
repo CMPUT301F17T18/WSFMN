@@ -28,8 +28,8 @@ public class ViewHabitHistoryActivityTest extends ActivityInstrumentationTestCas
     public void testHabitHistory() throws Exception {
         Habit habit =  new Habit("Gym", "lose Weight", new Date());
 
-        HabitEvent event = new HabitEvent(habit, "Gym Event", "Golds Gym",
-                "/storage/","2017/11/13,00:01");
+        HabitEvent event = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null,null);
 //        HabitHistoryController c = HabitHistoryController.getInstance();
         HabitHistoryController.getInstance().add(event);
         HabitHistoryController.getInstance().store();
