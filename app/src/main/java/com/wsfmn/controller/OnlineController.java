@@ -92,15 +92,10 @@ public class OnlineController {
 
     /**
      * When DeleteHabits.execute(Habit... habits) is called on a DeleteHabits object,
-     * this method will proceed if the device is connected to the internet and will delete the
-     * given habits on an ElasticSearch DB.
+     * this method will will delete the given habits on an ElasticSearch DB.
      *
-     * If the device is not connected to the internet this method adds the Habit ID's to a
-     * Delete.sav file so they can be deleted once a connection is established.
-     *
-     * The delete functionality depends upon there being a non-null id for the habit being deleted.
-     * If a habit has not yet been stored on ElasticSearch then it's ID will be null and nothing
-     * will happen.
+     * If the device is not connected to the internet this method adds the Habit ID's
+     * to Delete.sav so they can be deleted once a connection is established.
      *
      * Created by nmayne 11/07/17.
      */
@@ -141,8 +136,7 @@ public class OnlineController {
                 verifySettings();
                 habitList = new HabitList();
 
-                String query = "{ \"query\": { \"term\": { \"title\": \""
-                        + search_parameters[0] + "\" } } }\n";
+                String query = "{\"query\":{\"match_all\":{}}}";
 
                 Search search = new Search.Builder(query)
                         .addIndex(INDEX_BASE + App.USERNAME)
@@ -196,7 +190,6 @@ public class OnlineController {
                                 .id(he.getId())
                                 .build();
                     try {
-                        // where is the client?
                         DocumentResult result = client.execute(index);
                         if (result.isSucceeded())
                             he.setId(result.getId().toString());
@@ -212,12 +205,11 @@ public class OnlineController {
     }
 
     /**
-     * When GetHabits.execute(String... search_params) is called on a GetHabits object, this method
-     * will proceed if the device is connected to the internet and currently will return a
-     * HabitList object containing at most 10 Habit objects that match the search parameter.
+     * When DeleteHabitEvents.execute is called on a DeleteHabitEvents object,
+     * this method will will delete the given habit events on ElasticSearch DB.
      *
-     * If the device is not connected to the internet this method adds the HabitEvent
-     * ID's to a Delete.sav file so they can be deleted once a connection is established.
+     * If the device is not connected to the internet this method adds the HabitEVent
+     * ID's to Delete.sav file so they can be deleted once a connection is established.
      *
      * Created by nmayne 11/07/17.
      */
@@ -250,11 +242,8 @@ public class OnlineController {
 
             if (isConnected()) {
                 verifySettings();
-
                 habitHistory = new HabitHistory();
-
-                String query = "{ \"query\": { \"term\": { \"comment\": \""
-                        + search_parameters[0] + "\" } } }\n";
+                String query = "{\"query\":{\"match_all\":{}}}";
 
                 Search search = new Search.Builder(query)
                         .addIndex(INDEX_BASE + App.USERNAME)
@@ -281,8 +270,6 @@ public class OnlineController {
                         Log.i("Error", "The search query failed");
                     }
                 } catch (Exception e) {
-
-
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
             }
@@ -912,6 +899,38 @@ public class OnlineController {
         OfflineController.ResetDeleted resetDeleted = new OfflineController.ResetDeleted();
         resetDeleted.execute();
     }
+
+    /**
+     * Delete all locally known Habits and Habit Events at the current username index.
+     */
+    public void deleteAllHabitsAndEvents() {
+        ArrayList<Habit> habitList = HabitListController.getInstance().getHabitList();
+        ArrayList<HabitEvent> habitHisory =
+                HabitHistoryController.getInstance().getHabitEventList();
+
+        for (Habit h: habitList) {
+            DeleteHabits deleteHabits = new DeleteHabits();
+            try {
+                deleteHabits.execute(h.getId()).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        for (HabitEvent he: habitHisory) {
+            DeleteHabitEvents deleteHabitEvents = new DeleteHabitEvents();
+            try {
+                deleteHabitEvents.execute(he.getId()).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     /**
      * Check if the device is connected to the internet via wifi or mobile.
      * https://stackoverflow.com/questions/5474089/how-to-check-currently-internet-connection-is-available-or-not-in-android

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.wsfmn.controller.HabitListController;
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.controller.HabitHistoryController;
 
@@ -71,6 +72,12 @@ public class ViewHabitHistoryActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 HabitHistoryController.getInstance().getFilteredInstance().getHabitEventList());
         habitHistory.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ProfileNameController.getInstance().updateScore(); // update user's score
     }
 
     /**

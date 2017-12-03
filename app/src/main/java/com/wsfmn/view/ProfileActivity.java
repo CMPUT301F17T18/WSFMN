@@ -235,9 +235,6 @@ public class ProfileActivity extends Activity {
 
     }
 
-
-
-
     /**
      * Method to retrieve results from another activity. Used for getting profilename from
      * UserNameActivity.

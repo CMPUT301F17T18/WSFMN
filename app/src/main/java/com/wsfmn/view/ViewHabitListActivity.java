@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wsfmn.controller.HabitListController;
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Habit;
 
 import static android.view.Window.FEATURE_ACTION_BAR;
@@ -71,6 +72,12 @@ public class ViewHabitListActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddNewHabitActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ProfileNameController.getInstance().updateScore(); // update user's score
     }
 
     /**
