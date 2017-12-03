@@ -304,10 +304,11 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void changeLocation(View view) {
         Intent intent = new Intent(this, AddLocationActivity.class);
-        intent.putExtra("address", HabitHistoryController.getInstance().get(position).getGeolocation().getAddress());
-        intent.putExtra("latitude", HabitHistoryController.getInstance().get(position).getGeolocation().getLatLng().latitude);
-        intent.putExtra("longitude", HabitHistoryController.getInstance().get(position).getGeolocation().getLatLng().longitude);
-
+        if (HabitHistoryController.getInstance().get(position).getGeolocation() != null) {
+            intent.putExtra("address", HabitHistoryController.getInstance().get(position).getGeolocation().getAddress());
+            intent.putExtra("latitude", HabitHistoryController.getInstance().get(position).getGeolocation().getLatLng().latitude);
+            intent.putExtra("longitude", HabitHistoryController.getInstance().get(position).getGeolocation().getLatLng().longitude);
+        }
         startActivityForResult(intent, CHANGE_LOCATION_CODE);
     }
 
