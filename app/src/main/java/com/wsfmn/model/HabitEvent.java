@@ -116,6 +116,8 @@ public class HabitEvent{
         return CurrentPhotoPath;
     }
 
+    public void setCurrentPhotoPath(String CurrentPhotoPath){this.CurrentPhotoPath = CurrentPhotoPath;}
+
     public String getActualCurrentPhotoPath(){return ActualCurrentPhotoPath;}
 
     public void setActualCurrentPhotoPath(String CurrentPhotoPath){this.ActualCurrentPhotoPath = CurrentPhotoPath;}
