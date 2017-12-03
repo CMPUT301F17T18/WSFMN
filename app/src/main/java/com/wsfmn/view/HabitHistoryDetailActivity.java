@@ -134,6 +134,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             c.get(ID).setComment(comment.getText().toString());
             c.get(ID).setHabit(c.get(ID).getHabitFromEvent());
             c.get(ID).setDate(getDateUIHED());
+            c.get(ID).setCurrentPhotoPath(path);
             c.get(ID).setActualCurrentPhotoPath(path);
             c.storeAndUpdate(c.get(ID));
             startActivity(intent);
