@@ -22,17 +22,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.wsfmn.controller.OnlineController;
 import com.wsfmn.model.Geolocation;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * A class for getting location details from a user for inclusion in a Habit Event.
+ */
 public class AddLocationActivity extends AppCompatActivity {
 
-    private Button button;
-    private Button B_new;
+    private Button use_GPS;
+    private Button search_for_location;
     private Button B_confirm;
     private TextView T_address;
     private TextView T_coord;
@@ -43,8 +45,14 @@ public class AddLocationActivity extends AppCompatActivity {
     private LatLng latLng;
     private String knownName;
     private double latitude;
-    private double longtitude;
+    private double longitude;
 
+
+    /**
+     * Setup activity for capturing user's current location or a location of their choice.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,19 +61,19 @@ public class AddLocationActivity extends AppCompatActivity {
 
         T_coord = (TextView) findViewById(R.id.t_coordination);
         T_address = (TextView) findViewById(R.id.t_address);
-        button = (Button) findViewById(R.id.b_Current);
-        B_new = (Button) findViewById(R.id.b_New);
+        use_GPS = (Button) findViewById(R.id.use_GPS);
+        search_for_location = (Button) findViewById(R.id.search_for_location);
         B_confirm = (Button) findViewById(R.id.b_confirm);
         E_address = (EditText) findViewById(R.id.e_address);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         listener = new LocationListener() {
-            @Override
             /**
              *
              * @param location
              */
+            @Override
             public void onLocationChanged(Location location) {
 
                 T_coord.setText("");
@@ -75,7 +83,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 Geocoder geocoder = new Geocoder(AddLocationActivity.this);
 
                 latitude = location.getLatitude();
-                longtitude = location.getLongitude();
+                longitude = location.getLongitude();
 
                 latLng = new LatLng(location.getLongitude(),location.getLatitude());
                 try {
@@ -117,56 +125,14 @@ public class AddLocationActivity extends AppCompatActivity {
         };
 
         configure_button();
-        newplace_button();
-        confirm_button();
-    }
-    /**
-     *
-     * Button method it will save LatLng(coordination)
-     */
-
-    public void saveLatlng()
-    {
-        String latLngSave = T_coord.getText().toString();
-        String file_name = "save_coordination";
-        try {
-            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
-            fileOutputStream.write(latLngSave.getBytes());
-            fileOutputStream.close();
-//            Toast.makeText(getApplicationContext(), "Coordinates Saved", Toast.LENGTH_LONG).show();
-
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
     }
 
     /**
      *
-     * Button method it will save Address
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
      */
-    public void saveAddress()
-    {
-        String addressSave = T_address.getText().toString();
-        String file_name = "save_address";
-        try {
-            FileOutputStream fileOutputStream = openFileOutput(file_name, MODE_PRIVATE);
-            fileOutputStream.write(addressSave.getBytes());
-            fileOutputStream.close();
-//            Toast.makeText(getApplicationContext(), "Address Saved", Toast.LENGTH_LONG).show();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -178,136 +144,125 @@ public class AddLocationActivity extends AppCompatActivity {
                 break;
         }
     }
+
     /**
+     * Return to AddNewHabitEventActivity to save the GeoLocation results.
      *
-     * Button method it will go back to AddNewHabitEventActivity
      */
-
-    void confirm_button(){
-        B_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                saveLatlng();
-                saveAddress();
-
-                Intent returnIntent = new Intent();
-                //returnIntent.putExtra("new_coordination",latLng);
-                returnIntent.putExtra("new_address", knownName);
-                returnIntent.putExtra("new_latitude", latitude);
-                returnIntent.putExtra("new_longtitude", longtitude);
-
-                setResult(RESULT_OK, returnIntent);
-                finish();
-
-                //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
-                //startActivity(intent);
-            }
-
-        });
+    public void confirmLocation(View view){
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("address", knownName);
+        returnIntent.putExtra("latitude", latitude);
+        returnIntent.putExtra("longitude", longitude);
+        setResult(RESULT_OK, returnIntent);
     }
 
-    /**
-     *
-     * Button method it will get the location which is entered by user
-     */
 
-    void newplace_button(){
-        B_new.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //noinspection MissingPermission
-                if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
+    /**
+     * Search for the coordinates and name details of a location entered by user.
+     *
+     */
+    public void searchForLocation(View view){
+        // Check if the User is connected to the internet
+        if (!OnlineController.isConnected()) {
+            Toast.makeText(getApplicationContext(), "Requires Internet Connection", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //Check if the user has permission
+        if (ActivityCompat.checkSelfPermission(
+                AddLocationActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                        AddLocationActivity.this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+
+        List<Address> addressList;
+        Geocoder geocoder = new Geocoder(AddLocationActivity.this);
+        try {
+            String location = E_address.getText().toString();
+
+            addressList = geocoder.getFromLocationName(location, 1);
+            //check if the input address can be found
+            if (addressList.size() == 0) {
+                Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
+            } else {
+                location = E_address.getText().toString();
+                addressList = geocoder.getFromLocationName(location, 1);
+
+                Address myAddress = addressList.get(0);
+
+                knownName = myAddress.getAddressLine(0) + "\n" +
+                            myAddress.getAddressLine(1) + "\n";
+                if (myAddress.getAddressLine(2) != null) {
+                    knownName = knownName + myAddress.getAddressLine(2);
                 }
-                //String location = E_address.getText().toString();
-                List<Address> addressList = null;
 
+                latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
 
-                    //use Geocoder class here
-                    Geocoder geocoder = new Geocoder(AddLocationActivity.this);
-                    try {
-                        String location = E_address.getText().toString();
+                latitude = myAddress.getLatitude();
+                longitude = myAddress.getLongitude();
 
-                        addressList = geocoder.getFromLocationName(location, 1);
-                        //check if the input address can be found
-                        if (addressList.size() != 0){
-                            //Toast.makeText(getApplicationContext(), "Please enter a validate address", Toast.LENGTH_LONG).show();
+                T_coord.setText("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
+                T_address.setText(knownName);
 
-                            location = E_address.getText().toString();
-                            addressList = geocoder.getFromLocationName(location, 1);
-
-                            Address myAddress = addressList.get(0);
-
-                            knownName = myAddress.getAddressLine(0) + "\n" +
-                                        myAddress.getAddressLine(1) + "\n";
-                            if (myAddress.getAddressLine(2) != null) {
-                                knownName = knownName + myAddress.getAddressLine(2);
-                            }
-
-                            latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
-
-                            latitude = myAddress.getLatitude();
-                            longtitude = myAddress.getLongitude();
-
-                            T_coord.setText("");
-                            T_address.setText("");
-
-                            T_coord.append("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
-
-                            T_address.append(knownName);
-
-
-                            geolocation = new Geolocation(knownName, latLng);
-                        }
-
-                        else{
-                            Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
-
-                        }
-
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
-
-                    }
+                geolocation = new Geolocation(knownName, latLng);
             }
-        });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Invalid Address", Toast.LENGTH_LONG).show();
+        }
     }
 
-
-
     /**
+     * Check permission and get the current location.
      *
-     * Button method it will check the permission and get the current location
      */
-
     void configure_button() {
-        // first check for permissions
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        // Check for permissions
+        if (ActivityCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                        this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
-                                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET}
+                requestPermissions(
+                        new String[]{
+                                Manifest.permission.ACCESS_COARSE_LOCATION,
+                                Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.INTERNET}
                         , 10);
             }
             return;
         }
-        // this code won'textView execute IF permissions are not allowed, because in the line above there is return statement.
-        button.setOnClickListener(new View.OnClickListener() {
+        // this code won't go textView execute IF permissions are not allowed, because in the line above there is return statement.
+        use_GPS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //noinspection MissingPermission
-                if (ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(AddLocationActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(
+                        AddLocationActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(
+                                AddLocationActivity.this,
+                                Manifest.permission.ACCESS_COARSE_LOCATION)
+                                != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
                     // here to request the missing permissions, and then overriding

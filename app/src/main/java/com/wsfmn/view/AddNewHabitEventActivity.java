@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.OnlineController;
 import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 
@@ -55,39 +56,28 @@ import java.text.SimpleDateFormat;
  */
 public class AddNewHabitEventActivity extends AppCompatActivity {
 
-    private java.util.Date actualTimeStamp;
+    static final int REQUEST_TAKE_PHOTO = 1;
+    static final int GOT_HABIT_FROM_LIST = 2;
+    static final int ADD_NEW_LOCATION_CODE = 3;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
-    Button addPic;
-    TextView nameHabit;
     EditText Comment;
+    TextView T_showAddress;
+    TextView nameHabit;
+    TextView date2;
+    Button addPic;
     Button viewImage;
     Button addHabitEvent;
     Button addHabit;
-    Intent intent3;
-    Intent intent2;
-    TextView date2;
-    ImageView img;
     String CurrentPhotoPath;
-
     Uri photoURI;
-    String datevalue;
-    TextView T_showAddress;
-    HabitEvent he2;
-    Habit habitList;
-    Habit habitFromTodaysList;
     Geolocation geolocation;
-    Bundle b;
-    Habit habitFromList;
-    LatLng new_coordinate;
-    Integer i;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int GOT_HABIT_FROM_LIST = 2;
-    static final int ADD_NEW_LOCATION_CODE = 3;
+    Integer habitIdx;
 
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
-
-
-
+    /**
+     * Setup the activity for adding a new HabitEvent to HabitHistory.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +86,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if(b != null) {
-            i = b.getInt("positionToday");
-            changeNameToday(i);
+            habitIdx = b.getInt("positionToday");
+            changeNameToday(habitIdx);
         }
 
         Comment = (EditText)findViewById(R.id.Comment);
@@ -138,8 +128,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             @Override
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v){
-                Intent  intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
-                startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
+                 Intent intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
+                    startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
             }
         });
 
@@ -170,17 +160,16 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     }
 
     /**
-     * Checks if have the camera
-     * @return returns Boolean if has camera or not
+     * Checks if the user has a camera
+     * @return if has camera or not
      */
     private boolean checkCamera(){
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
     }
 
-    static final int REQUEST_TAKE_PHOTO = 1;
 
     /**
-     * Taking the image and putting it in the file
+     * Take a picture and save it.
      */
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -206,10 +195,12 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     /**
-     * Creates the file where the image will be stored
+     *
+     * @return
+     * @throws IOException
      */
+    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
@@ -226,40 +217,51 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         CurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
-    //For selecting the habit
+
+    /**
+     * Select the Habit
+     * @param view
+     */
     public void selectHabit(View view){
         Intent intent = new Intent(this, SelectHabitActivity.class);
         startActivityForResult(intent, 2);
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==GOT_HABIT_FROM_LIST){
+        if(requestCode == GOT_HABIT_FROM_LIST){
             if(resultCode == Activity.RESULT_OK) {
-                //intent3 = data.getIntent();
                 Bundle b = data.getExtras();
-                i = b.getInt("position");
-                changeName(i);
+                habitIdx = b.getInt("position");
+                changeName(habitIdx);
             }
         }
-        //Add new location
+        //Add Location
         if(requestCode == ADD_NEW_LOCATION_CODE) {
             if(resultCode == Activity.RESULT_OK) {
-//                Bundle b = data.getExtras();
-//                Toast.makeText(getApplicationContext(), "Address showed", Toast.LENGTH_LONG).show();
-                Double latitude = data.getDoubleExtra("new_latitude",0);
-                Double longtitude = data.getDoubleExtra("new_longtitude",0);
-                LatLng latLng = new LatLng(latitude,longtitude);
-                String address = data.getStringExtra("new_address");
+                String address = data.getStringExtra("address");
+                geolocation = new Geolocation(
+                        address,
+                        new LatLng(
+                                data.getDoubleExtra("latitude",0),
+                                data.getDoubleExtra("longitude",0))
+                );
 
-                geolocation = new Geolocation(address, latLng);
                 T_showAddress.setText(address);
             }
         }
     }
 
     /**
-     *  Display the habit the user selected for this habit event
+     * Display the Habit the user selected for this habit event.
+     *
+     * @param i index of Habit in the HabitHistory
      */
     public void changeName(int i){
         nameHabit = (TextView)findViewById(R.id.habitName);
@@ -267,6 +269,10 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         nameHabit.setText(control.getHabit(i).getTitle().toString());
     }
 
+    /**
+     * Display the Habit the user selected for this habit event (from Habits For Today).
+     * @param i index of Habit in HabitsForToday
+     */
     public void changeNameToday(int i){
         nameHabit = (TextView)findViewById(R.id.habitName);
         HabitListController control = HabitListController.getInstance();
@@ -291,10 +297,10 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
                 System.out.println(CurrentPhotoPath);
             }
             HabitListController control = HabitListController.getInstance();
-            HabitEvent hEvent = new HabitEvent(control.getHabit(i),
+            HabitEvent hEvent = new HabitEvent(control.getHabit(habitIdx),
                     nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, actualCurrentPhotoPath, getDateUIHE(), geolocation);
 
-            Habit habit = control.getHabit(i);
+            Habit habit = control.getHabit(habitIdx);
             //Adding Habit Event to the list
             HabitHistoryController control2 = HabitHistoryController.getInstance();
 
@@ -327,9 +333,12 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddImageActivity.class);
         intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
         startActivity(intent);
-//        Comment.setText(getDateUIHE().toDateString());
     }
 
+    /**
+     *
+     * @return
+     */
     public com.wsfmn.model.Date getDateUIHE(){
         String date = date2.getText().toString();
         String[] list = date.split(" / ");
