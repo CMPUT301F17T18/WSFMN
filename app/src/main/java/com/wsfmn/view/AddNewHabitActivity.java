@@ -44,9 +44,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
     private EditText habitTitle;
     private EditText habitReason;
     private TextView dateText;
-    private Button everyDayButton;
     private Button setDateButton;
-    private Button confirmButton;
 
     private CheckBox monday;
     private CheckBox tuesday;
@@ -64,9 +62,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
 
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
-        everyDayButton = (Button) findViewById(R.id.checkEveryDay);
         setDateButton = (Button) findViewById(R.id.setDateButton);
-        confirmButton = (Button) findViewById(R.id.confirmButton2);
         dateText = (TextView) findViewById(R.id.dateText);
 
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
