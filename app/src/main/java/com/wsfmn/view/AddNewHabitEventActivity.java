@@ -10,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -357,13 +356,12 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
-        ImageView mImage = (ImageView)findViewById(R.id.imageView);
 
+        ImageView mImage = (ImageView)findViewById(R.id.imageView);
         int targetW = mImage.getWidth();
         int targetH = mImage.getHeight();
 
-        int scaleFactor = Math.min(bmOptions.outWidth/targetW, bmOptions.outHeight/targetH);
-
+        int scaleFactor = 65536;
         File img = new File(CurrentPhotoPath);
         long length = img.length();
 
@@ -372,8 +370,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         bmOptions.inJustDecodeBounds = false;
 
         Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
-        //bmOptions.inPurgeable = true;
-        while(length > 66536) {
+
+        if(length > scaleFactor) {
             imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
         }
 
@@ -392,6 +390,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
         return file.getAbsolutePath();
     }
+
+
+
 
     public String compressImage(String CurrentPhotoPath){
         Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
