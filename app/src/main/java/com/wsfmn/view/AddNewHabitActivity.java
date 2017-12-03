@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wsfmn.controller.ProfileNameController;
@@ -42,7 +43,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
 
     private EditText habitTitle;
     private EditText habitReason;
-    private EditText dateText;
+    private TextView dateText;
     private Button everyDayButton;
     private Button setDateButton;
     private Button confirmButton;
@@ -66,7 +67,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
         everyDayButton = (Button) findViewById(R.id.checkEveryDay);
         setDateButton = (Button) findViewById(R.id.setDateButton);
         confirmButton = (Button) findViewById(R.id.confirmButton2);
-        dateText = (EditText) findViewById(R.id.dateText);
+        dateText = (TextView) findViewById(R.id.dateText);
 
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
         tuesday = (CheckBox) findViewById(tuesdayCheckBox);
