@@ -8,7 +8,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-
 
 import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
@@ -35,6 +33,9 @@ import static com.wsfmn.view.R.id.tuesdayCheckBox;
 import static com.wsfmn.view.R.id.wednesdayCheckBox;
 
 
+/**
+ *  Add a new Habit to the User's.
+ */
 public class AddNewHabitActivity extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -54,8 +55,6 @@ public class AddNewHabitActivity extends AppCompatActivity {
     private CheckBox saturday;
     private CheckBox sunday;
     private Boolean checkedAll;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +98,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
             }
         });
 
-        // sets up listener for the date UI object
+        // setup listener for the date UI object
         mDateSetListener = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -107,18 +106,17 @@ public class AddNewHabitActivity extends AppCompatActivity {
                 dateText.setText(year + " / " + month + " / " + dayOfMonth);
             }
         };
-
     }
 
     /**
-     * this creates a new Habit object with values it receives from
-     * the user, and adds is to the list of habits.
+     * Create a new Habit object with values from the user, and add it to the list of habits.
+     *
+     * @param view
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, ViewHabitListActivity.class);
 
         try {
-
             WeekDays w = new WeekDays();
 
             setUnset(w, monday, WeekDays.MONDAY);
@@ -132,11 +130,9 @@ public class AddNewHabitActivity extends AppCompatActivity {
             Habit habit = new Habit(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""),
                     habitReason.getText().toString(),
                     getDateUI(), w);
-            HabitListController c = HabitListController.getInstance();
 
-            c.addAndStore(habit);
-
-            ProfileNameController.getInstance().updateScore();
+            HabitListController.getInstance().addAndStore(habit);   // save habit
+            ProfileNameController.getInstance().updateScore();      // update user's score
 
             startActivity(intent);
         }
@@ -154,6 +150,12 @@ public class AddNewHabitActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the weekDays for doing a Habit
+     * @param weekDays
+     * @param checkBox
+     * @param day
+     */
     public void setUnset(WeekDays weekDays, CheckBox checkBox, int day){
         if(checkBox.isChecked())
             weekDays.setDay(day);
@@ -187,6 +189,10 @@ public class AddNewHabitActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateUI(){
         String date = dateText.getText().toString();
         String[] list = date.split(" / ");
@@ -195,7 +201,6 @@ public class AddNewHabitActivity extends AppCompatActivity {
         int day = Integer.parseInt(list[2]);
         return new Date(year, month, day);
     }
-
 
     /**
      * Handle Action Bar up button click as a normal back button click
@@ -214,6 +219,10 @@ public class AddNewHabitActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Go back to MainActivity if the HabitList is empty,
+     * otherwise go back to ViewHabitListActivity
+     */
     @Override
     public void onBackPressed() {
         if (HabitListController.getInstance().isEmpty()) {

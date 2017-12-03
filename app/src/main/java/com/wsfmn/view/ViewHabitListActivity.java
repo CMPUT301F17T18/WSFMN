@@ -17,8 +17,9 @@ import com.wsfmn.model.Habit;
 
 import static android.view.Window.FEATURE_ACTION_BAR;
 
+
 /**
- * Show the user their list of Habits and a button to add new Habits.
+ * Show the User their list of Habits and a button to add a new Habit.
  */
 public class ViewHabitListActivity extends AppCompatActivity {
 
@@ -28,7 +29,7 @@ public class ViewHabitListActivity extends AppCompatActivity {
     private Boolean flag_forceAddHabit = true;
 
     /**
-     * Instantiate the Habit ListView and listener for taps on the list.
+     * Instantiate the Habit ListView and listener for clicks on the list.
      *
      * @param savedInstanceState
      */
@@ -38,8 +39,6 @@ public class ViewHabitListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_habit_list);
 
         context = this;
-//        flag_forceAddHabit = true;
-
         habitListView = (ListView) findViewById(R.id.habit_list_view);
 
         habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,7 +88,7 @@ public class ViewHabitListActivity extends AppCompatActivity {
     }
 
     /**
-     * Called when the user taps the Add New Habit button.
+     * Goto AddNewHabitActivity.
      */
     public void addNewHabit(View view) {
         Intent intent = new Intent(this, AddNewHabitActivity.class);
