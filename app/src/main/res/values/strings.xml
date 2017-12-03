@@ -42,6 +42,9 @@
     <string name="coordinates">Coordinates...</string>
     <string name="address_search">Find Address</string>
     <string name="found_address">Address...</string>
+    <string name="near_me">Near Me</string>
+    <string name="my_events">My Events</string>
+    <string name="friends_events">Friends\' Events</string>
 
 
 </resources>
