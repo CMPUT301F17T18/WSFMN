@@ -61,7 +61,6 @@ import java.util.zip.Inflater;
  */
 public class AddNewHabitEventActivity extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int GOT_HABIT_FROM_LIST = 2;
     static final int ADD_NEW_LOCATION_CODE = 3;
@@ -241,7 +240,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Set the image path
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+        if (requestCode == REQUEST_TAKE_PHOTO) {
             if (resultCode == Activity.RESULT_OK) {
                 CurrentPhotoPath = compressImage(CurrentPhotoPath);
                 //CurrentPhotoPath = scaleImage(CurrentPhotoPath);
