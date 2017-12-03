@@ -51,7 +51,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
     private Marker habitEventMarker;
     public static final int REQUEST_LOCATION_CODE= 99;
     private LatLng currentLocation;
-    //private HabitEvent habitEvent;
+
 
 
 
@@ -76,6 +76,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    /** Called when the user click Follows button, it will show all friends markers on the map */
     public void buttonFollows(View v){
 
         mMap.clear();
@@ -86,9 +87,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Geolocation geolocation = habitEvent.getGeolocation();
 
                 LatLng eventCoord = geolocation.getLatLng();
-
-                //float results[] = new float[10];
-                //Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, eventCoord.latitude, eventCoord.longitude, results);
 
 
 
@@ -113,7 +111,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
     }
-
+    /** Called when the user click MyEvent button, it will show all user's markers on the map */
     public void buttonMyEvent(View v){
 
         mMap.clear();
@@ -150,6 +148,9 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
+    /** Called when the user click Higlight button, it will show all friends and user's markers on the map */
+    /** If the distance between current location and the event within 5km, the marker of the event will be shown as green*/
+    /** Other event's marker will be shown as default color: RED*/
     public void buttonHighlight(View v){
 
         mMap.clear();
@@ -159,15 +160,10 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
 
         if (currentLocation != null) {
-            Button Highlight = (Button) findViewById(R.id.B_highlight);
-            //Highlight.setText("clicked");
-            //Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
 
             if (highlightMode == 7) {
 
                 for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
-                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
-
                     HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
                     if (habitEvent.getGeolocation() != null) {
                         Geolocation geolocation = habitEvent.getGeolocation();
@@ -251,7 +247,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             else if(highlightMode == 5){
 
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     if (habitEvent.getGeolocation() != null) {
@@ -329,7 +324,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
             }
             else if(highlightMode == 6){
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     if (habitEvent.getGeolocation() != null) {

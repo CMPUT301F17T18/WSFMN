@@ -67,6 +67,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     Intent intent2;
     TextView date2;
     ImageView img;
+    String CurrentPhotoPath;
+
     Uri photoURI;
     String datevalue;
     TextView T_showAddress;
@@ -79,8 +81,11 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     LatLng new_coordinate;
     Integer i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int GOT_HABIT_FROM_LIST = 2;
     static final int ADD_NEW_LOCATION_CODE = 3;
+
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+
 
 
     @Override
@@ -88,8 +93,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit_event);
 
+
         Bundle b = getIntent().getExtras();
-        if(b!=null) {
+        if(b != null) {
             i = b.getInt("positionToday");
             changeNameToday(i);
         }
@@ -200,9 +206,6 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         }
     }
 
-
-    String CurrentPhotoPath;
-
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     /**
      * Creates the file where the image will be stored
@@ -231,7 +234,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode==2){
+        if(requestCode==GOT_HABIT_FROM_LIST){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
                 Bundle b = data.getExtras();
@@ -276,6 +279,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      */
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
+        String actualCurrentPhotoPath = CurrentPhotoPath;
         try {
             if(CurrentPhotoPath!=null) {
                 Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
@@ -288,7 +292,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             }
             HabitListController control = HabitListController.getInstance();
             HabitEvent hEvent = new HabitEvent(control.getHabit(i),
-                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, getDateUIHE(), geolocation);
+                    nameHabit.getText().toString(), Comment.getText().toString(), CurrentPhotoPath, actualCurrentPhotoPath, getDateUIHE(), geolocation);
 
             Habit habit = control.getHabit(i);
             //Adding Habit Event to the list

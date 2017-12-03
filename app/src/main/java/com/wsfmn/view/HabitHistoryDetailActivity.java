@@ -49,10 +49,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     Button confirm;
     TextView date;
     TextView T_address;
-    String id2;
+    String ID;
     int position;
     Button B_changeLocation;
-    static final int CHANGE_LOCATION_CODE = 3;
+//    static final int CHANGE_LOCATION_CODE = 3;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -71,21 +71,20 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         B_changeLocation = (Button)findViewById(R.id.B_changeLocation);
         T_address = (TextView)findViewById(R.id.T_C_showAddress);
 
-        Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
         try {
-            //Getting the position of Habit Event the user selected
-            id2 = b.getString("id");
+            //Get the ID of Habit Event the user selected
+            ID = b.getString("id");
         }catch (NullPointerException e){
             //TODO Can we fix this instead fo catching a NullPointerException?
         }
 
-        HabitHistoryController control = HabitHistoryController.getInstance();
+        HabitHistoryController c = HabitHistoryController.getInstance();
         try {
-            habitName.setText(control.get(id2).getHabitFromEvent().getTitle());
-            comment.setText(control.get(id2).getComment());
-            if (control.get(id2).getGeolocation() != null) {
-                T_address.setText(control.get(id2).getGeolocation().getAddress());
+            habitName.setText(c.get(ID).getHabitFromEvent().getTitle());
+            comment.setText(c.get(ID).getComment());
+            if (c.get(ID).getGeolocation() != null) {
+                T_address.setText(c.get(ID).getGeolocation().getAddress());
             }
             date.setText(new com.wsfmn.model.Date().toString());
         } catch(IndexOutOfBoundsException e){
@@ -126,12 +125,13 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
         try {
             //Set the habitEvent parameters that the user gets
-            HabitHistoryController control2 = HabitHistoryController.getInstance();
-            control2.get(id2).setTitle(habitName.getText().toString());
-            control2.get(id2).setComment(comment.getText().toString());
-            control2.get(id2).setHabit(control2.get(id2).getHabitFromEvent());
-            control2.get(id2).setDate(getDateUIHED());
-            control2.storeAndUpdate(control2.get(id2));
+            HabitHistoryController c = HabitHistoryController.getInstance();
+            c.get(ID).setTitle(habitName.getText().toString());
+            c.get(ID).setComment(comment.getText().toString());
+            c.get(ID).setHabit(c.get(ID).getHabitFromEvent());
+            c.get(ID).setDate(getDateUIHED());
+            c.get(ID).setActualCurrentPhotoPath(path);
+            c.storeAndUpdate(c.get(ID));
             startActivity(intent);
         } catch (HabitEventCommentTooLongException e) {
             Toast.makeText(HabitHistoryDetailActivity.this, e.getMessage(),
@@ -147,9 +147,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param view
      */
     public void deleteHE(View view){
+        HabitHistoryController c = HabitHistoryController.getInstance();
+        c.removeAndStore(c.get(ID));
+
         Intent intent = new Intent(HabitHistoryDetailActivity.this, ViewHabitHistoryActivity.class);
-        HabitHistoryController control3 = HabitHistoryController.getInstance();
-        control3.removeAndStore(control3.get(id2));
         startActivity(intent);
     }
 
@@ -173,8 +174,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
-        HabitHistoryController control4 = HabitHistoryController.getInstance();
-        path = control4.get(id2).getCurrentPhotoPath();
+        path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
         //If no picture taken before then when it is null value we create new image
         if(path == null) {
             path = CurrentPhotoPath;
@@ -190,8 +190,8 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void changePicture2(View view) throws IOException {
         try {
-            HabitHistoryController control4 = HabitHistoryController.getInstance();
-            dispatchTakePictureIntent(control4.get(id2).getCurrentPhotoPath());
+            dispatchTakePictureIntent(
+                    HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath());
         }catch (NullPointerException e){
             /*
             Reuse Code: https://developer.android.com/training/camera/photobasics.html
@@ -207,7 +207,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     private String createImageFile() throws IOException {
         // Create an image file name
         String timeStamp;
-        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -254,22 +254,23 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                 Bundle b = data.getExtras();
                 position = b.getInt("position");
                 TextView nameHabit = (TextView)findViewById(R.id.habitName2);
-                HabitListController control = HabitListController.getInstance();
-                nameHabit.setText(control.getHabit(position).getTitle().toString());
-                HabitHistoryController control2 = HabitHistoryController.getInstance();
-                control2.get(id2).setHabit(control.getHabit(position));
+                HabitListController l = HabitListController.getInstance();
+                nameHabit.setText(l.getHabit(position).getTitle().toString());
+                HabitHistoryController.getInstance().get(ID).setHabit(l.getHabit(position));
             }
         }
 
-        if(requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
-            Bundle b = data.getExtras();
-            Double latitude = b.getDouble("change_latitude");
-            Double longtitude = b. getDouble("change_longtitude");
-            String address = b.getString("change_address");
+        // Uncomment and repair for Geolocation Object if we are allowing change of location
 
-            T_address.setText(address);
-            LatLng latLng = new LatLng(latitude,longtitude);
-        }
+//        if(requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
+//            Bundle b = data.getExtras();
+//            Double latitude = b.getDouble("change_latitude");
+//            Double longitude = b. getDouble("change_longtitude");
+//            String address = b.getString("change_address");
+//
+//            T_address.setText(address);
+//            LatLng latLng = new LatLng(latitude,longitude);
+//        }
     }
 
     public com.wsfmn.model.Date getDateUIHED(){

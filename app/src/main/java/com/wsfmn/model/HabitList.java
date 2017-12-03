@@ -1,5 +1,7 @@
 package com.wsfmn.model;
 
+import com.wsfmn.controller.HabitHistoryController;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +74,16 @@ public class HabitList {
                     habitsForToday.add(habits.get(i));
             }
         }
+
+        HabitHistoryController c = HabitHistoryController.getInstance();
+        for(int i = 0; i < habitsForToday.size(); i++){
+            for(int j = 0; j < c.size(); j++){
+                if(c.get(j).getHabit().equal(habitsForToday.get(i))
+                        && c.get(j).getDate().compareDate(today) == 0)
+                    habitsForToday.remove(i);
+            }
+        }
+        
         return habitsForToday;
     }
 
