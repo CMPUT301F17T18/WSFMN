@@ -155,6 +155,8 @@ public class ProfileActivity extends Activity {
             HabitListController.getInstance().storeAll();
             HabitHistoryController.getInstance().storeAll();
             OnlineController.syncDeleted();  // delete all the objects that were deleted while offline.
+            ProfileNameController.getInstance().updateScore(); // update user's score
+
         }
 
         //load the profilename if it exists
@@ -232,9 +234,6 @@ public class ProfileActivity extends Activity {
         requestsFromUser.setAdapter(adapter);
 
     }
-
-
-
 
     /**
      * Method to retrieve results from another activity. Used for getting profilename from

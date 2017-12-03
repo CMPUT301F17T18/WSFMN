@@ -2,13 +2,19 @@ package com.wsfmn.view.model;
 
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.wsfmn.controller.HabitHistoryController;
+import com.wsfmn.controller.HabitListController;
 import com.wsfmn.model.Date;
 import com.wsfmn.exceptions.DateNotValidException;
 import com.wsfmn.model.Habit;
+import com.wsfmn.model.HabitEvent;
+import com.wsfmn.model.HabitHistory;
 import com.wsfmn.model.HabitList;
 import com.wsfmn.exceptions.HabitReasonTooLongException;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.model.WeekDays;
+
+import java.util.ArrayList;
 
 /**
  * Created by musaed on 2017-10-21.
@@ -151,28 +157,33 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
      *
      *
      */
-    public void testGetHabitsForToday(){
-        HabitList habitList = new HabitList();
+    public void testGetHabitsForToday() throws  Exception{
+        HabitList habitsForToday = new HabitList();
 
-        Habit habit = null;
+        boolean flag = true;
 
-        try{
-            habit = new Habit("Walking", "To Lose Wait", new Date(), new WeekDays());
-        }
-        catch(HabitTitleTooLongException e){
-            //null
-        }
-        catch(DateNotValidException e){
-            //null
-        }
-        catch(HabitReasonTooLongException e){
-            //null
-        }
+        Habit habit = new Habit("Walking", "To Lose Wait", new Date(), new WeekDays());
+
+        HabitEvent h1 = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null, new Date());
+        HabitEvent h2 = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null, new Date());
+        HabitEvent h3 = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
+                null, new Date());
 
         habit.getWeekDays().setDay(new Date().getDayOfWeek()-1);
-        habitList.addHabit(habit);
+        habitsForToday.addHabit(habit);
 
-        assertEquals(habitList.getHabitsForToday().size(), 1);
+
+        HabitHistoryController c = HabitHistoryController.getInstance();
+        while(!c.isEmpty()) c.remove(0);
+
+        c.add(h1);
+        c.add(h2);
+        c.add(h3);
+
+
+        assertEquals(0, habitsForToday.getHabitsForToday().size());
     }
 
 }

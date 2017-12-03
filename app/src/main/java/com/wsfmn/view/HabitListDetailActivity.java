@@ -85,7 +85,6 @@ public class HabitListDetailActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        Intent intent = getIntent();
         Bundle b = getIntent().getExtras();
         position = b.getInt("position");
 
