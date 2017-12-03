@@ -122,7 +122,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
             setUnset(w, saturday, WeekDays.SATURDAY);
             setUnset(w, sunday, WeekDays.SUNDAY);
 
-            Habit habit = new Habit(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""),
+            Habit habit = new Habit(habitTitle.getText().toString(),
                     habitReason.getText().toString(),
                     getDateUI(), w);
 
