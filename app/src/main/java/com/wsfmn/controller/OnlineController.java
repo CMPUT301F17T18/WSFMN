@@ -95,7 +95,8 @@ public class OnlineController {
      * this method will proceed if the device is connected to the internet and will delete the
      * given habits on an ElasticSearch DB.
      *
-     * If the device is not connected to the internet this method fails silently.
+     * If the device is not connected to the internet this method adds the Habit ID's to a
+     * Delete.sav file so they can be deleted once a connection is established.
      *
      * The delete functionality depends upon there being a non-null id for the habit being deleted.
      * If a habit has not yet been stored on ElasticSearch then it's ID will be null and nothing
@@ -106,29 +107,18 @@ public class OnlineController {
     public static class DeleteHabits extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... habit_ids) {
-            if (isConnected()) {
-                verifySettings();
-                for (String h_id : habit_ids) {
-                    Delete delete = new Delete.Builder(h_id)
-                            .index(INDEX_BASE + App.USERNAME)
-                            .type("habit")
-                            .build();
-                    try {
-                        client.execute(delete);
-                    } catch (IOException e) {
-                        Log.i("Error", "Delete Habit failed");
-                    }
+            verifySettings();
+            for (String h_id : habit_ids) {
+                Delete delete = new Delete.Builder(h_id)
+                        .index(INDEX_BASE + App.USERNAME)
+                        .type("habit")
+                        .build();
+                try {
+                    client.execute(delete);
+                } catch (IOException e) {
+                    Log.i("Error", "Delete Habit failed");
                 }
-            } else {
-                // Store these Habits' IDs for online deletion upon next connection
-                String[] toDelete = new String[habit_ids.length];
-                for (int i = 0; i< habit_ids.length; i++) {
-                    toDelete[i] = "HAB" + habit_ids[i];
-                }
-                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
-                storeDeleted.execute(toDelete);
             }
-
             return null;
         }
     }
@@ -226,36 +216,25 @@ public class OnlineController {
      * will proceed if the device is connected to the internet and currently will return a
      * HabitList object containing at most 10 Habit objects that match the search parameter.
      *
-     * If the device is not connected to the internet this method fails silently and returns null
+     * If the device is not connected to the internet this method adds the HabitEvent
+     * ID's to a Delete.sav file so they can be deleted once a connection is established.
      *
      * Created by nmayne 11/07/17.
      */
     public static class DeleteHabitEvents extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... habitEvent_ids) {
-            if (isConnected()) {
-                verifySettings();
-                for (String he_ids : habitEvent_ids) {
-                    Delete delete = new Delete.Builder(he_ids)
-                            .index(INDEX_BASE + App.USERNAME)
-                            .type("habitevent")
-                            .build();
-                    try {
-                        client.execute(delete);
-                    } catch (IOException e) {
-
-
-                        Log.i("Error", "Delete Habit Event failed");
-                    }
+            verifySettings();
+            for (String he_ids : habitEvent_ids) {
+                Delete delete = new Delete.Builder(he_ids)
+                        .index(INDEX_BASE + App.USERNAME)
+                        .type("habitevent")
+                        .build();
+                try {
+                    client.execute(delete);
+                } catch (IOException e) {
+                    Log.i("Error", "Delete Habit Event failed");
                 }
-            } else {
-                // Store these HabitEvents' IDs for online deletion upon next connection
-                String[] toDelete = new String[habitEvent_ids.length];
-                for (int i = 0; i < habitEvent_ids.length; i++) {
-                    toDelete[i] = "HEV" + habitEvent_ids[i];
-                }
-                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
-                storeDeleted.execute(toDelete);
             }
             return null;
         }
@@ -400,11 +379,7 @@ public class OnlineController {
         @Override
         protected ArrayList<ProfileName> doInBackground(String... search_parameters) {
             verifySettings();
-
             ArrayList<ProfileName> ProfileNameScore = new ArrayList<ProfileName>();
-
-
-
 
             for(String name : search_parameters) {
                 String query =  "{ \"query\": { \"term\": { \"name\": \""
@@ -615,36 +590,30 @@ public class OnlineController {
     public static class DeleteRequest extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... search_parameters) {
-            if (isConnected()) {
-                verifySettings();
-                    Delete delete = new Delete.Builder(search_parameters[0])
-                            .index(INDEX_BASE)
-                            .type("request")
-                            .build();
-                    try {
-                        client.execute(delete);
-                    } catch (IOException e) {
-                        Log.i("Error", "Delete Habit Event failed");
-                    }
-
-            } else {
-                // Store these Requests for online deletion upon next connection
-                String[] toDelete = new String[search_parameters.length];
-                for (int i = 0; i < search_parameters.length; i++) {
-                    toDelete[i] = "REQ" + search_parameters[i];
+            verifySettings();
+                Delete delete = new Delete.Builder(search_parameters[0])
+                        .index(INDEX_BASE)
+                        .type("request")
+                        .build();
+                try {
+                    client.execute(delete);
+                } catch (IOException e) {
+                    Log.i("Error", "Delete Habit Event failed");
                 }
-                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
-                storeDeleted.execute(toDelete);
-            }
             return null;
         }
     }
 
     public void deleteRequest(String id){
         //Check controller for name
-        OnlineController.DeleteRequest check =
-                new OnlineController.DeleteRequest();
-        check.execute(id);
+        if (isConnected()) {
+            OnlineController.DeleteRequest check =
+                    new OnlineController.DeleteRequest();
+            check.execute(id);
+        } else {
+            // Store these Requests for online deletion upon next connection
+            OfflineController.addToOfflineDelete("REQ", id);
+        }
 
     }
 
@@ -876,29 +845,17 @@ public class OnlineController {
                 // TODO Build the query
                 String query = "{\n" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
 
-
                 DeleteByQuery delete = new DeleteByQuery.Builder(query)
                         .addIndex(INDEX_BASE)
                         .addType("profilename")
                         .build();
-
                 try {
                     // TODO get the results of the query
                     JestResult result = client.execute(delete);
                 } catch (Exception e) {
-
-
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
                 }
                 return requests;
-            } else {
-                // Store these HabitEvents for online deletion upon next connection
-                String[] toDelete = new String[search_parameters.length];
-                for (int i = 0; i < search_parameters.length; i++) {
-                    toDelete[i] = "PRO" + search_parameters[i];
-                }
-                OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
-                storeDeleted.execute(toDelete);
             }
             return null;
         }
@@ -917,7 +874,6 @@ public class OnlineController {
             client = (JestDroidClient) factory.getObject();
         }
     }
-
 
     /**
      * Delete all the objects online that were deleted while offline and then save the cleared list

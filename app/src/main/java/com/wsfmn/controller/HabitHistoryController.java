@@ -182,7 +182,7 @@ public class HabitHistoryController {
 
     /**
      * Removes and returns a HabitEvent at the specified index in HabitHistory.
-     * NOTE: To save this change and update online instead use, removeAndStore(int idx).
+     * NOTE: To save this change and update online instead use, removeAndStore(HabitEvent he).
      *
      * @param idx int: the index of the HabitEvent to remove
      * @return HabitEvent removed from the specified index
@@ -244,9 +244,15 @@ public class HabitHistoryController {
     public HabitEvent removeAndStore(HabitEvent he) throws IndexOutOfBoundsException{
         int idx = habitHistory.indexOf(he);
         if (idx != -1) {
-            OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
-                    new OnlineController.DeleteHabitEvents();
-            deleteHabitEventsOnline.execute(he.getId());
+            if (OnlineController.isConnected()) {
+                OnlineController.DeleteHabitEvents deleteHabitEventsOnline =
+                        new OnlineController.DeleteHabitEvents();
+                deleteHabitEventsOnline.execute(he.getId());
+
+            } else {
+                // Store this Habit Event ID for online deletion upon next connection
+                OfflineController.addToOfflineDelete("HEV", he.getId());
+            }
             HabitEvent removed = habitHistory.remove(idx);
             store();
 

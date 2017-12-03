@@ -177,11 +177,10 @@ public class OfflineController {
         protected Void doInBackground(String... delete) {
             try {
                 String[] d = delete;
-                FileOutputStream fos = App.CONTEXT.openFileOutput(DELETED_FILENAME, Context.MODE_APPEND);
+                FileOutputStream fos = App.CONTEXT.openFileOutput(DELETED_FILENAME,0);
                 OutputStreamWriter writer = new OutputStreamWriter(fos);
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
-                builder.serializeNulls();
                 gson.toJson(d, writer);
                 writer.flush();
             } catch (FileNotFoundException e) {
@@ -197,21 +196,58 @@ public class OfflineController {
      * Getting the user's deleted elements from Deleted.sav
      */
     public static class GetDeleted extends AsyncTask<Void, Void, String[]> {
-
         @Override
         protected String[] doInBackground(Void... params) {
-            String[] deleted = new String[0];
+            String[] deleted;
             try {
                 FileInputStream fis = App.CONTEXT.openFileInput(DELETED_FILENAME);
                 BufferedReader in = new BufferedReader(new InputStreamReader(fis));
                 Gson gson = new Gson();
                 deleted = gson.fromJson(in, String[].class);
             } catch (FileNotFoundException e) {
-                Log.i("OfflineController","Created " + DELETED_FILENAME);
+                deleted = new String[0];
             }
             return deleted;
         }
     }
+
+    /**
+     * Coordinate the Offline storage of entities slated for deletion online.
+     *
+     * @param tag three char tag to identify type for deletion
+     * @param ID the Elastic ID of the entity to delete
+     */
+    public static void addToOfflineDelete(String tag, String ID) {
+        String[] prev_deleted;
+        String[] new_deleted;
+
+        try {
+            OfflineController.GetDeleted getDeleted = new OfflineController.GetDeleted();
+            getDeleted.execute();
+            prev_deleted = getDeleted.get();
+        } catch (InterruptedException e) {
+            prev_deleted = new String[0];
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            prev_deleted = new String[0];
+            e.printStackTrace();
+        }
+
+        if (prev_deleted != null) {
+            new_deleted = new String[prev_deleted.length + 1];
+        } else {
+            new_deleted = new String[1];
+        }
+
+        for (int i = 0; i < new_deleted.length - 1; i++) {
+           new_deleted[i] = prev_deleted[i];
+        }
+        new_deleted[new_deleted.length - 1] = tag + ID;
+
+        OfflineController.StoreDeleted storeDeleted = new OfflineController.StoreDeleted();
+        storeDeleted.execute(new_deleted);
+    }
+
 
     /**
      * Reset Deleted.sav
