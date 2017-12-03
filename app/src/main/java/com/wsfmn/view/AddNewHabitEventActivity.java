@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -352,17 +353,29 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     }
 
     public String scaleImage(String CurrentPhotoPath){
-        int targetW = 15;
-        int targetH = 15;
-        int scaleFactor = Math.max(targetH, targetW);
+
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
-        bmOptions.inJustDecodeBounds = false;
+        ImageView mImage = (ImageView)findViewById(R.id.imageView);
+
+        int targetW = mImage.getWidth();
+        int targetH = mImage.getHeight();
+
+        int scaleFactor = Math.min(bmOptions.outWidth/targetW, bmOptions.outHeight/targetH);
+
+        File img = new File(CurrentPhotoPath);
+        long length = img.length();
+
         bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
+
+        bmOptions.inJustDecodeBounds = false;
 
         Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+        //bmOptions.inPurgeable = true;
+        while(length > 66536) {
+            imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
+        }
 
         File file = new File(CurrentPhotoPath);
         if (file.exists()) {
