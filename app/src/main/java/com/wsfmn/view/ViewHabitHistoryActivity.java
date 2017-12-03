@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.ProfileNameController;
@@ -87,6 +88,7 @@ public class ViewHabitHistoryActivity extends AppCompatActivity {
      */
     public void addHE(View view){
         if (HabitListController.getInstance().isEmpty()) {
+            Toast.makeText(ViewHabitHistoryActivity.this, "Add A Habit",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, AddNewHabitActivity.class);
             startActivity(intent);
         } else {
