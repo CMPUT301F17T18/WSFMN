@@ -89,7 +89,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit_event);
 
-
+        // If not null then this activity was called from the HabitsForTodayActivity
+        // So we preset the Habit to the one that was clicked
         Bundle b = getIntent().getExtras();
         if(b != null) {
             habitIdx = b.getInt("positionToday");
@@ -108,8 +109,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         String dateAndTime = new Date(0).toString();
         date2.setText(dateAndTime);
 
-
-        //Checking If device has camera
+        //Check if device has a camera
         if (!checkCamera()) {
             addPic.setEnabled(false);
         }
@@ -118,12 +118,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         addPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
-                 */
-                dispatchTakePictureIntent();
-
-//                CurrentPhotoPath = scaleImage(CurrentPhotoPath);
+            // Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
+            dispatchTakePictureIntent();
+//            CurrentPhotoPath = scaleImage(CurrentPhotoPath);
 
             }
         });
@@ -134,6 +131,11 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             //https://developer.android.com/training/basics/intents/result.html
             public void onClick(View v) {
                 Intent intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
+                if (geolocation != null) {
+                    intent.putExtra("address", geolocation.getAddress());
+                    intent.putExtra("latitude", geolocation.getLatLng().latitude);
+                    intent.putExtra("longitude", geolocation.getLatLng().longitude);
+                }
                 startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
             }
         });
@@ -240,33 +242,24 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Set the image path
-        if (requestCode == REQUEST_TAKE_PHOTO) {
-            if (resultCode == Activity.RESULT_OK) {
-                CurrentPhotoPath = compressImage(CurrentPhotoPath);
-                //CurrentPhotoPath = scaleImage(CurrentPhotoPath);
-            }
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
+            CurrentPhotoPath = compressImage(CurrentPhotoPath);
+//            CurrentPhotoPath = scaleImage(CurrentPhotoPath);
         }
         // Set habit idx if returned from the HabitList
-        if (requestCode == GOT_HABIT_FROM_LIST) {
-            if (resultCode == Activity.RESULT_OK) {
-                Bundle b = data.getExtras();
-                habitIdx = b.getInt("position");
-                changeName(habitIdx);
-            }
+        if (requestCode == GOT_HABIT_FROM_LIST && resultCode == Activity.RESULT_OK) {
+            habitIdx = data.getExtras().getInt("position");
+            changeName(habitIdx);
         }
-
         // Add Location
-        if(requestCode == ADD_NEW_LOCATION_CODE) {
-            if(resultCode == Activity.RESULT_OK) {
-                String address = data.getStringExtra("address");
-                geolocation = new Geolocation(
-                        address,
-                        new LatLng(
-                                data.getDoubleExtra("latitude",0),
-                                data.getDoubleExtra("longitude",0))
-                );
-                T_showAddress.setText(address);
-            }
+        if(requestCode == ADD_NEW_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
+            String address = data.getStringExtra("address");
+            geolocation = new Geolocation(
+                                        address,
+                                        new LatLng(
+                                                data.getDoubleExtra("latitude",0),
+                                                data.getDoubleExtra("longitude",0)));
+            T_showAddress.setText(address);
         }
     }
 

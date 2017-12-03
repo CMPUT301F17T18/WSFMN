@@ -68,6 +68,16 @@ public class AddLocationActivity extends AppCompatActivity {
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+        // Instantiate vars with data from current HabitEvent
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            knownName = b.getString("address");
+            latitude = b.getDouble("latitude");
+            longitude = b.getDouble("longitude");
+            T_address.setText(knownName);
+            T_coord.setText(latitude + " " + longitude);
+        }
+
         listener = new LocationListener() {
             /**
              *
@@ -75,11 +85,7 @@ public class AddLocationActivity extends AppCompatActivity {
              */
             @Override
             public void onLocationChanged(Location location) {
-
-                T_coord.setText("");
-                T_address.setText("");
-
-                T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
+                T_coord.setText(location.getLongitude() + " " + location.getLatitude());
                 Geocoder geocoder = new Geocoder(AddLocationActivity.this);
 
                 latitude = location.getLatitude();
@@ -97,8 +103,6 @@ public class AddLocationActivity extends AppCompatActivity {
                     }
 
                     T_address.setText(knownName);
-
-
 
                     //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
                     //startActivity(intent);
@@ -219,7 +223,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 latitude = myAddress.getLatitude();
                 longitude = myAddress.getLongitude();
 
-                T_coord.setText("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
+                T_coord.setText(myAddress.getLatitude() + " " + myAddress.getLongitude());
                 T_address.setText(knownName);
 
                 geolocation = new Geolocation(knownName, latLng);
