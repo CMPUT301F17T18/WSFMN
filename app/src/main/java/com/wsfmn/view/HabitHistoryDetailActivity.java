@@ -178,6 +178,11 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
+        path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
+        //If no picture taken before then when it is null value we create new image
+        if(path == null) {
+            path = CurrentPhotoPath;
+        }
         intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
