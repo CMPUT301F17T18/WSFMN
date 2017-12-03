@@ -4,6 +4,7 @@ package com.wsfmn.view;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -47,6 +49,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.zip.Inflater;
 
 
 /**
@@ -68,6 +71,8 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     Intent intent2;
     TextView date2;
     ImageView img;
+    String CurrentPhotoPath;
+
     Uri photoURI;
     String datevalue;
     TextView T_showAddress;
@@ -80,8 +85,11 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     LatLng new_coordinate;
     Integer i;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int GOT_HABIT_FROM_LIST = 2;
     static final int ADD_NEW_LOCATION_CODE = 3;
+
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+
 
 
     @Override
@@ -89,8 +97,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit_event);
 
+
         Bundle b = getIntent().getExtras();
-        if(b!=null) {
+        if(b != null) {
             i = b.getInt("positionToday");
             changeNameToday(i);
         }
@@ -204,9 +213,6 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         }
     }
 
-
-    String CurrentPhotoPath;
-
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
     /**
      * Creates the file where the image will be stored
@@ -239,10 +245,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             if(resultCode==Activity.RESULT_OK){
 //                CurrentPhotoPath = compressImage(CurrentPhotoPath);
                 CurrentPhotoPath = scaleImage(CurrentPhotoPath);
-
             }
         }
-        if(requestCode==2){
+        if(requestCode==GOT_HABIT_FROM_LIST){
             if(resultCode == Activity.RESULT_OK) {
                 //intent3 = data.getIntent();
                 Bundle b = data.getExtras();
@@ -357,11 +362,16 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
 
-        ImageView mImage = (ImageView)findViewById(R.id.imageView);
+        ImageView mImage = (ImageView)findViewById(R.id.imageView2);
+        mImage.setImageBitmap(BitmapFactory.decodeFile(CurrentPhotoPath));
+
         int targetW = mImage.getWidth();
         int targetH = mImage.getHeight();
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
 
-        int scaleFactor = 65536;
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
         File img = new File(CurrentPhotoPath);
         long length = img.length();
 
@@ -430,6 +440,4 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
 
         return f.getAbsolutePath();
     }
-
-
 }

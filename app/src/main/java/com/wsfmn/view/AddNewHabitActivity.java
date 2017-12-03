@@ -8,13 +8,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
@@ -33,16 +34,17 @@ import static com.wsfmn.view.R.id.tuesdayCheckBox;
 import static com.wsfmn.view.R.id.wednesdayCheckBox;
 
 
+/**
+ *  Add a new Habit to the User's.
+ */
 public class AddNewHabitActivity extends AppCompatActivity {
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     private EditText habitTitle;
     private EditText habitReason;
-    private EditText dateText;
-    private Button everyDayButton;
+    private TextView dateText;
     private Button setDateButton;
-    private Button confirmButton;
 
     private CheckBox monday;
     private CheckBox tuesday;
@@ -51,7 +53,6 @@ public class AddNewHabitActivity extends AppCompatActivity {
     private CheckBox friday;
     private CheckBox saturday;
     private CheckBox sunday;
-
     private Boolean checkedAll;
 
     @Override
@@ -59,13 +60,10 @@ public class AddNewHabitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit);
 
-
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
-        everyDayButton = (Button) findViewById(R.id.checkEveryDay);
         setDateButton = (Button) findViewById(R.id.setDateButton);
-        confirmButton = (Button) findViewById(R.id.confirmButton2);
-        dateText = (EditText) findViewById(R.id.dateText);
+        dateText = (TextView) findViewById(R.id.dateText);
 
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
         tuesday = (CheckBox) findViewById(tuesdayCheckBox);
@@ -97,7 +95,7 @@ public class AddNewHabitActivity extends AppCompatActivity {
             }
         });
 
-        // sets up listener for the date UI object
+        // setup listener for the date UI object
         mDateSetListener = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -105,19 +103,17 @@ public class AddNewHabitActivity extends AppCompatActivity {
                 dateText.setText(year + " / " + month + " / " + dayOfMonth);
             }
         };
-
     }
 
-
     /**
-     * this creates a new Habit object with values it receives from
-     * the user, and adds is to the list of habits.
+     * Create a new Habit object with values from the user, and add it to the list of habits.
+     *
+     * @param view
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, ViewHabitListActivity.class);
 
         try {
-
             WeekDays w = new WeekDays();
 
             setUnset(w, monday, WeekDays.MONDAY);
@@ -131,11 +127,9 @@ public class AddNewHabitActivity extends AppCompatActivity {
             Habit habit = new Habit(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""),
                     habitReason.getText().toString(),
                     getDateUI(), w);
-            HabitListController c = HabitListController.getInstance();
 
-            c.addAndStore(habit);
-
-            ProfileNameController.getInstance().updateScore();
+            HabitListController.getInstance().addAndStore(habit);   // save habit
+            ProfileNameController.getInstance().updateScore();      // update user's score
 
             startActivity(intent);
         }
@@ -153,6 +147,12 @@ public class AddNewHabitActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set the weekDays for doing a Habit
+     * @param weekDays
+     * @param checkBox
+     * @param day
+     */
     public void setUnset(WeekDays weekDays, CheckBox checkBox, int day){
         if(checkBox.isChecked())
             weekDays.setDay(day);
@@ -186,6 +186,10 @@ public class AddNewHabitActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateUI(){
         String date = dateText.getText().toString();
         String[] list = date.split(" / ");
@@ -195,5 +199,33 @@ public class AddNewHabitActivity extends AppCompatActivity {
         return new Date(year, month, day);
     }
 
+    /**
+     * Handle Action Bar up button click as a normal back button click
+     *
+     * https://stackoverflow.com/questions/11079718/action-bars-onclick-listener-for-the-home-button
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    /**
+     * Go back to MainActivity if the HabitList is empty,
+     * otherwise go back to ViewHabitListActivity
+     */
+    @Override
+    public void onBackPressed() {
+        if (HabitListController.getInstance().isEmpty()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        super.onBackPressed();
+    }
 }

@@ -15,13 +15,16 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 import com.wsfmn.exceptions.DateNotValidException;
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.exceptions.HabitReasonTooLongException;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
+import com.wsfmn.model.Habit;
 import com.wsfmn.model.WeekDays;
 
 import static com.wsfmn.view.R.id.fridayCheckBox;
@@ -31,6 +34,10 @@ import static com.wsfmn.view.R.id.thursdayCheckBox;
 import static com.wsfmn.view.R.id.tuesdayCheckBox;
 import static com.wsfmn.view.R.id.wednesdayCheckBox;
 
+
+/**
+ * View and edit the details of a Habit.
+ */
 public class HabitListDetailActivity extends AppCompatActivity {
 
 
@@ -39,7 +46,7 @@ public class HabitListDetailActivity extends AppCompatActivity {
 
     private EditText habitTitle;
     private EditText habitReason;
-    private EditText dateText;
+    private TextView dateText;
 
     private Button setDateButton;
     private Button confirmButton;
@@ -63,12 +70,11 @@ public class HabitListDetailActivity extends AppCompatActivity {
 
         context = this;
 
-
         habitTitle = (EditText) findViewById(R.id.habitTitleEditText);
         habitReason = (EditText) findViewById(R.id.habitReasonEditText);
         setDateButton = (Button) findViewById(R.id.setDateButton);
         confirmButton = (Button) findViewById(R.id.confirmButton2);
-        dateText = (EditText) findViewById(R.id.dateText);
+        dateText = (TextView) findViewById(R.id.dateText);
         monday = (CheckBox) findViewById(R.id.mondayCheckBox);
         tuesday = (CheckBox) findViewById(tuesdayCheckBox);
         wednesday = (CheckBox) findViewById(wednesdayCheckBox);
@@ -116,7 +122,7 @@ public class HabitListDetailActivity extends AppCompatActivity {
             }
         });
 
-        // sets up listener for the date UI object
+        // setup listener for the date UI object
         mDateSetListener = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -125,24 +131,22 @@ public class HabitListDetailActivity extends AppCompatActivity {
             }
         };
 
-
         progressBar.setProgress(c.getHabit(position).getScore());
     }
 
 
     /**
-     * this creates a new Habit object with values it receives from
-     * the user, and sends the object back to MainActivity after
-     * converting it to a string using Gson.
+     * Update a Habit object with values from the User.
      */
     public void confirm(View view) {
         Intent intent = new Intent(this, ViewHabitListActivity.class);
 
         try {
             HabitListController c = HabitListController.getInstance();
+            Habit h = c.getHabit(position);
 
-            c.getHabit(position).setTitle(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""));
-            c.getHabit(position).setReason(habitReason.getText().toString());
+            h.setTitle(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""));
+            h.setReason(habitReason.getText().toString());
 
             setUnset(monday, WeekDays.MONDAY);
             setUnset(tuesday, WeekDays.TUESDAY);
@@ -152,10 +156,12 @@ public class HabitListDetailActivity extends AppCompatActivity {
             setUnset(saturday, WeekDays.SATURDAY);
             setUnset(sunday, WeekDays.SUNDAY);
 
-            c.getHabit(position).setDate(getDateUI());
+            h.setDate(getDateUI());
 
             c.store();
-            c.updateOnline(c.getHabit(position));
+            c.updateOnline(h);
+
+            ProfileNameController.getInstance().updateScore();
 
             startActivity(intent);
 
