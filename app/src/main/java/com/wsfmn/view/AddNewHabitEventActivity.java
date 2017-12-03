@@ -122,9 +122,6 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
                 Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
                  */
                 dispatchTakePictureIntent();
-
-//                CurrentPhotoPath = scaleImage(CurrentPhotoPath);
-
             }
         });
 
