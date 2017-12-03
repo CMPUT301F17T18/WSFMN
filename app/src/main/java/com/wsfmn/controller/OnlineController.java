@@ -369,7 +369,7 @@ public class OnlineController {
             ArrayList<ProfileName> ProfileNameScore = new ArrayList<ProfileName>();
 
             for(String name : search_parameters) {
-                String query =  "{ \"query\": { \"term\": { \"name\": \""
+                String query =  "{ \"query\": { \"match_phrase\": { \"name\": \""
                         + name + "\" } } }\n";
                 Search search = new Search.Builder(query)
                         .addIndex(INDEX_BASE)
@@ -454,7 +454,7 @@ public class OnlineController {
             HabitEvent recent = null;
 
             // TODO Build the query
-            String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
+            String query = "{\"query\" : { \"match_phrase\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
                     "\"size\" : 1, \"sort\" : [{\"actualdate\" : { \"order\" : \"desc\"}}] }";
 
                 Search search = new Search.Builder(query)
@@ -494,7 +494,7 @@ public class OnlineController {
             verifySettings();
             Boolean flag = false;
             // TODO Build the query
-            String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
+            String query = "{" + " \"query\": { \"match_phrase\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
                     .addIndex(INDEX_BASE + App.USERNAME)
                     .addType("friend")
@@ -616,7 +616,7 @@ public class OnlineController {
             RequestList requests = new RequestList();
 
             // TODO Build the query
-            String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
+            String query = "{\n" + " \"query\": { \"match_phrase\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
 
 
             Search search = new Search.Builder(query)
@@ -728,7 +728,7 @@ public class OnlineController {
             verifySettings();
             Boolean flag = false;
             // TODO Build the query
-            String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
+            String query = "{" + " \"query\": { \"match_phrase\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
                     .addIndex(INDEX_BASE)
                     .addType("profilename")
@@ -830,7 +830,7 @@ public class OnlineController {
                 ArrayList<ProfileName> requests = new ArrayList<ProfileName>();
 
                 // TODO Build the query
-                String query = "{\n" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
+                String query = "{\n" + " \"query\": { \"match_phrase\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
 
                 DeleteByQuery delete = new DeleteByQuery.Builder(query)
                         .addIndex(INDEX_BASE)
