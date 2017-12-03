@@ -44,7 +44,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null, null);
             HabitHistoryController.getInstance().add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null, null);
             HabitHistoryController.getInstance().add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null, null);
             HabitHistoryController.getInstance().add(he);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
@@ -133,7 +133,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         HabitEvent he = null;
         try {
             Habit h = new Habit("Feed the Cat", new Date());
-            he = new HabitEvent(h, "Title", "Did my habit!", null, null);
+            he = new HabitEvent(h, "Title", "Did my habit!", null, null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         } catch (HabitTitleTooLongException e) {
@@ -196,19 +196,22 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         }
 
         try {
-            he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null, null);
+            he1 = new HabitEvent(h1, "Habit Event1", "I did the Habit", null,
+                    null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
 
         try {
-            he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null, null);
+            he2 = new HabitEvent(h1, "Habit Event2", "I did the Habit", null,
+                    null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
 
         try {
-            he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null, null);
+            he3 = new HabitEvent(h2, "Habit Event3", "I did the Habit", null,
+                    null, null);
         } catch (HabitCommentTooLongException e) {
             e.printStackTrace();
         }
@@ -258,7 +261,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
 
         try {
             habitEvent = new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
-                    null);
+                    null, null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -266,7 +269,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
 
         try {
             habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
-                    null);
+                    null, null);
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -309,11 +312,11 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         while (!c.isEmpty()){c.remove(0);}
 
         HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
-                "Swimmed with Jack", null, null, null);
+                "Swimmed with Jack", null, null, null, null);
         HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
-                "Swimmed with Jack", null, null, null);
+                "Swimmed with Jack", null, null, null, null);
         HabitEvent he3 = new HabitEvent(new Habit("Playing With Jack", new Date()),
-                "Swimmed with Jack", null, null, null);
+                "Swimmed with Jack", null, null, null, null);
 
 
         c.add(he);
@@ -339,9 +342,9 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
         while (!c.isEmpty()){c.remove(0);}
 
         HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
-                "Swimmed with Jack", "Fun", null, null);
+                "Swimmed with Jack", "Fun", null, null, null);
         HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
-                "Swimmed with Jack", "Not Happy", null, null);
+                "Swimmed with Jack", "Not Happy", null, null, null);
 
         c.add(he);
         c.add(he2);
