@@ -36,7 +36,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-import static com.wsfmn.view.AddNewHabitEventActivity.REQUEST_TAKE_PHOTO;
 
 /**
  * Called when the user wants to edit an existing Habit Event
@@ -56,6 +55,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     String ID;
     int position;
     Button B_changeLocation;
+    static final int REQUEST_TAKE_PHOTO = 1;
 //    static final int CHANGE_LOCATION_CODE = 3;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
@@ -178,11 +178,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
-        path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
-        //If no picture taken before then when it is null value we create new image
-        if(path == null) {
-            path = CurrentPhotoPath;
-        }
         intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
@@ -255,7 +250,12 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode==REQUEST_TAKE_PHOTO){
             if(resultCode == Activity.RESULT_OK){
-                CurrentPhotoPath = compressImage(CurrentPhotoPath);
+                path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
+                //If no picture taken before then when it is null value we create new image
+                if(path == null) {
+                    path = CurrentPhotoPath;
+                }
+                CurrentPhotoPath = compressImage(path);
             }
         }
         if(requestCode==2){
