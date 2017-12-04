@@ -3,6 +3,7 @@ package com.wsfmn.controller;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.model.Habit;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.HabitHistory;
@@ -353,6 +354,26 @@ public class HabitHistoryController {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Update the Habit inside the HabitEvents that reference it
+     * @param h the habit to update within all HabitEvents
+     */
+    public void pushHabitChangesToHabitEvents(Habit h) {
+        for (HabitEvent he : habitHistory.getHabitEventList()) {
+            if (he.getHabit().getId().equals(h.getId())) {
+                he.setHabit(h);
+                try {
+                    he.setTitle(h.getTitle());
+                } catch (HabitEventNameException e) {
+                    e.printStackTrace();
+                }
+                HabitHistoryController.getInstance();
+                updateOnline(he);
+            }
+        }
+        store();
     }
 
     /**

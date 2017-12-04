@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 import com.wsfmn.exceptions.DateNotValidException;
@@ -25,6 +26,7 @@ import com.wsfmn.controller.HabitListController;
 import com.wsfmn.exceptions.HabitReasonTooLongException;
 import com.wsfmn.exceptions.HabitTitleTooLongException;
 import com.wsfmn.model.Habit;
+import com.wsfmn.model.HabitHistory;
 import com.wsfmn.model.WeekDays;
 
 import static com.wsfmn.view.R.id.fridayCheckBox;
@@ -157,6 +159,7 @@ public class HabitListDetailActivity extends AppCompatActivity {
 
             h.setDate(getDateUI());
 
+            HabitHistoryController.getInstance().pushHabitChangesToHabitEvents(h);
             c.store();
             c.updateOnline(h);
 
