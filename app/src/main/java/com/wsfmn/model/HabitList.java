@@ -15,12 +15,14 @@ import java.util.List;
 
 
 /**
+ *  A class to store Habits.
  *
  */
 public class HabitList {
     private ArrayList<Habit> habits;
 
     /**
+     *  Creates a new habit list object.
      *
      */
     public HabitList() {
@@ -28,9 +30,9 @@ public class HabitList {
     }
 
     /**
+     *  Creates a new habit list using the array list habits
      *
-     *
-     * @param habits
+     * @param habits an array list of type Habit
      */
     public HabitList(ArrayList<Habit> habits) {
         this.habits = habits;
