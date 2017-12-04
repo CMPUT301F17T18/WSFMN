@@ -1,3 +1,13 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ *
+ *  Code Reuse from in class/lab for saving a file:  Created by romansky on 10/20/16.
+ */
+
 package com.wsfmn.controller;
 
 import android.content.Context;
@@ -6,13 +16,10 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.searchly.jestdroid.DroidClientConfig;
 import com.searchly.jestdroid.JestClientFactory;
 import com.searchly.jestdroid.JestDroidClient;
-
-
 
 import com.wsfmn.model.Habit;
 import com.wsfmn.model.HabitEvent;
@@ -21,8 +28,6 @@ import com.wsfmn.model.HabitList;
 import com.wsfmn.model.ProfileName;
 import com.wsfmn.model.Request;
 import com.wsfmn.model.RequestList;
-import com.wsfmn.view.AddNewHabitEventActivity;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +41,6 @@ import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
-
 
 
 /**
@@ -58,11 +62,6 @@ public class OnlineController {
      *
      * If the device is not connected to the internet this method fails silently.
      *
-     * When each Habit is stored, an ElasticSearch ID is returned and the local Habit ID attribute
-     * is updated with this value. This ID is used to update and delete the remote copy of each
-     * Habit passed to StoreHabits.execute(Habit... habits).
-     *
-     * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class StoreHabits extends AsyncTask<Habit, Void, Void> {
         @Override
@@ -95,10 +94,8 @@ public class OnlineController {
      * When DeleteHabits.execute(Habit... habits) is called on a DeleteHabits object,
      * this method will will delete the given habits on an ElasticSearch DB.
      *
-     * If the device is not connected to the internet this method adds the Habit ID's
-     * to Delete.sav so they can be deleted once a connection is established.
+     * If the device is not connected to the internet this method fails silently.
      *
-     * Created by nmayne 11/07/17.
      */
     public static class DeleteHabits extends AsyncTask<String, Void, Void> {
         @Override
@@ -124,9 +121,8 @@ public class OnlineController {
      * will proceed if the device is connected to the internet and currently will return a
      * HabitList object containing at most 10 Habit objects that match the search parameter.
      *
-     * If the device is not connected to the internet this method fails silently and returns null
+     * If the device is not connected to the internet this method fails silently and returns null.
      *
-     * Created by romansky on 10/20/16. Customized by nmayne 10/22/17.
      */
     public static class GetHabits extends AsyncTask<String, Void, HabitList> {
         @Override
