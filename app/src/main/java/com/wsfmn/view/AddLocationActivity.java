@@ -108,10 +108,6 @@ public class AddLocationActivity extends AppCompatActivity {
 
                     T_address.setText(knownName);
 
-                    //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
-                    //startActivity(intent);
-
-
                 } catch (IOException e) {
                     geolocation = null;
                     e.printStackTrace();
