@@ -85,7 +85,6 @@ public class HabitListController{
      * @param habit a habit to be added to the habit list
      */
     public void addHabit(Habit habit) {
-        habit.setSearchTitle();
         habitList.addHabit(habit);
     }
 
@@ -95,15 +94,15 @@ public class HabitListController{
      * @param habit a habit to be added offline, online, and to the habit list
      */
     public void addAndStore(Habit habit){
+        addHabit(habit);
+
         OnlineController.StoreHabits storeHabitsOnline =
                 new OnlineController.StoreHabits();
         OfflineController.StoreHabitList storeHabitList =
                 new OfflineController.StoreHabitList();
 
-        habit.setSearchTitle();
         storeHabitsOnline.execute(habit);
         storeHabitList.execute(habitList);
-        addHabit(habit);
     }
 
     /**
@@ -111,7 +110,6 @@ public class HabitListController{
      * @param habit
      */
     public void deleteHabit(Habit habit){
-        habit.setSearchTitle();
         // Added by nmayne on 2017-11-07
         if (OnlineController.isConnected()) {
             OnlineController.DeleteHabits deleteHabitsOnline =
@@ -255,6 +253,9 @@ public class HabitListController{
     public void store(){
         OfflineController.StoreHabitList storeHabitListOffline =
                 new OfflineController.StoreHabitList();
+        for (Habit h : habitList.getHabitList()) {
+            h.setSearchTitle();
+        }
         storeHabitListOffline.execute(habitList);
     }
 

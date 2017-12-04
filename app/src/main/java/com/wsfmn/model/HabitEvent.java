@@ -23,6 +23,7 @@ public class HabitEvent{
      * when a user creates a new Habit Event
      */
     private String title;
+    private String title_search;
     private String owner;
     private Habit habit;
     private String comment;
@@ -40,8 +41,10 @@ public class HabitEvent{
 
     public HabitEvent(){
         this.title = "";
+        this.title_search = "";
         this.date = new Date();
-        this.id = title + new Date(1).toDateString();   // initial offline temp id
+        IDGenerator idGenerator = new IDGenerator();
+        this.id = idGenerator.nextString();
     }
 
 
@@ -50,6 +53,7 @@ public class HabitEvent{
                       String actualCurrentPhotoPath, Date date) throws HabitCommentTooLongException,
             HabitEventCommentTooLongException, ParseException {
         this.habit = habit;
+        this.title = title;
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
@@ -197,6 +201,22 @@ public class HabitEvent{
         }
         return this.title = title;
     }
+
+    /**
+     * Get the title used for online searching.
+     * @return online search title
+     */
+    public String getSearchTitle() {
+        return title_search;
+    }
+
+    /**
+     * Set the searchable title based upon title.
+     */
+    public void setSearchTitle() {
+        title_search = title.toLowerCase().replaceAll("\\s+", "").replaceAll("[^A-Za-z0-9]", "");
+    }
+
 
     /**
      * Get the comment for HabitEvent that user created

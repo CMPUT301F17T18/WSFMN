@@ -136,19 +136,15 @@ public class HabitHistoryController {
      * @param he HabitEvent to add to HabitHistory
      */
     public void addAndStore(HabitEvent he) {
+        add(he);
+
         OnlineController.StoreHabitEvents storeHabitEvents =
                 new OnlineController.StoreHabitEvents();
         OfflineController.StoreHabitHistory storeHabitHistory =
                 new OfflineController.StoreHabitHistory();
-        try {
-            storeHabitEvents.execute(he).get(); // .get() waits for this task to complete
-            add(he);
-            storeHabitHistory.execute(habitHistory).get(); // .get() waits for this task to complete
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+
+        storeHabitEvents.execute(he);
+        storeHabitHistory.execute(habitHistory);
 
         //  added by alsobaie on 2017/11/29
         HabitListController.getInstance().updateHabitScore(he.getHabit());

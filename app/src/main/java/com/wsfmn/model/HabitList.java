@@ -5,57 +5,106 @@ import com.wsfmn.controller.HabitHistoryController;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Fredric on 2017-10-21.
- */
 
+/**
+ *
+ */
 public class HabitList {
     private ArrayList<Habit> habits;
 
-
+    /**
+     *
+     */
     public HabitList() {
         this.habits = new ArrayList<Habit>();
     }
 
+    /**
+     *
+     * @param habits
+     */
     public HabitList(ArrayList<Habit> habits) {
         this.habits = habits;
     }
 
-    // add Habit to HabitList
+    /**
+     *
+     * @param habit
+     */
     public void addHabit(Habit habit){
+        habit.setSearchTitle();
         habits.add(habit);
     }
 
-    // delete the Habit from HabitList
+    /**
+     *
+     * @param habit
+     */
     public void deleteHabit(Habit habit){
         habits.remove(habit);
     }
 
+    /**
+     *
+     * @param index
+     */
     public void deleteHabitAt(int index){
         habits.remove(index);
     }
 
+    /**
+     *
+     * @return
+     */
     public int size() {
         return habits.size();
     }
 
+    /**
+     *
+     * @param habitsToAdd
+     */
     public void addAllHabits(List<Habit> habitsToAdd) {
+        for(Habit h: habitsToAdd) {
+            h.setSearchTitle();
+        }
         habits.addAll(habitsToAdd);
     }
 
+    /**
+     *
+     * @param index
+     * @return
+     */
     public Habit getHabit(int index){
         return habits.get(index);
     }
 
+    /**
+     *
+     * @param index
+     * @param habit
+     */
     public void setHabit(int index, Habit habit){
+        habit.setSearchTitle();
         habits.set(index, habit);
     }
 
+    /**
+     *
+     * @param habit
+     * @return
+     */
     public boolean hasHabit(Habit habit){
         return habits.contains(habit);
     }
 
     // TODO alsobaie: added this, needs testing
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Habit> getHabitList(){
         return  habits;
     }
