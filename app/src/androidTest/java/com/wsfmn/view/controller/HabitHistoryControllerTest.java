@@ -85,7 +85,7 @@ public class HabitHistoryControllerTest extends ActivityInstrumentationTestCase2
                 HabitHistoryController.getInstance().contains(he));
 
         HabitEvent returnedHabitEvent =
-                HabitHistoryController.getInstance().get(HabitHistoryController.getInstance().indexOf(he.getId()));
+                HabitHistoryController.getInstance().get(he.getId());
 
         assertEquals("HabitEvents were not the same", returnedHabitEvent, he);
     }

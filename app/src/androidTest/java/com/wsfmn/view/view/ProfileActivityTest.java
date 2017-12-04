@@ -6,6 +6,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.controller.OnlineController;
 import com.wsfmn.view.ProfileActivity;
 import com.wsfmn.view.R;
 
@@ -38,9 +39,26 @@ public class ProfileActivityTest extends ActivityInstrumentationTestCase2<Profil
     // Test if we can get to UserNameActivity from ProfileActivity if there is no profilename.
     public void testProfileName(){
         solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
+        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test123456");
+        solo.clickOnButton("Confirm");
+        solo.clickOnButton("OK");
+
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
+
+        solo.waitForActivity(ProfileActivity.class, 100);
+        solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
+
+
+        OnlineController.DeleteProfileName online = new OnlineController.DeleteProfileName();
+        online.execute("test123456test");
+
+
+
+        OnlineController check= new OnlineController();
+        assertEquals(true, check.checkName("test123456test"));
+
 
     }
 

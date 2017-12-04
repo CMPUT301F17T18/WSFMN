@@ -10,6 +10,7 @@ import io.searchbox.annotations.JestId;
 
 /**
  * a Class for the User's profilename, Stores their score calculated by Habit and their habit events.
+ * No test, Using Android studio's getter and setters.
  */
 public class ProfileName {
     private String name; // Name for the user
