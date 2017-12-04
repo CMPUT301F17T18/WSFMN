@@ -15,6 +15,11 @@ import java.util.ArrayList;
  * Created by Fredric on 2017-11-29.
  */
 
+/**
+ * An Adapter for showing certain fields. Their name and their score.
+ * Used for listfriend_item layour
+ */
+
 public class FriendAdapter extends ArrayAdapter<Habit> {
 
     private ArrayList<Habit> objects;  // declaring our ArrayList of items
@@ -46,10 +51,10 @@ public class FriendAdapter extends ArrayAdapter<Habit> {
             // check to see if each individual textview is null.
             // if not, assign some text
             if (owner != null) {
-                owner.setText(i.getOwner() + "      ");
+                owner.setText(i.getOwner() + "      "); // Set the owner name
             }
             if (ownerHabit != null) {
-                ownerHabit.setText(i.getTitle()); // set the name
+                ownerHabit.setText(i.getTitle()); // set the habit name
             }
 
             // view is returned to activity
