@@ -29,6 +29,7 @@ public class HabitList {
 
     /**
      *
+     *
      * @param habits
      */
     public HabitList(ArrayList<Habit> habits) {
@@ -36,8 +37,9 @@ public class HabitList {
     }
 
     /**
+     *  Adds a new habit to the list of habits
      *
-     * @param habit
+     * @param habit a habit object that we want to add to the list of habits.
      */
     public void addHabit(Habit habit){
         habit.setSearchTitle();
@@ -45,8 +47,9 @@ public class HabitList {
     }
 
     /**
+     *  Deletes habit from the list of habits.
      *
-     * @param habit
+     * @param habit a habit object that we want to remove from the list of habits.
      */
     public void deleteHabit(Habit habit){
         habits.remove(habit);
