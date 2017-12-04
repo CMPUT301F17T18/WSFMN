@@ -277,8 +277,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                 path = compressImage(path);
 
             }
-            CurrentPhotoPath = compressImage(path);
-
 
         }
         if (requestCode == GOT_HABIT_FROM_LIST && resultCode == Activity.RESULT_OK) {
