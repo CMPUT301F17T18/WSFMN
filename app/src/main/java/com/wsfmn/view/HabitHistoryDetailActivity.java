@@ -271,7 +271,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             habitIdx = data.getExtras().getInt("position");
             addedHabit = HLC.getHabit(habitIdx);
             title.setText(addedHabit.getTitle());
-
         }
         // Add Location
         if (requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
