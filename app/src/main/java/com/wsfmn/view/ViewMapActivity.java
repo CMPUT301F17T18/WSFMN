@@ -464,10 +464,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
     }
 
 
-
-
-
-
     protected synchronized void buildGoogleApiClient(){
         client= new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
