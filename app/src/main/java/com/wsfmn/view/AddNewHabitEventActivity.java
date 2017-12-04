@@ -239,7 +239,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         // Set the image path
         if (requestCode == REQUEST_TAKE_PHOTO) {
             if (resultCode == Activity.RESULT_OK) {
-//               CurrentPhotoPath = compressImage(CurrentPhotoPath);
+               CurrentPhotoPath = compressImage(CurrentPhotoPath);
                 //CurrentPhotoPath = scaleImage(CurrentPhotoPath);
             }
         }
