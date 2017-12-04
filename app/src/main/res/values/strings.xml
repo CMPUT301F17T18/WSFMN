@@ -35,6 +35,16 @@
     <string name="date">Date</string>
     <string name="view_image">View Image</string>
     <string name="add_comment">Add Comment</string>
+    <string name="search_for_address">Search for address...</string>
+    <string name="done">Done</string>
+    <string name="use_gps_location">Current Location</string>
+    <string name="search_for_an_address">Search for an address...</string>
+    <string name="coordinates">Coordinates...</string>
+    <string name="address_search">Find Address</string>
+    <string name="found_address">Address...</string>
+    <string name="near_me">Near Me</string>
+    <string name="my_events">My Events</string>
+    <string name="friends_events">Friends\' Events</string>
 
 
 </resources>

@@ -2,16 +2,16 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="560dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        tools:context="com.wsfmn.view.ViewMapActivity" />
+    <Button
+        android:id="@+id/B_myHabitevent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/B_followed"
+        android:layout_alignBottom="@+id/B_followed"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/B_highlight"
+        android:onClick="buttonMyEvent"
+        android:text="@string/my_events" />
 
     <Button
         android:id="@+id/B_followed"
@@ -19,25 +19,29 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp"
+        android:layout_marginBottom="41dp"
         android:onClick="buttonFollows"
-        android:text="followed" />
+        android:text="@string/friends_events" />
 
     <Button
         android:id="@+id/B_highlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBaseline="@+id/B_myHabitevent"
+        android:layout_alignBottom="@+id/B_myHabitevent"
         android:layout_alignParentEnd="true"
         android:onClick="buttonHighlight"
-        android:text="Highlight" />
+        android:text="@string/near_me" />
 
-    <Button
-        android:id="@+id/B_myHabitevent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/B_highlight"
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:onClick="buttonMyEvent"
-        android:text="MyEvent" />
+        tools:context="com.wsfmn.view.ViewMapActivity" />
+
 </RelativeLayout>

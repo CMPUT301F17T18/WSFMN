@@ -68,6 +68,16 @@ public class AddLocationActivity extends AppCompatActivity {
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+        // Instantiate vars with data from current HabitEvent
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            knownName = b.getString("address");
+            latitude = b.getDouble("latitude");
+            longitude = b.getDouble("longitude");
+            T_address.setText(knownName);
+            T_coord.setText(latitude + " " + longitude);
+        }
+
         listener = new LocationListener() {
             /**
              *
@@ -75,11 +85,7 @@ public class AddLocationActivity extends AppCompatActivity {
              */
             @Override
             public void onLocationChanged(Location location) {
-
-                T_coord.setText("");
-                T_address.setText("");
-
-                T_coord.append("\n " + location.getLongitude() + " " + location.getLatitude());
+                T_coord.setText(location.getLongitude() + " " + location.getLatitude());
                 Geocoder geocoder = new Geocoder(AddLocationActivity.this);
 
                 latitude = location.getLatitude();
@@ -88,13 +94,15 @@ public class AddLocationActivity extends AppCompatActivity {
                 latLng = new LatLng(location.getLongitude(),location.getLatitude());
                 try {
                     List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                    Address myAddress = addressList.get(0);
-                    //set to Geolocation
 
                     knownName = addressList.get(0).getFeatureName();
                     geolocation = new Geolocation(knownName,latLng);
-                    T_address.append(knownName);
+                    // Using "GPS" instead of knownName because knownName is often garbage if using GPS
+                    if (knownName.matches("\\d.*")) {
+                        knownName = "GPS";
+                    }
 
+                    T_address.setText(knownName);
 
                     //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
                     //startActivity(intent);
@@ -107,18 +115,13 @@ public class AddLocationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
-
-            }
+            public void onStatusChanged(String s, int i, Bundle bundle) {}
 
             @Override
-            public void onProviderEnabled(String s) {
-
-            }
+            public void onProviderEnabled(String s) {}
 
             @Override
             public void onProviderDisabled(String s) {
-
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(i);
             }
@@ -149,12 +152,17 @@ public class AddLocationActivity extends AppCompatActivity {
      * Return to AddNewHabitEventActivity to save the GeoLocation results.
      *
      */
-    public void confirmLocation(View view){
+    public void confirmLocation(View view) {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("address", knownName);
-        returnIntent.putExtra("latitude", latitude);
-        returnIntent.putExtra("longitude", longitude);
-        setResult(RESULT_OK, returnIntent);
+
+        if (latitude != 0 && longitude != 0) {
+            returnIntent.putExtra("latitude", latitude);
+            returnIntent.putExtra("longitude", longitude);
+            returnIntent.putExtra("address", knownName);
+            setResult(RESULT_OK, returnIntent);
+        }
+
+        finish();
     }
 
 
@@ -205,7 +213,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 Address myAddress = addressList.get(0);
 
                 knownName = myAddress.getAddressLine(0) + "\n" +
-                            myAddress.getAddressLine(1) + "\n";
+                        myAddress.getAddressLine(1) + "\n";
                 if (myAddress.getAddressLine(2) != null) {
                     knownName = knownName + myAddress.getAddressLine(2);
                 }
@@ -215,7 +223,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 latitude = myAddress.getLatitude();
                 longitude = myAddress.getLongitude();
 
-                T_coord.setText("\n" + myAddress.getLatitude() + " " + myAddress.getLongitude());
+                T_coord.setText(myAddress.getLatitude() + " " + myAddress.getLongitude());
                 T_address.setText(knownName);
 
                 geolocation = new Geolocation(knownName, latLng);

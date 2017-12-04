@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.wsfmn.controller.HabitListController;
 import com.wsfmn.controller.ProfileNameController;
@@ -68,6 +69,7 @@ public class ViewHabitListActivity extends AppCompatActivity {
         habitListView.setAdapter(adapter);
 
         if (HabitListController.getInstance().isEmpty() && flag_forceAddHabit) {
+            Toast.makeText(ViewHabitListActivity.this, "Add A Habit",Toast.LENGTH_LONG).show();
             flag_forceAddHabit = false;
             Intent intent = new Intent(this, AddNewHabitActivity.class);
             startActivity(intent);
