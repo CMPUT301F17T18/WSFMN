@@ -8,6 +8,7 @@ import com.wsfmn.model.HabitEvent;
 import com.wsfmn.model.HabitHistory;
 import com.wsfmn.model.HabitList;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -249,6 +250,10 @@ public class HabitHistoryController {
                 // Store this Habit Event ID for online deletion upon next connection
                 OfflineController.addToOfflineDelete("HEV", he.getId());
             }
+            // Delete the photo from the filesystem
+            ImageController.getInstance().deleteImage(he.getPhotoPath());
+
+            // Remove HabitEvent from HabitHistory
             HabitEvent removed = habitHistory.remove(idx);
             store();
 

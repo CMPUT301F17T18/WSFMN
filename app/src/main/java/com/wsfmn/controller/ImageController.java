@@ -46,7 +46,7 @@ public class ImageController {
 
         int MAX_IMAGE_SIZE = 65532;
         int streamLength = MAX_IMAGE_SIZE;
-        int compressQuality = 100;
+        int compressQuality = 105;
 
         ByteArrayOutputStream bmpStream = new ByteArrayOutputStream();
 
@@ -85,10 +85,9 @@ public class ImageController {
      */
     @NonNull
     private String scaleImage(String path) {
-        Bitmap imageBitmap = null;
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
-//        Bitmap imageBitmap = BitmapFactory.decodeFile(path, bmOptions);
+        BitmapFactory.decodeFile(path, bmOptions);
 
         int photoW = bmOptions.outWidth;
         int photoH = bmOptions.outHeight;
@@ -102,10 +101,9 @@ public class ImageController {
         long length = img.length();
 
         bmOptions.inSampleSize = scaleFactor;
-
         bmOptions.inJustDecodeBounds = false;
 
-//        Bitmap imageBitmap = BitmapFactory.decodeFile(path);
+        Bitmap imageBitmap = BitmapFactory.decodeFile(path);
 
         if (length > 65532) {
             imageBitmap = BitmapFactory.decodeFile(path, bmOptions);
@@ -129,6 +127,18 @@ public class ImageController {
         return f.getAbsolutePath();
     }
 
+    /**
+     * Delete the file at a given path.
+     * @param path of the file to delete.
+     * @return true if deleted
+     */
+    public Boolean deleteImage(String path) {
+        if (path != null) {
+            File f = new File(path);
+            return f.delete();
+        }
+        return false;
+    }
 
     // Convert picture to byte[] for online storage
     public String convertImageToString(String path) {

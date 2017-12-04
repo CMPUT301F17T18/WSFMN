@@ -98,7 +98,7 @@ public class AddLocationActivity extends AppCompatActivity {
                     knownName = addressList.get(0).getFeatureName();
                     geolocation = new Geolocation(knownName,latLng);
                     // Using "GPS" instead of knownName because knownName is often garbage if using GPS
-                    if (knownName.matches("\\d.*")) {
+                    if (knownName.matches("\\d.*")) { // starts with a digit
                         knownName = "GPS";
                     }
 
