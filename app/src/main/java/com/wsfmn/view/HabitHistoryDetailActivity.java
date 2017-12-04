@@ -95,8 +95,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController c = HabitHistoryController.getInstance();
         try {
-            ImageView image = (ImageView)findViewById(R.id.imageView3);
-            image.setImageBitmap(c.get(ID).getImageBitmap());
 
             habitName.setText(c.get(ID).getHabitFromEvent().getTitle());
             comment.setText(c.get(ID).getComment());
