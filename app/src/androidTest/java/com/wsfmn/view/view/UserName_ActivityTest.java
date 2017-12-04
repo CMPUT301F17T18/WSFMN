@@ -31,12 +31,13 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
 
     }
 
+    // PLEASE WIPE MEMORY TO TEST!!
     // Testing if name is checked on ElasticSearch and if we can store it.
     // Test a name already on ElasticSearch, Then test a name not on ElasticSearch.
     // yourUserName is sometimes not found. Clean Project if resource name: 'yourUserName' is not found!.
     public void testUniqueName() {
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
+        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test123456");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
@@ -46,13 +47,13 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
         solo.waitForActivity(ProfileActivity.class);
 
         OnlineController check= new OnlineController();
-        assertEquals(false, check.checkName("nametestdifferenttest"));
+        assertEquals(false, check.checkName("test123456differenttest"));
 
         OnlineController.DeleteProfileName online = new OnlineController.DeleteProfileName();
-        online.execute("nametestdifferenttest");
+        online.execute("test123456differenttest");
 
 
-        assertEquals(true, check.checkName("namedifferenttest"));
+        assertEquals(true, check.checkName("differenttest"));
     }
 
 
