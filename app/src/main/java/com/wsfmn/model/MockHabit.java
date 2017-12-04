@@ -25,27 +25,33 @@ import com.wsfmn.exceptions.DateNotValidException;
  */
 public class MockHabit extends Habit {
 
-    //  as long as no changes happen to Habit plan, this would be considered today
-    //private Date todayBeforeChange = new Date(2017, 11, 2);
 
-    //  once a change happens to Habit plan, we change today to a later date to test whether
-    //  getTotalOccurrence takes into consideration the new changes in  the plan when it counts
-    //  total possible occurrences for a habit.
-    //private Date todayAfterChange = new Date(2017, 11, 12);
-
-    //  this defines what today is when the getTotalOccurrence, or other methods are used to
-    //  calculate total possible occurrences for a habit.
-    //private Date today = todayBeforeChange;
     private Date today = new Date();
 
+    /**
+     *  Creates a new MockHabit object.
+     *
+     */
     public MockHabit(){};
 
+    /**
+     *  Creates a new MockHabit object.
+     *
+     * @param date the for the MockHabit object.
+     * @param weekDays the Days of the week this object is set to occur in.
+     */
     public MockHabit(Date date, WeekDays weekDays){
         this.date = date;
         this.currDate = date;
         this.weekDays = weekDays;
     }
 
+    /**
+     *  Sets the start date for MockHabit if it is not smaller than today.
+     *
+     * @param toStart the date the habit will starts
+     * @throws DateNotValidException
+     */
     public void setDate(Date toStart) throws DateNotValidException {
 
         if(this.date == null) {
@@ -63,14 +69,29 @@ public class MockHabit extends Habit {
         this.date = toStart;
     }
 
+    /**
+     *  Gets the today Date object.
+     *
+     * @return
+     */
     public Date getToday() {
         return today;
     }
 
+    /**
+     *  Sets the today Date object.
+     *
+     * @param today a Date object
+     */
     public void setToday(Date today) {
         this.today = today;
     }
 
+    /**
+     *  Sets weekDays for MockHabit
+     *
+     * @param weekDays the days of the week the habit is done
+     */
     public void setWeekDays(WeekDays weekDays) {
         hasChanged = true;
         currDate = today;
@@ -78,6 +99,11 @@ public class MockHabit extends Habit {
         this.weekDays = weekDays;
     }
 
+    /**
+     *  Sets the weekDays with entry day for a MockHabit object.
+     *
+     * @param day the day that the habit will be done in.
+     */
     public void setDay(int day){
         hasChanged = true;
         currDate = today;
@@ -85,6 +111,11 @@ public class MockHabit extends Habit {
         weekDays.setDay(day);
     }
 
+    /**
+     *  Unsets the weekDays with entry day for a MockHabit object.
+     *
+     * @param day the day that the habit will not be done in.
+     */
     public void unsetDay(int day){
         hasChanged = true;
         currDate = today;
@@ -92,6 +123,11 @@ public class MockHabit extends Habit {
         weekDays.unsetDay(day);
     }
 
+    /**
+     *  Retrieves the total possible numbers that the habit could occur.
+     *
+     * @return int the total possible times the habit could occur.
+     */
     public int getTotalOccurrence(){
 
         if(!hasChanged){
