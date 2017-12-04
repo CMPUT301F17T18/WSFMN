@@ -240,9 +240,11 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Set the image path
 
+
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             CurrentPhotoPath = compressImage(CurrentPhotoPath);
 //            CurrentPhotoPath = scaleImage(CurrentPhotoPath);
+
 
         }
         // Set habit idx if returned from the HabitList

@@ -16,6 +16,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -95,7 +96,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController c = HabitHistoryController.getInstance();
         try {
-
             habitName.setText(c.get(ID).getHabitFromEvent().getTitle());
             comment.setText(c.get(ID).getComment());
             if (c.get(ID).getGeolocation() != null) {
@@ -145,6 +145,15 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             c.get(ID).setComment(comment.getText().toString());
             c.get(ID).setHabit(c.get(ID).getHabitFromEvent());
             c.get(ID).setDate(getDateUIHED());
+            if (CurrentPhotoPath != null) {
+                Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
+
+                CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
+                System.out.println(CurrentPhotoPath);
+            }
             c.get(ID).setCurrentPhotoPath(path);
             c.get(ID).setActualCurrentPhotoPath(path);
             c.get(ID).setGeolocation(geolocation);
