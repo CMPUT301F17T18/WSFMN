@@ -103,9 +103,10 @@ public class FriendHabitActivity extends AppCompatActivity {
         try{
             fEvent = fRecentEvent.get();
             fEventComment.setText(fEvent.getComment());
+            friendImage.setImageBitmap(fEvent.getImageBitmap());
             fEventDate.setText(fEvent.getDate().toString());
             fEventAddress.setText(fEvent.getGeolocation().getAddress());
-            friendImage.setImageBitmap(fEvent.getImageBitmap());
+
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
