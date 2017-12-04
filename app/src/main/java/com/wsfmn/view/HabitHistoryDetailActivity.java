@@ -138,6 +138,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             c.get(ID).setComment(comment.getText().toString());
             c.get(ID).setHabit(c.get(ID).getHabitFromEvent());
             c.get(ID).setDate(getDateUIHED());
+            CurrentPhotoPath = path;
             if (CurrentPhotoPath != null) {
                 Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -147,7 +148,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                 CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
                 System.out.println(CurrentPhotoPath);
             }
-            c.get(ID).setCurrentPhotoPath(path);
+            c.get(ID).setCurrentPhotoPath(CurrentPhotoPath);
             c.get(ID).setActualCurrentPhotoPath(path);
             c.get(ID).setGeolocation(geolocation);
             c.storeAndUpdate(c.get(ID));
@@ -189,10 +190,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
         path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
-        //If no picture taken before then when it is null value we create new image
-        if(path == null) {
-            path = CurrentPhotoPath;
-        }
+//        //If no picture taken before then when it is null value we create new image
+//        if(path == null) {
+//            path = CurrentPhotoPath;
+//        }
         intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
@@ -265,11 +266,16 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
-            path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
-            //If no picture taken before then when it is null value we create new image
-            if(path == null) {
-                path = CurrentPhotoPath;
+
+        if(requestCode==REQUEST_TAKE_PHOTO){
+            if(resultCode == Activity.RESULT_OK){
+                path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
+                //If no picture taken before then when it is null value we create new image
+                if(path == null) {
+                    path = CurrentPhotoPath;
+                }
+                path = compressImage(path);
+
             }
             CurrentPhotoPath = compressImage(path);
 
