@@ -121,6 +121,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Retrieved the id for a habit.
      *
      * @return the id of the habit
      */
@@ -129,6 +130,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Sets the id for a habit.
      *
      * @param id to identify the habit
      */
@@ -137,6 +139,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Gets the title for a habit.
      *
      * @return title of the habit
      */
@@ -145,9 +148,9 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  Check that a habit's title is valid before assigning it
+     *  Sets the title for a habit if it is between 1 - 20 characters.
      *
-     * @param title name or title of the habit
+     * @param title name or title of the habit.
      * @throws HabitTitleTooLongException thrown if the habit
      *  does not satisfy constraints.
      */
@@ -160,6 +163,7 @@ public class Habit implements Serializable, Comparable<Habit>{
 
     /**
      * Get the title used for online searching.
+     *
      * @return online search title
      */
     public String getSearchTitle() {
@@ -168,6 +172,7 @@ public class Habit implements Serializable, Comparable<Habit>{
 
     /**
      * Set the searchable title based upon title.
+     *
      */
     public void setSearchTitle() {
         title_search = title.toLowerCase().replaceAll("\\s+", "").replaceAll("[^A-Za-z0-9]", "");
@@ -175,6 +180,7 @@ public class Habit implements Serializable, Comparable<Habit>{
 
     /**
      * Show the habit's score, It is an indicator on how well you're doing the habit.
+     *
      * @return the habit's score
      */
     public int getScore() {
@@ -191,6 +197,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Gets reason for starting the habit.
      *
      * @return reason for starting the habit
      */
@@ -199,6 +206,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Set the reason for a habit if it is not more than 30 characters.
      *
      * @param reason the reason for the habit
      * @throws HabitReasonTooLongException if reason is too long,
@@ -263,6 +271,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Gets weekDays for a habit.
      *
      * @param weekDays the days of the week the habit is done
      */
@@ -424,7 +433,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     /**
      * Get the user name of the owner of the habit. For elastic search use and for FriendAdapter use.
      *
-     * @return
+     * @return String the owner for a habit.
      */
     public String getOwner() {
         return owner;
@@ -433,7 +442,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     /**
      * Set the owner for which the habit belongs to. For elastic search use and for FriendAdapter.
      *
-     * @param owner
+     * @param owner String the owner for the habit.
      */
     public void setOwner(String owner) {
         this.owner = owner;
@@ -442,8 +451,9 @@ public class Habit implements Serializable, Comparable<Habit>{
     /**
      * Override compareTo method, Will be able to order a list by User name first then by
      * Habit title name.
-     * @param other
-     * @return
+     *
+     * @param other the other habit that is compared with the calling object.
+     * @return int
      */
     public int compareTo(Habit other)
     {
