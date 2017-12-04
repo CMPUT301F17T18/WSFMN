@@ -266,7 +266,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         if(requestCode==REQUEST_TAKE_PHOTO){
             if(resultCode == Activity.RESULT_OK){
                 path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
@@ -277,8 +276,8 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                 path = compressImage(path);
 
             }
-
         }
+
         if (requestCode == GOT_HABIT_FROM_LIST && resultCode == Activity.RESULT_OK) {
             habitIdx = data.getExtras().getInt("position");
             changeHabit(habitIdx);
