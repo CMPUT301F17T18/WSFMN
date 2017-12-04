@@ -121,7 +121,6 @@
             android:parentActivityName=".ViewHabitHistoryActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".FriendHabitActivity" />
-        <activity android:name=".FriendHabitEventActivity"></activity>
     </application>
 
 </manifest>

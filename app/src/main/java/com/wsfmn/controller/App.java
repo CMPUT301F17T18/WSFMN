@@ -4,14 +4,12 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * Created by nicholasmayne on 2017-10-25.
  * This class makes the app's CONTEXT available globally, used in OfflineController.
  * This class also makes the USERNAME available globally, via App.USERNAME.
  *
  * This class gets run via AndroidManifest.
  * https://stackoverflow.com/questions/7144177/getting-the-application-context
  */
-
 public class App extends Application {
 
     public static Context CONTEXT;

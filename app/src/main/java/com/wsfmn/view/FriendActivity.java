@@ -33,36 +33,37 @@ import java.util.Comparator;
 
 
 /**
- * Activity to allow user to see events of followed users.
+ * Activity to allow user to see habits and events of followed users.
  *
  * @version 1.0
  * @see Activity
  */
 public class FriendActivity extends Activity {
 
-    // DELETE NOT USED
-//    private static final String USER_FILENAME = "username.sav";
-//    private String profileName = App.USERNAME;
+    private Habit selected;            // have a selected habit from the list of friend habits.
+    private FriendAdapter adapter;     // adapter for the list to show certain fields.
+    ArrayList<String> namesFriends = new ArrayList<String>(); // have a Array list of profilename
+    String[] namesFriendsList;                           // List of friend names.
 
+    ArrayList<Habit> names = new ArrayList<Habit>();       // Array list of Habits.
 
-    private Habit selected;
-    private FriendAdapter adapter;
-    ArrayList<String> namesFriends = new ArrayList<String>();
-    String[] namesFriendsList;
+    private ListView fEventList;                        // ListView for Habits.
 
-    ArrayList<Habit> names = new ArrayList<Habit>();
+    private OnlineController online = new OnlineController(); // Onlinecontroller for elastic search.
 
-    private ListView fEventList;
-
-    private OnlineController online = new OnlineController();
-
+    /**
+     * Starts the Activity with certain conditions.
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend);
 
-        fEventList = (ListView)findViewById(R.id.fEvent);
+        fEventList = (ListView)findViewById(R.id.fEvent);       //set the listview
 
+
+        // When clicking on a habit go view it's habit details and most recent habit event.
         fEventList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,8 +76,12 @@ public class FriendActivity extends Activity {
         });
     }
 
+    /**
+     * Check if the app is online.
+     */
     protected void onStart() {
         super.onStart();
+        // Is online? if not go back to mainactivity.
         if (online.isConnected() == true) {
         } else {
             Toast.makeText(FriendActivity.this, "Not connected to internet!",
@@ -84,56 +89,32 @@ public class FriendActivity extends Activity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-//        loadFromFile();  // DELETE NOT USED
 
-
+        // Online controller to get the name of friends
         OnlineController.GetFriendNames getFriendEvents = new OnlineController.GetFriendNames();
         getFriendEvents.execute();
         try {
-            namesFriends = getFriendEvents.get();
-            //Collections.sort(namesFriends); Could be used later in scoreboard possibly.
-            namesFriendsList = namesFriends.toArray(new String[namesFriends.size()]);
-
-
+            namesFriends = getFriendEvents.get(); // Get profilenames
+            namesFriendsList = namesFriends.toArray(new String[namesFriends.size()]); // convert to a list of names.
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
+        // Online controller to get the Habits.
         OnlineController.GetHabitNames getHabitNames = new OnlineController.GetHabitNames();
         getHabitNames.execute(namesFriendsList);
-
         try {
-            names = getHabitNames.get();
-            Collections.sort(names);
+            names = getHabitNames.get(); // Get the Habits
+            Collections.sort(names);     // order the habits by user name then by habit title.
 
         } catch (Exception e) {
             Log.i("Error", "Failed to get the requests from the async object");
         }
 
+        //update the list with added information.
         adapter = new FriendAdapter(this, R.layout.listfriend_item, names);
         fEventList.setAdapter(adapter);
 
     }
 
-//  DELETE NOT USED
-    ///////////////////
-//    private void loadFromFile() {
-//        try {
-//            FileInputStream fis = openFileInput(USER_FILENAME);
-//            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-//
-//            Gson gson = new Gson();
-//
-//            Type listType = new TypeToken<String>() {
-//            }.getType();
-//            profileName = gson.fromJson(in, listType);
-//
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            profileName = "";
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            throw new RuntimeException();
-//        }
-//    }
 }

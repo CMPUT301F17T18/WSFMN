@@ -16,6 +16,10 @@ import java.util.ArrayList;
  * Created by Fredric on 2017-11-30.
  */
 
+/**
+ * Adapter for the scoreboard/ leaderboard in ProfileActivity, will be able to
+ * show the profile name fields of Name and Score.
+ */
 public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
 
     private ArrayList<ProfileName> objects;  // declaring our ArrayList of items
@@ -48,9 +52,9 @@ public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
             // if not, assign some text
             if (nameScore != null) {
                 if (i.getName().equals(App.USERNAME)) {
-                    nameScore.setText("Me:       " + App.USERNAME + "      ");
+                    nameScore.setText("Me:       " + App.USERNAME + "      "); // Shows your score
                 } else {
-                    nameScore.setText("Friend:  " + i.getName() + "      ");
+                    nameScore.setText("Friend:  " + i.getName() + "      ");  // Shows your friend score
                 }
             }
 

@@ -24,14 +24,14 @@ import java.util.Comparator;
 public class Habit implements Serializable, Comparable<Habit>{
 
 
-    private String id;
-    private String title;
-    private String title_search;
-    private String reason;
+    private String id;              //will set restful client
+    private String title;           // Title for the habit
+    private String title_search;    // Title that will be used to search for in  ES
+    private String reason;          // Optional reason for the user to put
     protected Date date = null;     //  date the habit starts
     protected WeekDays weekDays;    //  days of the week the habit will be done
-    private String owner;
-    private int score = 0;
+    private String owner;           // Owner of the habit
+    private int score = 0;          // Score of the habit based on habit events.
 
 
     //  attributes for calculating statistics about a habit
@@ -170,10 +170,18 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
 
+    /**
+     * This shows the habit's score, It is an indicator on how well your doing the habit.
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Set the habit score
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }
@@ -412,14 +420,30 @@ public class Habit implements Serializable, Comparable<Habit>{
         return total;
     }
 
+    /**
+     *  Get the user name of the owner of the habit. For elastic search use and for FriendAdapter use.
+     * @return
+     */
+
     public String getOwner() {
         return owner;
     }
 
+    /**
+     * Set the owner for which the habit belongs to. For elastic search use and for FriendAdapter
+     * @param owner
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+
+    /**
+     * Override compareTo method, Will be able to order a list by User name first then by
+     * Habit title name.
+     * @param other
+     * @return
+     */
     public int compareTo(Habit other)
     {
         int res =  this.getOwner().compareToIgnoreCase(other.getOwner());
