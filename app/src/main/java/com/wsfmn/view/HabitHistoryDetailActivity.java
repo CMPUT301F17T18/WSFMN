@@ -136,6 +136,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             c.get(ID).setComment(comment.getText().toString());
             c.get(ID).setHabit(c.get(ID).getHabitFromEvent());
             c.get(ID).setDate(getDateUIHED());
+            CurrentPhotoPath = path;
             if (CurrentPhotoPath != null) {
                 Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -145,7 +146,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                 CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
                 System.out.println(CurrentPhotoPath);
             }
-            c.get(ID).setCurrentPhotoPath(path);
+            c.get(ID).setCurrentPhotoPath(CurrentPhotoPath);
             c.get(ID).setActualCurrentPhotoPath(path);
             c.storeAndUpdate(c.get(ID));
             startActivity(intent);
@@ -191,10 +192,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
         path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
-        //If no picture taken before then when it is null value we create new image
-        if(path == null) {
-            path = CurrentPhotoPath;
-        }
+//        //If no picture taken before then when it is null value we create new image
+//        if(path == null) {
+//            path = CurrentPhotoPath;
+//        }
         intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
@@ -272,7 +273,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                 if(path == null) {
                     path = CurrentPhotoPath;
                 }
-                CurrentPhotoPath = compressImage(path);
+                path = compressImage(path);
             }
         }
         if(requestCode==2){
