@@ -85,7 +85,7 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //accept
+                //accept request of the person. delete request and add the friend to friend list.
                 online.deleteRequest(list.get(position).getId());
                 online.addFriend(list.get(position).getName());
 
