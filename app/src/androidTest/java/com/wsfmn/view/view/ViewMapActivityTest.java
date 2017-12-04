@@ -1,5 +1,6 @@
 package com.wsfmn.view.view;
 
+import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
@@ -17,6 +18,11 @@ public class ViewMapActivityTest extends ActivityInstrumentationTestCase2<ViewMa
         super(ViewMapActivity.class);
     }
 
+    public void testStart() throws Exception {
+        Activity activity = getActivity();
+
+    }
+
     protected void setUp() throws Exception{
         solo = new Solo(getInstrumentation(), getActivity());
     }
@@ -24,20 +30,16 @@ public class ViewMapActivityTest extends ActivityInstrumentationTestCase2<ViewMa
     public void testMyEventsButton(){
         solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
         solo.clickOnButton("User's habit events");
-        solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
-
     }
 
     public void testFriendsEventButton(){
         solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
         solo.clickOnButton("Friends' habit events");
-        solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
     }
 
     public void testNearMeButton(){
         solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
         solo.clickOnButton("Show nearby habit events");
-        solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
     }
 
 
