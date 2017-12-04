@@ -32,6 +32,7 @@ public class ViewHabitsForTodayActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(context, AddNewHabitEventActivity.class);
+                intent.putExtra("caller", "TODAY");
                 intent.putExtra("positionToday", position);
                 startActivity(intent);
             }

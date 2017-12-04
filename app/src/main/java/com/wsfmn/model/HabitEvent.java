@@ -14,31 +14,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by skhanna1 on 10/16/17.
+ * A HabitEvent is created when a user does one of their Habits.
  */
-
 public class HabitEvent{
-    /**
-     * Variables For the Habit Event that the user will enter or be created
-     * when a user creates a new Habit Event
-     */
+
     private String title;
     private String title_search;
     private String owner;
-    private Habit habit;
+    private String photoStringEncoding;
+    private String photoPath;
     private String comment;
-    String id;
-    Date date = null;
-    private java.util.Date actualdate;
-    //Path of the file Where image is stored
-    String CurrentPhotoPath;
-    Bitmap imageBitmap;
-    String ActualCurrentPhotoPath;
-
-    //change by wei, change location parts
+    private String id;
+    private Habit habit;
     private Geolocation geolocation;
+    private Date date = null;
+    private java.util.Date actualdate;
 
 
+    /**
+     * A blank HabitEvent
+     */
     public HabitEvent(){
         this.title = "";
         this.title_search = "";
@@ -47,16 +42,27 @@ public class HabitEvent{
         this.id = idGenerator.nextString();
     }
 
+    /**
+     * A HabitEvent without a location
+     *
+     * @param habit
+     * @param title
+     * @param comment
+     * @param photoStringEncoding
+     * @param photoPath
+     * @param date
+     * @throws HabitCommentTooLongException
+     * @throws HabitEventCommentTooLongException
+     * @throws ParseException
+     */
+    public HabitEvent(Habit habit, String title, String comment, String photoStringEncoding,
+                      String photoPath, Date date)
+            throws HabitCommentTooLongException, HabitEventCommentTooLongException, ParseException {
 
-
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath,
-                      String actualCurrentPhotoPath, Date date) throws HabitCommentTooLongException,
-            HabitEventCommentTooLongException, ParseException {
         this.habit = habit;
         this.title = title;
-        this.title = title;
         setComment(comment);
-        this.CurrentPhotoPath = CurrentPhotoPath;
+        this.photoStringEncoding = photoStringEncoding;
         IDGenerator idGenerator = new IDGenerator();
         this.id = idGenerator.nextString();
         this.date = date;
@@ -64,29 +70,31 @@ public class HabitEvent{
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
         this.geolocation = null;
-        this.ActualCurrentPhotoPath = actualCurrentPhotoPath;
+        this.photoPath = photoPath;
     }
 
-
-
     /**
-     * Constructor for the Habit Event.
-     * @param habit
-     * @param title
-     * @param comment
-     * @param CurrentPhotoPath
-     * @param date
-     * @param geolocation
+     * A complete HabitEvent
+     *
+     * @param habit that was done
+     * @param title of that Habit
+     * @param comment for this HabitEvent
+     * @param photoStringEncoding a massive String that is actually an image
+     * @param photoPath to the user's local copy of the photo
+     * @param date of the HabitEvent
+     * @param geolocation of the HabitEvent
      * @throws HabitCommentTooLongException
      * @throws HabitEventCommentTooLongException
+     * @throws ParseException
      */
-    public HabitEvent(Habit habit, String title, String comment, String CurrentPhotoPath, String actualCurrentPhotoPath, Date date, Geolocation geolocation) throws HabitCommentTooLongException,
-            HabitEventCommentTooLongException, ParseException {
+    public HabitEvent(Habit habit, String title, String comment, String photoStringEncoding,
+                      String photoPath, Date date, Geolocation geolocation)
+            throws HabitCommentTooLongException, HabitEventCommentTooLongException, ParseException {
 
         this.habit = habit;
         this.title = title;
         setComment(comment);
-        this.CurrentPhotoPath = CurrentPhotoPath;
+        this.photoStringEncoding = photoStringEncoding;
         IDGenerator idGenerator = new IDGenerator();
         this.id = idGenerator.nextString();
         this.date = date;
@@ -94,8 +102,9 @@ public class HabitEvent{
         java.util.Date adate = formatter.parse(this.date.toDateString());
         this.actualdate = adate;
         this.geolocation = geolocation;
-        this.ActualCurrentPhotoPath = actualCurrentPhotoPath;
+        this.photoPath = photoPath;
     }
+
     /**
      * Get the date of when the HabitEvent was created
      * @return Date: Date of the HabitEvent
@@ -115,18 +124,32 @@ public class HabitEvent{
     }
 
     /**
-     * Get the path of the file where image is stored for the habit Event
-     * @return mCurrentPhotoPath: filename of the image
+     * The string-encoding of the photo for this HabitEvent.
+     * @return
      */
-    public String getCurrentPhotoPath(){
-        return CurrentPhotoPath;
+    public String getPhotoStringEncoding(){
+        return photoStringEncoding;
     }
 
-    public void setCurrentPhotoPath(String CurrentPhotoPath){this.CurrentPhotoPath = CurrentPhotoPath;}
+    /**
+     *
+     * @param photoStringEncoding
+     */
+    public void setPhotoStringEncoding(String photoStringEncoding){
+        this.photoStringEncoding = photoStringEncoding;
+    }
 
-    public String getActualCurrentPhotoPath(){return ActualCurrentPhotoPath;}
+    /**
+     *
+     * @return
+     */
+    public String getPhotoPath(){return photoPath;}
 
-    public void setActualCurrentPhotoPath(String CurrentPhotoPath){this.ActualCurrentPhotoPath = CurrentPhotoPath;}
+    /**
+     *
+     * @param photoPath
+     */
+    public void setPhotoPath(String photoPath){this.photoPath = photoPath;}
 
     /**
      * Get the Habit the user selects for the HabitEvent
@@ -189,6 +212,14 @@ public class HabitEvent{
     }
 
     /**
+     *
+     * @return
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
      * Change Title of the HabitEvent
      * @param title
      * @throws HabitEventNameException
@@ -216,7 +247,6 @@ public class HabitEvent{
     public void setSearchTitle() {
         title_search = title.toLowerCase().replaceAll("\\s+", "").replaceAll("[^A-Za-z0-9]", "");
     }
-
 
     /**
      * Get the comment for HabitEvent that user created
@@ -258,10 +288,18 @@ public class HabitEvent{
         return geolocation;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOwner() {
         return owner;
     }
 
+    /**
+     *
+     * @param owner
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
@@ -273,26 +311,26 @@ public class HabitEvent{
      * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
      *  1 otherwise.
      */
-
-
-
     public int compareDate(Date otherDate){
         return date.compareDate(otherDate);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString(){
         return title + "    " + this.date;
     }
-
 
     /**
      * Code Reuse: https://stackoverflow.com/questions/7620401/how-to-convert-byte-array-to-bitmap
      * @return
      */
     public Bitmap getImageBitmap() {
-        if(CurrentPhotoPath!=null) {
-            byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
+        if(photoStringEncoding!=null) {
+            byte[] decodedString = Base64.decode(this.photoStringEncoding, Base64.DEFAULT);
             Bitmap decodedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             return decodedImage;
         }

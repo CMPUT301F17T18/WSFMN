@@ -15,12 +15,12 @@
         android:layout_marginTop="16dp"
         android:text="Add Picture"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/B_changeLocation"
+        app:layout_constraintTop_toBottomOf="@+id/hd_changeLocation"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/B_changeLocation"
+        android:id="@+id/hd_changeLocation"
         android:layout_width="118dp"
         android:layout_height="52dp"
         android:layout_marginStart="8dp"
@@ -84,7 +84,7 @@
         android:text="Address"
         android:textStyle="bold"
         android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/B_changeLocation"
-        app:layout_constraintStart_toEndOf="@+id/B_changeLocation" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/hd_changeLocation"
+        app:layout_constraintStart_toEndOf="@+id/hd_changeLocation" />
 
 </android.support.constraint.ConstraintLayout>

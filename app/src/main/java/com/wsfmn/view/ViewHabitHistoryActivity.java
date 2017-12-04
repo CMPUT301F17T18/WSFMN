@@ -88,11 +88,12 @@ public class ViewHabitHistoryActivity extends AppCompatActivity {
      */
     public void addHE(View view){
         if (HabitListController.getInstance().isEmpty()) {
-            Toast.makeText(ViewHabitHistoryActivity.this, "Add A Habit",Toast.LENGTH_LONG).show();
+            Toast.makeText(ViewHabitHistoryActivity.this, "First, add a Habit!",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, AddNewHabitActivity.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, AddNewHabitEventActivity.class);
+            intent.putExtra("caller", "HISTORY");
             startActivity(intent);
         }
     }

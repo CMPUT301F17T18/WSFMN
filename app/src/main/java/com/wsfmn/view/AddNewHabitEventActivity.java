@@ -5,8 +5,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -17,7 +15,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +23,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wsfmn.controller.ImageController;
 import com.wsfmn.controller.ProfileNameController;
 import com.wsfmn.model.Date;
 
@@ -35,13 +33,10 @@ import com.wsfmn.model.Habit;
 import com.wsfmn.exceptions.HabitCommentTooLongException;
 import com.wsfmn.model.HabitEvent;
 import com.wsfmn.exceptions.HabitEventCommentTooLongException;
-import com.wsfmn.exceptions.HabitEventNameException;
 import com.wsfmn.controller.HabitHistoryController;
 import com.wsfmn.controller.HabitListController;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,18 +52,21 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     static final int GOT_HABIT_FROM_LIST = 2;
     static final int ADD_NEW_LOCATION_CODE = 3;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    HabitHistoryController HHC = HabitHistoryController.getInstance();
+    HabitListController HLC = HabitListController.getInstance();
+    ImageController IC = ImageController.getInstance();
+
 
     EditText comment;
     TextView address;
-    TextView habitName;
+    TextView title;
     TextView date;
     Button addPicture;
     Button viewPicture;
-    String CurrentPhotoPath;
-    Uri photoURI;
+    String photoPath;
     Geolocation geolocation;
+    Habit addedHabit;
     int habitIdx;
-
     /**
      * Setup the activity for adding a new HabitEvent to HabitHistory.
      * @param savedInstanceState
@@ -78,72 +76,34 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_habit_event);
 
-        // If not null then this activity was called from the HabitsForTodayActivity
-        // So we preset the Habit to the one that was clicked
-        Bundle b = getIntent().getExtras();
-        if(b != null) {
-            habitIdx = b.getInt("positionToday");
-            changeNameToday(habitIdx);
-        }
-
-        //Declaring variables for the UI
-        habitName = (TextView)findViewById(R.id.habitName);
+        // Variables for the UI
+        title = (TextView)findViewById(R.id.habitName);
         comment = (EditText) findViewById(R.id.Comment);
         date = (TextView) findViewById(R.id.eventDate);
         address = (TextView) findViewById(R.id.T_showAdress);
         addPicture = (Button) findViewById(R.id.Picture);
         viewPicture = (Button) findViewById(R.id.ViewImg);
 
-        //Creating date for the Habit Event created
+
+        // Check if the Habit has been set by a call from the HabitForTodayActivity
+        Bundle b = getIntent().getExtras();
+        if(b.getString("caller").equals("TODAY")) {
+            habitIdx = b.getInt("positionToday");
+
+            addedHabit = HLC.getHabitsForToday().get(habitIdx);
+            title.setText(addedHabit.getTitle().toString());
+        }
+
+        // Set date for the HabitEvent created
         String dateAndTime = new Date(0).toString();
         date.setText(dateAndTime);
 
-        //Check if device has a camera
-        if (!checkCamera()) {
+        // Check if device has a camera
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
             addPicture.setEnabled(false);
         }
 
-        //To take the picture
-        addPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
-                dispatchTakePictureIntent();
-
-            }
-        });
-
-        Button Location = (Button) findViewById(R.id.B_changeLocation);
-        Location.setOnClickListener(new View.OnClickListener(){
-            @Override
-            //https://developer.android.com/training/basics/intents/result.html
-            public void onClick(View v) {
-                Intent intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
-                if (geolocation != null) {
-                    intent.putExtra("address", geolocation.getAddress());
-                    intent.putExtra("latitude", geolocation.getLatLng().latitude);
-                    intent.putExtra("longitude", geolocation.getLatLng().longitude);
-                }
-                startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
-            }
-        });
-
-        Button setNewDate = (Button)findViewById(R.id.setNewDate);
-        setNewDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            @TargetApi(24)
-            public void onClick(View v) {
-                android.icu.util.Calendar calendar = android.icu.util.Calendar.getInstance();
-                int year = calendar.get(android.icu.util.Calendar.YEAR);
-                int month = calendar.get(android.icu.util.Calendar.MONTH);
-                int day = calendar.get(android.icu.util.Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(AddNewHabitEventActivity.this,
-                        android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener, year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
+        // React when the date has been set
         mDateSetListener = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -155,17 +115,41 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     }
 
     /**
-     * Checks if the user has a camera
-     * @return if has camera or not
+     * Launch the date picker widget.
+     * @param view
      */
-    private boolean checkCamera(){
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY);
+    @TargetApi(24)
+    public void getDate(View view) {
+        android.icu.util.Calendar calendar = android.icu.util.Calendar.getInstance();
+        int year = calendar.get(android.icu.util.Calendar.YEAR);
+        int month = calendar.get(android.icu.util.Calendar.MONTH);
+        int day = calendar.get(android.icu.util.Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(AddNewHabitEventActivity.this,
+                android.R.style.Theme_Holo_Dialog_MinWidth, mDateSetListener, year, month, day);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
+
+    /**
+     * Get the Location from AddLocationActivity.
+     * @param view
+     */
+    public void getLocation(View view) {
+        Intent intent = new Intent(AddNewHabitEventActivity.this, AddLocationActivity.class);
+        if (geolocation != null) {
+            intent.putExtra("address", geolocation.getAddress());
+            intent.putExtra("latitude", geolocation.getLatLng().latitude);
+            intent.putExtra("longitude", geolocation.getLatLng().longitude);
+        }
+        startActivityForResult(intent, ADD_NEW_LOCATION_CODE);
     }
 
     /**
      * Take a picture and save it.
+     * Reuse Code for taking image: https://developer.android.com/training/camera/photobasics.html
      */
-    private void dispatchTakePictureIntent() {
+    public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -180,7 +164,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                photoURI = FileProvider.getUriForFile(this,
+                Uri photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -207,8 +191,7 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
                 storageDir      /* directory */
         );
 
-        // Save a file: path for use with ACTION_VIEW intents
-        CurrentPhotoPath = image.getAbsolutePath();
+        photoPath = image.getAbsolutePath();
         return image;
     }
 
@@ -228,19 +211,16 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      * @param data
      */
     @Override
-    protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Set the image path
-
-        if (requestCode == REQUEST_TAKE_PHOTO) {
-            if (resultCode == Activity.RESULT_OK) {
-               CurrentPhotoPath = compressImage(CurrentPhotoPath);
-                //CurrentPhotoPath = scaleImage(CurrentPhotoPath);
-            }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Compress photo
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
+            photoPath = IC.compressImage(photoPath);
         }
         // Set habit idx if returned from the HabitList
         if (requestCode == GOT_HABIT_FROM_LIST && resultCode == Activity.RESULT_OK) {
             habitIdx = data.getExtras().getInt("position");
-            changeName(habitIdx);
+            addedHabit = HLC.getHabit(habitIdx);
+            title.setText(addedHabit.getTitle());
         }
         // Add Location
         if(requestCode == ADD_NEW_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
@@ -255,59 +235,30 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
     }
 
     /**
-     * Display the Habit the user selected for this habit event.
-     *
-     * @param i index of Habit in the HabitHistory
-     */
-    public void changeName(int i){
-        HabitListController control = HabitListController.getInstance();
-        habitName.setText(control.getHabit(i).getTitle().toString());
-    }
-
-    /**
-     * Display the Habit the user selected for this habit event (from Habits For Today).
-     * @param i index of Habit in HabitsForToday
-     */
-    public void changeNameToday(int i){
-        HabitListController control = HabitListController.getInstance();
-        habitName.setText(control.getHabitsForToday().get(i).getTitle().toString());
-    }
-
-    /**
-     * Create and save a new HabitEVent with the current on-screen parameters.
+     * Create and save a new valid HabitEVent with the current on-screen parameters.
      * @param view
      */
     public void confirmHabitEvent(View view) {
         Intent intent = new Intent(this, ViewHabitHistoryActivity.class);
-        String actualCurrentPhotoPath = CurrentPhotoPath;
+
+        // Encode image as a string for online storage
+        String photoStringEncoding = IC.convertImageToString(photoPath);
         try {
-            // Convert picture to byte[] for online storage
-            if(CurrentPhotoPath!=null) {
-                Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] b = baos.toByteArray();
-
-                CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
-                System.out.println(CurrentPhotoPath);
-            }
-            HabitListController control = HabitListController.getInstance();
-
             //CREATE THE NEW HABIT EVENT
             HabitEvent NEW_HABIT_EVENT = new HabitEvent(
-                    control.getHabit(habitIdx),
-                    habitName.getText().toString(),
-                    comment.getText().toString(),
-                    CurrentPhotoPath,
-                    actualCurrentPhotoPath,
-                    getDateUIHE(),
-                    geolocation);
+                                                        addedHabit,
+                                                        addedHabit.getTitle(),
+                                                        comment.getText().toString(),
+                                                        photoStringEncoding,
+                                                        photoPath,
+                                                        getDateUIHE(),
+                                                        geolocation);
 
             //Add the Habit Event to HabitHistory
-            HabitHistoryController control2 = HabitHistoryController.getInstance();
+            HHC.addAndStore(NEW_HABIT_EVENT);
+            HHC.storeAll();
 
-            control2.addAndStore(NEW_HABIT_EVENT);
-            control2.storeAll();
+            // Update User's Score
             ProfileNameController.getInstance().updateScore();
             startActivity(intent);
 
@@ -326,9 +277,9 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
      * viewing image that the user took for the habit event
      * @param view
      */
-    public void viewPic(View view){
+    public void viewPicture(View view){
         Intent intent = new Intent(this, AddImageActivity.class);
-        intent.putExtra("CurrentPhotoPath", CurrentPhotoPath);
+        intent.putExtra("CurrentPhotoPath", photoPath);
         startActivity(intent);
     }
 
@@ -350,106 +301,4 @@ public class AddNewHabitEventActivity extends AppCompatActivity {
         return date3;
     }
 
-    /**
-     *
-     * @param CurrentPhotoPath
-     * @return
-     */
-    public String compressImage(String CurrentPhotoPath){
-        Bitmap imageBitmapCheck = BitmapFactory.decodeFile(CurrentPhotoPath);
-        int i = imageBitmapCheck.getByteCount();
-
-        CurrentPhotoPath = scaleImage(CurrentPhotoPath);
-
-        Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
-        int i4 = imageBitmap.getByteCount();
-        File f = new File(CurrentPhotoPath);
-
-        int MAX_IMAGE_SIZE = 65532;
-        int streamLength = MAX_IMAGE_SIZE;
-        int compressQuality = 105;
-
-        ByteArrayOutputStream bmpStream = new ByteArrayOutputStream();
-
-        while (streamLength >= MAX_IMAGE_SIZE && compressQuality > 5) {
-            try {
-                bmpStream.flush();//to avoid out of memory error
-                bmpStream.reset();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            compressQuality -= 5;
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream);
-            byte[] bmpPicByteArray = bmpStream.toByteArray();
-            streamLength = bmpPicByteArray.length;
-        }
-
-        byte[] bmpPicByteArray = bmpStream.toByteArray();
-        streamLength = bmpPicByteArray.length;
-
-        FileOutputStream fo;
-
-        try {
-            fo = new FileOutputStream(f);
-            fo.write(bmpStream.toByteArray());
-            fo.flush();
-            fo.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return f.getAbsolutePath();
-    }
-
-    /**
-     *
-     * @param CurrentPhotoPath
-     * @return
-     */
-    public String scaleImage(String CurrentPhotoPath) {
-
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
-
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        float maxHeight = 816.0f;
-        float maxWidth = 612.0f;
-
-        int scaleFactor = (int) Math.min(photoW/maxWidth,photoH/maxHeight);
-
-        File img = new File(CurrentPhotoPath);
-        long length = img.length();
-
-        bmOptions.inSampleSize = scaleFactor;
-
-        bmOptions.inJustDecodeBounds = false;
-
-        Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
-
-        if (length > 65532) {
-            imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath, bmOptions);
-        }
-
-
-        int i = imageBitmap.getByteCount();
-
-
-        File file = new File(CurrentPhotoPath);
-        if (file.exists()) {
-            file.delete();
-        }
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return file.getAbsolutePath();
-    }
 }
