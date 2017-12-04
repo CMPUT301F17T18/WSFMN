@@ -1,5 +1,6 @@
 package com.wsfmn.view.view;
 
+import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
 import com.robotium.solo.Solo;
@@ -15,6 +16,11 @@ public class ViewMapActivityTest extends ActivityInstrumentationTestCase2<ViewMa
 
     public ViewMapActivityTest(){
         super(ViewMapActivity.class);
+    }
+
+    public void testStart() throws Exception {
+        Activity activity = getActivity();
+
     }
 
     protected void setUp() throws Exception{

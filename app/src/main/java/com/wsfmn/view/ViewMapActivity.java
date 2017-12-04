@@ -167,7 +167,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         mMap.clear();
         Bundle bundle = getIntent().getExtras();
-        //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
 
 
