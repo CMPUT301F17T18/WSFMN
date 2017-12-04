@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Created by musaed on 2017-10-22.
  *
  * This class is a list data structure of type boolean and size 7 used to store days of the week
- * that the habit will occurr in. Each entry represents a day, and we use the defines constants
+ * that the habit will occur in. Each entry represents a day, and we define constants
  * as indexes to access the list's entries. An entry containing true means that the habit will
  * occur in this day, and false if not.
  *

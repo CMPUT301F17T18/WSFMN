@@ -185,7 +185,7 @@ public class Date implements Serializable{
 
     /**
      *  According to the current year, month, and day for the Date object,
-     *  returns the total number of days for a month
+     *  returns the total number of days in a month
      *
      * @return int the total number of days for a month, depending on the value of month
      *  of the calling object
@@ -216,7 +216,7 @@ public class Date implements Serializable{
     }
 
     /**
-     *  Compare two Dates to see if they are equal or not
+     *  Compare two Dates to see if they are equal or not.
      *
      * @param date a date to compare with the calling object.
      * @return boolean true if the two dates are equal and false otherwise
@@ -296,6 +296,7 @@ public class Date implements Serializable{
     }
 
     /**
+     *  Returns a string containing y, m, and d for a Date object.
      *
      */
     public void dateToString(){
