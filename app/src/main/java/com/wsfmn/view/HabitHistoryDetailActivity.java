@@ -39,7 +39,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-
 /**
  * Called when the user wants to edit an existing Habit Event
  * @version 1.0
@@ -47,51 +46,45 @@ import java.text.SimpleDateFormat;
  */
 public class HabitHistoryDetailActivity extends AppCompatActivity {
 
-    Button addHabit;
-    TextView habitName;
-    Button addPicture;
-    EditText comment;
-    Button viewImage;
-    Button confirm;
-    TextView date;
-    TextView T_address;
-    String ID;
-    Geolocation geolocation;
-
-    //Has the path that is to be calculated in detail
-    String CurrentPhotoPath;
-    //Has the path already present
-    String path;
-
-    int position;
-    Button B_changeLocation;
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int GOT_HABIT_FROM_LIST = 2;
     static final int CHANGE_LOCATION_CODE = 3;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
+    EditText comment;
+    TextView address;
+    TextView habitName;
+    TextView date;
+    Button addPicture;
+    Button viewPicture;
+    String CurrentPhotoPath;
+    Uri photoURI;
+    Geolocation geolocation;
+    int habitIdx;
+
+    String ID;
+    String path;
+
+    /**
+     * Setup the activity for changing an existing HabitEvent in HabitHistory.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_history_detail);
 
         //Declaring variables for the UI
-        addHabit = (Button)findViewById(R.id.addHabit2);
         habitName = (TextView) findViewById(R.id.habitName2);
-        addPicture = (Button)findViewById(R.id.Picture2);
         comment = (EditText)findViewById(R.id.Comment2);
-        viewImage = (Button)findViewById(R.id.ViewImg2);
-        confirm = (Button)findViewById(R.id.confirmButton2);
         date = (TextView)findViewById(R.id.dateDetail);
-        B_changeLocation = (Button)findViewById(R.id.B_changeLocation);
-        T_address = (TextView)findViewById(R.id.T_C_showAddress);
+        address = (TextView)findViewById(R.id.T_C_showAddress);
+        addPicture = (Button)findViewById(R.id.Picture2);
+        viewPicture = (Button)findViewById(R.id.ViewImg2);
 
         Bundle b = getIntent().getExtras();
-        try {
-            //Get the ID of Habit Event the user selected
+        if (b != null) {
             ID = b.getString("id");
-        }catch (NullPointerException e){
-            //TODO Can we fix this instead fo catching a NullPointerException?
         }
 
         HabitHistoryController c = HabitHistoryController.getInstance();
@@ -99,7 +92,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             habitName.setText(c.get(ID).getHabitFromEvent().getTitle());
             comment.setText(c.get(ID).getComment());
             if (c.get(ID).getGeolocation() != null) {
-                T_address.setText(c.get(ID).getGeolocation().getAddress());
+                address.setText(c.get(ID).getGeolocation().getAddress());
             }
             date.setText(new com.wsfmn.model.Date().toString());
         } catch(IndexOutOfBoundsException e){
@@ -133,7 +126,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     }
 
     /**
-     * Confirm the changes fot the Habit Event
+     * Save the changes for this Habit Event
      * @param view
      */
     public void confirmHE(View view){
@@ -256,7 +249,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             photoFile = new File(CurrentPhotoPath);
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -280,10 +273,11 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             }
             CurrentPhotoPath = compressImage(path);
 
+
         }
         if (requestCode == GOT_HABIT_FROM_LIST && resultCode == Activity.RESULT_OK) {
-            position = data.getExtras().getInt("position");
-            changeHabit(position);
+            habitIdx = data.getExtras().getInt("position");
+            changeHabit(habitIdx);
         }
 
         if (requestCode == CHANGE_LOCATION_CODE && resultCode == Activity.RESULT_OK) {
@@ -294,7 +288,8 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
                             data.getDoubleExtra("latitude",0),
                             data.getDoubleExtra("longitude",0))
             );
-            T_address.setText(address);
+            this.address.setText(address);
+
         }
     }
 
@@ -305,7 +300,7 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void changeHabit(int i) {
         HabitListController l = HabitListController.getInstance();
-        HabitHistoryController.getInstance().get(ID).setHabit(l.getHabit(position));
+        HabitHistoryController.getInstance().get(ID).setHabit(l.getHabit(habitIdx));
         habitName.setText(l.getHabit(i).getTitle().toString());
     }
 
@@ -315,10 +310,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      */
     public void changeLocation(View view) {
         Intent intent = new Intent(this, AddLocationActivity.class);
-        if (HabitHistoryController.getInstance().get(position).getGeolocation() != null) {
-            intent.putExtra("address", HabitHistoryController.getInstance().get(position).getGeolocation().getAddress());
-            intent.putExtra("latitude", HabitHistoryController.getInstance().get(position).getGeolocation().getLatLng().latitude);
-            intent.putExtra("longitude", HabitHistoryController.getInstance().get(position).getGeolocation().getLatLng().longitude);
+        if (HabitHistoryController.getInstance().get(habitIdx).getGeolocation() != null) {
+            intent.putExtra("address", HabitHistoryController.getInstance().get(habitIdx).getGeolocation().getAddress());
+            intent.putExtra("latitude", HabitHistoryController.getInstance().get(habitIdx).getGeolocation().getLatLng().latitude);
+            intent.putExtra("longitude", HabitHistoryController.getInstance().get(habitIdx).getGeolocation().getLatLng().longitude);
         }
         startActivityForResult(intent, CHANGE_LOCATION_CODE);
     }

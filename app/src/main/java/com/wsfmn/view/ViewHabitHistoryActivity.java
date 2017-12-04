@@ -28,9 +28,9 @@ public class ViewHabitHistoryActivity extends AppCompatActivity {
     private ArrayAdapter<HabitEvent> adapter;
     private ListView habitHistory;
     private EditText search;
-    int highlightMode = 7;
-    public static final int FILTER_BY_TITLE_CODE=5;
-    public static final int FILTER_BY_COMMENT_CODE= 6;
+    public static int highlightMode = 7;
+    public static final int FILTER_BY_TITLE_CODE = 5;
+    public static final int FILTER_BY_COMMENT_CODE = 6;
     String filterString;
 
     @Override

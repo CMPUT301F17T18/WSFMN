@@ -144,7 +144,7 @@ public class HabitListDetailActivity extends AppCompatActivity {
             HabitListController c = HabitListController.getInstance();
             Habit h = c.getHabit(position);
 
-            h.setTitle(habitTitle.getText().toString().toLowerCase().replaceAll("\\s+", ""));
+            h.setTitle(habitTitle.getText().toString());
             h.setReason(habitReason.getText().toString());
 
             setUnset(monday, WeekDays.MONDAY);
@@ -177,8 +177,8 @@ public class HabitListDetailActivity extends AppCompatActivity {
     }
 
     /**
-     *  called when delete button is clicked
-     *  is clicked
+     *
+     * @param view
      */
     public void delete(View view){
         Intent intent = new Intent(this, ViewHabitListActivity.class);
@@ -188,6 +188,11 @@ public class HabitListDetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     *
+     * @param checkBox
+     * @param day
+     */
     public void setUnset(CheckBox checkBox, int day){
         HabitListController c = HabitListController.getInstance();
         if(checkBox.isChecked())
@@ -196,11 +201,20 @@ public class HabitListDetailActivity extends AppCompatActivity {
             c.getHabit(position).unsetDay(day);
     }
 
+    /**
+     *
+     * @param checkBox
+     * @param day
+     */
     public void setCheckBox(CheckBox checkBox, int day){
         HabitListController c = HabitListController.getInstance();
         checkBox.setChecked(c.getHabit(position).getWeekDays().getDay(day));
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateUI(){
         String date = dateText.getText().toString();
         String[] list = date.split(" / ");
