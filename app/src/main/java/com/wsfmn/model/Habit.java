@@ -159,7 +159,7 @@ public class Habit implements Serializable, Comparable<Habit>{
      * @return online search title
      */
     public String getSearchTitle() {
-        return title_search;
+        return title_search.toLowerCase().replaceAll("\\s+", "").replaceAll("[^A-Za-z0-9]", "");
     }
 
     /**

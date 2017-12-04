@@ -454,7 +454,7 @@ public class OnlineController {
             HabitEvent recent = null;
 
             // TODO Build the query
-            String query = "{\"query\" : { \"term\" : {\"title\" : \"" +search_parameters[0] +"\"} }, " +
+            String query = "{\"query\" : { \"term\" : {\"title_search\" : \"" +search_parameters[0] +"\"} }, " +
                     "\"size\" : 1, \"sort\" : [{\"actualdate\" : { \"order\" : \"desc\"}}] }";
 
                 Search search = new Search.Builder(query)
