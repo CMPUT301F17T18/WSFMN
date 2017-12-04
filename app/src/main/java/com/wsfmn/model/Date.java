@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import java.io.Serializable;
@@ -9,7 +17,6 @@ import java.util.Calendar;
  * This class represents a Date object that is used by classes that need to keep Date
  * information.
  */
-
 public class Date implements Serializable{
 
     int year;
@@ -69,7 +76,7 @@ public class Date implements Serializable{
     }
 
     /**
-     *  Returns the year part of Date
+     *  Return the year part of Date
      *
      * @return int the year of date
      */
@@ -78,7 +85,7 @@ public class Date implements Serializable{
     }
 
     /**
-     * Sets year for a date
+     * Set year for a date
      *
      * @param year a year that we use to set the date's year
      */
@@ -87,7 +94,7 @@ public class Date implements Serializable{
     }
 
     /**
-     *  Returns the month of Date
+     *  Return the month of Date
      *
      * @return int the month of date
      */
@@ -96,7 +103,7 @@ public class Date implements Serializable{
     }
 
     /**
-     * Sets the month for date
+     * Set the month for date
      *
      * @param month a month that we use to set the date's month
      */
@@ -105,7 +112,7 @@ public class Date implements Serializable{
     }
 
     /**
-     *  Returns the day of Date
+     *  Return the day of Date
      *
      * @return int the day of date
      */
@@ -114,7 +121,7 @@ public class Date implements Serializable{
     }
 
     /**
-     * Sets day for date
+     * Set day for date
      *
      * @param day a day that we use to set the date's day
      */
@@ -122,26 +129,56 @@ public class Date implements Serializable{
         this.day = day;
     }
 
+    /**
+     * Get the hour.
+     *
+     * @return the hour
+     */
     public int getH() {
         return h;
     }
 
+    /**
+     * Set the hour.
+     *
+     * @param h the hour
+     */
     public void setH(int h) {
         this.h = h;
     }
 
+    /**
+     * Get the minutes.
+     *
+     * @return the minutes
+     */
     public int getM() {
         return m;
     }
 
+    /**
+     * Set minutes.
+     *
+     * @param m the minutes
+     */
     public void setM(int m) {
         this.m = m;
     }
 
+    /**
+     * Get seconds.
+     *
+     * @return the seconds
+     */
     public int getS() {
         return s;
     }
 
+    /**
+     * Set seconds.
+     *
+     * @param s the seconds
+     */
     public void setS(int s) {
         this.s = s;
     }
@@ -258,12 +295,20 @@ public class Date implements Serializable{
         return toString;
     }
 
+    /**
+     *
+     */
     public void dateToString(){
         String y = String.valueOf(year);
         String m = String.valueOf(month);
         String d = String.valueOf(day);
-
     }
+
+    /**
+     * Get a date string.
+     *
+     * @return the date as a string.
+     */
     public String toDateString(){
         String syear = Integer.toString(year);
         String smonth;
@@ -311,9 +356,6 @@ public class Date implements Serializable{
             second = Integer.toString(s);
             second = "0" + second;
         }
-
-
-
 
         System.out.println("year"+syear  + "month"+smonth  + "day"+sday + "hour"+hour + "minute"+minute + "second"+second);
         return syear  + smonth  + sday + hour + minute + second;
