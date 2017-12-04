@@ -99,7 +99,7 @@ public class FriendHabitActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         OnlineController.GetRecentEvent fRecentEvent = new OnlineController.GetRecentEvent();
-        fRecentEvent.execute(fHabit.getTitle().toLowerCase(),fHabit.getOwner());
+        fRecentEvent.execute(fHabit.getSearchTitle(),fHabit.getOwner());
         try{
             fEvent = fRecentEvent.get();
             fEventComment.setText(fEvent.getComment());
