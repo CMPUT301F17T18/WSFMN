@@ -24,20 +24,16 @@ public class ViewMapActivityTest extends ActivityInstrumentationTestCase2<ViewMa
     public void testMyEventsButton(){
         solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
         solo.clickOnButton("User's habit events");
-        solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
-
     }
 
     public void testFriendsEventButton(){
         solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
         solo.clickOnButton("Friends' habit events");
-        solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
     }
 
     public void testNearMeButton(){
         solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
         solo.clickOnButton("Show nearby habit events");
-        solo.assertCurrentActivity("Wrong Activity", ViewMapActivity.class);
     }
 
 
