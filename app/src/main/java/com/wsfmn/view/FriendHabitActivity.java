@@ -100,22 +100,16 @@ public class FriendHabitActivity extends AppCompatActivity {
         super.onStart();
         OnlineController.GetRecentEvent fRecentEvent = new OnlineController.GetRecentEvent();
         fRecentEvent.execute(fHabit.getTitle().toLowerCase(),fHabit.getOwner());
-        boolean flag = false;
         try{
             fEvent = fRecentEvent.get();
-            flag = true;
-
-
-
-        } catch (Exception e) {
-            Log.i("Error", "Failed to get the requests from the async object");
-        }
-
-        if(flag) {
             fEventComment.setText(fEvent.getComment());
             friendImage.setImageBitmap(fEvent.getImageBitmap());
             fEventDate.setText(fEvent.getDate().toString());
             fEventAddress.setText(fEvent.getGeolocation().getAddress());
+
+
+        } catch (Exception e) {
+            Log.i("Error", "Failed to get the requests from the async object");
         }
 
     }
