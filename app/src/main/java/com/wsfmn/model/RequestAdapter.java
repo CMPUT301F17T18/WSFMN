@@ -16,13 +16,17 @@ import com.wsfmn.view.R;
  * Created by Fredric on 2017-11-11.
  */
 
+/**
+ * Adapter for requests in profileActivity, will be able show the
+ * the name of the person who would like to follow and a little message "would like to follow!"
+ */
 public class RequestAdapter extends BaseAdapter implements ListAdapter {
     private RequestList list = new RequestList();
     private Context context;
     private OnlineController online = new OnlineController();
 
 
-
+    // Set the requestlist and context for requestAdapter.
     public RequestAdapter(RequestList list, Context context) {
         this.list = list;
         this.context = context;
@@ -72,7 +76,7 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
+                //delete request of the person who asked to follow, delete on elastic search as well.
                 online.deleteRequest( list.get(position).getId());
                 list.remove(position); //or some other task
                 notifyDataSetChanged();
@@ -81,7 +85,7 @@ public class RequestAdapter extends BaseAdapter implements ListAdapter {
         addBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
+                //accept
                 online.deleteRequest(list.get(position).getId());
                 online.addFriend(list.get(position).getName());
 

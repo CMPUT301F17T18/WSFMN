@@ -18,17 +18,17 @@ import java.text.SimpleDateFormat;
  */
 public class HabitEvent{
 
-    private String title;
-    private String title_search;
-    private String owner;
-    private String photoStringEncoding;
-    private String photoPath;
-    private String comment;
-    private String id;
-    private Habit habit;
-    private Geolocation geolocation;
-    private Date date = null;
-    private java.util.Date actualdate;
+    private String title;                  //Title of habit event, will be the same its habit
+    private String title_search;           //Title to be search on ES,
+    private String owner;                  //Set the owner for the habit event
+    private String photoStringEncoding;    //encoded string for the photo.
+    private String photoPath;              // photo path of the picture taken
+    private String comment;                // Optional comment for the habit event
+    private String id;                     // Id used for ES, will be set once stored.
+    private Habit habit;                   // Have the habit included in the habit event
+    private Geolocation geolocation;       // Store geolocations, coordinates and address.
+    private Date date = null;              // Our own version of Date, to be used for many functions.
+    private java.util.Date actualdate;     // Actual date. Coverts our Date class in to java.util.Date
 
 
     /**
@@ -113,10 +113,21 @@ public class HabitEvent{
         this.date = date;
     }
 
+
+    /**
+     * Get the date Using our date method.
+     * @return
+     */
     public Date getDate(){
         return this.date;
     }
 
+
+    /**
+     * get the actual Date using java.util.Date
+     * @return
+     * @throws ParseException
+     */
     public java.util.Date getActualDate() throws ParseException {
 
 
@@ -132,7 +143,7 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Setting the String encoded for the Habitevent
      * @param photoStringEncoding
      */
     public void setPhotoStringEncoding(String photoStringEncoding){
@@ -140,13 +151,13 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Get the photo path from the picture taken on the phone/emulator.
      * @return
      */
     public String getPhotoPath(){return photoPath;}
 
     /**
-     *
+     * Set the photo path into Habitevent
      * @param photoPath
      */
     public void setPhotoPath(String photoPath){this.photoPath = photoPath;}
@@ -212,7 +223,7 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Get the title of the habit event.
      * @return
      */
     public String getTitle() {
@@ -273,7 +284,8 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Set the geolocations after selecting a location.
+     * This will add a location and a address.
      * @param geolocation
      */
     public void setGeolocation(Geolocation geolocation){
@@ -281,7 +293,8 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Get back the geolocation.
+     * Coordinates and address.
      * @return
      */
     public Geolocation getGeolocation(){
@@ -289,7 +302,7 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Get the owner of habit event.
      * @return
      */
     public String getOwner() {
@@ -297,7 +310,7 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Setting the owner of the habit event.
      * @param owner
      */
     public void setOwner(String owner) {
@@ -316,7 +329,7 @@ public class HabitEvent{
     }
 
     /**
-     *
+     * Able to make the object into a string to be printable
      * @return
      */
     @Override

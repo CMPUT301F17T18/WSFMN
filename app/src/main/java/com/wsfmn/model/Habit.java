@@ -25,13 +25,13 @@ public class Habit implements Serializable, Comparable<Habit>{
 
 
     private String id;              //will set restful client
-    private String title;
-    private String title_search;
-    private String reason;
+    private String title;           // Title for the habit
+    private String title_search;    // Title that will be used to search for in  ES
+    private String reason;          // Optional reason for the user to put
     protected Date date = null;     //  date the habit starts
     protected WeekDays weekDays;    //  days of the week the habit will be done
-    private String owner;
-    private int score = 0;
+    private String owner;           // Owner of the habit
+    private int score = 0;          // Score of the habit based on habit events.
 
 
     //  attributes for calculating statistics about a habit

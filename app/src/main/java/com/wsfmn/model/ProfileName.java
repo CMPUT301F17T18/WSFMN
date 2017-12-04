@@ -9,15 +9,15 @@ import io.searchbox.annotations.JestId;
  */
 
 /**
- * a Class for the User's profilename
+ * a Class for the User's profilename, Stores their score calculated by Habit and their habit events.
  */
 public class ProfileName {
-    private String name;
+    private String name; // Name for the user
 
     @JestId
-    private String id;
+    private String id; // Elastic search user, Id will be set once it has been stored.
 
-    private int score;
+    private int score; // Score based on All Habits and Their events.
 
     /**
      * Empty construct if new ProfileName is called without parameters.
@@ -67,10 +67,18 @@ public class ProfileName {
         this.id = id;
     }
 
+    /**
+     * get the current score of the user.
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * set or update the score for the user.
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }

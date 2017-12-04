@@ -11,8 +11,8 @@ package com.wsfmn.model;
  * @see ProfileName
  */
 public class Request extends ProfileName{
-    private String searchName;
-    private String requestType;
+    private String searchName;  // this name will be used to search for
+    private String requestType; // Just a follow type, But can be extended to sharing or other in the future
 
     /**
      * Construct to create a request, using ProfileName's Construct
