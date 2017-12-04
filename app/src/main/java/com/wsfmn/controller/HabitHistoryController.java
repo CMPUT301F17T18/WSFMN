@@ -156,7 +156,7 @@ public class HabitHistoryController {
     }
 
     /**
-     * Returns the HabitEvent at a particular index.
+     * Return the HabitEvent at a particular index.
      *
      * @param idx index of the HabitEvent to get
      * @return HabitEvent at the specified index
@@ -168,7 +168,7 @@ public class HabitHistoryController {
 
 
     /**
-     * Get habit by it's id
+     * Return a Habit by its id
      * @param id
      * @return
      */
