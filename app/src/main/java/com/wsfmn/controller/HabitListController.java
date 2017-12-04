@@ -48,7 +48,7 @@ public class HabitListController{
     private static HabitList habitList = null;
 
     /**
-     * Instantiates the habitList attribute.
+     * Instantiate the habitList attribute.
      * This pulls the data from the locally saved HabitList via OfflineController using init().
      */
     private HabitListController(){
@@ -57,7 +57,7 @@ public class HabitListController{
     }
 
     /**
-     * Accesses the instance of HabitListController singleton
+     * Access the instance of HabitListController singleton.
      *
      * @return HabitListController the instance of singleton controller
      */
@@ -71,7 +71,7 @@ public class HabitListController{
     }
 
     /**
-     * Checks if HabitList is empty.
+     * Check if HabitList is empty.
      *
      * @return true if empty, false otherwise
      */
@@ -80,7 +80,7 @@ public class HabitListController{
     }
 
     /**
-     * Adds a habit to the habit list
+     * Add a habit to the habit list.
      *
      * @param habit a habit to be added to the habit list
      */
@@ -89,7 +89,7 @@ public class HabitListController{
     }
 
     /**
-     *  Stores a Habit online and offline and then adds it to the habit list
+     * Store a Habit online and offline and then add it to the habit list.
      *
      * @param habit a habit to be added offline, online, and to the habit list
      */
@@ -106,8 +106,10 @@ public class HabitListController{
     }
 
     /**
+     *  Delete a habit both online and offline, if not connected online then the habit deletion
+     *  is queued for the next time a user goes online.
      *
-     * @param habit
+     * @param habit to be deleted
      */
     public void deleteHabit(Habit habit){
         // Added by nmayne on 2017-11-07
