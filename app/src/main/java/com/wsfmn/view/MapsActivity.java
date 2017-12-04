@@ -81,21 +81,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     * When user click Near me button
+     * The markers of Friend's event and User's event will be shown on the Map
+     * User's event will be shown depends on how user filered them in last page
+     * The events which are within 5km to current location, will be shown as green markers
+     * Other events will be default Red color
+     * @param v
+     */
+
     public void buttonHighlight(View v){
         Bundle bundle = getIntent().getExtras();
-        //String filterString = bundle.getString("filterString");
+
         int highlightMode = bundle.getInt("highlightMode", 7);
 
 
         if (currentLocation != null) {
-            Button Highlight = (Button) findViewById(R.id.B_highlight);
-            //Highlight.setText("clicked");
-            Toast.makeText(getApplicationContext(), "0", Toast.LENGTH_LONG).show();
 
             if (highlightMode == 7) {
 
                 for (int i = 0; i < HabitHistoryController.getInstance().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
@@ -133,7 +138,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             else if(highlightMode == 5){
 
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
@@ -171,7 +175,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             else if(highlightMode == 6){
                 for (int i = 0; i < HabitHistoryController.getInstance().getFilteredHabitHistory().size(); i++) {
-                    Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_LONG).show();
 
                     HabitEvent habitEvent = HabitHistoryController.getInstance().getFilteredHabitHistory().get(i);
                     Geolocation geolocation = habitEvent.getGeolocation();
