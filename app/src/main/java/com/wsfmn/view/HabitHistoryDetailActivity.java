@@ -83,7 +83,6 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         if (b != null) {
             ID = b.getString("id");
-            ID = ID;
         }
 
         HabitHistoryController c = HabitHistoryController.getInstance();

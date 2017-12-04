@@ -53,7 +53,8 @@ public class HabitEvent{
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
-        this.id = title + new Date(1).toDateString();   // initial offline temp id
+        IDGenerator idGenerator = new IDGenerator();
+        this.id = idGenerator.nextString();
         this.date = date;
         DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         java.util.Date adate = formatter.parse(this.date.toDateString());
@@ -82,7 +83,8 @@ public class HabitEvent{
         this.title = title;
         setComment(comment);
         this.CurrentPhotoPath = CurrentPhotoPath;
-        this.id = title + new Date(1).toDateString();   // initial offline temp id
+        IDGenerator idGenerator = new IDGenerator();
+        this.id = idGenerator.nextString();
         this.date = date;
         DateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         java.util.Date adate = formatter.parse(this.date.toDateString());

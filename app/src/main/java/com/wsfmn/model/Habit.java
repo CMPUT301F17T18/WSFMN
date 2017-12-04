@@ -71,7 +71,8 @@ public class Habit implements Serializable, Comparable<Habit>{
      */
     public Habit(String title, Date date) throws HabitTitleTooLongException,
                                                 DateNotValidException {
-        this.id = title + new Date(1).toDateString();   // initial offline temp id
+        IDGenerator idGenerator = new IDGenerator();
+        this.id = idGenerator.nextString();
         this.setDate(date);
         this.setTitle(title);
         this.weekDays = new WeekDays();
