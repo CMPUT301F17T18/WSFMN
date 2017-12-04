@@ -567,7 +567,7 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         for(Habit getEvent : hNames){
             OnlineController.GetRecentEvent fRecentEvent = new OnlineController.GetRecentEvent();
-            fRecentEvent.execute(getEvent.getTitle().toLowerCase(),getEvent.getOwner());
+            fRecentEvent.execute(getEvent.getSearchTitle(),getEvent.getOwner());
             try {
                if(fRecentEvent.get() != null) {
                    eventList.add(fRecentEvent.get());
@@ -577,10 +577,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
                 Log.i("Error", "Failed to get the requests from the async object");
             }
         }
-
-        System.out.println(eventList.size());
-        System.out.println(eventList);
-
 
 
     }
