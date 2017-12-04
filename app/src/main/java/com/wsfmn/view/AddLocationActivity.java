@@ -240,9 +240,11 @@ public class AddLocationActivity extends AppCompatActivity {
     }
 
     /**
+     * When user click the confirm button.
      * Check permission and get the current location.
      *
      */
+
     void configure_button() {
         // Check for permissions
         if (ActivityCompat.checkSelfPermission(

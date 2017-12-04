@@ -12,8 +12,6 @@ public class Geolocation {
 
     /**
      *  Created a Geolocation object
-     *
-
      */
 
     public Geolocation(){
