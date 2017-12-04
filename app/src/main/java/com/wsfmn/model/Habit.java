@@ -26,8 +26,9 @@ public class Habit implements Serializable, Comparable<Habit>{
 
     private String id;
     private String title;
+    private String title_search;
     private String reason;
-    protected Date date = null; //  date the habit starts
+    protected Date date = null;     //  date the habit starts
     protected WeekDays weekDays;    //  days of the week the habit will be done
     private String owner;
     private int score = 0;
@@ -138,14 +139,6 @@ public class Habit implements Serializable, Comparable<Habit>{
         return title;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     /**
      *  checks that a habit's title is valid before assigning it
      *
@@ -159,6 +152,32 @@ public class Habit implements Serializable, Comparable<Habit>{
         }
         this.title = title;
     }
+
+    /**
+     * Get the title used for online searching.
+     * @return online search title
+     */
+    public String getSearchTitle() {
+        return title_search;
+    }
+
+    /**
+     * Set the searchable title based upon title.
+     */
+    public void setSearchTitle() {
+        title_search = title.toLowerCase().replaceAll("\\s+", "");
+    }
+
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
 
     /**
      *
