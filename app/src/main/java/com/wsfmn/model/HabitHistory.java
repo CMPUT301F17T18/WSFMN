@@ -78,10 +78,15 @@ public class HabitHistory {
      * Get the first index of the specified HabitEvent, if it is in HabitHistory.
      *
      * @param habitEvent HabitEvent: get the first index of this HabitEvent
-     * @return int first index of the specified HabitEvent
+     * @return int first index of the specified HabitEvent, otherwise -1
      */
     public int indexOf(HabitEvent habitEvent){
-        return habitHistory.indexOf(habitEvent);
+        for (int i = 0; i < habitHistory.size(); i++) {
+            if (habitEvent.getId().equals(habitHistory.get(i).getId())){
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
