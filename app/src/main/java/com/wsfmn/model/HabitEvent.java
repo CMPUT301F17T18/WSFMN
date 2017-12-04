@@ -270,7 +270,7 @@ public class HabitEvent{
      */
     public Bitmap getImageBitmap() {
         if(CurrentPhotoPath!=null) {
-            byte[] decodedString = Base64.decode(this.ActualCurrentPhotoPath, Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
             Bitmap decodedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             return decodedImage;
         }
