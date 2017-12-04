@@ -40,7 +40,7 @@ public class AddNewHabitEventActivityTest extends ActivityInstrumentationTestCas
 
         solo.assertCurrentActivity("Could not open AddNewHabitEventActivity", AddNewHabitEventActivity.class);
         solo.sleep(5000);
-        solo.enterText((EditText) solo.getView(R.id.nameEvent), "Swimming Class");
+//        solo.enterText((EditText) solo.getView(R.id.nameEvent), "Swimming Class");
         solo.clickOnButton("Select Habit");
         solo.sleep(5000);
         solo.clickInList(0);

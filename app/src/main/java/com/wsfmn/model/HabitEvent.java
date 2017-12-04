@@ -129,8 +129,6 @@ public class HabitEvent{
      * @throws ParseException
      */
     public java.util.Date getActualDate() throws ParseException {
-
-
         return this.actualdate;
     }
 
