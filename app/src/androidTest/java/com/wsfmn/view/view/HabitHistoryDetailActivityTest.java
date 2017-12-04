@@ -45,8 +45,8 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         //solo.enterText((EditText) solo.getView(R.id.nameEvent2), "Swimming Competition");
         solo.clickOnButton("Change Habit");
         solo.clickInList(0);
-        solo.clearEditText((EditText)solo.getView(R.id.Comment2));
-        solo.enterText((EditText)solo.getView(R.id.Comment2), "100 m");
+        solo.clearEditText((EditText)solo.getView(R.id.hd_editComment));
+        solo.enterText((EditText)solo.getView(R.id.hd_editComment), "100 m");
 
         solo.clickOnButton("Confirm");
         HabitHistoryController control = HabitHistoryController.getInstance();

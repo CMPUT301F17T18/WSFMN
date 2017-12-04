@@ -118,8 +118,6 @@ public class HabitEvent{
     }
 
     public java.util.Date getActualDate() throws ParseException {
-
-
         return this.actualdate;
     }
 
