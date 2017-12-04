@@ -37,6 +37,7 @@ public class HabitHistory {
      * @param habitEvent HabitEvent: HabitEvent to add to HabitHistory
      */
     public void add(HabitEvent habitEvent) {
+        habitEvent.setSearchTitle();
         habitHistory.add(habitEvent);
     }
 
@@ -89,6 +90,9 @@ public class HabitHistory {
      * @param habitEvents
      */
     public void addAllHabitEvents(List<HabitEvent> habitEvents) {
+        for (HabitEvent he: habitEvents) {
+            he.setSearchTitle();
+        }
         this.habitHistory.addAll(habitEvents);
     }
 

@@ -166,7 +166,7 @@ public class Habit implements Serializable, Comparable<Habit>{
      * Set the searchable title based upon title.
      */
     public void setSearchTitle() {
-        title_search = title.toLowerCase().replaceAll("\\s+", "");
+        title_search = title.toLowerCase().replaceAll("\\s+", "").replaceAll("[^A-Za-z0-9]", "");
     }
 
 
