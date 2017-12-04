@@ -56,24 +56,27 @@ public class HabitList {
     }
 
     /**
+     *  Deletes entry index from the habit list
      *
-     * @param index
+     * @param index an index in the habit list for an object that we want to delete.
      */
     public void deleteHabitAt(int index){
         habits.remove(index);
     }
 
     /**
+     *  Computes the size of the habit list
      *
-     * @return
+     * @return int the size of the habit list
      */
     public int size() {
         return habits.size();
     }
 
     /**
+     *  Adds a list of habits to habit list.
      *
-     * @param habitsToAdd
+     * @param habitsToAdd a list containing habits that we want to add to the habit list.
      */
     public void addAllHabits(List<Habit> habitsToAdd) {
         for(Habit h: habitsToAdd) {
