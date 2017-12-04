@@ -86,18 +86,20 @@ public class HabitList {
     }
 
     /**
+     *  Retrieves a habit from the habit list.
      *
-     * @param index
-     * @return
+     * @param index an index for the habit that we want to retrieve form the habit list.
+     * @return  Habit a habit from the list of habits.
      */
     public Habit getHabit(int index){
         return habits.get(index);
     }
 
     /**
+     *  Changes the habit object in index to habit.
      *
-     * @param index
-     * @param habit
+     * @param index an index for an entry in the habit list
+     * @param habit a habit object
      */
     public void setHabit(int index, Habit habit){
         habit.setSearchTitle();
@@ -105,24 +107,31 @@ public class HabitList {
     }
 
     /**
+     *  Verifies whether a habit object is contained in the habit list.
      *
-     * @param habit
-     * @return
+     * @param habit a habit objec to verify if it is contained in the habit list.
+     * @return boolean true if the habit object is contained in the habit list,
+     *  and false otherwise.
      */
     public boolean hasHabit(Habit habit){
         return habits.contains(habit);
     }
 
-    // TODO alsobaie: added this, needs testing
 
     /**
+     *  Returns the array list used to store the habits.
      *
-     * @return
+     * @return an array list of type Habit.
      */
     public ArrayList<Habit> getHabitList(){
         return  habits;
     }
 
+    /**
+     *  Creates a new array list containing only habits that have Date equal to today
+     *
+     * @return an array list of type Habit.
+     */
     public ArrayList<Habit> getHabitsForToday(){
         ArrayList<Habit> habitsForToday = new ArrayList<Habit>();
         ArrayList<Habit> hl = new ArrayList<Habit>();
