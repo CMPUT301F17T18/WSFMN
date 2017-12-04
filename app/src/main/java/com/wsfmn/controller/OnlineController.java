@@ -274,7 +274,9 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Online controller method,
+     * When accepting a friend request, Add their username to your friend list on elastic search.
+     * Under your index name.
      */
     public static class AddFriend extends AsyncTask<String, Void, Void> {
 
@@ -297,17 +299,14 @@ public class OnlineController {
                     Log.i("Error", "Could not send request");
                 }
             } catch (Exception e) {
-
-
                 Log.i("Error", "The application failed to build and send the requests");
             }
-
             return null;
         }
     }
 
     /**
-     *
+     * A method for the controller to add friends.
      * @param id
      */
     public void addFriend(String id){
@@ -318,19 +317,16 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Online controller method
+     * Get all the friend names in the user's friend list on elastic search.
      */
     public static class GetFriendNames extends AsyncTask<String, Void, ArrayList<String>> {
         @Override
         protected ArrayList<String> doInBackground(String... search_parameters) {
             verifySettings();
-
-
             ArrayList<String> names = new ArrayList<String>();
-            // TODO Build the query
             String query = "{ \"_source\" :  [\"name\"]," +
                     "\"query\" : { \"match_all\" : { } } }";
-
 
             Search search = new Search.Builder(query)
                     .addIndex(INDEX_BASE + App.USERNAME)
@@ -338,8 +334,6 @@ public class OnlineController {
                     .build();
 
             try {
-
-                // TODO get the results of the query
                 SearchResult result = client.execute(search);
 
                 if (result.isSucceeded()) {
@@ -350,23 +344,21 @@ public class OnlineController {
                         names.add(fHabit.getName());
                     }
                 }
-
                 else {
-                    Log.i("Error", "The search query failed to find any requests that matched");
+                    Log.i("Error", "The search query failed to find any that matched");
                 }
             }
             catch (Exception e) {
 
-
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
-            System.out.println("finished");
             return names;
         }
     }
 
     /**
-     *
+     * Online controller method
+     * From a list of friend names, grab their profile and their score on elastic search
      */
     public static class GetFriendScore extends AsyncTask<String, Void, ArrayList<ProfileName>> {
         @Override
@@ -383,8 +375,6 @@ public class OnlineController {
                         .build();
 
                 try {
-
-                    // TODO get the results of the query
                     SearchResult result = client.execute(search);
 
                     if (result.isSucceeded()) {
@@ -409,7 +399,9 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Online controller method
+     * From a list of friend names grab their habits from their own index.
+     * Also set the owner of the habit within this method.
      */
     public static class GetHabitNames extends AsyncTask<String, Void, ArrayList<Habit>> {
         @Override
@@ -417,8 +409,6 @@ public class OnlineController {
             verifySettings();
 
             ArrayList<Habit> habits = new ArrayList<Habit>();
-
-            // TODO Build the query
             String query = "{\"query\" : { \"match_all\" : { } } }";
 
             for(String name : search_parameters) {
@@ -428,8 +418,6 @@ public class OnlineController {
                         .build();
 
                 try {
-
-                    // TODO get the results of the query
                     SearchResult result = client.execute(search);
 
                     if (result.isSucceeded()) {
@@ -454,7 +442,8 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Online controller method
+     * from a habit and the owner of that habit, grab the most recent event of that habit.
      */
     public static class GetRecentEvent extends AsyncTask<String, Void, HabitEvent> {
         @Override
@@ -463,7 +452,6 @@ public class OnlineController {
 
             HabitEvent recent = null;
 
-            // TODO Build the query
             String query = "{\"query\" : { \"term\" : {\"title_search\" : \"" +search_parameters[0] +"\"} }, " +
                     "\"size\" : 1, \"sort\" : [{\"actualdate\" : { \"order\" : \"desc\"}}] }";
 
@@ -474,7 +462,6 @@ public class OnlineController {
 
                 try {
 
-                    // TODO get the results of the query
                     SearchResult result = client.execute(search);
 
                     if (result.isSucceeded()) {
@@ -498,21 +485,20 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Online controller method
+     * A method to check if a user is already on their friend list.
      */
     public static class CheckFriends extends AsyncTask<String, Void, Boolean> {
         @Override
         protected Boolean doInBackground(String... search_parameters) {
             verifySettings();
             Boolean flag = false;
-            // TODO Build the query
             String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
                     .addIndex(INDEX_BASE + App.USERNAME)
                     .addType("friend")
                     .build();
             try {
-                // TODO get the results of the query
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()){
                     String JsonString = result.getJsonString();
@@ -525,8 +511,6 @@ public class OnlineController {
                 return true;
             }
             catch (Exception e) {
-
-
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return flag;
@@ -534,7 +518,7 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Method for the controller to check friends.
      * @param name
      * @return
      */
@@ -544,7 +528,6 @@ public class OnlineController {
         OnlineController.CheckFriends check =
                 new OnlineController.CheckFriends();
         check.execute(name);
-
         try{
             flag = check.get();
 
@@ -563,7 +546,6 @@ public class OnlineController {
         @Override
         protected Void doInBackground(Request... requests) {
             verifySettings();
-
             for (Request request : requests) {
                 Index index = new Index.Builder(request)
                         .index(INDEX_BASE)
@@ -582,7 +564,6 @@ public class OnlineController {
                 }
                 catch (Exception e) {
 
-
                     Log.i("Error", "The application failed to build and send the requests");
                 }
             }
@@ -591,7 +572,7 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Delete a request in elastic search.
      */
     public static class DeleteRequest extends AsyncTask<String, Void, Void> {
         @Override
@@ -611,7 +592,7 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Method for the online controller to delete a request
      * @param id
      */
     public void deleteRequest(String id){
@@ -624,7 +605,6 @@ public class OnlineController {
             // Store these Requests for online deletion upon next connection
             OfflineController.addToOfflineDelete("REQ", id);
         }
-
     }
 
     /**
@@ -637,19 +617,13 @@ public class OnlineController {
             verifySettings();
 
             RequestList requests = new RequestList();
-
-            // TODO Build the query
             String query = "{\n" + " \"query\": { \"term\": {\"searchName\":\"" + search_parameters[0] + "\"} }\n" + "}";
-
-
             Search search = new Search.Builder(query)
                     .addIndex(INDEX_BASE)
                     .addType("request")
                     .build();
-
             try {
 
-                // TODO get the results of the query
                 SearchResult result = client.execute(search);
 
                 if (result.isSucceeded()) {
@@ -670,7 +644,6 @@ public class OnlineController {
             }
             catch (Exception e) {
 
-
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return requests;
@@ -686,7 +659,6 @@ public class OnlineController {
         protected Boolean doInBackground(String... search_parameters) {
             verifySettings();
             Boolean flag = false;
-            // TODO Build the query
             String query2 = "{\n" + " \"query\": { \"bool\": {\"must\":" +
                     "[{\"match\":  {\"name\":\""+ search_parameters[0] + "\"}}, " +
                     "{\"match\":  {\"requestType\":\""+ search_parameters[1] + "\"}}, " +
@@ -697,7 +669,6 @@ public class OnlineController {
                     .addType("request")
                     .build();
             try {
-                // TODO get the results of the query
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()){
                     String JsonString = result.getJsonString();
@@ -710,8 +681,6 @@ public class OnlineController {
                 return true;
             }
             catch (Exception e) {
-
-
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return flag;
@@ -719,7 +688,7 @@ public class OnlineController {
     }
 
     /**
-     *
+     * Method for online controller to use to check if a request exists.
      * @param name
      * @param requestType
      * @param searchName
@@ -751,14 +720,12 @@ public class OnlineController {
         protected Boolean doInBackground(String... search_parameters) {
             verifySettings();
             Boolean flag = false;
-            // TODO Build the query
             String query = "{" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
             Search search = new Search.Builder(query)
                     .addIndex(INDEX_BASE)
                     .addType("profilename")
                     .build();
             try {
-                // TODO get the results of the query
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()){
                     String JsonString = result.getJsonString();
@@ -772,7 +739,6 @@ public class OnlineController {
             }
             catch (Exception e) {
 
-
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return flag;
@@ -780,7 +746,7 @@ public class OnlineController {
     }
 
     /**
-     * OnlineController method to check name for activities to use
+     * OnlineController method to check name for activities to use.
      * @param name
      * @return
      */
@@ -790,7 +756,6 @@ public class OnlineController {
         OnlineController.CheckUnique check =
                 new OnlineController.CheckUnique();
         check.execute(name);
-
         try{
             flag = check.get();
 
@@ -805,7 +770,6 @@ public class OnlineController {
      * Storing the user's ProfileName in ElasticSearch DB
      */
     public static class StoreNameInDataBase extends AsyncTask<ProfileName, Void, Void> {
-
         @Override
         protected Void doInBackground(ProfileName... names) {
             if (isConnected()) {
@@ -853,7 +817,6 @@ public class OnlineController {
 
                 ArrayList<ProfileName> requests = new ArrayList<ProfileName>();
 
-                // TODO Build the query
                 String query = "{\n" + " \"query\": { \"term\": {\"name\":\"" + search_parameters[0] + "\"} }\n" + "}";
 
                 DeleteByQuery delete = new DeleteByQuery.Builder(query)
@@ -861,7 +824,6 @@ public class OnlineController {
                         .addType("profilename")
                         .build();
                 try {
-                    // TODO get the results of the query
                     JestResult result = client.execute(delete);
                 } catch (Exception e) {
                     Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
