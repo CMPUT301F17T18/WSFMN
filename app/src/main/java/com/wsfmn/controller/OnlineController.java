@@ -43,8 +43,13 @@ import io.searchbox.core.SearchResult;
  * A controller for managing Habit and HabitEvent model data stored on an ElasticSearch server.
  */
 public class OnlineController {
+<<<<<<< HEAD
     private static final String SERVER_URL = "http://cmput301.softwareprocess.es:8080";
 //    private static final String SERVER_URL = "https://5b3c205796b755b5db6f9b28b41fa441.us-east-1.aws.found.io:9243/";
+=======
+   private static final String SERVER_URL = "http://cmput301.softwareprocess.es:8080";
+   // private static final String SERVER_URL = "https://5b3c205796b755b5db6f9b28b41fa441.us-east-1.aws.found.io:9243/";
+>>>>>>> 425ec12f5e1223e4beaf0a72ec1f25b2a646c034
     private static final String INDEX_BASE = "team18_";
     private static final String ID_TAG = "_id";
     private static final int ID_TAG_OFFSET = 6;

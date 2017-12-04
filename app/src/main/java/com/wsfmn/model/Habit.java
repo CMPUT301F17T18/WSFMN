@@ -24,7 +24,7 @@ import java.util.Comparator;
 public class Habit implements Serializable, Comparable<Habit>{
 
 
-    private String id;
+    private String id;              //will set restful client
     private String title;
     private String title_search;
     private String reason;
@@ -170,10 +170,18 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
 
+    /**
+     * This shows the habit's score, It is an indicator on how well your doing the habit.
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Set the habit score
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }
@@ -412,14 +420,30 @@ public class Habit implements Serializable, Comparable<Habit>{
         return total;
     }
 
+    /**
+     *  Get the user name of the owner of the habit. For elastic search use and for FriendAdapter use.
+     * @return
+     */
+
     public String getOwner() {
         return owner;
     }
 
+    /**
+     * Set the owner for which the habit belongs to. For elastic search use and for FriendAdapter
+     * @param owner
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+
+    /**
+     * Override compareTo method, Will be able to order a list by User name first then by
+     * Habit title name.
+     * @param other
+     * @return
+     */
     public int compareTo(Habit other)
     {
         int res =  this.getOwner().compareToIgnoreCase(other.getOwner());
