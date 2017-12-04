@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.controller;
 
 import android.util.Log;
@@ -126,8 +134,10 @@ public class HabitListController{
     }
 
     /**
+     * Delete a habit at a particular index both online and offline,
+     * if not connected online then the habit deletion.
      *
-     * @param index
+     * @param index of Habit to be deleted
      */
     public void deleteHabitAt(int index){
         // Added by nmayne on 2017-11-07
@@ -144,28 +154,29 @@ public class HabitListController{
     }
 
     /**
-     * Get the size of the habit history.
+     * Get the size of the HabitList.
      *
-     * @return number of entries in HabitList
+     * @return number of entries in HabitList, i.e. its size
      */
     public int size() {
         return habitList.size();
     }
 
     /**
+     * Get a habit at a particular index.
      *
-     * @param index
-     * @return
+     * @param index of the Habit to get
+     * @return the Habit at that index
      */
     public Habit getHabit(int index){
         return habitList.getHabit(index);
     }
 
-
     /**
-     * Get habit by it's id
-     * @param id
-     * @return
+     * Get habit by its ID.
+     *
+     * @param id of the Habit to get
+     * @return the Habit with the given ID, otherwise null
      */
     public Habit getHabit(String id)  {
         for (int i = 0; i<habitList.size(); i++){
@@ -177,34 +188,38 @@ public class HabitListController{
     }
 
     /**
+     * Set the Habit at a particular index in the HabitList.
      *
-     * @param index
-     * @param habit
+     * @param index at which to set the Habit
+     * @param habit the Habit to set at that index
      */
     public void setHabit(int index, Habit habit){
         habitList.setHabit(index, habit);
     }
 
     /**
+     * Check if a Habit is in the HabitList.
      *
-     * @param habit
-     * @return
+     * @param habit to check for in HabitList
+     * @return true if the Habit is in the list, otherwise false
      */
     public boolean hasHabit(Habit habit){
         return habitList.hasHabit(habit);
     }
 
     /**
+     * Get the underlying ArrayList that stores the Habits.
      *
-     * @return
+     * @return the Habits in HabitList
      */
     public ArrayList<Habit> getHabitList(){
         return  habitList.getHabitList();
     }
 
     /**
+     * Get the underlying ArrayList of the Habits scheduled for today.
      *
-     * @return
+     * @return the Habits from the HabitList that need to be done today.
      */
     public ArrayList<Habit> getHabitsForToday(){
         return habitList.getHabitsForToday();
@@ -226,6 +241,9 @@ public class HabitListController{
         habit.setScore(score);
     }
 
+    /**
+     * Update the scores for all Habits.
+     */
     public void updateAllHabitsScore(){
         for(int i = 0; i < habitList.size(); i++){
             updateHabitScore(habitList.getHabit(i));
@@ -233,7 +251,7 @@ public class HabitListController{
     }
 
     /**
-     *  Used to load local data into habitList once it is first created.
+     *  Load locally stored data into habitList when it is first created.
      */
     private void init() {
         try {
@@ -250,7 +268,7 @@ public class HabitListController{
     }
     
     /**
-     *  Stores HabitList data locally.
+     *  Store HabitList data locally.
      */
     public void store(){
         OfflineController.StoreHabitList storeHabitListOffline =
@@ -262,7 +280,8 @@ public class HabitListController{
     }
 
     /**
-     * Updates a Habit online
+     * Updates a Habit online.
+     *
      * @param h a habit to update online
      */
     public void updateOnline(Habit h) {
@@ -274,6 +293,7 @@ public class HabitListController{
 
     /**
      * Stores HabitList online, and offline.
+     *
      */
     public void storeAll() {
         OnlineController.StoreHabits storeHabits =
