@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.wsfmn.controller.HabitHistoryController;
@@ -74,6 +75,8 @@ abstract class HabitHistorySuper extends AppCompatActivity {
             } else {
                 IC.deleteImage(prevPhotoPath); // delete the previous image
             }
+            Toast.makeText(HabitHistorySuper.this, "Compressing picture...", Toast.LENGTH_LONG).show();
+
             photoPath = IC.compressImage(photoPath);
             viewPicture.setEnabled(true);
         }

@@ -95,7 +95,11 @@ public class AddLocationActivity extends AppCompatActivity {
                 try {
                     List<Address> addressList = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
 
-                    knownName = addressList.get(0).getFeatureName();
+                    try {
+                        knownName = addressList.get(0).getFeatureName();
+                    } catch (IndexOutOfBoundsException e) {
+                        knownName = "GPS";
+                    }
                     geolocation = new Geolocation(knownName,latLng);
                     // Using "GPS" instead of knownName because knownName is often garbage if using GPS
                     if (knownName.matches("\\d.*")) { // starts with a digit
@@ -103,10 +107,6 @@ public class AddLocationActivity extends AppCompatActivity {
                     }
 
                     T_address.setText(knownName);
-
-                    //Intent  intent = new Intent(AddLocationActivity.this,AddNewHabitEventActivity.class);
-                    //startActivity(intent);
-
 
                 } catch (IOException e) {
                     geolocation = null;

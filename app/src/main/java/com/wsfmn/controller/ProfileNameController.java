@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.controller;
 
 import com.wsfmn.model.ProfileName;
@@ -5,15 +13,16 @@ import com.wsfmn.model.ProfileName;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by Fredric on 2017-11-11.
- * Updated by nmayne on 2017-11-28.
+ * A singleton controller to manage the user's ProfileName.
+ *
  */
-
 public class ProfileNameController {
     private static ProfileNameController INSTANCE = null;
     private static ProfileName profileName = null;
 
-
+    /**
+     * Construct a new ProfileNameController.
+     */
     private ProfileNameController() {
         profileName = new ProfileName();
         init();
@@ -22,6 +31,7 @@ public class ProfileNameController {
     /**
      * Instantiate the profile attribute.
      * This pulls the data from the locally saved ProfileName via OfflineController.
+     *
      */
     public static ProfileNameController getInstance() {
         if(INSTANCE == null){
@@ -30,22 +40,46 @@ public class ProfileNameController {
         return INSTANCE;
     }
 
+    /**
+     * Get the username.
+     *
+     * @return the user's username
+     *
+     */
     public String getProfileName() {
         return profileName.getName();
     }
 
+    /**
+     * Set the username.
+     * @param name the user's username.
+     */
     public void setProfileName(String name) {
         profileName.setName(name);
     }
 
+    /**
+     * Get the profile ID.
+     *
+     * @return the profile ID
+     */
     public String getProfileID() {
         return profileName.getId();
     }
 
+    /**
+     * Set the profile ID.
+     *
+     * @param id the profile ID
+     */
     public void setProfileID(String id) {
         profileName.setId(id);
     }
 
+    /**
+     * Update the user's score.
+     *
+     */
     public void updateScore() {
         double score_temp = 0;
         HabitListController c = HabitListController.getInstance();
@@ -62,10 +96,20 @@ public class ProfileNameController {
         online.execute(profileName);
     }
 
+    /**
+     * Get the user's score.
+     *
+     * @return user's score
+     */
     public int getScore() {
         return profileName.getScore();
     }
 
+    /**
+     * Store this profilename Offline.
+     *
+     * @param pn the profileName to store.
+     */
     public void storeNewProfileNameOffline(ProfileName pn) {
         profileName = pn;
         OfflineController.StoreUserProfile storeUserProfile=
@@ -76,6 +120,9 @@ public class ProfileNameController {
 
     }
 
+    /**
+     * Initialize the ProfileName from the stored data.
+     */
     private void init() {
         OfflineController.GetUserProfile getUserProfile =
                 new OfflineController.GetUserProfile();
@@ -89,5 +136,4 @@ public class ProfileNameController {
             e.printStackTrace();
         }
     }
-
 }

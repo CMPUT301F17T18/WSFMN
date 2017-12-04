@@ -1,5 +1,16 @@
-package com.wsfmn.controller;
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ *
+ *  Reuse Code for taking image, and scaling: https://developer.android.com/training/camera/photobasics.html
+ *  Reuse Code for compressing images: https://stackoverflow.com/questions/28760941/compress-image-file-from-camera-to-certain-size
+ *  Reuse Code for converting image to string: https://stackoverflow.com/questions/36189503/take-picture-and-convert-to-base64
+ */
 
+package com.wsfmn.controller;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,20 +23,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- *
+ * A class to control the compression, encoding/ decoding, and deletion of images.
  */
 public class ImageController {
     private static ImageController INSTANCE = null;
 
     /**
-     *
+     * Singleton constructor.
      */
     private ImageController() {
     }
 
     /**
+     * Get the instance of the ImageController singleton.
      *
-     * @return
+     * @return instance of ImageController
      */
     public static ImageController getInstance(){
         if(INSTANCE == null){
@@ -35,6 +47,7 @@ public class ImageController {
     }
 
     /**
+     * Compress an image to within a certain MAX_IMAGE_SIZE specification.
      *
      * @param path to image file
      * @return path to compressed image
@@ -52,7 +65,7 @@ public class ImageController {
 
         while (streamLength >= MAX_IMAGE_SIZE && compressQuality > 5) {
             try {
-                bmpStream.flush();//to avoid out of memory error
+                bmpStream.flush(); //to avoid out of memory error
                 bmpStream.reset();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -79,9 +92,10 @@ public class ImageController {
     }
 
     /**
+     * Scale an image to maxHeight and maxWidth dimensions.
      *
      * @param path to image file
-     * @return
+     * @return the path after scaling has been completed
      */
     @NonNull
     private String scaleImage(String path) {
@@ -129,8 +143,8 @@ public class ImageController {
 
     /**
      * Delete the file at a given path.
-     * @param path of the file to delete.
-     * @return true if deleted
+     * @param path of the file to delete
+     * @return true if deleted, otherwise false
      */
     public Boolean deleteImage(String path) {
         if (path != null) {
@@ -140,7 +154,12 @@ public class ImageController {
         return false;
     }
 
-    // Convert picture to byte[] for online storage
+    /**
+     * Convert an image to byte[] and then to a String for online storage
+     *
+     * @param path image path
+     * @return the String encoding of the image
+     */
     public String convertImageToString(String path) {
         String photoStringEncoding = "";
         if(path!=null) {
@@ -153,6 +172,4 @@ public class ImageController {
         }
         return photoStringEncoding;
     }
-
-
 }
