@@ -16,10 +16,12 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.wsfmn.model.Date;
@@ -136,7 +138,17 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
             c.get(ID).setComment(comment.getText().toString());
             c.get(ID).setHabit(c.get(ID).getHabitFromEvent());
             c.get(ID).setDate(getDateUIHED());
-            c.get(ID).setCurrentPhotoPath(path);
+            CurrentPhotoPath = path;
+            if (CurrentPhotoPath != null) {
+                Bitmap imageBitmap = BitmapFactory.decodeFile(CurrentPhotoPath);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
+
+                CurrentPhotoPath = Base64.encodeToString(b, Base64.DEFAULT);
+                System.out.println(CurrentPhotoPath);
+            }
+            c.get(ID).setCurrentPhotoPath(CurrentPhotoPath);
             c.get(ID).setActualCurrentPhotoPath(path);
             c.get(ID).setGeolocation(geolocation);
             c.storeAndUpdate(c.get(ID));
@@ -178,10 +190,10 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
     public void viewImage2(View view){
         Intent intent = new Intent(HabitHistoryDetailActivity.this, AddImageActivity.class);
         path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
-        //If no picture taken before then when it is null value we create new image
-        if(path == null) {
-            path = CurrentPhotoPath;
-        }
+//        //If no picture taken before then when it is null value we create new image
+//        if(path == null) {
+//            path = CurrentPhotoPath;
+//        }
         intent.putExtra("CurrentPhotoPath",path);
         startActivity(intent);
     }
@@ -254,15 +266,16 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
      * @param data
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
-            path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
-            //If no picture taken before then when it is null value we create new image
-            if(path == null) {
-                path = CurrentPhotoPath;
+        if(requestCode==REQUEST_TAKE_PHOTO){
+            if(resultCode == Activity.RESULT_OK){
+                path = HabitHistoryController.getInstance().get(ID).getActualCurrentPhotoPath();
+                //If no picture taken before then when it is null value we create new image
+                if(path == null) {
+                    path = CurrentPhotoPath;
+                }
+                path = compressImage(path);
+
             }
-            CurrentPhotoPath = compressImage(path);
-
-
         }
         if (requestCode == GOT_HABIT_FROM_LIST && resultCode == Activity.RESULT_OK) {
             habitIdx = data.getExtras().getInt("position");
