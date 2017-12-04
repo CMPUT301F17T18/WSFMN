@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wsfmn.habittracker">
+    package="com.wsfmn.view">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -23,7 +23,7 @@
     <uses-permission android:name="com.google.android.provide.gsf.permission.READ_GSERVICES" />
 
     <application
-        android:name=".App"
+        android:name="com.wsfmn.controller.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -40,37 +40,53 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".HabitHistoryActivity"
-            android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".HabitListViewActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ViewHabitHistoryActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Habit Event History"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitListViewDetailActivity"
-            android:parentActivityName=".HabitListViewActivity" />
+            android:name=".ViewHabitListActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="View All Habits"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HabitListDetailActivity"
+            android:parentActivityName=".ViewHabitListActivity"
+            android:label="Habit Details"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddNewHabitActivity"
-            android:parentActivityName=".HabitListViewActivity" />
+            android:parentActivityName=".ViewHabitListActivity"
+            android:label="Add A New Habit"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitsForTodayActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name=".ViewHabitsForTodayActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Today\'s Habits"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProfileActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:label="HabitTracker User Profile"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".UserName_Activity"
-            android:parentActivityName=".ProfileActivity" />
+            android:name=".UserNameActivity"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FriendActivity"
-            android:parentActivityName=".ProfileActivity"/>
+            android:parentActivityName=".ProfileActivity"
+            android:screenOrientation="portrait" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -85,25 +101,27 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:name=".ViewMapActivity"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".HabitEventActivity"
-            android:label="@string/title_activity_habit_event"
-            android:parentActivityName=".HabitHistoryActivity" />
+            android:name=".AddNewHabitEventActivity"
+            android:label="Add New Habit Event"
+            android:parentActivityName=".ViewHabitHistoryActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".AddLocationActivity"
-            android:parentActivityName=".HabitEventActivity"/>
-
-        <activity android:name=".selectHabitActivity" />
-
-        <activity android:name=".imageActivity" />
-        <activity android:name=".habitHistoryDetailActivity"
-            android:parentActivityName=".HabitHistoryActivity"/>
-
-        <activity android:name=".ChangeLocationActivity"
-            android:parentActivityName=".habitHistoryDetailActivity"/>
-
+            android:parentActivityName=".AddNewHabitEventActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SelectHabitActivity" />
+        <activity android:name=".AddImageActivity" />
+        <activity
+            android:name=".HabitHistoryDetailActivity"
+            android:parentActivityName=".ViewHabitHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".FriendHabitActivity" />
+        <activity android:name=".FriendHabitEventActivity"></activity>
     </application>
 
 </manifest>

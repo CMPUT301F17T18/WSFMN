@@ -4,141 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wsfmn.habittracker.habitHistoryDetailActivity">
+    tools:context="com.wsfmn.view.HabitHistoryDetailActivity">
 
     <Button
-        android:id="@+id/Picture2"
-        android:layout_width="148dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="24dp"
-        android:onClick="changePicture2"
-        android:text="Change Picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateDetail"
+        android:id="@+id/hd_changePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:onClick="dispatchTakePictureIntent"
+        android:text="@string/update_picture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hd_date"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
 
     <Button
-        android:id="@+id/B_changeLocation"
-        android:layout_width="118dp"
-        android:layout_height="52dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="48dp"
-        android:text="Change Location"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addHabit2" />
-
-    <EditText
-        android:id="@+id/Comment2"
-        android:layout_width="133dp"
-        android:layout_height="0dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Add Comment"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Picture2" />
-
-    <Button
-        android:id="@+id/ViewImg2"
+        android:id="@+id/hd_changeLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="96dp"
-        android:onClick="viewImage2"
-        android:text="View Image"
-        app:layout_constraintHorizontal_bias="0.813"
-        app:layout_constraintLeft_toRightOf="@+id/Comment2"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/B_changeLocation" />
-
-    <Button
-        android:id="@+id/addHabit2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="108dp"
-        android:onClick="changeHabit"
-        android:text="Change Habit"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/habitName2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/nameEvent2"
-        android:layout_width="217dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:onClick="changeLocation"
+        android:text="@string/update_location"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hd_changePicture" />
+
+    <EditText
+        android:id="@+id/hd_editComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="Habit Event Name"
+        android:hint="@string/add_comment"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/hd_comment"
+        app:layout_constraintStart_toEndOf="@+id/hd_comment" />
 
     <Button
-        android:id="@+id/confirmButton2"
+        android:id="@+id/hd_viewPicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="viewPicture"
+        android:text="@string/view_picture"
+        app:layout_constraintBaseline_toBaselineOf="@+id/hd_changePicture"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/hd_changeHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="changeHabit"
+        android:text="@string/change_habit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/hd_title"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/hd_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="32dp"
         android:onClick="confirmHE"
-        android:text="Confirm"
+        android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.875"
-        app:layout_constraintStart_toEndOf="@+id/delete"
-        app:layout_constraintTop_toBottomOf="@+id/ViewImg2"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/habitName2"
-        android:layout_width="187dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="116dp"
-        android:text="HabitName"
+        android:id="@+id/hd_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/habit_event_name"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/delete"
+        android:id="@+id/hd_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginStart="32dp"
         android:onClick="deleteHE"
-        android:text="DELETE"
+        android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Comment2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/dateDetail"
-        android:layout_width="129dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="Date"
+        android:id="@+id/hd_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/date"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/B_changeLocation"
-        app:layout_constraintHorizontal_bias="0.309"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/habitName2" />
+        app:layout_constraintTop_toBottomOf="@+id/hd_comment" />
+
+    <TextView
+        android:id="@+id/hd_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/address"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hd_changeLocation" />
+
+    <TextView
+        android:id="@+id/hd_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/comment"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hd_title" />
+
+    <Button
+        android:id="@+id/hd_changeDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:onClick="getDate"
+        android:text="@string/change_date"
+        app:layout_constraintBaseline_toBaselineOf="@+id/hd_date"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

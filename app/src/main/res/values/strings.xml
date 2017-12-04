@@ -1,19 +1,59 @@
 <resources>
     <string name="app_name">HabitTracker</string>
-    <string name="add_habit">Add Habit</string>
+    <string name="add_habit">Add New Habit</string>
     <string name="new_habit_title">Habit Title</string>
-    <string name="reason_to_start_habit">Reason to start habit</string>
-    <string name="confirm">Confirm</string>
-    <string name="set_date">Set Date</string>
+    <string name="reason_to_start_habit">Reason For Habit</string>
+    <string name="confirm">Save</string>
+    <string name="every_day">Do Daily</string>
     <string name="set_weekly_schedule">Set Weekly Schedule</string>
-    <string name="view_habits">View Habits</string>
-    <string name="habits_for_today">Habits For Today</string>
+    <string name="view_habits">Manage Habits</string>
+    <string name="habits_for_today">Today\'s Habits</string>
     <string name="habit_history">Habit History</string>
     <string name="delete">Delete</string>
     <string name="profile">Profile</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_habit_event">HabitEventActivity</string>
     <string name="AddHabitEvent">Add Habit Event</string>
+
+
+    <string name="set_date">Start Date</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+    <string name="progress">Progress</string>
+    <string name="habit_event_image">Habit Event Image</string>
+    <string name="add_picture">Add Picture</string>
+    <string name="add_location">Add Location</string>
+    <string name="no_location">No Location</string>
+    <string name="select_habit">Select Habit</string>
+    <string name="save_habit_event">Save Habit Event</string>
+    <string name="view_picture">View Picture</string>
+    <string name="add_comment">Add Comment</string>
+    <string name="search_for_address">Search for address...</string>
+    <string name="done">Done</string>
+    <string name="use_gps_location">Current Location</string>
+    <string name="search_for_an_address">Search for an address...</string>
+    <string name="coordinates">Coordinates...</string>
+    <string name="address_search">Find Address</string>
+    <string name="found_address">Address...</string>
+    <string name="near_me">Near Me</string>
+    <string name="my_events">My Events</string>
+    <string name="friends_events">Friends\' Events</string>
+    <string name="update_location">Update Location</string>
+    <string name="update_picture">Update Picture</string>
+    <string name="change_date">Change Date</string>
+    <string name="comment">Comment:</string>
+    <string name="address">Address</string>
+    <string name="date">Date</string>
+    <string name="habit_event_name">Habit Event Name</string>
+    <string name="save">Save</string>
+    <string name="change_habit">Change Habit</string>
+    <string name="set_he_date">Set Date</string>
 
 
 </resources>
