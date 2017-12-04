@@ -50,6 +50,7 @@ public class UserNameActivity extends AppCompatActivity {
      */
     public void confirmClick(View view) {
         profileName = yourName.getText().toString().toLowerCase().replaceAll("\\s+", "");
+        // check if you typed in a name
         if (profileName.length() == 0) {
             Toast.makeText(UserNameActivity.this, "Type in a name!",
                     Toast.LENGTH_LONG).show();
@@ -63,6 +64,7 @@ public class UserNameActivity extends AppCompatActivity {
                 // bring the profileName back
                 flag = online.checkName(profileName);
 
+                // check if user is taken
                 if (flag == false) {
                     Toast.makeText(UserNameActivity.this, "Name is taken! Type another!",
                             Toast.LENGTH_LONG).show();
@@ -94,6 +96,7 @@ public class UserNameActivity extends AppCompatActivity {
 
     /**
      * Starts and checks if user is connected to internet.
+     * otherwise return to mainactivity.
      */
     protected void onStart() {
         // TODO Auto-generated method stub
