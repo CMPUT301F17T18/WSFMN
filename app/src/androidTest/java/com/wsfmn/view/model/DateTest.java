@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.wsfmn.model.Date;
 
+import java.util.Calendar;
+
 import static java.lang.Thread.sleep;
 
 
@@ -18,6 +20,10 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
         super(Date.class);
     }
 
+    /**
+     *  Tests getting the number of days in a month that the Date object is defined with.
+     *
+     */
     public void testGetDaysInMonth(){
         Date date1 = new Date(2017, 11, 11);
         Date date2 = new Date(2017, 10, 10);
@@ -28,6 +34,11 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
         assertEquals(date3.getDaysInMonth(), 31);
     }
 
+
+    /**
+     *  Tests getting the day of the week of the Date object.
+     *
+     */
     public void testGetDayOfWeek(){
         Date date1 = new Date(2017, 11, 7);
         Date date2 = new Date(2017, 11, 6);
@@ -38,6 +49,10 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
         assertEquals(date3.getDayOfWeek(), 7);
     }
 
+    /**
+     *  Tests comparing two Date objects.
+     *
+     */
     public void testCompareDate(){
         Date date1 = new Date(2017, 11, 11);
         Date date2 = new Date(2017, 11, 10);
@@ -52,6 +67,10 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
         assertEquals(date1.compareDate(date5), 1);
     }
 
+    /**
+     *  Tests comparing whether two Date objects are equal or not.
+     *
+     */
     public void testEqualDate(){
         Date date1 = new Date(2017, 11, 11);
         Date date2 = new Date(2017, 11, 11);
@@ -66,14 +85,18 @@ public class DateTest extends ActivityInstrumentationTestCase2 {
         assertFalse(date1.equalDate(date5));
     }
 
+
+    /**
+     *  Tests comparing Date objects that were defined using the constructor with parameter t.
+     *
+     * @throws InterruptedException
+     */
     public void testHDate() throws InterruptedException{
         Date date = new Date(0);
 
-        sleep(3);
+        sleep(2000);
 
         Date date2 = new Date(0);
-
-        Log.i("musaed", "date1: " + date.getS() + " date2: " + date2.getS());
 
         assertEquals(-1, date.compareDate(date2));
     }

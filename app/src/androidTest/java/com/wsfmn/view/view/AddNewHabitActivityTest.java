@@ -38,7 +38,7 @@ public class AddNewHabitActivityTest extends ActivityInstrumentationTestCase2<Ad
         solo.assertCurrentActivity("Wrong Activity", AddNewHabitActivity.class);
 
         solo.enterText((EditText) solo.getView(R.id.habitTitleEditText), "Swimming");
-        solo.clickOnButton("Confirm");
+        solo.clickOnButton("Save");
 
         solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
 
