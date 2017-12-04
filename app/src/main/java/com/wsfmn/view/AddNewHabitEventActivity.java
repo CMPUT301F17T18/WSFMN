@@ -51,13 +51,14 @@ public class AddNewHabitEventActivity extends HabitHistorySuper {
 
         // Check if the Habit has been set by a call from the HabitForTodayActivity
         Bundle b = getIntent().getExtras();
-        if(b.getString("caller").equals("TODAY")) {
-            habitIdx = b.getInt("positionToday");
+        if(b!=null) {
+            if (b.getString("caller").equals("TODAY")) {
+                habitIdx = b.getInt("positionToday");
 
-            addedHabit = HLC.getHabitsForToday().get(habitIdx);
-            title.setText(addedHabit.getTitle().toString());
+                addedHabit = HLC.getHabitsForToday().get(habitIdx);
+                title.setText(addedHabit.getTitle().toString());
+            }
         }
-
         // Set date for the HabitEvent created
         String dateAndTime = new Date(0).toString();
         date.setText(dateAndTime);

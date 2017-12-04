@@ -34,7 +34,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         c.addHabit(habit);
         c.store();
         HabitEvent event = new HabitEvent(habit, "HabitEvent", "Comment", "/Storage/Space",
-                null,null);
+                null,new Date(0));
         HabitHistoryController c2 = HabitHistoryController.getInstance();
         c2.add(event);
         c2.store();
@@ -48,7 +48,7 @@ public class HabitHistoryDetailActivityTest extends ActivityInstrumentationTestC
         solo.clearEditText((EditText)solo.getView(R.id.hd_editComment));
         solo.enterText((EditText)solo.getView(R.id.hd_editComment), "100 m");
 
-        solo.clickOnButton("Confirm");
+        solo.clickOnButton("Save");
         HabitHistoryController control = HabitHistoryController.getInstance();
         HabitEvent habitE = control.get(0);
         solo.sleep(5000);
