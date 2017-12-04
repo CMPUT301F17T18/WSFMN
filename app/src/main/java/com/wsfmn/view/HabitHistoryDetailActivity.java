@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.wsfmn.model.Date;
@@ -94,6 +95,9 @@ public class HabitHistoryDetailActivity extends AppCompatActivity {
 
         HabitHistoryController c = HabitHistoryController.getInstance();
         try {
+            ImageView image = (ImageView)findViewById(R.id.imageView3);
+            image.setImageBitmap(c.get(ID).getImageBitmap());
+
             habitName.setText(c.get(ID).getHabitFromEvent().getTitle());
             comment.setText(c.get(ID).getComment());
             if (c.get(ID).getGeolocation() != null) {

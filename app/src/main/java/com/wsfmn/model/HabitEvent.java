@@ -269,13 +269,11 @@ public class HabitEvent{
      * @return
      */
     public Bitmap getImageBitmap() {
-        if (CurrentPhotoPath != null && (!CurrentPhotoPath.startsWith("/storage"))) {
+        if(CurrentPhotoPath!=null) {
             byte[] decodedString = Base64.decode(this.CurrentPhotoPath, Base64.DEFAULT);
             Bitmap decodedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             return decodedImage;
-        } else {
-            return null;
         }
-
+        return null;
     }
 }
