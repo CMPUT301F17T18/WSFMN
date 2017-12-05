@@ -15,10 +15,11 @@ import com.wsfmn.view.UserNameActivity;
  * Created by Fredric on 2017-11-12.
  */
 
-public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<UserNameActivity> {
+public class Profile1Test extends ActivityInstrumentationTestCase2<UserNameActivity> {
     private Solo solo;
+    private OnlineController check= new OnlineController();
 
-    public UserName_ActivityTest() {
+    public Profile1Test() {
         super(UserNameActivity.class);
     }
 
@@ -31,33 +32,30 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
 
     }
 
-    // PLEASE WIPE MEMORY TO TEST!!
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
+
+    // PLEASE WIPE MEMORY TO TEST!! "MIGHT" NEED TO DELETE "test123456' on elasticsearch manually.
     // Testing if name is checked on ElasticSearch and if we can store it.
     // Test a name already on ElasticSearch, Then test a name not on ElasticSearch.
     // yourUserName is sometimes not found. Clean Project if resource name: 'yourUserName' is not found!.
-    public void testUniqueName() {
+    // DO PROFILE1 FIRST
+    public void testUniqueName() throws InterruptedException {
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "test123456");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.yourUserName), "DifferentTest");
+        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
         solo.waitForActivity(ProfileActivity.class);
+        assertEquals(false, check.checkName("test123456test"));
 
-        OnlineController check= new OnlineController();
-        assertEquals(false, check.checkName("test123456differenttest"));
-
-        OnlineController.DeleteProfileName online = new OnlineController.DeleteProfileName();
-        online.execute("test123456differenttest");
-
-
-        assertEquals(true, check.checkName("differenttest"));
     }
 
-
-
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
 
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();
