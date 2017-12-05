@@ -246,13 +246,13 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         HabitEvent habitEvent =  new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
                                 null,
-                                 new Date(0));
+                                 new Date(2017, 11, 02));
 
-        sleep(1000);
+
 
         HabitEvent habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
                                 null,
-                                 new Date(0));
+                                 new Date(2017, 12, 04));
 
         habitHistory.add(habitEvent);
         habitHistory.add(habitEvent1);
