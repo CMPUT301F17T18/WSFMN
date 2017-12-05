@@ -286,10 +286,9 @@ public class MockHabitTest extends ActivityInstrumentationTestCase2{
 
         assertEquals(1, habit.getTotalOccurrence());
 
-        //habit.setDay(WeekDays.MONDAY);
         habit.setDay(WeekDays.FRIDAY);
 
-        assertEquals(1, habit.getTotalOccurrence());
+        assertEquals(2, habit.getTotalOccurrence());
 
     }
 

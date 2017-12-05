@@ -34,13 +34,13 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testViewHabitsButton() {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        solo.clickOnButton("View Habits");
+        solo.clickOnButton("Manage Habits");
         solo.assertCurrentActivity("Wrong Activity", ViewHabitListActivity.class);
     }
 
     public void testHabitsForTodayButton() {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-        solo.clickOnButton("Habits For Today");
+        solo.clickOnButton("Today's Habits");
         solo.assertCurrentActivity("Wrong Activity", ViewHabitsForTodayActivity.class);
     }
 

@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 /**
@@ -11,8 +19,8 @@ package com.wsfmn.model;
  * @see ProfileName
  */
 public class Request extends ProfileName{
-    private String searchName;
-    private String requestType;
+    private String searchName;  // this name will be used to search for
+    private String requestType; // Just a follow type, But can be extended to sharing or other in the future
 
     /**
      * Construct to create a request, using ProfileName's Construct

@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import java.util.Comparator;
@@ -9,25 +17,27 @@ import io.searchbox.annotations.JestId;
  */
 
 /**
- * a Class for the User's profilename
+ * a Class for the User's profilename, Stores their score calculated by Habit and their habit events.
+ * No test, Using Android studio's getter and setters.
  */
 public class ProfileName {
-    private String name;
+    private String name; // Name for the user
 
     @JestId
-    private String id;
+    private String id; // Elastic search user, Id will be set once it has been stored.
 
-    private int score;
+    private int score; // Score based on All Habits and Their events.
 
     /**
      * Empty construct if new ProfileName is called without parameters.
      */
-    public ProfileName(){
+    public ProfileName() {
         this.name = "";
     }
 
     /**
      * Construct for new ProfileName with name being param name
+     *
      * @param name
      */
     public ProfileName(String name) {
@@ -36,6 +46,7 @@ public class ProfileName {
 
     /**
      * Method to receive name from ProfileName
+     *
      * @return
      */
     public String getName() {
@@ -44,6 +55,7 @@ public class ProfileName {
 
     /**
      * Method to set the name for ProfileName
+     *
      * @param name
      */
     public void setName(String name) {
@@ -53,6 +65,7 @@ public class ProfileName {
     /**
      * Method to receive ID from ProfileName.
      * Main use for ElasticSearch
+     *
      * @return
      */
     public String getId() {
@@ -61,24 +74,30 @@ public class ProfileName {
 
     /**
      * Method to set the ID for ProfileName
+     *
      * @param id
      */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * get the current score of the user.
+     *
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * set or update the score for the user.
+     *
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }
-
-
-
-
-
 }
 
 

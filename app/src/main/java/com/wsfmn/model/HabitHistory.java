@@ -1,11 +1,15 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by nicholasmayne on 2017-10-16.
- */
 
 
 /**
@@ -78,10 +82,15 @@ public class HabitHistory {
      * Get the first index of the specified HabitEvent, if it is in HabitHistory.
      *
      * @param habitEvent HabitEvent: get the first index of this HabitEvent
-     * @return int first index of the specified HabitEvent
+     * @return int first index of the specified HabitEvent, otherwise -1
      */
     public int indexOf(HabitEvent habitEvent){
-        return habitHistory.indexOf(habitEvent);
+        for (int i = 0; i < habitHistory.size(); i++) {
+            if (habitEvent.getId().equals(habitHistory.get(i).getId())){
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -176,6 +185,5 @@ public class HabitHistory {
     public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory;
     }
-
 }
 

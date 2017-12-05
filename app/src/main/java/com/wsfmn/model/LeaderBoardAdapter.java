@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import android.content.Context;
@@ -16,6 +24,10 @@ import java.util.ArrayList;
  * Created by Fredric on 2017-11-30.
  */
 
+/**
+ * Adapter for the scoreboard/ leaderboard in ProfileActivity, will be able to
+ * show the profile name fields of Name and Score.
+ */
 public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
 
     private ArrayList<ProfileName> objects;  // declaring our ArrayList of items
@@ -48,18 +60,16 @@ public class LeaderBoardAdapter extends ArrayAdapter<ProfileName> {
             // if not, assign some text
             if (nameScore != null) {
                 if (i.getName().equals(App.USERNAME)) {
-                    nameScore.setText("Me:       " + App.USERNAME + "      ");
+                    nameScore.setText("Me:       " + App.USERNAME + "      "); // Shows your score
                 } else {
-                    nameScore.setText("Friend:  " + i.getName() + "      ");
+                    nameScore.setText("Friend:  " + i.getName() + "      ");  // Shows your friend score
                 }
             }
 
             if (scoreScore != null) {
                 scoreScore.setText("Score: " + String.valueOf(i.getScore()) + "%"); // set the score
             }
-
             // view is returned to activity
-
         }
         return v;
     }

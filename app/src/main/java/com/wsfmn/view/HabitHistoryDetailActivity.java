@@ -47,7 +47,6 @@ public class HabitHistoryDetailActivity extends HabitHistorySuper {
         // Get the ID of the HabitEvent to view
         Bundle b = getIntent().getExtras();
         habitEvent = HHC.get(b.getString("id"));
-
         // Instantiate view vars
         addedHabit = habitEvent.getHabit();
         title.setText(habitEvent.getTitle());
@@ -58,6 +57,7 @@ public class HabitHistoryDetailActivity extends HabitHistorySuper {
         if (habitEvent.getGeolocation() != null) {
             address.setText(habitEvent.getGeolocation().getAddress());
         }
+
 
         // Check if device has a camera
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {

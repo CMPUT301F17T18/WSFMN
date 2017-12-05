@@ -1,5 +1,12 @@
-package com.wsfmn.model;
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
 
+package com.wsfmn.model;
 
 import com.wsfmn.exceptions.DateNotValidException;
 import com.wsfmn.exceptions.HabitReasonTooLongException;
@@ -20,18 +27,17 @@ import java.util.Comparator;
  * the days that the habit will be followed.
  *
  */
-
 public class Habit implements Serializable, Comparable<Habit>{
 
 
-    private String id;
-    private String title;
-    private String title_search;
-    private String reason;
+    private String id;              //will set restful client
+    private String title;           // Title for the habit
+    private String title_search;    // Title that will be used to search for in  ES
+    private String reason;          // Optional reason for the user to put
     protected Date date = null;     //  date the habit starts
     protected WeekDays weekDays;    //  days of the week the habit will be done
-    private String owner;
-    private int score = 0;
+    private String owner;           // Owner of the habit
+    private int score = 0;          // Score of the habit based on habit events.
 
 
     //  attributes for calculating statistics about a habit
@@ -49,7 +55,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  Created a Habit object
+     * Create a Habit object.
      *
      * @param date Starting date of the habit
      * @param weekDays A WeekDays list to identify the days of the week the habit will
@@ -62,7 +68,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     * Creates a habit object
+     * Create a Habit object.
      *
      * @param title The title or name of the habit
      * @param date  The starting date of the habit.
@@ -80,7 +86,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  Create a Habit object
+     * Create a Habit object.
      *
      * @param title The title or name of the habit
      * @param reason The reason the habit will be started
@@ -97,7 +103,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  Created a Habit object
+     *  Create a Habit object.
      *
      * @param title The title or name of the habit
      * @param reason The reason the habit will be started
@@ -114,8 +120,8 @@ public class Habit implements Serializable, Comparable<Habit>{
         this.weekDays = weekDays;
     }
 
-
     /**
+     *  Retrieved the id for a habit.
      *
      * @return the id of the habit
      */
@@ -123,8 +129,8 @@ public class Habit implements Serializable, Comparable<Habit>{
         return id;
     }
 
-
     /**
+     *  Sets the id for a habit.
      *
      * @param id to identify the habit
      */
@@ -133,6 +139,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Gets the title for a habit.
      *
      * @return title of the habit
      */
@@ -141,9 +148,9 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  checks that a habit's title is valid before assigning it
+     *  Sets the title for a habit if it is between 1 - 20 characters.
      *
-     * @param title name or title of the habit
+     * @param title name or title of the habit.
      * @throws HabitTitleTooLongException thrown if the habit
      *  does not satisfy constraints.
      */
@@ -156,6 +163,7 @@ public class Habit implements Serializable, Comparable<Habit>{
 
     /**
      * Get the title used for online searching.
+     *
      * @return online search title
      */
     public String getSearchTitle() {
@@ -164,23 +172,32 @@ public class Habit implements Serializable, Comparable<Habit>{
 
     /**
      * Set the searchable title based upon title.
+     *
      */
     public void setSearchTitle() {
         title_search = title.toLowerCase().replaceAll("\\s+", "").replaceAll("[^A-Za-z0-9]", "");
     }
 
-
+    /**
+     * Show the habit's score, It is an indicator on how well you're doing the habit.
+     *
+     * @return the habit's score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Set the habit score.
+     *
+     * @param score of the habit
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
-
-
     /**
+     *  Gets reason for starting the habit.
      *
      * @return reason for starting the habit
      */
@@ -189,6 +206,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Set the reason for a habit if it is not more than 30 characters.
      *
      * @param reason the reason for the habit
      * @throws HabitReasonTooLongException if reason is too long,
@@ -202,7 +220,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  Gets the starting date of a habit
+     *  Get the starting date of a habit.
      *
      * @return the date the habit starts
      */
@@ -243,9 +261,8 @@ public class Habit implements Serializable, Comparable<Habit>{
         }
     }
 
-
     /**
-     *  Gets the days of the week the habit will occur in
+     * Get the days of the week the habit will occur in
      *
      * @return the days of the week the habit is done
      */
@@ -254,6 +271,7 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
+     *  Gets weekDays for a habit.
      *
      * @param weekDays the days of the week the habit is done
      */
@@ -264,8 +282,8 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  access the weekDays attribute to set a day
-     *  that the habit is expected to be done in
+     *  Access the weekDays attribute to set a day
+     *  that the habit is expected to be done in.
      *
      * @param day the days that the habit will be done
      */
@@ -278,8 +296,8 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  accesses the weekDays attribute to unset a day
-     *  that the habit is not expected to be done in
+     *  Access the weekDays attribute to unset a day
+     *  that the habit is not expected to be done in.
      *
      * @param day
      */
@@ -291,9 +309,8 @@ public class Habit implements Serializable, Comparable<Habit>{
         weekDays.unsetDay(day);
     }
 
-
     /**
-     *  creates a string representing a habit
+     * Create a string representing a habit.
      *
      * @return a string representation for a habit
      */
@@ -303,7 +320,8 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     * Checks if habit is equal calling object
+     * Check if habit is equal calling object.
+     *
      * @param habit a habit to check if it is equal to calling object
      * @return boolean true if equal and false otherwise.
      */
@@ -312,11 +330,11 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  calculates the total number of times that the habit could have
-     *  occurred in if it was followed according to schedule
+     *  Calculate the total number of times that the habit could have
+     *  occurred in if it was followed according to schedule.
      *
      * @return  the total number of times that the habit could have occurred in
-     *  if it was followed according to schedule.
+     *  if it was followed according to schedule
      */
     public int getTotalOccurrence(){
         //today
@@ -337,8 +355,8 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  calculates total times a habit could have occured in if it was
-     *  followed according to schedule from startDate to endDate
+     *  Calculate total times a habit could have occured in if it was
+     *  followed according to schedule from startDate to endDate.
      *
      * @param startDate the start date for the habit that we want to use
      * @param endDate   the end date for a habit that we want to do
@@ -388,14 +406,14 @@ public class Habit implements Serializable, Comparable<Habit>{
     }
 
     /**
-     *  In a given month, returns the number of times a habit could have occurred
-     *  if it was followed according to schedule
+     *  In a given month, return the number of times a habit could have occurred
+     *  if it was followed according to schedule.
      *
      * @param beg we identify whent he month should start
      * @param dayOfWeek we pass the day of the week that beg corresponds to
      * @param end we the end day of the month that we want to use
      * @return In a given month identified by the parameters, returns the number of
-     *  times a habit could have occurred if it was followed according to schedule.
+     *  times a habit could have occurred if it was followed according to schedule
      */
     public int caldays(int beg, int dayOfWeek, int end){
         int total = 0;
@@ -412,14 +430,31 @@ public class Habit implements Serializable, Comparable<Habit>{
         return total;
     }
 
+    /**
+     * Get the user name of the owner of the habit. For elastic search use and for FriendAdapter use.
+     *
+     * @return String the owner for a habit.
+     */
     public String getOwner() {
         return owner;
     }
 
+    /**
+     * Set the owner for which the habit belongs to. For elastic search use and for FriendAdapter.
+     *
+     * @param owner String the owner for the habit.
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+    /**
+     * Override compareTo method, Will be able to order a list by User name first then by
+     * Habit title name.
+     *
+     * @param other the other habit that is compared with the calling object.
+     * @return int
+     */
     public int compareTo(Habit other)
     {
         int res =  this.getOwner().compareToIgnoreCase(other.getOwner());
@@ -427,7 +462,4 @@ public class Habit implements Serializable, Comparable<Habit>{
             return res;
         return this.getTitle().compareToIgnoreCase(other.getTitle());
     }
-
-
-
 }
