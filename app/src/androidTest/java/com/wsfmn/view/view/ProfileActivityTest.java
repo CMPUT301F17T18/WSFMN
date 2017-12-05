@@ -1,12 +1,23 @@
 package com.wsfmn.view.view;
 
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
 
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.robotium.solo.Solo;
+import com.wsfmn.controller.App;
 import com.wsfmn.controller.OnlineController;
+import com.wsfmn.view.FriendActivity;
+import com.wsfmn.view.FriendHabitActivity;
 import com.wsfmn.view.ProfileActivity;
 import com.wsfmn.view.R;
 
@@ -35,42 +46,50 @@ public class ProfileActivityTest extends ActivityInstrumentationTestCase2<Profil
 
     }
 
-    // Must wipe memory first, There needs to be no username in local files.
-    // Test if we can get to UserNameActivity from ProfileActivity if there is no profilename.
-    public void testProfileName(){
+    // TEST THIS AFTER TESTING UserName_ActivityTest.
+    public void testProfile(){
         solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test123456");
-        solo.clickOnButton("Confirm");
-        solo.clickOnButton("OK");
+        assertTrue(solo.waitForText("WELCOME"));
+        assertTrue(solo.waitForText("test123456")); //check if your name displays
 
-        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
-        solo.clickOnButton("Confirm");
-        solo.clickOnButton("OK");
-
-        solo.waitForActivity(ProfileActivity.class, 100);
-        solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
+        // check if you are collecting requests from other users.
+        // Premade requests so testing can be done
+        assertTrue(solo.waitForText("test123456buddy"));
+        assertTrue(solo.waitForText("wants to follow you"));
 
 
-        OnlineController.DeleteProfileName online = new OnlineController.DeleteProfileName();
-        online.execute("test123456test");
+        // test that you cannot send request to yourself
+        solo.enterText((EditText) solo.getView(R.id.userName), "test123456test");
+        solo.clickOnButton("Follow");
+        assertTrue(solo.waitForText("Sorry, Can't Add Yourself!"));
+        solo.clearEditText((EditText) solo.getView(R.id.userName));
 
+        // test that you cannot send request to names that dont exist
+        solo.enterText((EditText) solo.getView(R.id.userName), "test123456testDIFFERENT");
+        solo.clickOnButton("Follow");
+        assertTrue(solo.waitForText("User Doesn't Exist!"));
+        solo.clearEditText((EditText) solo.getView(R.id.userName));
 
+        // test that you cannot send a request already sent. (Premade to test)
+        solo.enterText((EditText) solo.getView(R.id.userName), "test123456buddy");
+        solo.clickOnButton("Follow");
+        assertTrue(solo.waitForText("Request Already Sent!"));
+        solo.clearEditText((EditText) solo.getView(R.id.userName));
 
-        OnlineController check= new OnlineController();
-        assertEquals(true, check.checkName("test123456test"));
+        // test that you cannot send a request to someone already in your friend's list
+        solo.enterText((EditText) solo.getView(R.id.userName), "test2b");
+        solo.clickOnButton("Follow");
+        assertTrue(solo.waitForText("This Person Is On Your FriendList Already!"));
+        solo.clearEditText((EditText) solo.getView(R.id.userName));
+
+        //Go to another activity.
+        solo.clickOnButton("Friend's Events");
+        solo.assertCurrentActivity("wrong activity", FriendActivity.class);
+
 
 
     }
 
-    //Part 5
-    public void testShareButton(){
-
-    }
-
-    //Part 5
-    public void testFollowButton(){
-
-    }
 
 
     public void tearDown() throws Exception{

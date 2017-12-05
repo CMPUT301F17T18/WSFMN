@@ -17,6 +17,7 @@ import com.wsfmn.view.UserNameActivity;
 
 public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<UserNameActivity> {
     private Solo solo;
+    private OnlineController check= new OnlineController();
 
     public UserName_ActivityTest() {
         super(UserNameActivity.class);
@@ -31,29 +32,39 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
 
     }
 
-    // PLEASE WIPE MEMORY TO TEST!!
+
+    //UNCOMMENT private static final String SERVER_URL = "https://5b3c205796b755b5db6f9b28b41fa441.us-east-1.aws.found.io:9243/";
+    // COMMENT THE OTHER URL... ELASTIC SEARCH COULD BE DOWN
+
+    // PLEASE WIPE MEMORY TO TEST!! "MIGHT" NEED TO DELETE "test123456' on elasticsearch manually.
+    // elastic search has a bit of a problem right now...
     // Testing if name is checked on ElasticSearch and if we can store it.
     // Test a name already on ElasticSearch, Then test a name not on ElasticSearch.
     // yourUserName is sometimes not found. Clean Project if resource name: 'yourUserName' is not found!.
-    public void testUniqueName() {
+    public void testUniqueName() throws InterruptedException {
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "test123456");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.yourUserName), "DifferentTest");
+        solo.enterText((EditText) solo.getView(R.id.yourUserName), "test");
         solo.clickOnButton("Confirm");
         solo.clickOnButton("OK");
         solo.waitForActivity(ProfileActivity.class);
-
-        OnlineController check= new OnlineController();
-        assertEquals(false, check.checkName("test123456differenttest"));
-
-        OnlineController.DeleteProfileName online = new OnlineController.DeleteProfileName();
-        online.execute("test123456differenttest");
+        assertEquals(false, check.checkName("test123456test"));
 
 
-        assertEquals(true, check.checkName("differenttest"));
+
+
+
+
+    }
+    //test profile... Check/ decline the request/ have friend added already... to the index
+    //
+
+    public void testProfile(){
+
+
     }
 
 
