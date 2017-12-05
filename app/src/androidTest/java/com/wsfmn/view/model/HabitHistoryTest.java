@@ -59,33 +59,12 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         assertFalse("Habit History should not have been empty.", habitHistory.isEmpty());
     }
 
-    public void testAdd() throws HabitEventCommentTooLongException {
+    public void testAdd() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
 
-        Habit myHabit = null;
-        HabitEvent habitEvent = null;
-
-        try {
-            myHabit = new Habit("Eating Pizza", new Date());
-        }
-        catch(HabitTitleTooLongException e){
-            //null
-        }
-        catch(DateNotValidException e){
-            //null
-        }
-
-        try {
-            habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null,
-                    null, null);
-        }
-        catch(HabitCommentTooLongException e){
-            //null
-        }
-        catch(ParseException e){
-            //null
-        }
-
+        Habit myHabit = myHabit = new Habit("Eating Pizza", new Date());
+        HabitEvent habitEvent = habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null,
+                null, new Date());
 
         habitHistory.add(habitEvent);
 
@@ -215,7 +194,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null,
-                    null, null);
+                    null, new Date());
 
         }
         catch(HabitCommentTooLongException e){
@@ -245,7 +224,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null,
-                    null, null);
+                    null, new Date());
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -280,7 +259,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         try {
             habitEvent = new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
                     null,
-                    null);
+                    new Date());
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -289,7 +268,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
         try {
             habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
                     null,
-                    null);
+                    new Date());
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -328,9 +307,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
     public void testFilterByTitle() throws  Exception{
         HabitHistory habitHistory = new HabitHistory();
         HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
-                "Swimmed with Jack", null, null, null, null);
+                "Swimmed with Jack", null, null, null, new Date());
         HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
-                "Swimmed with Jack", null, null, null, null);
+                "Swimmed with Jack", null, null, null, new Date());
 
         habitHistory.add(he);
         habitHistory.add(he2);
@@ -346,9 +325,9 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
     public void testFilterByComment() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
         HabitEvent he = new HabitEvent(new Habit("Basketball", new Date()),
-                "Swimmed with Jack", "Fun", null, null, null);
+                "Swimmed with Jack", "Fun", null, null, new Date());
         HabitEvent he2 = new HabitEvent(new Habit("Swimming", new Date()),
-                "Swimmed with Jack", "Not Happy", null, null, null);
+                "Swimmed with Jack", "Not Happy", null, null, new Date());
 
         habitHistory.add(he);
         habitHistory.add(he2);
