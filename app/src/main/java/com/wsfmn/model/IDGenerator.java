@@ -1,16 +1,23 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ *
+ *  Code Reuse: https://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string
+ */
+
 package com.wsfmn.model;
 
 import java.security.SecureRandom;
 import java.util.Locale;
 import java.util.Random;
 
-
 /**
- * This code is entirely from
+ * This code is almost entirely from
  * https://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string
  */
-
-
 public class IDGenerator {
     /**
      * Generate a random string.
@@ -68,7 +75,6 @@ public class IDGenerator {
     public IDGenerator() {
         this(20);
     }
-
 }
 
 

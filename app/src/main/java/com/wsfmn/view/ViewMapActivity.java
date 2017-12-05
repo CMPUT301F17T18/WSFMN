@@ -76,7 +76,10 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
-    /** Called when the user click Follows button, it will show all friends markers on the map */
+    /**
+     * Called when the user click Follows button, it will show all friends' events as blue markers on the map
+     * @param v
+     */
     public void buttonFollows(View v){
 
         mMap.clear();
@@ -111,7 +114,11 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
         }
 
     }
-    /** Called when the user click MyEvent button, it will show all user's markers on the map */
+
+    /**
+     * Called when the user click MyEvent button, it will show all user's event as orange markers on the map
+     * @param v
+     */
     public void buttonMyEvent(View v){
 
         mMap.clear();
@@ -148,14 +155,18 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
     }
 
-    /** Called when the user click Higlight button, it will show all friends and user's markers on the map */
-    /** If the distance between current location and the event within 5km, the marker of the event will be shown as green*/
-    /** Other event's marker will be shown as default color: RED*/
+    /**
+     * When user click Near me button, all user's and friends' events will be shown on the map as markers
+     * If the distance between current location and the event. The event will be shown as green marker
+     * Other events will be shown as default red markers
+     * @param v
+     */
+
+
     public void buttonHighlight(View v){
 
         mMap.clear();
         Bundle bundle = getIntent().getExtras();
-        //String filterString = bundle.getString("filterString");
         int highlightMode = bundle.getInt("highlightMode", 7);
 
 
@@ -450,10 +461,6 @@ public class ViewMapActivity extends FragmentActivity implements OnMapReadyCallb
 
         }
     }
-
-
-
-
 
 
     protected synchronized void buildGoogleApiClient(){

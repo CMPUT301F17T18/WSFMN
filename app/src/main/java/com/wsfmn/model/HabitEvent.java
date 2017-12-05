@@ -1,3 +1,13 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ *
+ *  Code Reuse: https://stackoverflow.com/questions/7620401/how-to-convert-byte-array-to-bitmap
+ */
+
 package com.wsfmn.model;
 
 import android.graphics.Bitmap;
@@ -45,12 +55,12 @@ public class HabitEvent{
     /**
      * A HabitEvent without a location
      *
-     * @param habit
-     * @param title
-     * @param comment
-     * @param photoStringEncoding
-     * @param photoPath
-     * @param date
+     * @param habit Habit associated with the HabitEvent
+     * @param title of the Habit/HabitEvent, same value
+     * @param comment comment for this HabitEvent
+     * @param photoStringEncoding string encoding of a photo for this HabitEvent
+     * @param photoPath the local path for the user's photo
+     * @param date the date of the HabitEvent
      * @throws HabitCommentTooLongException
      * @throws HabitEventCommentTooLongException
      * @throws ParseException
@@ -76,12 +86,12 @@ public class HabitEvent{
     /**
      * A complete HabitEvent
      *
-     * @param habit that was done
-     * @param title of that Habit
-     * @param comment for this HabitEvent
-     * @param photoStringEncoding a massive String that is actually an image
-     * @param photoPath to the user's local copy of the photo
-     * @param date of the HabitEvent
+     * @param habit Habit associated with the HabitEvent
+     * @param title of the Habit/HabitEvent, same value
+     * @param comment comment for this HabitEvent
+     * @param photoStringEncoding string encoding of a photo for this HabitEvent
+     * @param photoPath the local path for the user's photo
+     * @param date the date of the HabitEvent
      * @param geolocation of the HabitEvent
      * @throws HabitCommentTooLongException
      * @throws HabitEventCommentTooLongException
@@ -106,26 +116,27 @@ public class HabitEvent{
     }
 
     /**
-     * Get the date of when the HabitEvent was created
-     * @return Date: Date of the HabitEvent
+     * Set the date of when the HabitEvent was created.
+     *
+     * @return Date of the HabitEvent
      */
     public void setDate(Date date){
         this.date = date;
     }
 
-
     /**
      * Get the date Using our date method.
-     * @return
+     *
+     * @return Date of the HabitEvent
      */
     public Date getDate(){
         return this.date;
     }
 
-
     /**
      * get the actual Date using java.util.Date
-     * @return
+     *
+     * @return the actualDate
      * @throws ParseException
      */
     public java.util.Date getActualDate() throws ParseException {
@@ -134,15 +145,17 @@ public class HabitEvent{
 
     /**
      * The string-encoding of the photo for this HabitEvent.
-     * @return
+     *
+     * @return the stored photo as a String encoding
      */
     public String getPhotoStringEncoding(){
         return photoStringEncoding;
     }
 
     /**
-     * Setting the String encoded for the Habitevent
-     * @param photoStringEncoding
+     * Set the String encoded for the Habitevent.
+     *
+     * @param photoStringEncoding the String encoding of the photo for this HabitEvent
      */
     public void setPhotoStringEncoding(String photoStringEncoding){
         this.photoStringEncoding = photoStringEncoding;
@@ -150,18 +163,21 @@ public class HabitEvent{
 
     /**
      * Get the photo path from the picture taken on the phone/emulator.
-     * @return
+     *
+     * @return the local path to the original user's photo
      */
     public String getPhotoPath(){return photoPath;}
 
     /**
-     * Set the photo path into Habitevent
-     * @param photoPath
+     * Set the photo path into HabitEvent.
+     *
+     * @param photoPath the local path to the original user's photo
      */
     public void setPhotoPath(String photoPath){this.photoPath = photoPath;}
 
     /**
-     * Get the Habit the user selects for the HabitEvent
+     * Get the Habit the user selects for the HabitEvent.
+     *
      * @return Habit
      */
     public Habit getHabitFromEvent(){
@@ -169,7 +185,8 @@ public class HabitEvent{
     }
 
     /**
-     * Get the Habit title for the Habit Event
+     * Get the Habit title for the Habit Event.
+     *
      * @return habit Title
      */
     public String getHabitTitle(){
@@ -177,7 +194,8 @@ public class HabitEvent{
     }
 
     /**
-     * /*Changes the Habit for the HabitEvent
+     * Set the Habit for the HabitEvent.
+     *
      * @param habit
      */
     public void setHabit(Habit habit){
@@ -185,29 +203,33 @@ public class HabitEvent{
     }
 
     /**
-     * Get Id for ElasticSearch
-     * @return Id
+     * Get Id for ElasticSearch.
+     *
+     * @return Id for the HabitEvent
      */
     public String getId() {return id;}
 
     /**
-     * Set Id for ElasticSearch
-     * @param id
+     * Set Id for ElasticSearch.
+     *
+     * @param id for the HabitEvent
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Get the Habit for the HabitEvent
-     * @return habit
+     * Get the Habit of the HabitEvent.
+     *
+     * @return habit of the Habit event
      */
     public Habit getHabit() {
         return habit;
     }
 
     /**
-     * Get the Title of the Habit Event
+     * Get the Title of the Habit Event.
+     *
      * @return title of the HabitEvent
      * @throws HabitEventNameException
      */
@@ -222,16 +244,18 @@ public class HabitEvent{
 
     /**
      * Get the title of the habit event.
-     * @return
+     *
+     * @return the HabitEvent title
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * Change Title of the HabitEvent
-     * @param title
-     * @throws HabitEventNameException
+     * Set the title of the HabitEvent
+     *
+     * @param title of the HabitEvent
+     * @throws HabitEventNameException constrained by a char limit of 35
      */
     public String setTitle(String title)throws HabitEventNameException{
         /*Checks the length of the title*/
@@ -244,6 +268,7 @@ public class HabitEvent{
 
     /**
      * Get the title used for online searching.
+     *
      * @return online search title
      */
     public String getSearchTitle() {
@@ -258,16 +283,18 @@ public class HabitEvent{
     }
 
     /**
-     * Get the comment for HabitEvent that user created
-     * @return comment
+     * Get the comment for HabitEvent that user created.
+     *
+     * @return comment of the HabtiEvent
      */
     public String getComment(){
         return comment;
     }
 
     /**
-     * /*Changing the Comment of Habit Event
-     * @param comment
+     * Set the Comment of HabitEvent.
+     *
+     * @param comment of the HabitEvent
      * @throws HabitEventCommentTooLongException
      */
     public void setComment(String comment) throws HabitEventCommentTooLongException {
@@ -282,18 +309,19 @@ public class HabitEvent{
     }
 
     /**
-     * Set the geolocations after selecting a location.
-     * This will add a location and a address.
-     * @param geolocation
+     * Set the Geolocation for the HabitEvent.
+     * This will add coordinates and an address String.
+     *
+     * @param geolocation of the HabitEvent
      */
     public void setGeolocation(Geolocation geolocation){
         this.geolocation = geolocation;
     }
 
     /**
-     * Get back the geolocation.
-     * Coordinates and address.
-     * @return
+     * Get the HabitEvent Geolocation.
+     *
+     * @return HabitEvent Geolocation
      */
     public Geolocation getGeolocation(){
         return geolocation;
@@ -301,22 +329,24 @@ public class HabitEvent{
 
     /**
      * Get the owner of habit event.
-     * @return
+     *
+     * @return the owner of the HabitEvent
      */
     public String getOwner() {
         return owner;
     }
 
     /**
-     * Setting the owner of the habit event.
-     * @param owner
+     * Set the owner of the habit event.
+     *
+     * @param owner of the HabitEvent
      */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
     /**
-     *  Compares two String Dates
+     *  Compare two String Dates
      *
      * @param otherDate the other date that compare with the calling objects' ate
      * @return int 0 if equal, -1 if the calling object's date is smaller than otherDate,
@@ -327,8 +357,9 @@ public class HabitEvent{
     }
 
     /**
-     * Able to make the object into a string to be printable
-     * @return
+     * String representation of a HabitEvent.
+     *
+     * @return HabitEvent as a string
      */
     @Override
     public String toString(){
@@ -337,7 +368,8 @@ public class HabitEvent{
 
     /**
      * Code Reuse: https://stackoverflow.com/questions/7620401/how-to-convert-byte-array-to-bitmap
-     * @return
+     *
+     * @return the Image as a Bitmap
      */
     public Bitmap getImageBitmap() {
         if(photoStringEncoding!=null) {

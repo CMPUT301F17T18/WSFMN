@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.controller;
 
 import android.support.annotation.Nullable;
@@ -168,9 +176,10 @@ public class HabitHistoryController {
 
 
     /**
-     * Return a Habit by its id
-     * @param id
-     * @return
+     * Return a HabitEvent by its ID.
+     *
+     * @param id of the Habit
+     * @return the HabitEvent with that ID, if it exists, otherwise null
      */
     public HabitEvent get(String id)  {
         for (int i = 0; i<habitHistory.size(); i++){
@@ -182,11 +191,11 @@ public class HabitHistoryController {
     }
 
     /**
-     * Removes and returns a HabitEvent at the specified index in HabitHistory.
-     * NOTE: To save this change and update online instead use, removeAndStore(HabitEvent he).
+     * Remove and return a HabitEvent at the specified index in HabitHistory.
+     * NOTE: To save this change and update online and offline use: removeAndStore(HabitEvent he).
      *
-     * @param idx int: the index of the HabitEvent to remove
-     * @return HabitEvent removed from the specified index
+     * @param idx index of the HabitEvent to remove
+     * @return HabitEvent removed from the specified index or null if not in HabitHistory
      * @throws IndexOutOfBoundsException
      */
     public HabitEvent remove(int idx) throws IndexOutOfBoundsException{
@@ -194,11 +203,11 @@ public class HabitHistoryController {
     }
 
     /**
-     * Removes and returns a HabitEvent from HabitHistory.
-     * NOTE: To save this change and update online instead use, removeAndStore(HabitEvent he).
+     * Remove and return a HabitEvent from HabitHistory.
+     * NOTE: To save this change and update online and offline use: removeAndStore(HabitEvent he).
      *
-     * @param he HabitEvent: the HabitEvent to remove
-     * @return HabitEvent removed from HabitHistory or null if in HabitHistory
+     * @param he the HabitEvent to remove
+     * @return HabitEvent removed from HabitHistory or null if not in HabitHistory
      * @throws IndexOutOfBoundsException
      */
     @Nullable
@@ -212,33 +221,30 @@ public class HabitHistoryController {
     }
 
     /**
-     *  Returns a copy of habit history list with only habit events belonging to h
+     * Filter the habit history by the title of the Habit/HabitEvent.
      *
-     * @param title a habit used to filter habit history list
-     * @return HabitHistory a filtered copy of habit history list based on h
+     * @param title used to filter habit history by title attribute
      */
     public void filterByTitle(String title){
         habitHistory.filterByTitle(title);
     }
 
     /**
-     * Returns a copy of habit history list with only habit events containing
-     * comment in their comment String
+     * Filter the habit history by the comment in a HabitEvent.
      *
-     * @param comment a string that we use to filter habit history list
-     * @return HabitHistory a filtered copy of habit history list based on comment
-     * @throws Exception
+     * @param comment used to filter the habit history by comment attribute
      */
     public void filterByComment(String comment) {
         habitHistory.filterByComment(comment);
     }
 
     /**
-     * Removes and returns a HabitEvent from HabitHistory, and online,
-     * and decrements the HabitHistory indices that follow it, saving all changes.
+     * Remove and return a HabitEvent from HabitHistory, done both online and offline,
+     * decrements the HabitHistory indices that follow it, and removes the photos
+     * from the file system, saving all changes and updating the user's score as appropriate.
      *
-     * @param he HabitEvent: the HabitEvent to remove
-     * @return HabitEvent removed from HabitHistory or null if not in HabitHistory
+     * @param he the HabitEvent to remove
+     * @return the HabitEvent removed from HabitHistory or null if not in HabitHistory
      * @throws IndexOutOfBoundsException
      */
     @Nullable
@@ -273,8 +279,8 @@ public class HabitHistoryController {
     /**
      * Check to see if a HabitEvent is in HabitHistory.
      *
-     * @param habitEvent HabitEvent: check HabitHistory for this HabitEvent
-     * @return Boolean true if the HabitEvent is in HabitHistory
+     * @param habitEvent check HabitHistory for this HabitEvent
+     * @return Boolean true if the HabitEvent is in HabitHistory, otherwise false
      */
     public Boolean contains(HabitEvent habitEvent) {
         return habitHistory.contains(habitEvent);
@@ -284,7 +290,7 @@ public class HabitHistoryController {
      * Get the first index of the specified HabitEvent, if it is in HabitHistory.
      *
      * @param habitEvent HabitEvent: return the first index of this HabitEvent
-     * @return int first index of the specified HabitEvent
+     * @return int first index of the specified HabitEvent, otherwise -1
      */
     public int indexOf(HabitEvent habitEvent){
         return habitHistory.indexOf(habitEvent);
@@ -300,7 +306,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Stores HabitHistory online, and offline.
+     * Store HabitHistory online, and offline.
+     *
      */
     public void storeAll() {
         OnlineController.StoreHabitEvents storeHabitEvents =
@@ -329,7 +336,8 @@ public class HabitHistoryController {
     }
 
     /**
-     *  Stores HabitHistory data locally.
+     * Store HabitHistory offline.
+     *
      */
     public void store(){
         OfflineController.StoreHabitHistory storeHabitHistoryOffline =
@@ -344,7 +352,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Updates a Habit online
+     * Update a HabitEvent online.
+     *
      * @param he a HabitEvent to update online
      */
     public void updateOnline(HabitEvent he) {
@@ -360,7 +369,8 @@ public class HabitHistoryController {
     }
 
     /**
-     * Update the Habit inside the HabitEvents that reference it
+     * Update the Habit inside the HabitEvents that reference it.
+     *
      * @param h the habit to update within all HabitEvents
      */
     public void pushHabitChangesToHabitEvents(Habit h) {
@@ -381,6 +391,7 @@ public class HabitHistoryController {
 
     /**
      * Store the changes to HabitHistory and update the HabitEvent online
+     *
      * @param he a HabitEvent to update online
      */
     public void storeAndUpdate(HabitEvent he) {
@@ -400,15 +411,16 @@ public class HabitHistoryController {
     }
 
     /**
+     * Get the HabitHistory as an ArrayList of HabitEvents
      *
-     * @return
+     * @return the underlying List of HabitHistory
      */
     public ArrayList<HabitEvent> getHabitEventList(){
         return  habitHistory.getHabitEventList();
     }
 
     /**
-     *  Initializes the model with data from local storage
+     *  Initialize the model with data from local storage.
      *
      */
     private void init(){

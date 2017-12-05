@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import com.wsfmn.controller.HabitHistoryController;
@@ -7,12 +15,14 @@ import java.util.List;
 
 
 /**
+ *  A class to store Habits.
  *
  */
 public class HabitList {
     private ArrayList<Habit> habits;
 
     /**
+     *  Creates a new habit list object.
      *
      */
     public HabitList() {
@@ -20,16 +30,18 @@ public class HabitList {
     }
 
     /**
+     *  Creates a new habit list using the array list habits
      *
-     * @param habits
+     * @param habits an array list of type Habit
      */
     public HabitList(ArrayList<Habit> habits) {
         this.habits = habits;
     }
 
     /**
+     *  Adds a new habit to the list of habits
      *
-     * @param habit
+     * @param habit a habit object that we want to add to the list of habits.
      */
     public void addHabit(Habit habit){
         habit.setSearchTitle();
@@ -37,32 +49,36 @@ public class HabitList {
     }
 
     /**
+     *  Deletes habit from the list of habits.
      *
-     * @param habit
+     * @param habit a habit object that we want to remove from the list of habits.
      */
     public void deleteHabit(Habit habit){
         habits.remove(habit);
     }
 
     /**
+     *  Deletes entry index from the habit list
      *
-     * @param index
+     * @param index an index in the habit list for an object that we want to delete.
      */
     public void deleteHabitAt(int index){
         habits.remove(index);
     }
 
     /**
+     *  Computes the size of the habit list
      *
-     * @return
+     * @return int the size of the habit list
      */
     public int size() {
         return habits.size();
     }
 
     /**
+     *  Adds a list of habits to habit list.
      *
-     * @param habitsToAdd
+     * @param habitsToAdd a list containing habits that we want to add to the habit list.
      */
     public void addAllHabits(List<Habit> habitsToAdd) {
         for(Habit h: habitsToAdd) {
@@ -72,18 +88,20 @@ public class HabitList {
     }
 
     /**
+     *  Retrieves a habit from the habit list.
      *
-     * @param index
-     * @return
+     * @param index an index for the habit that we want to retrieve form the habit list.
+     * @return  Habit a habit from the list of habits.
      */
     public Habit getHabit(int index){
         return habits.get(index);
     }
 
     /**
+     *  Changes the habit object in index to habit.
      *
-     * @param index
-     * @param habit
+     * @param index an index for an entry in the habit list
+     * @param habit a habit object
      */
     public void setHabit(int index, Habit habit){
         habit.setSearchTitle();
@@ -91,24 +109,31 @@ public class HabitList {
     }
 
     /**
+     *  Verifies whether a habit object is contained in the habit list.
      *
-     * @param habit
-     * @return
+     * @param habit a habit objec to verify if it is contained in the habit list.
+     * @return boolean true if the habit object is contained in the habit list,
+     *  and false otherwise.
      */
     public boolean hasHabit(Habit habit){
         return habits.contains(habit);
     }
 
-    // TODO alsobaie: added this, needs testing
 
     /**
+     *  Returns the array list used to store the habits.
      *
-     * @return
+     * @return an array list of type Habit.
      */
     public ArrayList<Habit> getHabitList(){
         return  habits;
     }
 
+    /**
+     *  Creates a new array list containing only habits that have Date equal to today
+     *
+     * @return an array list of type Habit.
+     */
     public ArrayList<Habit> getHabitsForToday(){
         ArrayList<Habit> habitsForToday = new ArrayList<Habit>();
         ArrayList<Habit> hl = new ArrayList<Habit>();
