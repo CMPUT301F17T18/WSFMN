@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import java.io.Serializable;
@@ -6,7 +14,7 @@ import java.io.Serializable;
  * Created by musaed on 2017-10-22.
  *
  * This class is a list data structure of type boolean and size 7 used to store days of the week
- * that the habit will occurr in. Each entry represents a day, and we use the defines constants
+ * that the habit will occur in. Each entry represents a day, and we define constants
  * as indexes to access the list's entries. An entry containing true means that the habit will
  * occur in this day, and false if not.
  *

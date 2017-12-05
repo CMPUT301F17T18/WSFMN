@@ -36,7 +36,7 @@ public class HabitTest extends ActivityInstrumentationTestCase2 {
             //null
         }
 
-        assertNull("Habit ID was not null", habit.getId());
+        assertNotNull("Habit ID was not null", habit.getId());
     }
 
     public void testSetId(){

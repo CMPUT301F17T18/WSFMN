@@ -102,20 +102,10 @@ public class HabitListTest extends ActivityInstrumentationTestCase2 {
      *  otherwise
      *
      */
-    public void testHasHabit(){
+    public void testHasHabit() throws Exception{
         HabitList habits = new HabitList();
 
-        Habit habit = null;
-
-        try {
-            habit = new Habit("Setting With Daughter", new Date());
-        }
-        catch(HabitTitleTooLongException e){
-            //null
-        }
-        catch(DateNotValidException e){
-            //null
-        }
+        Habit habit = new Habit("Swimming", new Date());
 
         habits.addHabit(habit);
         assertTrue(habits.hasHabit(habit));

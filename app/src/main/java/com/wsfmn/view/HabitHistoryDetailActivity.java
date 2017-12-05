@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.view;
 
 import android.app.DatePickerDialog;
@@ -47,7 +55,6 @@ public class HabitHistoryDetailActivity extends HabitHistorySuper {
         // Get the ID of the HabitEvent to view
         Bundle b = getIntent().getExtras();
         habitEvent = HHC.get(b.getString("id"));
-
         // Instantiate view vars
         addedHabit = habitEvent.getHabit();
         title.setText(habitEvent.getTitle());
@@ -58,6 +65,7 @@ public class HabitHistoryDetailActivity extends HabitHistorySuper {
         if (habitEvent.getGeolocation() != null) {
             address.setText(habitEvent.getGeolocation().getAddress());
         }
+
 
         // Check if device has a camera
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {

@@ -35,7 +35,7 @@ public class HabitListController{
      *  to pass model data between activities)
      *
      *
-     *      HabitListController c = new HabitListController();
+     *      HabitListController c = HabitListController.getInstance();
      *
      *
      *  When this is first called, a new model is initialized
@@ -46,10 +46,9 @@ public class HabitListController{
      *  Everything in the model is updated by calling methods
      *  from the controller
      *
-     *      c.addHabit(Habit);
-     *      c.store();
+     *      c.addAndStore();
      *
-     *  we call c.store to store the new habit locally.
+     *  we call c.addAndStore() to add and store the new habit locally and online.
      */
 
     private static HabitListController INSTANCE = null;
@@ -230,13 +229,15 @@ public class HabitListController{
         float occurred = HabitHistoryController.getInstance().habitOccurrence(habit);
         float occurrence = habit.getTotalOccurrence();
 
-        score = (int)((occurred / occurrence) * 100);
+
 
         if(occurrence == 0)
             score = 0;
 
-        else if(score > 100)
-            score = 100;
+        else {
+            score = (int)((occurred / occurrence) * 100);
+            if (score > 100) score = 100;
+        }
 
         habit.setScore(score);
     }

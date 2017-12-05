@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.view;
 
 import android.app.DatePickerDialog;
@@ -51,13 +59,14 @@ public class AddNewHabitEventActivity extends HabitHistorySuper {
 
         // Check if the Habit has been set by a call from the HabitForTodayActivity
         Bundle b = getIntent().getExtras();
-        if(b.getString("caller").equals("TODAY")) {
-            habitIdx = b.getInt("positionToday");
+        if(b!=null) {
+            if (b.getString("caller").equals("TODAY")) {
+                habitIdx = b.getInt("positionToday");
 
-            addedHabit = HLC.getHabitsForToday().get(habitIdx);
-            title.setText(addedHabit.getTitle().toString());
+                addedHabit = HLC.getHabitsForToday().get(habitIdx);
+                title.setText(addedHabit.getTitle().toString());
+            }
         }
-
         // Set date for the HabitEvent created
         String dateAndTime = new Date(0).toString();
         date.setText(dateAndTime);

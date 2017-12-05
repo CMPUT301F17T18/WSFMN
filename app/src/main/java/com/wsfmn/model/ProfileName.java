@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.model;
 
 import java.util.Comparator;
@@ -23,12 +31,13 @@ public class ProfileName {
     /**
      * Empty construct if new ProfileName is called without parameters.
      */
-    public ProfileName(){
+    public ProfileName() {
         this.name = "";
     }
 
     /**
      * Construct for new ProfileName with name being param name
+     *
      * @param name
      */
     public ProfileName(String name) {
@@ -37,6 +46,7 @@ public class ProfileName {
 
     /**
      * Method to receive name from ProfileName
+     *
      * @return
      */
     public String getName() {
@@ -45,6 +55,7 @@ public class ProfileName {
 
     /**
      * Method to set the name for ProfileName
+     *
      * @param name
      */
     public void setName(String name) {
@@ -54,6 +65,7 @@ public class ProfileName {
     /**
      * Method to receive ID from ProfileName.
      * Main use for ElasticSearch
+     *
      * @return
      */
     public String getId() {
@@ -62,6 +74,7 @@ public class ProfileName {
 
     /**
      * Method to set the ID for ProfileName
+     *
      * @param id
      */
     public void setId(String id) {
@@ -70,6 +83,7 @@ public class ProfileName {
 
     /**
      * get the current score of the user.
+     *
      * @return
      */
     public int getScore() {
@@ -78,16 +92,12 @@ public class ProfileName {
 
     /**
      * set or update the score for the user.
+     *
      * @param score
      */
     public void setScore(int score) {
         this.score = score;
     }
-
-
-
-
-
 }
 
 
