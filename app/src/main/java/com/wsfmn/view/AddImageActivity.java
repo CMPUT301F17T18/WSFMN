@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Team 18 (WSFMN), CMPUT301, University of Alberta – All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact nmayne@ualberta.ca.
+ *
+ *  Team 18 is: Musaed Alsobaie, Siddhant Khanna, Wei Li, Nicholas Mayne, Fredric Mendi.
+ */
+
 package com.wsfmn.view;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,21 +29,8 @@ public class AddImageActivity extends AppCompatActivity {
         image = (ImageView)findViewById(R.id.viewImageNew);
         Intent intent = getIntent();
         String photoPath = intent.getStringExtra("CurrentPhotoPath");
-
-//        int targetW = 4;
-//        int targetH = 4;
-//
-//        int scaleFactor = Math.max(targetH, targetW);
-//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//        bmOptions.inJustDecodeBounds = true;
-//        BitmapFactory.decodeFile(photoPath, bmOptions);
-//
-//        bmOptions.inJustDecodeBounds = false;
-//        bmOptions.inSampleSize = scaleFactor;
-//        bmOptions.inPurgeable = true;
         Bitmap imageBitmap;
 
-        // TODO: This is brittle, it relies on the device using the directory. Fix by appending a tag to the beginning of the encoded string
         if ((photoPath != null) && (!photoPath.startsWith("/storage"))) {
             byte[] decodedString = Base64.decode(photoPath, Base64.DEFAULT);
             imageBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
@@ -44,7 +39,5 @@ public class AddImageActivity extends AppCompatActivity {
         }
 
         image.setImageBitmap(imageBitmap);
-
     }
-
 }
