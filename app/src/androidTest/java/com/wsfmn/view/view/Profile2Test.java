@@ -30,10 +30,10 @@ import static java.lang.Thread.sleep;
 
 
 
-public class ProfileActivityTest extends ActivityInstrumentationTestCase2<ProfileActivity> {
+public class Profile2Test extends ActivityInstrumentationTestCase2<ProfileActivity> {
     private Solo solo;
 
-    public ProfileActivityTest() {
+    public Profile2Test() {
         super(com.wsfmn.view.ProfileActivity.class);
     }
 
@@ -45,8 +45,10 @@ public class ProfileActivityTest extends ActivityInstrumentationTestCase2<Profil
         Activity activity = getActivity();
 
     }
-
-    // TEST THIS AFTER TESTING UserName_ActivityTest.
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
+    // TEST THIS AFTER TESTING Profile1TEST
+    // tests profileactivity
     public void testProfile(){
         solo.assertCurrentActivity("Wrong Activity", ProfileActivity.class);
         assertTrue(solo.waitForText("WELCOME"));
@@ -90,7 +92,8 @@ public class ProfileActivityTest extends ActivityInstrumentationTestCase2<Profil
 
     }
 
-
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
 
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();

@@ -15,11 +15,11 @@ import com.wsfmn.view.UserNameActivity;
  * Created by Fredric on 2017-11-12.
  */
 
-public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<UserNameActivity> {
+public class Profile1Test extends ActivityInstrumentationTestCase2<UserNameActivity> {
     private Solo solo;
     private OnlineController check= new OnlineController();
 
-    public UserName_ActivityTest() {
+    public Profile1Test() {
         super(UserNameActivity.class);
     }
 
@@ -32,15 +32,14 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
 
     }
 
-
-    //UNCOMMENT private static final String SERVER_URL = "https://5b3c205796b755b5db6f9b28b41fa441.us-east-1.aws.found.io:9243/";
-    // COMMENT THE OTHER URL... ELASTIC SEARCH COULD BE DOWN
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
 
     // PLEASE WIPE MEMORY TO TEST!! "MIGHT" NEED TO DELETE "test123456' on elasticsearch manually.
-    // elastic search has a bit of a problem right now...
     // Testing if name is checked on ElasticSearch and if we can store it.
     // Test a name already on ElasticSearch, Then test a name not on ElasticSearch.
     // yourUserName is sometimes not found. Clean Project if resource name: 'yourUserName' is not found!.
+    // DO PROFILE1 FIRST
     public void testUniqueName() throws InterruptedException {
         solo.assertCurrentActivity("Wrong Activity", UserNameActivity.class);
         solo.enterText((EditText) solo.getView(R.id.yourUserName), "test123456");
@@ -53,22 +52,10 @@ public class UserName_ActivityTest extends ActivityInstrumentationTestCase2<User
         solo.waitForActivity(ProfileActivity.class);
         assertEquals(false, check.checkName("test123456test"));
 
-
-
-
-
-
-    }
-    //test profile... Check/ decline the request/ have friend added already... to the index
-    //
-
-    public void testProfile(){
-
-
     }
 
-
-
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
 
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();

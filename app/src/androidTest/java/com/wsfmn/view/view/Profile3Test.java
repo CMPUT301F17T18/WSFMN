@@ -20,11 +20,11 @@ import com.wsfmn.view.FriendHabitActivity;
  * Created by Fredric on 2017-12-04.
  */
 
-public class FriendActivityTest extends ActivityInstrumentationTestCase2<FriendActivity> {
+public class Profile3Test extends ActivityInstrumentationTestCase2<FriendActivity> {
 
     private Solo solo;
 
-    public FriendActivityTest() {
+    public Profile3Test() {
         super(com.wsfmn.view.FriendActivity.class);
     }
 
@@ -36,7 +36,9 @@ public class FriendActivityTest extends ActivityInstrumentationTestCase2<FriendA
         Activity activity = getActivity();
 
     }
-
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
+    // USE AFTER PROFILE2TEST
     // User After ProfileActivity Test, Also tests FriendHabitActivity.
     // Premade friends to test on a single emulator.
     public void testFriend() {
@@ -64,6 +66,9 @@ public class FriendActivityTest extends ActivityInstrumentationTestCase2<FriendA
     public void tearDown() throws Exception{
         solo.finishOpenedActivities();
     }
+
+    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // YOU WILL NEED TO WIPE DATA IF YOU WISH TO USE THE APP AFTER TESTING ALL INTENT TESTING .
 
 
 }
