@@ -48,7 +48,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit, "Title", "Did my habit!", null,
-                    null, null);
+                    null, new Date());
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -160,7 +160,7 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
 
         try {
             habitEvent = new HabitEvent(myHabit,"Title", "Did my habit!", null,
-                    null, null);
+                    null, new Date());
         }
         catch(HabitCommentTooLongException e){
             //null
@@ -242,59 +242,24 @@ public class HabitHistoryTest extends ActivityInstrumentationTestCase2 {
     public void testSortHabitHistory() throws Exception{
         HabitHistory habitHistory = new HabitHistory();
 
-        Habit myHabit = null;
-        HabitEvent habitEvent = null;
-        HabitEvent habitEvent1 = null;
+        Habit myHabit = new Habit("Eating Pizza", new Date());
 
-        try {
-            myHabit = new Habit("Eating Pizza", new Date());
-        }
-        catch(HabitTitleTooLongException e){
-            //null
-        }
-        catch(DateNotValidException e){
-            //null
-        }
+        HabitEvent habitEvent =  new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
+                                null,
+                                 new Date(0));
 
-        try {
-            habitEvent = new HabitEvent(myHabit, "Ate Pizza With Jack", "Did my habit!", null,
-                    null,
-                    new Date());
-        }
-        catch(HabitCommentTooLongException e){
-            //null
-        }
+        sleep(1000);
 
-        try {
-            habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
-                    null,
-                    new Date());
-        }
-        catch(HabitCommentTooLongException e){
-            //null
-        }
+        HabitEvent habitEvent1 = new HabitEvent(myHabit, "Ate Pizza With Mike", "Did my habit!", null,
+                                null,
+                                 new Date(0));
 
         habitHistory.add(habitEvent);
         habitHistory.add(habitEvent1);
         habitHistory.sortHabitHistory();
 
-        String title1 = null;
-        String title2 = null;
-
-        try {
-            title1 = habitHistory.get(0).getHabitEventTitle();
-        }
-        catch(HabitEventNameException e){
-            //null
-        }
-
-        try{
-            title2 = habitHistory.get(1).getHabitEventTitle();
-        }
-        catch(HabitEventNameException e){
-            //null
-        }
-
+        String title1 = habitHistory.get(0).getHabitEventTitle();
+        String title2 = habitHistory.get(1).getHabitEventTitle();
 
         assertEquals("Ate Pizza With Mike", title1);
         assertEquals("Ate Pizza With Jack", title2);
